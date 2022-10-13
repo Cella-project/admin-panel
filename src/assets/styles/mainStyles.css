@@ -1,0 +1,163 @@
+/* font families */
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Open+Sans&family=PT+Sans&display=swap');
+
+/* Inter */
+.inter {
+    font-family: 'Inter';
+}
+
+/* PT Sans */
+.ptSans {
+    font-family: 'PT Sans';
+}
+
+/* Open Sans */
+.openSans {
+    font-family: 'Open Sans';
+}
+
+/* ---------------------------------------------------------------- */
+/* font sizes & weights */
+.font30 {
+    font-size: 30px;
+}
+
+.font26 {
+    font-size: 26px;
+}
+
+.font25 {
+    font-size: 25px;
+}
+
+.font20 {
+    font-size: 20px;
+}
+
+.font15 {
+    font-size: 15px;
+}
+
+.font12 {
+    font-size: 12px;
+}
+
+.weight900 {
+    font-weight: 900;
+}
+
+.weight700 {
+    font-weight: 700;
+}
+
+.weight600 {
+    font-weight: 600;
+}
+
+/* ---------------------------------------------------------------- */
+/* main colors */
+.mintGreenColor {
+    color: #70C8B0;
+}
+
+.mintGreenBg {
+    background-color: #70C8B0;
+}
+
+.yellowColor {
+    color: #FEF875;
+}
+
+.greyColor {
+    color: #737373;
+}
+
+.whiteColor {
+    color: #ffffff;
+}
+
+.whiteBg {
+    background-color: #ffffff;
+}
+
+.beigeColor {
+    color: #fefefe;
+}
+
+.beigeBg {
+    background-color: #fefefe;
+}
+
+.lightGreyBg {
+    background-color: #dddddd;
+}
+
+.shadow {
+    box-shadow: 2px 2px 8px 2px #ddd;
+}
+
+/* ---------------------------------------------------------------- */
+/* sizing */
+.fullWidth {
+    width: 100%;
+}
+
+.maxContentWidth {
+    width: max-content;
+}
+
+.fullHeight {
+    height: 100vh;
+}
+
+.maxContentHeight {
+    height: max-content;
+}
+
+/* ---------------------------------------------------------------- */
+/* display */
+.flex {
+    display: flex;
+}
+
+.centeringItems {
+    align-items: center;
+}
+
+.centeringContent {
+    justify-content: center;
+}
+
+.spaceBetween {
+    justify-content: space-between;
+}
+
+.inlineFlex {
+    display: inline-flex;
+}
+
+.none {
+    display: none;
+}
+
+/* ---------------------------------------------------------------- */
+/* position */
+.absolute {
+    position: absolute;
+}
+
+.relative {
+    position: relative;
+}
+
+/* ---------------------------------------------------------------- */
+/* overflow */
+.hidden {
+    overflow: hidden;
+}
+
+/* ---------------------------------------------------------------- */
+/* cursor */
+.pointer {
+    cursor: pointer;
+}

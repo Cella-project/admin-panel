@@ -1,0 +1,56 @@
+.sideBar {
+    top: 10px;
+    left: 10px;
+    width: 50px;
+    height: calc(100vh - 20px);
+    border-radius: 15px;
+    box-sizing: border-box;
+    padding: 10px;
+    flex-direction: column;
+    -webkit-transition: width 0.75s;
+    transition: width 0.75s;
+    z-index: 50;
+}
+
+a {
+    width: max-content;
+    outline: none;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+a.active i,
+a.active span {
+    color: #FEF875;
+}
+
+.sideBar .ps__thumb-y,
+.sideBar .ps__rail-y {
+    top: 0 !important;
+    height: 0 !important;
+}
+
+.description {
+    margin-left: 25px;
+}
+
+.sideBar:hover {
+    width: 280px;
+    -webkit-transition: width 0.75s;
+    transition: width 1.5s;
+}
+
+.sideBar:hover .description {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    width: 215px;
+    animation: typing 1.2s steps(40, end);
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+}
