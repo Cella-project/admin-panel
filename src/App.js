@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="fullWidth fullHeight">
-          <img src={background} alt="ProjectBackground" className="bg absolute fullHeight" />
+          <img src={background} alt="ProjectBackground" className="bg absolute fullHeight fixed" />
           <SideBar />
           <NavBar />
           <Routes>
