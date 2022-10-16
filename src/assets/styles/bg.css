@@ -1,0 +1,11 @@
+.bg{
+    width: 55%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* @media (max-width: 800px) {
+    .bg{
+        width: 80%;
+    }
+} */
