@@ -3,7 +3,7 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import adminImg from '../../assets/images/1.JPEG';
 import '../../assets/styles/mainStyles.css';
-import '../../assets/styles/NavBar.css';
+import './NavBar.css';
 
 const NavBar = () => {
     const languages = [

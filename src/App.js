@@ -6,15 +6,17 @@ import SideBar from "./components/sideBar/SideBar";
 import Home from "./components/homePage/Home";
 import './assets/styles/bg.css';
 import './assets/styles/mainStyles.css';
+import Tools from "./components/ToolsIcon/Tools";
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="fullWidth fullHeight">
-          <img src={background} alt="ProjectBackground" className="bg absolute fullHeight fixed" />
+        <div className="full-width full-height">
+          <img src={background} alt="ProjectBackground" className="bg absolute full-height fixed" />
           <SideBar />
           <NavBar />
+          <Tools />
           <Routes>
             <Route path="/" element={<Home />} />
             

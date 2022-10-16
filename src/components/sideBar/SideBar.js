@@ -1,16 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { Link, NavLink } from 'react-router-dom';
 import '../../assets/styles/mainStyles.css';
 import '../../assets/icons/icons.css';
-import '../../assets/styles/SideBar.css';
+import './SideBar.css';
 
 
-class SideBar extends Component {
-  render() {
+const SideBar = () => {
     return (
       <PerfectScrollbar className="side-bar fixed mint-green-bg hidden flex">
-          {/* <i className="bi bi-list list beige-color font26 none"></i> */}
+        {/* <button className="bar-btn bar-close-btn pointer none"><i className="bi bi-x-circle icon beige-color font26"></i></button>
+        <button className="bar-btn bar-open-btn pointer none"><i className="bi bi-list icon beige-color font30"></i></button> */}
         <Link to={'/'}>
           <i className="bi bi-house-door icon font26 grey-color"></i><span className="description none hidden inter font20 weight700 grey-color">Home</span>
         </Link>
@@ -58,7 +58,6 @@ class SideBar extends Component {
         </NavLink>
       </PerfectScrollbar>
     );
-  }
 }
 
 export default SideBar;
