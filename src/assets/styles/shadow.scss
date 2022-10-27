@@ -1,0 +1,13 @@
+$shadow: rgba($color: #000, $alpha: .7);
+
+.shadow-2px {
+    box-shadow: 2px 2px 5px $shadow;
+}
+
+.shadow-5px {
+    box-shadow: 5px 5px 10px $shadow;
+}
+
+.shadow-10px {
+    box-shadow: 10px 10px 15px $shadow;
+}
