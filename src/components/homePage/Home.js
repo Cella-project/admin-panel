@@ -7,17 +7,17 @@ import './Home.scss';
 class Home extends Component {
   state = {
     cards: [
-      { title: 'Total Sales', content: '2M', icon: <i className="bi bi-currency-dollar  mint-green-color"></i> },
-      { title: '# of Customers', content: '2500', icon: <i className="bi bi-people  mint-green-color"></i> },
-      { title: '# of Products', content: '1000', icon: <i className="bi bi-box-seam  mint-green-color"></i> },
-      { title: '# of Orders', content: '100', icon: <i className="bi bi-receipt  mint-green-color"></i> },
+      { title: 'Total Sales', content: '2M', icon: <i className="bi bi-currency-dollar  mint-green"></i> },
+      { title: '# of Customers', content: '2500', icon: <i className="bi bi-people  mint-green"></i> },
+      { title: '# of Products', content: '1000', icon: <i className="bi bi-box-seam  mint-green"></i> },
+      { title: '# of Orders', content: '100', icon: <i className="bi bi-receipt  mint-green"></i> },
     ]
   }
 
   render() {
     return (
-      <div className="home absolute" >
-        <div className="braud-cramb inter font15 weight600">
+      <div className="home" >
+        <div className="braud-cramb inter size-16px font-bold">
           Home
         </div>
         <div className="header-cards full-width">

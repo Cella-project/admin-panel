@@ -1,12 +1,14 @@
 .side-bar {
+    position: fixed;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
     top: 10px;
     left: 10px;
     width: 50px;
     height: calc(100vh - 20px);
-    border-radius: 15px;
     box-sizing: border-box;
     padding: 10px;
-    flex-direction: column;
     -webkit-transition: width 0.75s;
     transition: width 0.75s;
     z-index: 4;
@@ -32,6 +34,8 @@ a.active span {
 }
 
 .description {
+    display: none;
+    overflow: hidden;
     margin-left: 25px;
 }
 

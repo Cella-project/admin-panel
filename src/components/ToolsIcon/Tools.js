@@ -10,16 +10,16 @@ const Tools = () => {
     }
 
     return (
-        <div className="tool-box flex align-items-center justify-content-center fixed pointer">
+        <div className="tool-box flex-col-center pointer">
             {isMenuShown &&
-                <div className="tools flex align-items-center justify-content-center fixed pointer">
-                    <i className="bi bi-pencil-square flex align-items-center justify-content-center beige-color mint-green-bg pointer font26 tool-icon" />
-                    <i className="bi bi-circle-half flex align-items-center justify-content-center beige-color mint-green-bg pointer font26 tool-icon" />
-                    <i className="bi bi-calendar4 flex align-items-center justify-content-center beige-color mint-green-bg pointer font26 tool-icon" />
-                    <i className="bi bi-chat-text flex align-items-center justify-content-center beige-color mint-green-bg pointer font26 tool-icon" />
+                <div className="tools flex-col-center pointer">
+                    <i className="bi bi-pencil-square flex-row-center off-white mint-green-bg pointer size-26px tool-icon radius-circular" />
+                    <i className="bi bi-circle-half flex-row-center off-white mint-green-bg pointer size-26px tool-icon radius-circular" />
+                    <i className="bi bi-calendar4 flex-row-center off-white mint-green-bg pointer size-26px tool-icon radius-circular" />
+                    <i className="bi bi-chat-text flex-row-center off-white mint-green-bg pointer size-26px tool-icon radius-circular" />
                 </div>
             }
-            <i onClick={clickHandler} className={`${isMenuShown ? 'bi bi-x grey-bg' : 'bi bi-columns-gap mint-green-bg'} flex align-items-center justify-content-center beige-color pointer font26 tool-icon`} />
+            <i onClick={clickHandler} className={`${isMenuShown ? 'bi bi-x gray-bg' : 'bi bi-columns-gap mint-green-bg'} flex-row-center off-white pointer size-26px tool-icon radius-circular`} />
         </div>
     );
 

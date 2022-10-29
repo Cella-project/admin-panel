@@ -1,20 +1,19 @@
 .tool-box {
+    position: fixed;
     bottom: 10px;
     right: 10px;
-    flex-direction: column;
     z-index: 5;
 }
 
 .tools {
+    position: fixed;
     bottom: 70px;
     right: 10px;
-    flex-direction: column;
     z-index: 5;
 }
 
 .tool-icon {
     width: 50px;
     height: 50px;
-    border-radius: 50px;
     margin: 2px;
 }

@@ -6,11 +6,11 @@ const Card = (props) => {
     return(
         props.cards.map( (card, index) => {
             return (
-                <div key={index} className="card shadow inline-block white-bg">
-                    <p className="card-header inter weight600 mint-green-bg white-color flex align-items-center justify-content-center font15">{card.title}</p>
-                    <span className="card-content flex align-items-center justify-content-center font30 open-sans weight700">
+                <div key={index} className="card shadow-2px radius-15px white-bg">
+                    <p className="card-header no-margin inter font-bold mint-green-bg white flex-row-center size-14px">{card.title}</p>
+                    <span className="card-content flex-row-center size-30px open-sans font-bold">
                         {card.icon}
-                        <p className="card-header">
+                        <p className="card-header no-margin">
                             {card.content}
                         </p>
                     </span>

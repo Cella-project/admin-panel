@@ -15,7 +15,7 @@ class App extends Component {
         <div className="full-width full-screen-height">
           <img src={background} alt="ProjectBackground" className="bg full-screen-height" />
           <SideBar />
-          <NavBar />
+          {/* <NavBar /> */}
           <Tools />
           <Routes>
             <Route path="/" element={<Home />} />
