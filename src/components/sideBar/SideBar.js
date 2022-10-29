@@ -8,7 +8,7 @@ import './SideBar.scss';
 
 const SideBar = () => {
     return (
-      <PerfectScrollbar className="side-bar mint-green-bg radius-15px">
+      <PerfectScrollbar className="side-bar mint-green-bg">
         <Link to={'/'}>
           <i className="bi bi-house-door icon size-26px gray"></i><span className="description inter size-20px font-bold gray">Home</span>
         </Link>
