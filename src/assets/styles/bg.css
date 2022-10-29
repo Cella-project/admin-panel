@@ -1,11 +1,6 @@
 .bg{
-    width: 55%;
+    width: 100%;
     object-fit: cover;
     z-index: 1;
+    opacity: 0.5;
 }
-
-/* @media (max-width: 800px) {
-    .bg{
-        width: 80%;
-    }
-} */

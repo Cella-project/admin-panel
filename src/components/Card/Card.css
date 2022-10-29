@@ -1,19 +1,4 @@
-.home {
-    margin-top: 80px;
-    margin-left: 50px;
-    padding: 10px;
-    z-index: 2;
-}
-
-.braud-cramb {
-    margin-left: 50px;
-}
-
-.header-cards {
-    margin-top: 10px;
-}
-
-/* .card {
+.card {
     width: 300px;
     margin: 10px 30px;
     border-radius: 15px;
@@ -33,4 +18,4 @@
 .card-content i{
     text-shadow: 0 0 0 ;
     margin-right: 5%;
-} */
+}
