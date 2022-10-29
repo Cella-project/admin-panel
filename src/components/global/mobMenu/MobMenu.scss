@@ -1,0 +1,49 @@
+.mob-menu {
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    width: 320px;
+    border-radius: 0 20px 20px 0;
+    box-sizing: border-box;
+    padding: 5px;
+    z-index: 4;
+
+    &--logo {
+        margin-block-start: 70px;
+        box-sizing: border-box;
+        padding: 0 80px;
+    }
+}
+
+.mob-menu i:hover {
+    color: #737373;
+}
+
+.mob-menu a {
+    width: max-content;
+    outline: none;
+    margin: 0 20px;
+    text-decoration: none;
+}
+
+.mob-menu a:hover i, .mob-menu a:hover span {
+    color: #737373;
+}
+
+.mob-menu a.active i,
+.mob-menu a.active span {
+    color: #737373;
+}
+
+.mob-menu .ps__thumb-y,
+.mob-menu .ps__rail-y {
+    top: 0 !important;
+    height: 0 !important;
+}
+
+.icon-description {
+    overflow: hidden;
+    margin-left: 25px;
+}
+
+

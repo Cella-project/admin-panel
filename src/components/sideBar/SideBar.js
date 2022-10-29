@@ -1,6 +1,6 @@
 import React from "react";
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import '../../assets/styles/style.scss';
 import '../../assets/icons/icons.scss';
 import './SideBar.scss';
@@ -9,9 +9,9 @@ import './SideBar.scss';
 const SideBar = () => {
     return (
       <PerfectScrollbar className="side-bar mint-green-bg">
-        <Link to={'/'}>
-          <i className="bi bi-house-door icon size-26px gray"></i><span className="description inter size-20px font-bold gray">Home</span>
-        </Link>
+        <NavLink end to={'/'}>
+          <i className="bi bi-house-door icon size-26px off-white"></i><span className="description inter size-20px font-bold off-white">Home</span>
+        </NavLink>
         <NavLink to={'/admins'} >
           <i className="bi bi-file-person icon off-white size-26px"></i><span className="description inter size-20px font-bold off-white">Admins</span>
         </NavLink>

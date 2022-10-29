@@ -16,12 +16,18 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="home" >
+      <div className="home full-width" >
         <div className="braud-cramb inter size-16px font-bold">
           Home
         </div>
-        <div className="header-cards full-width">
-          <Card cards={this.state.cards} />
+        <div className="header-cards full-width flex-row2col flex-wrap">
+          {
+            this.state.cards.map((card, index) => {
+              return (
+                <Card key={index} card={card} width={'width-20-100'} />
+              );
+            })
+          }
         </div>
       </div>
     );
