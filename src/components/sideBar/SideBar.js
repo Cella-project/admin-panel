@@ -1,9 +1,9 @@
 import React from "react";
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { Link, NavLink } from 'react-router-dom';
-import '../../assets/styles/mainStyles.css';
-import '../../assets/icons/icons.css';
-import './SideBar.css';
+import '../../assets/styles/style.scss';
+import '../../assets/icons/icons.scss';
+import './SideBar.scss';
 
 
 const SideBar = () => {
