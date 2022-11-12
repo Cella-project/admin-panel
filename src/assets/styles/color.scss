@@ -1,0 +1,56 @@
+$white: #ffffff;
+$off-white: #fefefe;
+
+$gray: #737373;
+$light-gray: #dddddd;
+
+$mint-green: #70c8b0;
+$yellow: #fef875;
+
+.white {
+    color: $white;
+}
+
+.white-bg {
+    background-color: $white;
+}
+
+.off-white {
+    color: $off-white;
+}
+
+.off-white-bg {
+    background-color: $off-white;
+}
+
+.gray {
+    color: $gray;
+}
+
+.gray-bg {
+    background-color: $gray;
+}
+
+.light-gray {
+    color: $light-gray;
+}
+
+.light-gray-bg {
+    background-color: $light-gray;
+}
+
+.mint-green {
+    color: $mint-green;
+}
+
+.mint-green-bg {
+    background-color: $mint-green;
+}
+
+.yellow {
+    color: $yellow;
+}
+
+.yellow-bg {
+    background-color: $yellow;
+}
