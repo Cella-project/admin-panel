@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import '../../assets/styles/style.scss';
-import Card from "../global/Card/Card";
+import Card from "../../components/common/Cards/Card";
 import './Home.scss';
 
 
@@ -20,7 +20,7 @@ class Home extends Component {
         <div className="braud-cramb inter size-16px font-bold">
           Home
         </div>
-        <div className="header-cards full-width flex-row2col flex-wrap">
+        <div className="full-width flex-row2col flex-wrap">
           {
             this.state.cards.map((card, index) => {
               return (

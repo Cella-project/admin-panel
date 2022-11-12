@@ -1,13 +1,13 @@
-import React, { Component, useState } from "react";
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React, { useState } from "react";
+import { BrowserRouter } from "react-router-dom";
 import background from './assets/images/background.svg';
-import NavBar from "./components/navBar/NavBar";
-import SideBar from "./components/sideBar/SideBar";
+import NavBar from "./components/global/navBar/NavBar";
+import SideBar from "./components/global/sideBar/SideBar";
 import MobMenu from './components/global/mobMenu/MobMenu';
-import Home from "./components/homePage/Home";
+import Tools from "./components/global/ToolsIcon/Tools";
+import Routing from "./router/Routing";
 import './assets/styles/bg.scss';
 import './assets/styles/style.scss';
-import Tools from "./components/ToolsIcon/Tools";
 
 const App = () => {
 
@@ -15,16 +15,14 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <div className="full-width full-screen-height">
+      <div className="full-width full-screen-height app">
         <img src={background} alt="ProjectBackground" className="bg full-screen-height" />
         <SideBar />
         {mobMenuShown && <MobMenu menuToggle={setMobMenuShown} />}
         <NavBar menuToggle={setMobMenuShown} />
         <Tools />
-        <Routes>
-          <Route path="/" element={<Home />} />
-
-        </Routes>
+        <Routing />
+        
       </div>
     </BrowserRouter>
   );

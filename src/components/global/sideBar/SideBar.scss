@@ -4,19 +4,18 @@
     display: flex;
     flex-direction: column;
     top: 10px;
-    // left: 10px;
     width: 50px;
     border-radius: 0 20px 20px 0;
     height: calc(100vh - 20px);
     box-sizing: border-box;
-    padding: 10px 5px;
+    padding: 12px 5px;
     -webkit-transition: width 0.75s;
     transition: width 0.75s;
-    z-index: 4;
+    z-index: 5;
 }
 
 .side-bar a {
-    width: max-content;
+    width: 100%;
     outline: none;
     text-decoration: none;
     display: flex;
@@ -46,7 +45,7 @@
 }
 
 .side-bar:hover {
-    width: 270px;
+    width: 280px;
     -webkit-transition: width 0.75s;
     transition: width 0.75s;
 }

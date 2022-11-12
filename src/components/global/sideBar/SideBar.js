@@ -1,8 +1,8 @@
 import React from "react";
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { NavLink } from 'react-router-dom';
-import '../../assets/styles/style.scss';
-import '../../assets/icons/icons.scss';
+import '../../../assets/styles/style.scss';
+import '../../../assets/icons/icons.scss';
 import './SideBar.scss';
 
 

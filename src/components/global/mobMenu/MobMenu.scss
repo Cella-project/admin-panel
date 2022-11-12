@@ -1,17 +1,27 @@
 .mob-menu {
     position: fixed;
     overflow: hidden;
-    top: 0;
-    width: 320px;
+    width: 360px;
     border-radius: 0 20px 20px 0;
     box-sizing: border-box;
     padding: 5px;
-    z-index: 4;
+    z-index: 5;
+    animation: width 0.05s steps(40, end);
 
     &--logo {
-        margin-block-start: 70px;
-        box-sizing: border-box;
-        padding: 0 80px;
+        margin-top: 40px;
+    }
+
+    &--close {
+        position: fixed;
+        margin-left: 290px;
+        margin-top: 20px;
+    }
+}
+
+@keyframes width {
+    from {
+        width: 0;
     }
 }
 
@@ -19,14 +29,16 @@
     color: #737373;
 }
 
+
 .mob-menu a {
-    width: max-content;
+    width: 100%;
     outline: none;
-    margin: 0 20px;
+    margin: 5px 20px;
     text-decoration: none;
 }
 
-.mob-menu a:hover i, .mob-menu a:hover span {
+.mob-menu a:hover i,
+.mob-menu a:hover span {
     color: #737373;
 }
 
@@ -42,8 +54,11 @@
 }
 
 .icon-description {
-    overflow: hidden;
-    margin-left: 25px;
+    margin-left: 35px;
 }
 
-
+@media (min-width: 993px) {
+    .mob-menu {
+        display: none;
+    }
+}
