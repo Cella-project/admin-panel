@@ -15,6 +15,7 @@ import AddMainCategoryForm from "../category/AddMainCategoryForm";
 import AddSubCategoryForm from "../category/AddSubCategoryForm";
 import EditMainCategoryForm from "../category/EditMainCategoryForm";
 import AddPaymentForm from "../payments/AddPaymentForm";
+import EditStoreForm from "../stores/EditStoreForm";
 import EditStoreApplicationForm from "../storeApplications/EditStoreApplicationForm";
 import AddDriverForm from "../delivery/AddDriverForm";
 import EditDriverApplicationForm from "../deliveryApplications/EditDriverApplicationForm";

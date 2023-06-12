@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import LangMenu from '../common/LangMenu';
+// import LangMenu from '../common/LangMenu';
 
 import logo from '../../assets/images/mint-logo.png';
 import darkLogo from '../../assets/images/white-logo.png';
