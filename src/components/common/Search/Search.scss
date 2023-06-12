@@ -1,0 +1,46 @@
+.search
+{
+    margin:20px auto;
+    position: relative;
+    height: 12px;
+    z-index: 2;
+}
+.searchInput
+{
+    opacity: .8;
+    position: absolute;
+    left: 30px;
+    border: none;
+    width: calc(100% - 60px);
+
+}
+.searchInput:focus{
+    outline: none;
+
+}
+.bi-search
+{
+    position: absolute;
+    left: 10px;
+    top: 5px;
+}
+.bi-sliders
+{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    
+}
+
+form
+{
+height: 100px;
+position: absolute;
+border: 1px white solid;
+z-index: 1;
+top: 20px;
+}
+form div input,form div label{
+    padding: 0px 15px;
+}
+
