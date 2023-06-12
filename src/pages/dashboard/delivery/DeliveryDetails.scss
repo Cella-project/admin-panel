@@ -1,0 +1,25 @@
+.delivery-details {
+
+  &--container {
+    box-sizing: border-box;
+    padding: 10px;
+  }
+
+  &--scroll--cont {
+    width: 100%;
+    max-height: 370px;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 10px;
+
+    & .ps__thumb-y,
+    & .ps__rail-y {
+      top: 0 !important;
+      height: 0 !important;
+    }
+  }
+}
+
+.link {
+  all: unset;
+}

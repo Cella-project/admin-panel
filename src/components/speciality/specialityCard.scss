@@ -1,0 +1,76 @@
+.speciality-card {
+    all: unset;
+    box-sizing: border-box;
+    padding: 15px;
+
+    &--disc {
+        &--show {
+            display: inline;
+        }
+
+        &--hide {
+            display: none;
+        }
+    }
+
+    &--info {
+        width: calc(100% - 55px);
+    }
+
+    &--input {
+        all: unset;
+        border: none;
+        color: #737373;
+        background-color: transparent;
+        box-sizing: border-box;
+        padding: 5px;
+
+        &--editing {
+            all: unset;
+            box-sizing: border-box;
+            padding: 5px;
+            color: #737373;
+            width: 80%;
+            background-color: transparent;
+            border: 2px solid #70c8b0;
+            border-radius: 15px;
+            outline: none;
+        }
+    }
+
+    &--button {
+        all: unset;
+        text-align: center;
+        box-sizing: border-box;
+        padding: 5px 20px;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+            transform: translateY(2px);
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .speciality-card {
+        & i {
+            width: 100%;
+            text-align: center;
+        }
+
+        &--actions {
+            width: 100%;
+        }
+
+        &--button {
+            margin-top: 10px !important;
+            width: 100%;
+        }
+
+        &--info {
+            &--child {
+                width: 100%;
+            }
+        }
+    }
+}

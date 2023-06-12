@@ -1,0 +1,50 @@
+.expand-document {
+  width: 100%;
+  min-width: 200px;
+  margin: 10px;
+  overflow: hidden;
+
+  &--header {
+    box-sizing: border-box;
+    padding: 7px 20px;
+  }
+
+  &--download-btn {
+    width: 22px;
+    height: 22px;
+    transition: all 0.3s ease-in-out;
+
+    &--tag {
+      display: none !important;
+      position: absolute;
+      left: 25px;
+      padding: 6px 8px;
+      background-color: rgba($color: #000000, $alpha: 0.6);
+      width: max-content;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &:hover &--tag {
+      display: flex !important;
+    }
+  }
+
+  &--body {
+    box-sizing: border-box;
+    padding: 15px 20px;
+    justify-content: space-around !important;
+
+    &--img {
+      box-sizing: border-box;
+      padding: 5px;
+
+      &>img {
+        border-radius: 5px;
+        max-width: 230px;
+      }
+    }
+  }
+}

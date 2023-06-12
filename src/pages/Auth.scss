@@ -1,0 +1,44 @@
+.auth {
+    position: relative;
+    min-height: 100vh;
+    background-color: #f5f3fc;
+
+    &.dark {
+        background-color: #18191a;
+    }
+
+    &--header {
+        box-sizing: border-box;
+        padding: 15px 0px;
+    }
+
+    &--body {
+        min-height: calc(100vh - (30px + 2.67em));
+        box-sizing: border-box;
+        padding: 50px;
+
+        &--img {
+            width: 50%;
+        }
+    }
+
+    &--sign {
+        position: absolute;
+        bottom: 10px;
+    }
+}
+
+@media (max-width: 992px) {
+    .auth {
+        &--body {
+            min-height: calc(100vh - (30px + 2.67em));
+            padding: 50px 10px;
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .auth--body--img {
+        width: 90%;
+    }
+}

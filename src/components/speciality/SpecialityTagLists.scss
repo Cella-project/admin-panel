@@ -1,0 +1,82 @@
+.tags-card {
+    all: unset;
+    box-sizing: border-box;
+    padding: 10px;
+
+    &--disc {
+        &--show {
+            display: inline;
+        }
+
+        &--hide {
+            display: none;
+        }
+    }
+
+    &--input {
+        all: unset;
+        border: none;
+        color: #737373;
+        background-color: transparent;
+        box-sizing: border-box;
+        padding: 5px;
+        width: 90%;
+        overflow: visible;
+        white-space: normal;
+        align-items: center;
+
+        &--editing {
+            all: unset;
+            box-sizing: border-box;
+            padding: 5px;
+            color: #737373;
+            width: 80%;
+            background-color: transparent;
+            border: 2px solid #70c8b0;
+            border-radius: 15px;
+            outline: none;
+            align-items: center;
+
+        }
+    }
+
+    &--button {
+        all: unset;
+        text-align: center;
+        box-sizing: border-box;
+        padding: 5px;
+
+        &:hover {
+            transition: all 0.3s ease-in-out;
+            transform: scale(1.2);
+        }
+
+        &-edit {
+            all: unset;
+            box-sizing: border-box;
+            padding: 5px;
+            color: #737373;
+            background-color: transparent;
+            border: 2px solid #70c8b0;
+            border-radius: 15px;
+            outline: none;
+            transition: all 0.15s ease-in-out;
+
+            &:hover {
+                transform: translateY(2px);
+            }
+        }
+
+
+    }
+}
+
+@media (max-width: 992px) {
+    .tags-card {
+        & i {
+            width: 100%;
+            text-align: center;
+        }
+
+    }
+}

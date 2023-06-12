@@ -1,0 +1,70 @@
+.colors-card {
+    all: unset;
+    box-sizing: border-box;
+    padding: 10px;
+
+    &--disc {
+        &--show {
+            display: inline;
+        }
+
+        &--hide {
+            display: none;
+        }
+    }
+
+    &--input {
+        all: unset;
+        border: none;
+        color: #737373;
+        background-color: transparent;
+        box-sizing: border-box;
+        padding: 5px;
+        width: 90%;
+        overflow: visible;
+        white-space: normal;
+        align-items: center;
+    }
+
+    &--hex {
+        all: unset;
+        border: none;
+        background-color: transparent;
+        box-sizing: border-box;
+        padding: 5px;
+        width: 40%;
+        height: 30px;
+    }
+
+    &--button {
+        all: unset;
+        text-align: center;
+        box-sizing: border-box;
+        padding: 5px;
+
+        &:hover {
+            transition: all 0.3s ease-in-out;
+            transform: scale(1.2);
+        }
+
+        &-edit {
+            all: unset;
+            box-sizing: border-box;
+            padding: 5px;
+            color: #737373;
+            background-color: transparent;
+            border: 2px solid #70c8b0;
+            border-radius: 15px;
+            outline: none;
+
+
+            &:disabled {
+                background-color: #737373;
+                border: #737373;
+                cursor: not-allowed;
+            }
+        }
+
+
+    }
+}
