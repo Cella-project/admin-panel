@@ -6,12 +6,12 @@ import './LogActivity.scss';
 
 const LogActivity = () => {
   const activityCards = [
-    { name: 'Admin admin', type: <i className="bi bi-shop-window mint-green icon white size-30px" />, timeStamp: new Date().toLocaleString(), action: 'Change the Statue of Customer #aertsa12 from Active to suspended' },
-    { name: 'Admin admin', type: <i className="bi bi-people mint-green icon white size-30px" />, timeStamp: new Date().toLocaleString(), action: 'Change the profile picture' },
-    { name: 'Admin admin', type: <i className="bi bi-shop-window mint-green icon white size-30px" />, timeStamp: new Date().toLocaleString(), action: 'Change the Statue of Customer #aertsa12 from Active to suspended' },
-    { name: 'Admin admin', type: <i className="bi bi-people mint-green icon white size-30px" />, timeStamp: new Date().toLocaleString(), action: 'Change the profile picture' },
-    { name: 'Admin admin', type: <i className="bi bi-shop-window mint-green icon white size-30px" />, timeStamp: new Date().toLocaleString(), action: 'Change the Statue of Customer #aertsa12 from Active to suspended' },
-    { name: 'Admin admin', type: <i className="bi bi-people mint-green icon white size-30px" />, timeStamp: new Date().toLocaleString(), action: 'Change the profile picture', },
+    { name: 'Admin admin', type: <i className="bi bi-shop-window orange icon white size-30px" />, timeStamp: new Date().toLocaleString(), action: 'Change the Statue of Customer #aertsa12 from Active to suspended' },
+    { name: 'Admin admin', type: <i className="bi bi-people orange icon white size-30px" />, timeStamp: new Date().toLocaleString(), action: 'Change the profile picture' },
+    { name: 'Admin admin', type: <i className="bi bi-shop-window orange icon white size-30px" />, timeStamp: new Date().toLocaleString(), action: 'Change the Statue of Customer #aertsa12 from Active to suspended' },
+    { name: 'Admin admin', type: <i className="bi bi-people orange icon white size-30px" />, timeStamp: new Date().toLocaleString(), action: 'Change the profile picture' },
+    { name: 'Admin admin', type: <i className="bi bi-shop-window orange icon white size-30px" />, timeStamp: new Date().toLocaleString(), action: 'Change the Statue of Customer #aertsa12 from Active to suspended' },
+    { name: 'Admin admin', type: <i className="bi bi-people orange icon white size-30px" />, timeStamp: new Date().toLocaleString(), action: 'Change the profile picture', },
   ]
 
   useEffect(() => {

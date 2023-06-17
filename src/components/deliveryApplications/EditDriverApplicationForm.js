@@ -386,7 +386,7 @@ const EditDriverApplicationForm = ({ popupToggle }) => {
     return (
         <form noValidate className='edit-driverApplication' onSubmit={formSubmissionHandler}>
             {popupToggle && currentSection === 1 && <div className='full-width flex-col-center edit-driverApplication--input-container'>
-                <div className={`edit-driverApplication--header ${mode === 'dark-mode' ? 'gray' : 'mint-green'} full-width size-18px font-bold margin-6px-V`}>DriverApplication Section</div>
+                <div className={`edit-driverApplication--header ${mode === 'dark-mode' ? 'gray' : 'orange'} full-width size-18px font-bold margin-6px-V`}>DriverApplication Section</div>
                 <div className='full-width flex-col-left-start edit-driverApplication--input-container'>
                     <label className='pointer full-width text-shadow gray font-bold margin-6px-V' htmlFor='DriverApplicationName'>DriverApplication Name</label>
                     <div className={`full-width gray radius-10px white-bg flex-row-left-start edit-driverApplication--input ${driverApplicationNameClasses}`}>
@@ -524,7 +524,7 @@ const EditDriverApplicationForm = ({ popupToggle }) => {
                         </label>
                         <button
                             type="button"
-                            className={`edit-driverApplication--actions--button${driverImg === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                            className={`edit-driverApplication--actions--button${driverImg === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                             onClick={() => { setdriverImg('No Image'); }}
                         >
                             Clear
@@ -533,7 +533,7 @@ const EditDriverApplicationForm = ({ popupToggle }) => {
                 </div>
                 <div className="edit-driverApplication--actions flex-row-between full-width">
                     <button
-                        className={`edit-driverApplication--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                        className={`edit-driverApplication--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                         onClick={() => {
                             setCurrentSection(2);
                         }}
@@ -554,7 +554,7 @@ const EditDriverApplicationForm = ({ popupToggle }) => {
             </div>}
 
             {popupToggle && currentSection === 2 && <div className='full-width flex-col-center edit-driverApplication--input-container'>
-                <div className={`edit-driverApplication--header ${mode === 'dark-mode' ? 'gray' : 'mint-green'} full-width size-18px font-bold margin-6px-V`}>Documentaiton Section</div>
+                <div className={`edit-driverApplication--header ${mode === 'dark-mode' ? 'gray' : 'orange'} full-width size-18px font-bold margin-6px-V`}>Documentaiton Section</div>
                 <div className='full-width flex-col-left-start edit-driverApplication--input-container'>
                     <label className='pointer full-width text-shadow gray font-bold margin-6px-V' htmlFor='vehicle'>Vehicle Type</label>
                     <div className={`full-width gray radius-10px white-bg flex-row-left-start edit-driverApplication--input ${vehicleClasses}`}>
@@ -570,7 +570,7 @@ const EditDriverApplicationForm = ({ popupToggle }) => {
                     {vehicleIsTouched && (<div className="error-message">{vehicleError}</div>)}
                 </div>
                 <div className='full-width flex-col-left-start edit-driverApplication--input-container'>
-                    <div className='edit-driverApplication--header mint-green full-width size-18px font-bold margin-6px-V'>National ID Section</div>
+                    <div className='edit-driverApplication--header orange full-width size-18px font-bold margin-6px-V'>National ID Section</div>
                     <label className='pointer full-width text-shadow gray font-bold margin-6px-V' htmlFor='nationalIdImgFront'>National Id Img Front</label>
                     <label className={`edit-driverApplication--change-img--tag full-width flex-row-center gray open-sans pointer ${nationalIdImgFront !== 'No Image' ? 'hide' : ''}`} htmlFor='nationalIdImgFront'>
                         <label className={`bi bi-image size-40px full-width flex-row-center white-bg pointer`} htmlFor="nationalIdImgFront" />
@@ -587,7 +587,7 @@ const EditDriverApplicationForm = ({ popupToggle }) => {
                     </label>
                     <button
                         type="button"
-                        className={`edit-driverApplication--actions--button${nationalIdImgFront === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                        className={`edit-driverApplication--actions--button${nationalIdImgFront === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                         onClick={() => { setNationalIdImgFront('No Image') }}
                     >
                         Clear
@@ -610,7 +610,7 @@ const EditDriverApplicationForm = ({ popupToggle }) => {
                     </label>
                     <button
                         type="button"
-                        className={`edit-driverApplication--actions--button${nationalIdImgBack === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                        className={`edit-driverApplication--actions--button${nationalIdImgBack === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                         onClick={() => { setNationalIdImgBack('No Image') }}
                     >
                         Clear
@@ -619,7 +619,7 @@ const EditDriverApplicationForm = ({ popupToggle }) => {
                 {(enteredVehicle !== 'Bike' && enteredVehicle !== '') &&
                     <>
                         <div className='full-width flex-col-left-start edit-driverApplication--input-container'>
-                            <div className='edit-driverApplication--header mint-green full-width size-18px font-bold margin-6px-V'>Vehicle License Section</div>
+                            <div className='edit-driverApplication--header orange full-width size-18px font-bold margin-6px-V'>Vehicle License Section</div>
                             <label className='pointer full-width text-shadow gray font-bold margin-6px-V' htmlFor='vehicleLicenseImgFront'>Vehicle License Img Front</label>
                             <label className={`edit-driverApplication--change-img--tag full-width flex-row-center gray open-sans pointer ${vehicleLicenseImgFront !== 'No Image' ? 'hide' : ''}`} htmlFor='vehicleLicenseImgFront'>
                                 <label className={`bi bi-image size-40px full-width flex-row-center white-bg pointer`} htmlFor="vehicleLicenseImgFront" />
@@ -636,7 +636,7 @@ const EditDriverApplicationForm = ({ popupToggle }) => {
                             </label>
                             <button
                                 type="button"
-                                className={`edit-driverApplication--actions--button${vehicleLicenseImgFront === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                                className={`edit-driverApplication--actions--button${vehicleLicenseImgFront === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                                 onClick={() => { setVehicleLicenseImgFront('No Image') }}
                             >
                                 Clear
@@ -660,7 +660,7 @@ const EditDriverApplicationForm = ({ popupToggle }) => {
                                 </label>
                                 <button
                                     type="button"
-                                    className={`edit-driverApplication--actions--button${vehicleLicenseImgBack === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                                    className={`edit-driverApplication--actions--button${vehicleLicenseImgBack === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                                     onClick={() => { setVehicleLicenseImgBack('No Image') }}
                                 >
                                     Clear
@@ -669,7 +669,7 @@ const EditDriverApplicationForm = ({ popupToggle }) => {
                         </div>
                         <div className='full-width flex-col-left-start edit-driverApplication--input-container'>
                             <div className="full-width flex-col-left-start edit-store--input-container">
-                                <div className='edit-driverApplication--header mint-green full-width size-18px font-bold margin-6px-V'>DriverApplication License Section</div>
+                                <div className='edit-driverApplication--header orange full-width size-18px font-bold margin-6px-V'>DriverApplication License Section</div>
                                 <label className='pointer full-width text-shadow gray font-bold margin-6px-V' htmlFor='driverLicenseImgFront'>DriverApplication License Img Front</label>
                                 <label className={`edit-driverApplication--change-img--tag full-width flex-row-center gray open-sans pointer ${driverLicenseImgFront !== 'No Image' ? 'hide' : ''}`} htmlFor='driverLicenseImgFront'>
                                     <label className={`bi bi-image size-40px full-width flex-row-center white-bg pointer`} htmlFor="driverLicenseImgFront" />
@@ -686,7 +686,7 @@ const EditDriverApplicationForm = ({ popupToggle }) => {
                                 </label>
                                 <button
                                     type="button"
-                                    className={`edit-driverApplication--actions--button${driverLicenseImgFront === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                                    className={`edit-driverApplication--actions--button${driverLicenseImgFront === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                                     onClick={() => { setDriverLicenseImgFront('No Image') }}
                                 >
                                     Clear
@@ -711,7 +711,7 @@ const EditDriverApplicationForm = ({ popupToggle }) => {
                                 </label>
                                 <button
                                     type="button"
-                                    className={`edit-driverApplication--actions--button${driverLicenseImgBack === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                                    className={`edit-driverApplication--actions--button${driverLicenseImgBack === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                                     onClick={() => { setDriverLicenseImgBack('No Image') }}
                                 >
                                     Clear
@@ -723,7 +723,7 @@ const EditDriverApplicationForm = ({ popupToggle }) => {
 
                 <div className="edit-driverApplication--actions flex-row-between full-width">
                     <button
-                        className={`edit-driverApplication--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                        className={`edit-driverApplication--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                         type="submit"
                     >
                         Confirm

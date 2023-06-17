@@ -27,7 +27,7 @@ const ReviewCard = ({ visible, customer, type, name, rating, status }) => {
                         {type &&
                             <div className='review-lists-card--cont margin-2px-V'>
                                 <span className='lists-card--info--disc--hide margin-2px-H font-bold'>Type: </span>
-                                <i className={`${type} mint-green size-30px`} />
+                                <i className={`${type} orange size-30px`} />
                             </div>
                         }
                         {name &&
@@ -59,13 +59,13 @@ const ReviewCard = ({ visible, customer, type, name, rating, status }) => {
                                 The best Delivery in the world.
                             </div>
                             <div className='flex-col-center review-lists-card--btns'>
-                                <div className='review-lists-card--btn flex-row-center white mint-green-bg radius-circular pointer'>
+                                <div className='review-lists-card--btn flex-row-center white orange-bg radius-circular pointer'>
                                     <i className="bi bi-arrow-clockwise size-24px"></i>
                                     <div className="review-lists-card--btn--tag flex-row-center white inter size-12px radius-5px shadow-5px">
                                         Reset
                                     </div>
                                 </div>
-                                <div className='review-lists-card--btn flex-row-center white mint-green-bg radius-circular pointer'>
+                                <div className='review-lists-card--btn flex-row-center white orange-bg radius-circular pointer'>
                                     <i className="bi bi-pencil-square size-24px"></i>
                                     <div className="review-lists-card--btn--tag flex-row-center white inter size-12px radius-5px shadow-5px">
                                         Edit

@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import Popup from "../../../components/common/PopupForm";
-import GreenCard from "../../../components/common/GreenCard";
+import OrangeCard from "../../../components/common/OrangeCard";
 import { useSelector, useDispatch } from 'react-redux';
 import SpecialityCard from "../../../components/speciality/SpecialityCard";
 import SpecialityColorLists from "../../../components/speciality/SpecialityColorLists";
@@ -107,37 +107,37 @@ const SpecialityControl = () => {
 				</div>
 				<div className="full-width flex-row-left-start2col">
 					<div className="flex-row-top-between2col full-width">
-						<GreenCard title="Colors" icon={'bi bi-plus-circle'} iconClickHandle={addColor}>
+						<OrangeCard title="Colors" icon={'bi bi-plus-circle'} iconClickHandle={addColor}>
 							{colors &&
 								colors !== null ? colors.map((color) =>
 									<SpecialityColorLists color={color} key={color._id} />
 								) : <Loading />
 							}
-						</GreenCard>
+						</OrangeCard>
 
-						<GreenCard className="speciality-control--tags full-width flex-row-center margin-6px-H flex-wrap" title="Tags" icon={'bi bi-plus-circle'} iconClickHandle={addTag}>
+						<OrangeCard className="speciality-control--tags full-width flex-row-center margin-6px-H flex-wrap" title="Tags" icon={'bi bi-plus-circle'} iconClickHandle={addTag}>
 							{tags &&
 								tags !== null ? tags.map((tag) =>
 									<SpecialityTagLists tag={tag} key={tag._id} />
 								) : <Loading />
 							}
-						</GreenCard>
+						</OrangeCard>
 
-						<GreenCard className="speciality-control--tags full-width flex-row-center margin-6px-H flex-wrap" title="Materials" icon={'bi bi-plus-circle'} iconClickHandle={addMaterial}>
+						<OrangeCard className="speciality-control--tags full-width flex-row-center margin-6px-H flex-wrap" title="Materials" icon={'bi bi-plus-circle'} iconClickHandle={addMaterial}>
 							{materials &&
 								materials !== null ? materials.map((material) =>
 									<SpecialityMaterialLists material={material} key={material._id} />
 								) : <Loading />
 							}
-						</GreenCard>
+						</OrangeCard>
 
-						<GreenCard className="speciality-control--tags full-width flex-row-center margin-6px-H flex-wrap" title="Sizes" icon={'bi bi-plus-circle'} iconClickHandle={addSize}>
+						<OrangeCard className="speciality-control--tags full-width flex-row-center margin-6px-H flex-wrap" title="Sizes" icon={'bi bi-plus-circle'} iconClickHandle={addSize}>
 							{sizes &&
 								sizes !== null ? sizes.map((size) =>
 									<SpecialtiesSizeLists size={size} key={size._id} />
 								) : <Loading />
 							}
-						</GreenCard>
+						</OrangeCard>
 
 
 					</div>

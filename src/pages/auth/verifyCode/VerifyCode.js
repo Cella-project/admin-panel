@@ -90,14 +90,14 @@ const VerifyCode = () => {
       </div>
       <button
         type="submit"
-        className={`verify--btn full-width mint-green-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}
+        className={`verify--btn full-width orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}
       >
         VERIFY
       </button>
       <div className="full-width flex-row-left-start">
         <NavLink to={'/login/forget-password'}
           style={{ textDecoration: 'none' }}
-          className={`space-none inter ${mode === 'dark-mode' ? 'gray' : 'mint-green'} size-14px margin-12px-H pointer`}>
+          className={`space-none inter ${mode === 'dark-mode' ? 'gray' : 'orange'} size-14px margin-12px-H pointer`}>
           didn't receive a code?, Try again.
         </NavLink>
       </div>

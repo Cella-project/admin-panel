@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import PerfectScrollbar from "react-perfect-scrollbar";
-import GreenCard from "../../../components/common/GreenCard";
+import OrangeCard from "../../../components/common/OrangeCard";
 import StoreInfo from "../../../components/stores/StoreInfo";
 import StoreControl from "../../../components/stores/StoreControl";
 import ProductCard from "../../../components/products/ProductCard";
@@ -103,7 +103,7 @@ const StoreDetails = () => {
 
           <div className='flex-row-left-start2col store-details--control full-width'>
             <div className="full-width store-details--card-cont flex-col-center">
-              <GreenCard title="Orders">
+              <OrangeCard title="Orders">
                 <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
                   {order ? (
                     order.map((order) => (
@@ -117,10 +117,10 @@ const StoreDetails = () => {
                 <Link to={`/OrdersHistory`} className="pointer lists-card--link">
                   <i className="bi bi-arrow-right flex-row-right-start"></i>
                 </Link>
-              </GreenCard>
+              </OrangeCard>
               <div className="flex-row-top-between2col full-width">
                 <div className="flex-col-center store-details--card-cont width-50-100">
-                  <GreenCard title="Branches" icon={'bi bi-plus-circle'} iconClickHandle={addBranch}>
+                  <OrangeCard title="Branches" icon={'bi bi-plus-circle'} iconClickHandle={addBranch}>
                     {(store && store.addresses.length > 0) && (
                       <div>
 
@@ -132,12 +132,12 @@ const StoreDetails = () => {
                                 <div className="store-details--content-container shadow-2px flex-col-center radius-15px margin-8px-V gray inter full-width">
                                   <div className="text-shadow">{address.addressTitle}
                                     <i
-                                      className="store-details--address--btn--delete margin-6px-H shadow-2px bi bi-trash pointer size-14px mint-green white-bg radius-circular flex-row-center"
+                                      className="store-details--address--btn--delete margin-6px-H shadow-2px bi bi-trash pointer size-14px orange white-bg radius-circular flex-row-center"
                                       onClick={() => deleteAddress(address._id)}
                                     />
                                   </div>
                                   {isExpanded && (
-                                    <div className="flex-col-left-start gray mint-green full-width margin-8px-V">
+                                    <div className="flex-col-left-start gray orange full-width margin-8px-V">
                                       <div className="margin-6px-V flex-row-left-start">Address Type:
                                         <div className='gray margin-12px-H'>
                                           {address.addressType}
@@ -197,8 +197,8 @@ const StoreDetails = () => {
                         })}
                       </div>
                     )}
-                  </GreenCard>
-                  <GreenCard title="Products">
+                  </OrangeCard>
+                  <OrangeCard title="Products">
                     {products &&
                       <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
                         {products.filter((productCard) =>
@@ -216,10 +216,10 @@ const StoreDetails = () => {
                     <Link to={`/Products`} className="pointer lists-card--link">
                       <i className="bi bi-arrow-right flex-row-right-start"></i>
                     </Link>
-                  </GreenCard>
+                  </OrangeCard>
                 </div>
                 <div className="flex-col-center store-details--card-cont width-50-100">
-                  <GreenCard title="Voucher">
+                  <OrangeCard title="Voucher">
                     {/* <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start"> */}
                     {/* {voucherCards.map((voucher) => {
                   return (
@@ -236,8 +236,8 @@ const StoreDetails = () => {
                 })} */}
                     {/* </PerfectScrollbar> */}
                     <Link to={`/vouchers`} className="pointer bi bi-arrow-right flex-row-right-start lists-card--link" />
-                  </GreenCard>
-                  <GreenCard title="Reviews">
+                  </OrangeCard>
+                  <OrangeCard title="Reviews">
                     {/* <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start"> */}
                     {/* {reviewCards.map((reviewCard) => {
                   return (
@@ -258,7 +258,7 @@ const StoreDetails = () => {
                     <Link to={`/Reviews`} className="pointer lists-card--link">
                       <i className="bi bi-arrow-right flex-row-right-start"></i>
                     </Link>
-                  </GreenCard>
+                  </OrangeCard>
                 </div>
                 <div>
                 </div>
@@ -266,14 +266,14 @@ const StoreDetails = () => {
             </div>
 
             <div className="store-details--card-cont flex-col-top-start width-20-100">
-              <GreenCard title="Owner">
+              <OrangeCard title="Owner">
                 <div className="full-width flex-col-center">
                   <div className="gray inter size-20px font-bold">{store.owner.name}</div>
                   <div className="gray inter size-14px margin-6px-V">{store.owner.email}</div>
                   <div className="gray inter size-14px margin-6px-V">{store.owner.phoneNum}</div>
                 </div>
-              </GreenCard>
-              <GreenCard title="Social media" icon={'bi bi-plus-circle'} iconClickHandle={addSocialAccount}>
+              </OrangeCard>
+              <OrangeCard title="Social media" icon={'bi bi-plus-circle'} iconClickHandle={addSocialAccount}>
                 <div className="flex-row-between pointer full-width store-details--socials flex-wrap">
                   {store && store.socialMediaAccounts && store.socialMediaAccounts.length > 0 && (
                     store.socialMediaAccounts.map(account => {
@@ -287,7 +287,7 @@ const StoreDetails = () => {
                               </div>
                             </a>
                             <i
-                              className="store-details--socials--btn--delete shadow-2px bi bi-trash pointer size-12px mint-green white-bg radius-circular flex-row-center"
+                              className="store-details--socials--btn--delete shadow-2px bi bi-trash pointer size-12px orange white-bg radius-circular flex-row-center"
                               onClick={() => deleteSocialAcc(account._id)}
                             />
                           </div>
@@ -300,10 +300,10 @@ const StoreDetails = () => {
                               <div className="store-details--socials--btn--tag white inter size-12px radius-5px shadow-5px">
                                 Whatsapp
                               </div>
-                              <i className="store-details--socials--btn--delete shadow-2px bi bi-trash pointer size-14px mint-green white-bg radius-circular flex-row-center" onClick={deleteSocialAcc} />
+                              <i className="store-details--socials--btn--delete shadow-2px bi bi-trash pointer size-14px orange white-bg radius-circular flex-row-center" onClick={deleteSocialAcc} />
                             </a>
                             <i
-                              className="store-details--socials--btn--delete shadow-2px bi bi-trash pointer size-12px mint-green white-bg radius-circular flex-row-center"
+                              className="store-details--socials--btn--delete shadow-2px bi bi-trash pointer size-12px orange white-bg radius-circular flex-row-center"
                               onClick={() => deleteSocialAcc(account._id)}
                             />
                           </div>
@@ -319,7 +319,7 @@ const StoreDetails = () => {
                               </div>
                             </a>
                             <i
-                              className="store-details--socials--btn--delete shadow-2px bi bi-trash pointer size-12px mint-green white-bg radius-circular flex-row-center"
+                              className="store-details--socials--btn--delete shadow-2px bi bi-trash pointer size-12px orange white-bg radius-circular flex-row-center"
                               onClick={() => deleteSocialAcc(account._id)}
                             />
                           </div>
@@ -329,10 +329,10 @@ const StoreDetails = () => {
                     })
                   )}
                 </div>
-              </GreenCard>
-              <GreenCard title="Speciality" >
+              </OrangeCard>
+              <OrangeCard title="Speciality" >
                 <div className="inter size-22px text-shadow gray flex-row-center font-bold">{store.speciality.title}</div>
-              </GreenCard>
+              </OrangeCard>
             </div>
           </div>
         </>)

@@ -23,13 +23,13 @@ const DeliveryControl = ({ id }) => {
 
   return (
     <div className="full-width flex-col-left-start delivery-control flex-wrap">
-      <div className="delivery-control--btn flex-row-center white mint-green-bg radius-circular pointer" onClick={handleChangeState}>
+      <div className="delivery-control--btn flex-row-center white orange-bg radius-circular pointer" onClick={handleChangeState}>
         <i className={`bi bi-arrow-clockwise ${mode === 'dark-mode' ? 'gray' : 'white'} size-28px`}></i>
         <div className={`delivery-control--btn--tag flex-row-center ${mode === 'dark-mode' ? 'gray' : 'white'} inter size-12px radius-5px shadow-5px`}>
           Change State
         </div>
       </div>
-      <div className="delivery-control--btn flex-row-center white mint-green-bg radius-circular pointer" onClick={handleDelete}>
+      <div className="delivery-control--btn flex-row-center white orange-bg radius-circular pointer" onClick={handleDelete}>
         <i className={`bi bi-trash pointer ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`}></i>
         <div className={`delivery-control--btn--tag flex-row-center ${mode === 'dark-mode' ? 'gray' : 'white'} inter size-12px radius-5px shadow-5px`}>
           Delete

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import GreenCard from '../../../components/common/GreenCard';
+import OrangeCard from '../../../components/common/OrangeCard';
 import ListsCard from '../../../components/common/ListsCard';
 import Rating from '@mui/material/Rating';
 import StarBorder from '@material-ui/icons/StarBorder';
@@ -34,9 +34,9 @@ const DeliveryList = () => {
 
 
   let cards = [
-    { title: 'Drivers', content: 0, icon: "bi bi-truck mint-green" },
-    { title: 'Online Drivers', content: 0, icon: "bi bi-truck mint-green" },
-    { title: 'Offline Drivers', content: 0, icon: "bi bi-truck mint-green" },
+    { title: 'Drivers', content: 0, icon: "bi bi-truck orange" },
+    { title: 'Online Drivers', content: 0, icon: "bi bi-truck orange" },
+    { title: 'Offline Drivers', content: 0, icon: "bi bi-truck orange" },
   ];
 
   let content = <Loading />;
@@ -161,9 +161,9 @@ const DeliveryList = () => {
         });
 
       cards = [
-        { title: 'Drivers', content: numberOfdrivers, icon: "bi bi-truck mint-green" },
-        { title: 'Online Drivers', content: activedrivers, icon: "bi bi-truck mint-green" },
-        { title: 'Offline Drivers', content: inactivedrivers, icon: "bi bi-truck mint-green" },
+        { title: 'Drivers', content: numberOfdrivers, icon: "bi bi-truck orange" },
+        { title: 'Online Drivers', content: activedrivers, icon: "bi bi-truck orange" },
+        { title: 'Offline Drivers', content: inactivedrivers, icon: "bi bi-truck orange" },
       ];
     }
   }
@@ -191,17 +191,17 @@ const DeliveryList = () => {
         {
           cards.map((card, index) => {
             return (
-              <GreenCard title={card.title} key={index}>
+              <OrangeCard title={card.title} key={index}>
                 <div className="full-width flex-row-center">
-                  <i className={`${card.icon} mint-green size-28px`}></i>
+                  <i className={`${card.icon} orange size-28px`}></i>
                   <p className="gray inter size-28px margin-12px-H text-shadow">{card.content}</p>
                 </div>
-              </GreenCard>
+              </OrangeCard>
             );
           })
         }
         {driverApplications !== null && (
-          <Link to={`/drivers/driverApplications`} className={`application-container full-width mint-green-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
+          <Link to={`/drivers/driverApplications`} className={`application-container full-width orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
             Application Drivers
             {driverApplications.filter(driverApplication => driverApplication.status === 'Pending').length > 0 && (
               <div className='pending-badge red-bg size-12px font-bold flex-row-center'>
@@ -214,7 +214,7 @@ const DeliveryList = () => {
       <div className='flex-row-top-start'>
         <Search width={'width-90-100'} page={'Drivers'} onSearch={handleSearch} />
 
-        <div className='delivery add-icon flex-row-center size-34px mint-green-bg radius-circular pointer' onClick={handleClick}>
+        <div className='delivery add-icon flex-row-center size-34px orange-bg radius-circular pointer' onClick={handleClick}>
           <i className="bi bi-plus-lg white"></i>
         </div>
       </div>

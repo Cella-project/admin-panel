@@ -28,7 +28,7 @@ const CustomerInfo = ({ customer }) => {
       </div>
       <div className="full-width customer-card--details">
         <div className="full-width customer-card--customer-info">
-          <div className={`${mode === 'dark-mode' ? 'gray' : 'mint-green'} size-24px font-bold`}>{customer.name.toUpperCase()}</div>
+          <div className={`${mode === 'dark-mode' ? 'gray' : 'orange'} size-24px font-bold`}>{customer.name.toUpperCase()}</div>
           <div className="gray margin-8px-V">{customer.email&& customer.email}</div>
           <div className="gray margin-8px-V">{customer.phoneNum && customer.phoneNum}</div>
         </div>

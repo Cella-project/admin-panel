@@ -79,7 +79,7 @@ const SubCategoryCard = ({ category }) => {
                     :
                     <img src={category.img} className='white-bg' alt="" />
                 }
-                {editMode && <div className={`category-card--img--edit bi bi-pencil ${mode === 'dark-mode' ? 'gray-bg' : 'mint-green-bg'} size-12px pointer radius-circular white`} onClick={handleClick} />}
+                {editMode && <div className={`category-card--img--edit bi bi-pencil ${mode === 'dark-mode' ? 'gray-bg' : 'orange-bg'} size-12px pointer radius-circular white`} onClick={handleClick} />}
             </div>
             <div className='flex-col-center category-card--info padding-10px-H'>
                 <div className='flex-row-between2col full-width '>
@@ -103,7 +103,7 @@ const SubCategoryCard = ({ category }) => {
                     {editMode ?
                         <div className='flex-row-center2col category-card--actions'>
                             <button
-                                className={`pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px mint-green-bg category-card--button margin-6px-H`}
+                                className={`pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px orange-bg category-card--button margin-6px-H`}
                                 onClick={() => {
                                     setEditMode(false);
                                     resetTitleInput(); // Add this line to reset the input data
@@ -113,13 +113,13 @@ const SubCategoryCard = ({ category }) => {
                                 Cancel
                             </button>
                             <input
-                                className={`pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px mint-green-bg category-card--button margin-6px-H`}
+                                className={`pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px orange-bg category-card--button margin-6px-H`}
                                 onClick={handleChangeState}
                                 value='Change State'
                                 type='button'
                             />
                             <button
-                                className={`pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px mint-green-bg category-card--button margin-6px-H`}
+                                className={`pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px orange-bg category-card--button margin-6px-H`}
                                 disabled={!enteredTitleIsValid}
                                 type='submit'
                                 onClick={handleEdit}
@@ -130,13 +130,13 @@ const SubCategoryCard = ({ category }) => {
                         :
                         <div className='flex-row-center2col category-card--actions'>
                             <input
-                                className={`pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px mint-green-bg category-card--button margin-6px-H`}
+                                className={`pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px orange-bg category-card--button margin-6px-H`}
                                 onClick={() => setEditMode(true)}
                                 value='Edit'
                                 type='button'
                             />
                             <input
-                                className={`pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px mint-green-bg category-card--button margin-6px-H`}
+                                className={`pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px orange-bg category-card--button margin-6px-H`}
                                 onClick={handleDelete}
                                 value='Delete'
                                 type='button'

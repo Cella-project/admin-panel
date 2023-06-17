@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import GreenCard from '../../../components/common/GreenCard';
+import OrangeCard from '../../../components/common/OrangeCard';
 import Search from '../../../components/common/Search';
 import ListsCard from '../../../components/common/ListsCard';
 import CompAndSuggCard from '../../../components/comp&suggestions/CompAndSuggCard';
@@ -32,9 +32,9 @@ const ComplainsAndSuggestions = () => {
   })
 
   const cards = [
-    { title: 'Complains & Suggestions', content: compAndSuggCards.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), icon: <i className="bi bi-lightbulb mint-green size-28px"> <i className="bi bi-exclamation-triangle-fill mint-green size-28px" style={{ marginLeft: '-20px' }} /> </i> },
-    { title: 'Complains', content: complains.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), icon: <i className="bi bi-exclamation-triangle-fill mint-green size-28px" /> },
-    { title: 'Suggestions', content: suggests.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), icon: <i className="bi bi-lightbulb mint-green size-28px" /> },
+    { title: 'Complains & Suggestions', content: compAndSuggCards.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), icon: <i className="bi bi-lightbulb orange size-28px"> <i className="bi bi-exclamation-triangle-fill orange size-28px" style={{ marginLeft: '-20px' }} /> </i> },
+    { title: 'Complains', content: complains.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), icon: <i className="bi bi-exclamation-triangle-fill orange size-28px" /> },
+    { title: 'Suggestions', content: suggests.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), icon: <i className="bi bi-lightbulb orange size-28px" /> },
   ];
 
   return (
@@ -46,12 +46,12 @@ const ComplainsAndSuggestions = () => {
         {
           cards.map((card, index) => {
             return (
-              <GreenCard title={card.title} key={index}>
+              <OrangeCard title={card.title} key={index}>
                 <div className="full-width flex-row-center">
                   {card.icon}
                   <p className="gray inter size-28px margin-12px-H text-shadow">{card.content}</p>
                 </div>
-              </GreenCard>
+              </OrangeCard>
             );
           })
         }

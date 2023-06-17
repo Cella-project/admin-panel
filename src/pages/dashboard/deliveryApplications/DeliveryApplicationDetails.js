@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import PerfectScrollbar from "react-perfect-scrollbar";
 
-import GreenCard from "../../../components/common/GreenCard";
+import OrangeCard from "../../../components/common/OrangeCard";
 import DeliveryApplicationInfo from "../../../components/deliveryApplications/DeliveryApplicationInfo";
 import DeliveryApplicationControl from "../../../components/deliveryApplications/DeliveryApplicationControl";
 import ListsCard from "../../../components/common/ListsCard";
@@ -48,8 +48,8 @@ const DeliveryApplicationDetails = (props) => {
         </div>
         <div className="full-width flex-row-top-between2col ">
           <div className="width-70-100 flex-col-center delivery-details--container">
-            <GreenCard title="Balance"></GreenCard>
-            <GreenCard title="Orders">
+            <OrangeCard title="Balance"></OrangeCard>
+            <OrangeCard title="Orders">
               <PerfectScrollbar className="delivery-details--scroll--cont full-width flex-col-top-start">
                 {orderCards.map((orderCard) => {
                   return (
@@ -69,8 +69,8 @@ const DeliveryApplicationDetails = (props) => {
               <Link to={`/orders`} className="pointer link">
                 <i className="bi bi-arrow-right flex-row-right-start"></i>
               </Link>
-            </GreenCard>
-            <GreenCard title="Reviews">
+            </OrangeCard>
+            <OrangeCard title="Reviews">
               <PerfectScrollbar className="deliveryApplication-details--scroll--cont full-width flex-col-top-start">
                 {reviewCards.map((reviewCard) => {
                   return (
@@ -91,7 +91,7 @@ const DeliveryApplicationDetails = (props) => {
               <Link to={`/Reviews`} className="pointer lists-card--link">
                 <i className="bi bi-arrow-right flex-row-right-start"></i>
               </Link>
-            </GreenCard>
+            </OrangeCard>
           </div>
           <div className="flex-col-center width-30-100 deliveryApplication-details--container">
             <div className="full-width flex-col-center">

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import GreenCard from '../../../components/common/GreenCard';
+import OrangeCard from '../../../components/common/OrangeCard';
 import Search from '../../../components/common/Search';
 import ListsCard from '../../../components/common/ListsCard';
 import './OrderList.scss';
@@ -124,12 +124,12 @@ const OrderList = () => {
         {
           cards.map((card, index) => {
             return (
-              <GreenCard title={card.title} key={index}>
+              <OrangeCard title={card.title} key={index}>
                 <div className="full-width flex-row-center">
-                  <i className='bi bi-receipt mint-green size-28px'></i>
+                  <i className='bi bi-receipt orange size-28px'></i>
                   <p className="gray inter size-28px margin-12px-H text-shadow">{card.content}</p>
                 </div>
-              </GreenCard>
+              </OrangeCard>
             );
           })
         }

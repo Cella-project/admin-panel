@@ -312,7 +312,7 @@ const EditStoreApplicationForm = ({ popupToggle }) => {
                 )}
                 <div className="edit-store-application--actions flex-row-between full-width">
                     <button
-                        className={`edit-store-application--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                        className={`edit-store-application--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                         type="submit"
                     >
                         Confirm

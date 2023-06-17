@@ -17,7 +17,7 @@ const CompAndSuggCard = ({ visible, type, title, message, status }) => {
                 <div className='flex-row-left-start2col full-width pointer' onClick={toggleState}>
                     <div className='width-15-100 margin-2px-V'>
                         <span className='margin-2px-H font-bold'>Type: </span>
-                        <i className={`${type} mint-green size-30px`} />
+                        <i className={`${type} orange size-30px`} />
                     </div>
                     <div className='width-35-100 margin-2px-V flex-row-left-start'>
                         <span className='margin-2px-H font-bold'>Title: </span>
@@ -34,7 +34,7 @@ const CompAndSuggCard = ({ visible, type, title, message, status }) => {
                     </div>
                     <div className={`${statusNew === 'new' ? '' : 'comp-lists-card--status'} width-10-100 margin-2px-V font-bold`}>
                         <span className='margin-2px-H font-bold'>Status: </span>
-                        <div className='mint-green' style={{ display: 'inline' }}>{statusNew}</div>
+                        <div className='orange' style={{ display: 'inline' }}>{statusNew}</div>
                     </div>
                     <div className='comp-lists-card--arrow margin-2px-V size-14px font-bold'>
                         <i className={`bi bi-chevron-${compORSuggShown ? 'up' : 'down'} gray`} />

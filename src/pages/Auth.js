@@ -16,14 +16,14 @@ const Auth = () => {
 
     return (
         <div className={`auth ${mode === 'dark-mode' ? 'dark' : ''} full-width`}>
-            <div className="auth--header flex-row-center mint-green-bg shadow-2px">
+            <div className="auth--header flex-row-center orange-bg shadow-2px">
                 <img src={logo} alt='ACTORE' style={{ width: '150px' }} className='mob-menu--logo' />
             </div>
             <div className="auth--body full-width flex-row2col">
                 <img className="auth--body--img" src={mode === 'dark-mode' ? AuthImgDark : AuthImg} alt="ok" />
                 <Outlet />
             </div>
-            <div className={`auth--sign full-width flex-row-center inter ${mode === 'dark-mode' ? 'baby-blue' : 'mint-green'} size-12px`}>
+            <div className={`auth--sign full-width flex-row-center inter ${mode === 'dark-mode' ? 'baby-blue' : 'orange'} size-12px`}>
                 © 2023. All Rights Reserved. made with <i className="bi bi-suit-heart-fill margin-4px-H" /> By ACTORE
             </div>
         </div>
