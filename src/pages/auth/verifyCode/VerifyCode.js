@@ -82,7 +82,7 @@ const VerifyCode = () => {
           numInputs={6}
           containerStyle='verify--slot--input full-width flex-row-between inter gray size-14px radius-10px'
           inputStyle={{ width: '30px', height: '30px', borderRadius: '5px', border: '1px solid #ccc' }}
-          focusStyle={{ outline: '2px solid #70c8b0' }}
+          focusStyle={{ outline: '2px solid #ff8800' }}
           isInputNum={true}
           shouldAutoFocus={true}
           renderInput={(props) => <input {...props} />}
