@@ -27,7 +27,7 @@ const PaymentCard = ({ payment }) => {
 
     return (
         <form noValidate onSubmit={handleEditPayment} className='payments-card lists-card--info gray shadow-5px size-16px margin-10px-V inter radius-15px white-bg full-width flex-row-left-start2col'>
-            <i className={`bi bi-wallet2 margin-12px-H size-34px ${mode === 'dark-mode' ? 'gray' : 'mint-green'} width-10-100`} />
+            <i className={`bi bi-wallet2 margin-12px-H size-34px ${mode === 'dark-mode' ? 'gray' : 'orange'} width-10-100`} />
             <div className='width-30-100 margin-2px-V flex-row-left-start'>
                 <span className='lists-card--info--disc--hide margin-6px-H font-bold'>Title: </span>
                 <input
@@ -44,7 +44,7 @@ const PaymentCard = ({ payment }) => {
             {editMode ?
                 <>
                     <input
-                        className={`width-15-100 pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px mint-green-bg payments-card--button margin-6px-H`}
+                        className={`width-15-100 pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px orange-bg payments-card--button margin-6px-H`}
                         onClick={() => {
                             setEditMode(false);
                             setPaymentTitle(payment.title);
@@ -53,13 +53,13 @@ const PaymentCard = ({ payment }) => {
                         type='button'
                     />
                     <input
-                        className={`width-15-100 pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px mint-green-bg payments-card--button margin-6px-H`}
+                        className={`width-15-100 pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px orange-bg payments-card--button margin-6px-H`}
                         onClick={handleChangeState}
                         value='Change State'
                         type='button'
                     />
                     <button
-                        className={`width-15-100 pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px mint-green-bg payments-card--button margin-6px-H`}
+                        className={`width-15-100 pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px orange-bg payments-card--button margin-6px-H`}
                         type='submit'
                     >
                         Save
@@ -68,13 +68,13 @@ const PaymentCard = ({ payment }) => {
                 :
                 <>
                     <input
-                        className={`width-15-100 pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px mint-green-bg payments-card--button margin-6px-H`}
+                        className={`width-15-100 pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px orange-bg payments-card--button margin-6px-H`}
                         onClick={() => setEditMode(true)}
                         value='Edit'
                         type='button'
                     />
                     <input
-                        className={`width-15-100 pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px mint-green-bg payments-card--button margin-6px-H`}
+                        className={`width-15-100 pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px orange-bg payments-card--button margin-6px-H`}
                         onClick={handleDeletePayment}
                         value='Delete'
                         type='button'

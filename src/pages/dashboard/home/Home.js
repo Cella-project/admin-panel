@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
 import PerfectScrollbar from "react-perfect-scrollbar";
-import GreenCard from "../../../components/common/GreenCard";
+import OrangeCard from "../../../components/common/OrangeCard";
 
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "../../../components/products/ProductCard";
@@ -58,14 +58,14 @@ const Home = () => {
           {
             cards.map((card) => {
               return (
-                <GreenCard title={card.title} key={Math.random().toString()}>
+                <OrangeCard title={card.title} key={Math.random().toString()}>
                   <div className="full-width flex-row-center">
                     <p className="gray inter size-28px margin-12px-H text-shadow">{card.content}</p>
-                    {card.title === 'Sales' ? <p className="size-30px mint-green no-margin text-shadow inter">EGP</p> :
-                      <i className={`${card.icon} mint-green size-30px`} />
+                    {card.title === 'Sales' ? <p className="size-30px orange no-margin text-shadow inter">EGP</p> :
+                      <i className={`${card.icon} orange size-30px`} />
                     }
                   </div>
-                </GreenCard>
+                </OrangeCard>
               );
             })
           }
@@ -73,7 +73,7 @@ const Home = () => {
         </div>
         <div className="full-width flex-row2col home">
           {storeApplications !== null && (
-            <Link to={`/stores/storeApplications`} className={`home--application-container full-width mint-green-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
+            <Link to={`/stores/storeApplications`} className={`home--application-container full-width orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
               Application Stores
               {storeApplications.filter(storeApplication => storeApplication.status === 'Pending').length > 0 && (
                 <div className='home--pending-badge shadow-5px white font-bold red-bg size-12px flex-row-center'>
@@ -83,7 +83,7 @@ const Home = () => {
             </Link>
           )}
           {driverApplications !== null && (
-            <Link to={`/drivers/driverApplications`} className={`home--application-container full-width mint-green-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
+            <Link to={`/drivers/driverApplications`} className={`home--application-container full-width orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
               Application Drivers
               {driverApplications.filter(driverApplication => driverApplication.status === 'Pending').length > 0 && (
                 <div className='home--pending-badge red-bg size-12px font-bold flex-row-center'>
@@ -95,7 +95,7 @@ const Home = () => {
         </div>
         <div className="full-width flex-row2col home">
           <div className="full-width flex-row-top-between2col">
-            <GreenCard title="New Products">
+            <OrangeCard title="New Products">
               {products && products !== null ?
                 <PerfectScrollbar className="home--scroll--cont full-width flex-col-top-start">
                   {products
@@ -112,8 +112,8 @@ const Home = () => {
               <Link to={`/Products`} className="pointer lists-card--link">
                 <i className="bi bi-arrow-right flex-row-right-start"></i>
               </Link>
-            </GreenCard>
-            <GreenCard title="Orders History">
+            </OrangeCard>
+            <OrangeCard title="Orders History">
               {order && order !== null ?
                 <PerfectScrollbar className="home--scroll--cont full-width flex-col-top-start">
                   {order
@@ -128,10 +128,10 @@ const Home = () => {
               <Link to={`/OrdersHistory`} className="pointer lists-card--link">
                 <i className="bi bi-arrow-right flex-row-right-start"></i>
               </Link>
-            </GreenCard>
-            <GreenCard title="Reviews">
+            </OrangeCard>
+            <OrangeCard title="Reviews">
 
-            </GreenCard>
+            </OrangeCard>
           </div>
         </div>
       </div >

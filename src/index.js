@@ -7,7 +7,7 @@ import router from './router/router';
 
 import 'normalize.css';
 import './assets/styles/style.scss';
-
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import { Provider } from 'react-redux';
 

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import PerfectScrollbar from "react-perfect-scrollbar";
-import GreenCard from "../../../components/common/GreenCard";
+import OrangeCard from "../../../components/common/OrangeCard";
 import StoreApplicationInfo from "../../../components/storeApplications/StoreApplicationInfo";
 import StoreApplicationControl from "../../../components/storeApplications/StoreApplicationControl";
 import ProductCard from "../../../components/products/ProductCard";
@@ -58,7 +58,7 @@ const StoreApplicationDetails = () => {
           <div className='flex-row-left-start2col store-application-details--control full-width'>
             <div className="flex-row-top-between2col width-80-100">
               <div className="flex-col-center store-application-details--card-cont width-50-100">
-                <GreenCard title="Branches">
+                <OrangeCard title="Branches">
                   {(storeApplication && storeApplication.addresses && storeApplication.addresses.length > 0) && (
                     <div>
                       {storeApplication.addresses.map((address) => {
@@ -69,7 +69,7 @@ const StoreApplicationDetails = () => {
                               <div className="store-application-details--content-container shadow-2px flex-col-center radius-15px margin-8px-V gray inter full-width">
                                 <div className="text-shadow">{address.addressTitle}</div>
                                 {isExpanded && (
-                                  <div className="flex-col-left-start gray mint-green full-width margin-8px-V">
+                                  <div className="flex-col-left-start gray orange full-width margin-8px-V">
                                     <div className="margin-6px-V flex-row-left-start">Address Type:
                                       <div className='gray margin-12px-H'>
                                         {address.addressType}
@@ -128,8 +128,8 @@ const StoreApplicationDetails = () => {
                       })}
                     </div>
                   )}
-                </GreenCard>
-                <GreenCard title="Products">
+                </OrangeCard>
+                <OrangeCard title="Products">
                   <PerfectScrollbar className="store-details--scroll--cont full-width">
 
                     {products &&
@@ -157,10 +157,10 @@ const StoreApplicationDetails = () => {
                   <Link to={`/Products`} className="pointer lists-card--link">
                     <i className="bi bi-arrow-right flex-row-right-start"></i>
                   </Link>
-                </GreenCard>
+                </OrangeCard>
               </div>
               <div className="flex-col-center store-application-details--card-cont width-50-100">
-                <GreenCard title="Voucher">
+                <OrangeCard title="Voucher">
                   {/* <PerfectScrollbar className="store-application-details--scroll--cont full-width flex-col-top-start"> */}
                   {/* {voucherCards.map((voucher) => {
                   return (
@@ -177,8 +177,8 @@ const StoreApplicationDetails = () => {
                 })} */}
                   {/* </PerfectScrollbar> */}
                   <Link to={`/vouchers`} className="pointer bi bi-arrow-right flex-row-right-start lists-card--link" />
-                </GreenCard>
-                <GreenCard title="Reviews">
+                </OrangeCard>
+                <OrangeCard title="Reviews">
                   {/* <PerfectScrollbar className="store-application-details--scroll--cont full-width flex-col-top-start"> */}
                   {/* {reviewCards.map((reviewCard) => {
                   return (
@@ -199,18 +199,18 @@ const StoreApplicationDetails = () => {
                   <Link to={`/Reviews`} className="pointer lists-card--link">
                     <i className="bi bi-arrow-right flex-row-right-start"></i>
                   </Link>
-                </GreenCard>
+                </OrangeCard>
               </div>
             </div>
             <div className="store-application-details--card-cont flex-col-top-start width-20-100">
-              <GreenCard title="Owner">
+              <OrangeCard title="Owner">
                 <div className="full-width flex-col-center">
                   <div className="gray inter size-20px font-bold">{storeApplication.owner.name}</div>
                   <div className="gray inter size-14px margin-6px-V">{storeApplication.owner.email}</div>
                   <div className="gray inter size-14px margin-6px-V">{storeApplication.owner.phoneNum.replace('+20', '')}</div>
                 </div>
-              </GreenCard>
-              <GreenCard title="Social media">
+              </OrangeCard>
+              <OrangeCard title="Social media">
                 <div className="flex-row-between pointer full-width store-application-details--socials flex-wrap">
                   {storeApplication.socialMediaAccounts && storeApplication.socialMediaAccounts.length > 0 && (
                     storeApplication.socialMediaAccounts.map(account => {
@@ -252,13 +252,13 @@ const StoreApplicationDetails = () => {
                     })
                   )}
                 </div>
-              </GreenCard>
+              </OrangeCard>
 
 
 
-              <GreenCard title="Speciality" >
+              <OrangeCard title="Speciality" >
                 <div className="inter size-22px text-shadow gray flex-row-center font-bold">{storeApplication.speciality.title}</div>
-              </GreenCard>
+              </OrangeCard>
             </div>
           </div>
         </>

@@ -299,7 +299,7 @@ const EditStoreForm = ({ popupToggle }) => {
                     </label>
                     <button
                         type="button"
-                        className={`add-admin--actions--button${photoFile === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                        className={`add-admin--actions--button${photoFile === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                         onClick={clearIMG}
                     >
                         Clear
@@ -365,7 +365,7 @@ const EditStoreForm = ({ popupToggle }) => {
                 )}
                 <div className="edit-store--actions flex-row-between full-width">
                     <button
-                        className={`edit-store--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                        className={`edit-store--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                         type="submit"
                     >
                         Confirm

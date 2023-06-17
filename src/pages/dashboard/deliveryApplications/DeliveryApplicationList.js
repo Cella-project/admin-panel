@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import GreenCard from '../../../components/common/GreenCard';
+import OrangeCard from '../../../components/common/OrangeCard';
 import ListsCard from '../../../components/common/ListsCard';
 import Search from '../../../components/common/Search';
 import { driverApplicationActions } from '../../../apis/actions';
@@ -24,10 +24,10 @@ const DeliveryList = () => {
 
 
   let cards = [
-    { title: 'Driver Applications', content: 0, icon: "bi bi-truck mint-green" },
-    { title: 'Approved  Driver Applications', content: 0, icon: "bi bi-truck mint-green" },
-    { title: 'Rejected  Driver Applications', content: 0, icon: "bi bi-truck mint-green" },
-    { title: 'Pending   Driver Applications', content: 0, icon: "bi bi-truck mint-green" },
+    { title: 'Driver Applications', content: 0, icon: "bi bi-truck orange" },
+    { title: 'Approved  Driver Applications', content: 0, icon: "bi bi-truck orange" },
+    { title: 'Rejected  Driver Applications', content: 0, icon: "bi bi-truck orange" },
+    { title: 'Pending   Driver Applications', content: 0, icon: "bi bi-truck orange" },
   ];
 
   let content = <Loading />;
@@ -79,10 +79,10 @@ const DeliveryList = () => {
       });
 
       cards = [
-        { title: 'Driver Applications', content: numberOfdriverApplications, icon: "bi bi-truck mint-green" },
-        { title: 'Approved Driver Applications', content: activedriverApplications, icon: "bi bi-truck mint-green" },
-        { title: 'Rejected Driver Applications', content: inactivedriverApplications, icon: "bi bi-truck mint-green" },
-        { title: 'Pending Driver Applications', content: penddingriverApplications, icon: "bi bi-truck mint-green" },
+        { title: 'Driver Applications', content: numberOfdriverApplications, icon: "bi bi-truck orange" },
+        { title: 'Approved Driver Applications', content: activedriverApplications, icon: "bi bi-truck orange" },
+        { title: 'Rejected Driver Applications', content: inactivedriverApplications, icon: "bi bi-truck orange" },
+        { title: 'Pending Driver Applications', content: penddingriverApplications, icon: "bi bi-truck orange" },
       ];
     }
   }
@@ -96,12 +96,12 @@ const DeliveryList = () => {
         {
           cards.map((card, index) => {
             return (
-              <GreenCard title={card.title} key={index}>
+              <OrangeCard title={card.title} key={index}>
                 <div className="full-width flex-row-center">
-                  <i className={`${card.icon} mint-green size-28px`}></i>
+                  <i className={`${card.icon} orange size-28px`}></i>
                   <p className="gray inter size-28px margin-12px-H text-shadow">{card.content}</p>
                 </div>
-              </GreenCard>
+              </OrangeCard>
             );
           })
         }

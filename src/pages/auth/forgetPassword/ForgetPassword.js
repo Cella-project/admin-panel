@@ -53,7 +53,7 @@ const ForgetPassword = () => {
                     style={{ marginLeft: '5px' }}
                     className="no-padding margin-6px-V size-16px inter gray">Email Address
                 </p>
-                <i className={`forget--slot--icon ${mode === 'dark-mode' ? 'gray' : 'mint-green'} size-20px bi bi-envelope`}></i>
+                <i className={`forget--slot--icon ${mode === 'dark-mode' ? 'gray' : 'orange'} size-20px bi bi-envelope`}></i>
                 <input
                     className={`forget--slot--input forget--slot--input inter gray size-14px radius-10px shadow-2px ${emailClasses}`}
                     placeholder="Email Address"
@@ -69,11 +69,11 @@ const ForgetPassword = () => {
                     </p>
                 )}
             </div>
-            <button type="submit" className={`forget--btn full-width mint-green-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
+            <button type="submit" className={`forget--btn full-width orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
                 REQUEST PASSWORD RESET
             </button>
             <div className="full-width flex-row-left-start">
-                <NavLink to={'/login'} style={{ textDecoration: 'none' }} className={`space-none inter ${mode === 'dark-mode' ? 'gray' : 'mint-green'} size-14px margin-12px-H pointer`}>Login</NavLink>
+                <NavLink to={'/login'} style={{ textDecoration: 'none' }} className={`space-none inter ${mode === 'dark-mode' ? 'gray' : 'orange'} size-14px margin-12px-H pointer`}>Login</NavLink>
             </div>
         </form>
     );

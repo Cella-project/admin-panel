@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import PerfectScrollbar from "react-perfect-scrollbar";
 
-import GreenCard from "../../../components/common/GreenCard";
+import OrangeCard from "../../../components/common/OrangeCard";
 import ProductInfo from "../../../components/products/ProductInfo";
 import ProductControl from "../../../components/products/ProductControl";
 
@@ -127,12 +127,12 @@ const ProductDetails = () => {
                     <button className={`add-product--input--number--button bi bi-trash pointer ${mode === 'dark-mode' ? 'white' : 'gray'} size-20px pointer `} type="button" onClick={() => handleTagDelete(tag._id)}></button>
                   </div>
                 ))}
-                <button className={`bi bi-plus-circle product-details--scroll--cont--add radius-circular mint-green-bg ${mode === 'dark-mode' ? 'gray' : 'white'} pointer`} onClick={addProductTag} >
+                <button className={`bi bi-plus-circle product-details--scroll--cont--add radius-circular orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} pointer`} onClick={addProductTag} >
                 </button>
               </div>
             ) : (
               <div className="product-details--tags flex-row-center full-width">
-                <button className={`add-product--actions--button radius-10px mint-green-bg ${mode === 'dark-mode' ? 'gray' : 'white'} pointer`} onClick={addProductTag}>
+                <button className={`add-product--actions--button radius-10px orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} pointer`} onClick={addProductTag}>
                   Add Tag
                 </button>
               </div>
@@ -147,41 +147,41 @@ const ProductDetails = () => {
               {
                 cards.map((card, index) => {
                   return (
-                    <GreenCard title={card.title} key={index}>
+                    <OrangeCard title={card.title} key={index}>
                       <div className="full-width flex-row-center">
-                        <i className={`${card.icon} mint-green size-30px`}></i>
+                        <i className={`${card.icon} orange size-30px`}></i>
                         <p className="gray inter size-28px margin-12px-H text-shadow">{card.content}</p>
                       </div>
-                    </GreenCard>
+                    </OrangeCard>
                   );
                 })
               }
               {
                 hasDiscount &&
                 <div className="flex-col-center width-20-100">
-                  <GreenCard title="Discount">
+                  <OrangeCard title="Discount">
                     <div className="product-details--discount flex-row-center">
                       <div className="product-details--discount--content flex-col-center">
                         <p className="gray inter size-28px margin-12px-H text-shadow">{product.discount.discountAmount}{product.discount.discountType === 'Percentage' && <i className="bi bi-percent"></i>}</p>
                         <p className="gray inter margin-12px-H text-shadow">{product.discount.discountType}</p>
                       </div>
                     </div>
-                  </GreenCard>
+                  </OrangeCard>
                 </div>
               }
             </div>
           </div>
           <div className="full-width">
             <div className="full-width flex-row-top-start2col">
-              <GreenCard title="Sizes" icon={'bi bi-plus-circle'} iconClickHandle={addProductSize}>
+              <OrangeCard title="Sizes" icon={'bi bi-plus-circle'} iconClickHandle={addProductSize}>
                 <div className="product-details--sizes flex-row-center flex-wrap">
                   {product.sizes.map((size, index) => (
                     <div key={index} className="product-details--sizes flex-row-center flex-wrap">
-                      <div className="mint-green-bg shadow-2px margin-6px-V radius-15px white flex-row-between">
+                      <div className="orange-bg shadow-2px margin-6px-V radius-15px white flex-row-between">
                         <div className="product-details--sizes--quantity white-bg gray radius-15px">{size.quantity} Available</div>
                         <div className="product-details--sizes--size font-bold size-20px ">{size.size}</div>
                         <i
-                          className="product-details--sizes--delete shadow-2px bi bi-trash pointer size-12px mint-green white-bg radius-circular flex-row-center"
+                          className="product-details--sizes--delete shadow-2px bi bi-trash pointer size-12px orange white-bg radius-circular flex-row-center"
                           onClick={() => handleSizeDelete(size._id)}
                         />
                       </div>
@@ -189,8 +189,8 @@ const ProductDetails = () => {
                   ))}
                 </div>
 
-              </GreenCard>
-              <GreenCard title="Colors" icon={'bi bi-plus-circle'} iconClickHandle={addProductColor}>
+              </OrangeCard>
+              <OrangeCard title="Colors" icon={'bi bi-plus-circle'} iconClickHandle={addProductColor}>
                 <div className="product-details--colors flex-row-center flex-wrap">
                   {product.colors.map((color, index) => (
                     <div key={index} className="product-details--colors flex-row-center">
@@ -198,25 +198,25 @@ const ProductDetails = () => {
                         <div className="product-details--colors--quantity white-bg gray radius-15px">{color.quantity} Available from {color.color}</div>
                         <div className="gray size-14px margin-10px-H text-shadow"> </div>
                         <i
-                          className="product-details--colors--delete shadow-2px bi bi-trash pointer size-12px mint-green white-bg radius-circular flex-row-center"
+                          className="product-details--colors--delete shadow-2px bi bi-trash pointer size-12px orange white-bg radius-circular flex-row-center"
                           onClick={() => handleColorDelete(color._id)}
                         />
                       </div>
                     </div>
                   ))}
                 </div>
-              </GreenCard>
+              </OrangeCard>
 
 
             </div>
           </div>
 
           <div className="full-width flex-row-center">
-            <GreenCard title="Reviews">
+            <OrangeCard title="Reviews">
               <Link to={`/Reviews`} className="pointer lists-card--link">
                 <i className="bi bi-arrow-right flex-row-right-start"></i>
               </Link>
-            </GreenCard>
+            </OrangeCard>
           </div>
         </>)
       }

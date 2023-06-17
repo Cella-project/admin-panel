@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import PerfectScrollbar from "react-perfect-scrollbar";
 
-import GreenCard from "../../../components/common/GreenCard";
+import OrangeCard from "../../../components/common/OrangeCard";
 import DeliveryInfo from "../../../components/delivery/DeliveryInfo";
 import DeliveryControl from "../../../components/delivery/DeliveryControl";
 import ListsCard from "../../../components/common/ListsCard";
@@ -47,13 +47,13 @@ const DeliveryDetails = () => {
         </div>
         <div className="full-width flex-row-top-between2col ">
           <div className="width-70-100 flex-col-center delivery-details--container">
-            <GreenCard title="Balance">
+            <OrangeCard title="Balance">
               <div className="flex-row-center full-width gray">
                 <div className="size-24px margin-6px-H">{delivery.balance}</div>
                 <div className="size-24px">EGP</div>
               </div>
-            </GreenCard>
-            <GreenCard title="Orders">
+            </OrangeCard>
+            <OrangeCard title="Orders">
               <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
                 {order ? (
                   order.map((order) => (
@@ -67,8 +67,8 @@ const DeliveryDetails = () => {
               <Link to={`/OrdersHistory`} className="pointer lists-card--link">
                 <i className="bi bi-arrow-right flex-row-right-start"></i>
               </Link>
-            </GreenCard>
-            <GreenCard title="Reviews">
+            </OrangeCard>
+            <OrangeCard title="Reviews">
               <PerfectScrollbar className="delivery-details--scroll--cont full-width flex-col-top-start">
                 {reviewCards.map((reviewCard) => {
                   return (
@@ -89,7 +89,7 @@ const DeliveryDetails = () => {
               <Link to={`/Reviews`} className="pointer lists-card--link">
                 <i className="bi bi-arrow-right flex-row-right-start"></i>
               </Link>
-            </GreenCard>
+            </OrangeCard>
           </div>
           <div className="flex-col-center width-30-100 delivery-details--container">
             <div className="full-width flex-col-center">

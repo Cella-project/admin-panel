@@ -52,7 +52,7 @@ const EditMainCategoryForm = ({ popupToggle, data }) => {
                     </label>
                     <button
                         type="button"
-                        className={`edit-category--actions--button${mainCategory === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                        className={`edit-category--actions--button${mainCategory === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                         onClick={() => { setMainCategory('No Image'); }}
                     >
                         Clear
@@ -61,7 +61,7 @@ const EditMainCategoryForm = ({ popupToggle, data }) => {
             </div>
             <div className="edit-category--actions flex-row-between full-width">
                 <button
-                    className={`edit-category--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                    className={`edit-category--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                     type="submit"
                 >
                     Confirm

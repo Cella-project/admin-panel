@@ -197,7 +197,7 @@ export const EditProduct = () => {
 
                     <div className="edit-product--body white-bg full-width radius-10px shadow-2px">
                         <div className="edit-product--muiBox-root radius-10px shadow-2px">
-                            <div className='edit-product--muiBox-root--main mint-green-bg radius-10px'>
+                            <div className='edit-product--muiBox-root--main orange-bg radius-10px'>
                                 <div className='flex-row-between edit-product--muiBox-root--main--title'>
                                     <div className='flex-col-center  padding-10px-H'>
                                         <div>
@@ -305,7 +305,7 @@ export const EditProduct = () => {
                                         Cancel
                                     </button>
                                     <button
-                                        className={`edit-product--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                                        className={`edit-product--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                                         onClick={() => {
                                             setCurrentPage(2);
                                         }}
@@ -326,12 +326,12 @@ export const EditProduct = () => {
                                 <div className="flex-row-center flex-wrap">
                                     {productData.album.map((photo, index) => (
                                         <div className="edit-product--photo--item padding-10px-H flex-col-center " key={index}>
-                                            <div className={`inter ${mode === 'dark-mode' ? 'gray' : 'mint-green'} margin-6px-V`}> Photo number : {index + 1}</div>
+                                            <div className={`inter ${mode === 'dark-mode' ? 'gray' : 'orange'} margin-6px-V`}> Photo number : {index + 1}</div>
                                             <img src={photo.URL} alt={` ${index}`} />
                                             <div className="flex-row-center full-width margin-6px-V ">
                                                 {/* <button
                                                     type="button"
-                                                    className={`edit-product--gallary-left ${mode === 'dark-mode' ? 'gray-bg' : 'mint-green-bg'} radius-circular pointer white`}
+                                                    className={`edit-product--gallary-left ${mode === 'dark-mode' ? 'gray-bg' : 'orange-bg'} radius-circular pointer white`}
                                                     onClick={() => handlePhotoIndexChange(index, index - 1)}
                                                     disabled={index === 0}
                                                 >
@@ -342,7 +342,7 @@ export const EditProduct = () => {
                                                 </button>
                                                 {/* <button
                                                     type="button"
-                                                    className={`edit-product--gallary-right ${mode === 'dark-mode' ? 'gray-bg' : 'mint-green-bg'} radius-circular pointer white`}
+                                                    className={`edit-product--gallary-right ${mode === 'dark-mode' ? 'gray-bg' : 'orange-bg'} radius-circular pointer white`}
                                                     onClick={() => handlePhotoIndexChange(index, index + 1)}
                                                     disabled={index === photos.length - 1}
                                                 >
@@ -353,7 +353,7 @@ export const EditProduct = () => {
                                     ))}
                                 </div>
                                 <div className="flex-row-center full-width">
-                                    <label htmlFor="photos" className={`edit-product--actions--button radius-10px mint-green-bg ${mode === 'dark-mode' ? 'gray' : 'white'} pointer`}>
+                                    <label htmlFor="photos" className={`edit-product--actions--button radius-10px orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} pointer`}>
                                         Add photo
                                     </label>
                                     <input type="file" id="photos" onChange={handlePhotoAdd} hidden />
@@ -370,7 +370,7 @@ export const EditProduct = () => {
                                     Back
                                 </button>
                                 <button
-                                    className={`edit-product--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                                    className={`edit-product--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                                     onClick={() => {
                                         setCurrentPage(3);
                                     }}
@@ -415,7 +415,7 @@ export const EditProduct = () => {
                                                 </div>
                                                 <div className='flex-row-center'>
                                                     <label className='text-shadow gray font-bold margin-6px-H'>New price:</label>
-                                                    <div className={`${mode === 'dark-mode' ? 'gray' : 'mint-green'} font-bold size-26px`}>{calculateNewPrice()}</div>
+                                                    <div className={`${mode === 'dark-mode' ? 'gray' : 'orange'} font-bold size-26px`}>{calculateNewPrice()}</div>
                                                 </div>
                                             </div>
                                         )}
@@ -431,7 +431,7 @@ export const EditProduct = () => {
                                         Back
                                     </button>
                                     <button
-                                        className={`edit-product--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                                        className={`edit-product--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                                         type="submit"
                                     >
                                         Confirm

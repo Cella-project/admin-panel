@@ -31,7 +31,7 @@ const SpecialityTagLists = ({ tag }) => {
         {editMode ?
           <div className='flex-row-center'>
             <input
-              className='pointer white size-14px radius-15px mint-green-bg tags-card--button-edit margin-6px-H'
+              className='pointer white size-14px radius-15px orange-bg tags-card--button-edit margin-6px-H'
               onClick={() => {
                 setEditMode(false);
                 setTagTitle(tag.title.toUpperCase());
@@ -40,7 +40,7 @@ const SpecialityTagLists = ({ tag }) => {
               type='button'
             />
             <button
-              className='pointer size-14px white radius-15px mint-green-bg tags-card--button-edit'
+              className='pointer size-14px white radius-15px orange-bg tags-card--button-edit'
               disabled={tagTitle === tag.title}
               type='submit'
             >
@@ -50,13 +50,13 @@ const SpecialityTagLists = ({ tag }) => {
           :
           <div className='flex-row-center'>
             <i
-              className='bi bi-pencil-square pointer white size-18px radius-15px mint-green-bg tags-card--button margin-6px-H'
+              className='bi bi-pencil-square pointer white size-18px radius-15px orange-bg tags-card--button margin-6px-H'
               onClick={() => setEditMode(true)}
               value='Edit'
               type='button'
             />
             <i
-              className='bi bi-trash pointer white size-18px radius-15px mint-green-bg tags-card--button margin-6px-H'
+              className='bi bi-trash pointer white size-18px radius-15px orange-bg tags-card--button margin-6px-H'
               onClick={handleDeletetag}
               value='Delete'
               type='button'

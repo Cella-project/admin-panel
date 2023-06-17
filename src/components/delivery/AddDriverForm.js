@@ -326,7 +326,7 @@ const AddDriverForm = ({ popupToggle }) => {
     return (
         <form noValidate className='add-driver' onSubmit={formSubmissionHandler}>
             {popupToggle && currentSection === 1 && <div className='full-width flex-col-center add-driver--input-container'>
-                <div className={`add-driver--header ${mode === 'dark-mode' ? 'gray' : 'mint-green'} full-width size-18px font-bold margin-6px-V`}>Driver Section</div>
+                <div className={`add-driver--header ${mode === 'dark-mode' ? 'gray' : 'orange'} full-width size-18px font-bold margin-6px-V`}>Driver Section</div>
                 <div className='full-width flex-col-left-start add-driver--input-container'>
                     <label className='pointer full-width text-shadow gray font-bold margin-6px-V' htmlFor='DriverName'>Driver Name</label>
                     <div className={`full-width gray radius-10px white-bg flex-row-left-start add-driver--input ${driverNameClasses}`}>
@@ -464,7 +464,7 @@ const AddDriverForm = ({ popupToggle }) => {
                         </label>
                         <button
                             type="button"
-                            className={`add-admin--actions--button${driverImg === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                            className={`add-admin--actions--button${driverImg === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                             onClick={() => { setdriverImg('No Image'); }}
                         >
                             Clear
@@ -473,7 +473,7 @@ const AddDriverForm = ({ popupToggle }) => {
                 </div>
                 <div className="add-driver--actions flex-row-between full-width">
                     <button
-                        className={`add-driver--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                        className={`add-driver--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                         onClick={() => {
                             setCurrentSection(2);
                         }}
@@ -494,7 +494,7 @@ const AddDriverForm = ({ popupToggle }) => {
             </div>}
 
             {popupToggle && currentSection === 2 && <div className='full-width flex-col-center add-driver--input-container'>
-                <div className={`add-driver--header ${mode === 'dark-mode' ? 'gray' : 'mint-green'} full-width size-18px font-bold margin-6px-V`}>Documentaiton Section</div>
+                <div className={`add-driver--header ${mode === 'dark-mode' ? 'gray' : 'orange'} full-width size-18px font-bold margin-6px-V`}>Documentaiton Section</div>
                 <div className='full-width flex-col-left-start add-driver--input-container'>
                     <label className='pointer full-width text-shadow gray font-bold margin-6px-V' htmlFor='vehicle'>Vehicle Type</label>
                     <div className={`full-width gray radius-10px white-bg flex-row-left-start add-driver--input ${vehicleClasses}`}>
@@ -510,7 +510,7 @@ const AddDriverForm = ({ popupToggle }) => {
                     {vehicleIsTouched && (<div className="error-message">{vehicleError}</div>)}
                 </div>
                 <div className='full-width flex-col-left-start add-driver--input-container'>
-                    <div className={`add-driver--header ${mode === 'dark-mode' ? 'gray' : 'mint-green'} full-width size-18px font-bold margin-6px-V`}>National ID Section</div>
+                    <div className={`add-driver--header ${mode === 'dark-mode' ? 'gray' : 'orange'} full-width size-18px font-bold margin-6px-V`}>National ID Section</div>
                     <label className='pointer full-width text-shadow gray font-bold margin-6px-V' htmlFor='nationalIdImgFront'>National Id Img Front</label>
                     <label className={`add-driver--change-img--tag full-width flex-row-center gray open-sans pointer ${nationalIdImgFront !== 'No Image' ? 'hide' : ''}`} htmlFor='nationalIdImgFront'>
                         <label className={`bi bi-image size-40px full-width flex-row-center white-bg pointer`} htmlFor="nationalIdImgFront" />
@@ -527,7 +527,7 @@ const AddDriverForm = ({ popupToggle }) => {
                     </label>
                     <button
                         type="button"
-                        className={`add-admin--actions--button${nationalIdImgFront === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                        className={`add-admin--actions--button${nationalIdImgFront === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                         onClick={() => { setNationalIdImgFront('No Image') }}
                     >
                         Clear
@@ -550,7 +550,7 @@ const AddDriverForm = ({ popupToggle }) => {
                     </label>
                     <button
                         type="button"
-                        className={`add-admin--actions--button${nationalIdImgBack === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                        className={`add-admin--actions--button${nationalIdImgBack === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                         onClick={() => { setNationalIdImgBack('No Image') }}
                     >
                         Clear
@@ -559,7 +559,7 @@ const AddDriverForm = ({ popupToggle }) => {
                 {(enteredVehicle !== 'Bike' && enteredVehicle !== '') &&
                     <>
                         <div className='full-width flex-col-left-start add-driver--input-container'>
-                            <div className={`add-driver--header ${mode === 'dark-mode' ? 'gray' : 'mint-green'} full-width size-18px font-bold margin-6px-V`}>Vehicle License Section</div>
+                            <div className={`add-driver--header ${mode === 'dark-mode' ? 'gray' : 'orange'} full-width size-18px font-bold margin-6px-V`}>Vehicle License Section</div>
                             <label className='pointer full-width text-shadow gray font-bold margin-6px-V' htmlFor='vehicleLicenseImgFront'>Vehicle License Img Front</label>
                             <label className={`add-driver--change-img--tag full-width flex-row-center gray open-sans pointer ${vehicleLicenseImgFront !== 'No Image' ? 'hide' : ''}`} htmlFor='vehicleLicenseImgFront'>
                                 <label className={`bi bi-image size-40px full-width flex-row-center white-bg pointer`} htmlFor="vehicleLicenseImgFront" />
@@ -576,7 +576,7 @@ const AddDriverForm = ({ popupToggle }) => {
                             </label>
                             <button
                                 type="button"
-                                className={`add-admin--actions--button${vehicleLicenseImgFront === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                                className={`add-admin--actions--button${vehicleLicenseImgFront === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                                 onClick={() => { setVehicleLicenseImgFront('No Image') }}
                             >
                                 Clear
@@ -600,7 +600,7 @@ const AddDriverForm = ({ popupToggle }) => {
                                 </label>
                                 <button
                                     type="button"
-                                    className={`add-admin--actions--button${vehicleLicenseImgBack === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                                    className={`add-admin--actions--button${vehicleLicenseImgBack === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                                     onClick={() => { setVehicleLicenseImgBack('No Image') }}
                                 >
                                     Clear
@@ -609,7 +609,7 @@ const AddDriverForm = ({ popupToggle }) => {
                         </div>
                         <div className='full-width flex-col-left-start add-driver--input-container'>
                             <div className="full-width flex-col-left-start add-store--input-container">
-                                <div className={`add-driver--header ${mode === 'dark-mode' ? 'gray' : 'mint-green'} full-width size-18px font-bold margin-6px-V`}>Driver License Section</div>
+                                <div className={`add-driver--header ${mode === 'dark-mode' ? 'gray' : 'orange'} full-width size-18px font-bold margin-6px-V`}>Driver License Section</div>
                                 <label className='pointer full-width text-shadow gray font-bold margin-6px-V' htmlFor='driverLicenseImgFront'>Driver License Img Front</label>
                                 <label className={`add-driver--change-img--tag full-width flex-row-center gray open-sans pointer ${driverLicenseImgFront !== 'No Image' ? 'hide' : ''}`} htmlFor='driverLicenseImgFront'>
                                     <label className={`bi bi-image size-40px full-width flex-row-center white-bg pointer`} htmlFor="driverLicenseImgFront" />
@@ -626,7 +626,7 @@ const AddDriverForm = ({ popupToggle }) => {
                                 </label>
                                 <button
                                     type="button"
-                                    className={`add-admin--actions--button${driverLicenseImgFront === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                                    className={`add-admin--actions--button${driverLicenseImgFront === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                                     onClick={() => { setDriverLicenseImgFront('No Image') }}
                                 >
                                     Clear
@@ -651,7 +651,7 @@ const AddDriverForm = ({ popupToggle }) => {
                                 </label>
                                 <button
                                     type="button"
-                                    className={`add-admin--actions--button${driverLicenseImgBack === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                                    className={`add-admin--actions--button${driverLicenseImgBack === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                                     onClick={() => { setDriverLicenseImgBack('No Image') }}
                                 >
                                     Clear
@@ -664,7 +664,7 @@ const AddDriverForm = ({ popupToggle }) => {
 
                 <div className="add-driver--actions flex-row-between full-width">
                     <button
-                        className={`add-driver--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                        className={`add-driver--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                         type="submit"
                     >
                         Confirm

@@ -30,7 +30,7 @@ const DeliveryInfo = ({ delivery }) => {
       <div className="delivery-card--details flex-col-top-start">
         <div className="full-width flex-row-between delivery-card--info flex-wrap">
           <div className="flex-col-left-start">
-            <div className={`font-bold size-24px ${mode === 'dark-mode' ? 'gray' : 'mint-green'}`}>{delivery.name.toUpperCase()}</div>
+            <div className={`font-bold size-24px ${mode === 'dark-mode' ? 'gray' : 'orange'}`}>{delivery.name.toUpperCase()}</div>
             <div className="font-bold gray margin-6px-V">{delivery.phoneNum}</div>
             <div className="gray">{delivery.email}</div>
           </div>

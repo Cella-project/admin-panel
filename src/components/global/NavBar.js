@@ -24,11 +24,11 @@ const NavBar = ({ menuToggle }) => {
                 <Link to={'/'} className='home-link'>
                     <img src={mode === 'dark-mode' ? darkLogo : logo} alt='ACTORE' className='nav-bar--logo pointer' />
                 </Link>
-                <i className={`nav-bar--btn bi bi-list ${mode === 'dark-mode' ? 'gray' : 'mint-green'} size-38px pointer`} onClick={menuToggle.bind(null, true)}></i>
+                <i className={`nav-bar--btn bi bi-list ${mode === 'dark-mode' ? 'gray' : 'orange'} size-38px pointer`} onClick={menuToggle.bind(null, true)}></i>
                 <div className='flex-row-center'>
                     {/* <LangMenu /> */}
                     <div className='nav-bar--card flex-row-center radius-15px margin-6px-H white-bg shadow-2px pointer'>
-                        <i className={`bi bi-bell ${mode === 'dark-mode' ? 'gray' : 'mint-green'} size-22px`} />
+                        <i className={`bi bi-bell ${mode === 'dark-mode' ? 'gray' : 'orange'} size-22px`} />
                         <div className={`nav-bar--card--tag flex-row-center ${mode === 'dark-mode' ? 'gray' : 'white'} inter size-12px radius-5px shadow-5px`}>
                             Notification
                         </div>
@@ -41,7 +41,7 @@ const NavBar = ({ menuToggle }) => {
                                     <img src={userData.img} className='white-bg' alt='admin-pic' />
                                 }
                             </div>
-                            <p className={`nav-bar--card--content space-none inter ${mode === 'dark-mode' ? 'gray' : 'mint-green'} margin-4px-H size-12px`}>Hi, {firstName}</p>
+                            <p className={`nav-bar--card--content space-none inter ${mode === 'dark-mode' ? 'gray' : 'orange'} margin-4px-H size-12px`}>Hi, {firstName}</p>
                             <div className={`nav-bar--card--tag flex-row-center ${mode === 'dark-mode' ? 'gray' : 'white'} inter size-12px radius-5px shadow-5px`}>
                                 Profile
                             </div>

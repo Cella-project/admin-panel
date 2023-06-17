@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import CustomerInfo from "../../../components/customers/CustomerInfo";
 import CustomerControl from "../../../components/customers/CustomerControl";
-import GreenCard from "../../../components/common/GreenCard";
+import OrangeCard from "../../../components/common/OrangeCard";
 import VoucherCard from '../../../components/vouchers/VoucherCard';
 import OrderCard from "../../../components/orders/OrderCard";
 
@@ -53,7 +53,7 @@ const CustomerDetails = () => {
 
           <div className="full-width flex-col-left-start customer-details--control">
             <div className="full-width flex-row-top-between2col">
-              <GreenCard title="Addresses">
+              <OrangeCard title="Addresses">
                 {(customer.addresses && customer.addresses.length > 0) && (
                   <div>
                     {customer.addresses.map((address) => {
@@ -64,7 +64,7 @@ const CustomerDetails = () => {
                             <div className="customer-details--content-container shadow-2px flex-col-center radius-15px margin-8px-V gray inter full-width">
                               <div className="text-shadow">{address.addressTitle}</div>
                               {isExpanded && (
-                                <div className="flex-col-left-start gray mint-green full-width margin-8px-V">
+                                <div className="flex-col-left-start gray orange full-width margin-8px-V">
                                   <div className="margin-6px-V flex-row-left-start">Address Type:
                                     <div className='gray margin-12px-H'>
                                       {address.addressType}
@@ -121,8 +121,8 @@ const CustomerDetails = () => {
                     })}
                   </div>
                 )}
-              </GreenCard>
-              <GreenCard title="Voucher">
+              </OrangeCard>
+              <OrangeCard title="Voucher">
                 {customer.activeVouchers.length === 0 && customer.usedVouchers.length === 0 && (
                   <p className="gray inter size-20px font-bold flex-row-center">No vouchers found.</p>
                 )}
@@ -159,10 +159,10 @@ const CustomerDetails = () => {
                 <Link to={`/vouchers`} className="pointer link">
                   <i className="bi bi-arrow-right flex-row-right-start pointer"></i>
                 </Link>
-              </GreenCard>
+              </OrangeCard>
             </div>
             <div className="full-width flex-col-center">
-              <GreenCard title="Orders">
+              <OrangeCard title="Orders">
                 <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
                   {order ? (
                     order.map((order) => (
@@ -176,7 +176,7 @@ const CustomerDetails = () => {
                 <Link to={`/OrdersHistory`} className="pointer lists-card--link">
                   <i className="bi bi-arrow-right flex-row-right-start"></i>
                 </Link>
-              </GreenCard>
+              </OrangeCard>
             </div>
           </div>
         </>)

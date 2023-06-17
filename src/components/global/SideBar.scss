@@ -1,9 +1,11 @@
 .side-bar {
     position: fixed;
-    top: 10px;
-    left: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
     width: 50px;
-    height: calc(100vh - 20px);
+    height: fit-content;
+    max-height: calc(100vh - 20px);
     border-radius: 0px 15px 15px 0px;
     box-sizing: border-box;
     padding: 15px 10px;

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import GreenCard from '../../../components/common/GreenCard';
+import OrangeCard from '../../../components/common/OrangeCard';
 import ListsCard from '../../../components/common/ListsCard';
 import Search from '../../../components/common/Search';
 import VoucherCard from '../../../components/vouchers/VoucherCard';
@@ -49,12 +49,12 @@ const Vouchers = () => {
         {
           cards.map((card, index) => {
             return (
-              <GreenCard title={card.title} key={index}>
+              <OrangeCard title={card.title} key={index}>
                 <div className="full-width flex-row-center">
-                  <i className={`${card.icon} mint-green size-28px`}></i>
+                  <i className={`${card.icon} orange size-28px`}></i>
                   <p className="gray inter size-28px margin-12px-H text-shadow">{card.content}</p>
                 </div>
-              </GreenCard>
+              </OrangeCard>
             );
           })
         }
@@ -62,7 +62,7 @@ const Vouchers = () => {
       <div className='flex-row-top-start'>
         <Search width={'width-90-100'} />
 
-        <div className='vouchers add-icon flex-row-center size-34px mint-green-bg radius-circular pointer'>
+        <div className='vouchers add-icon flex-row-center size-34px orange-bg radius-circular pointer'>
           <i className="bi bi-plus-lg white"></i>
         </div>
       </div>

@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PerfectScrollbar from "react-perfect-scrollbar";
 
-import GreenCard from "../../../components/common/GreenCard";
+import OrangeCard from "../../../components/common/OrangeCard";
 // import OrderInfo from "../../../components/orders/OrderInfo";
 import OrderControl from "../../../components/orders/OrderControl";
 // import VoucherCard from "../../../components/vouchers/VoucherCard";
@@ -36,14 +36,14 @@ const OrderDetails = () => {
         </div>
       </div>
       <div className="order-details--card-cont flex-col-top-start full-width">
-        <GreenCard title="Order History"></GreenCard>
+        <OrangeCard title="Order History"></OrangeCard>
       </div>
       <div className="flex-row-left-start2col order-details--control full-width">
 
         <div className="flex-col-center full-width">
           <div className="flex-col-left-start full-width">
             <div className="flex-row-left-start2col order-details--card-cont full-width">
-              <GreenCard title="Store">
+              <OrangeCard title="Store">
                 {/* {
                   storeCards.map((store) => {
                     return (
@@ -54,8 +54,8 @@ const OrderDetails = () => {
                     );
                   })
                 } */}
-              </GreenCard>
-              <GreenCard title="Customer">
+              </OrangeCard>
+              <OrangeCard title="Customer">
                 {/* {
                   customerCards.map((customer) => {
                     return (
@@ -66,10 +66,10 @@ const OrderDetails = () => {
                     );
                   })
                 } */}
-              </GreenCard>
+              </OrangeCard>
             </div>
             <div className="flex-row-left-start2col  order-details--card-cont full-width">
-              <GreenCard title="Delivery">
+              <OrangeCard title="Delivery">
                 {/* {
                   deliveryCards.map((delivery) => {
                     return (
@@ -81,8 +81,8 @@ const OrderDetails = () => {
                     );
                   })
                 } */}
-              </GreenCard>
-              <GreenCard title="Voucher">
+              </OrangeCard>
+              <OrangeCard title="Voucher">
                 {/* {
                   voucherCards.map((voucher) => {
                     return (
@@ -99,11 +99,11 @@ const OrderDetails = () => {
                 <Link to={`/Vouchers`} className="pointer lists-card--link">
                   <i className="bi bi-arrow-right flex-row-right-start"></i>
                 </Link>
-              </GreenCard>
+              </OrangeCard>
             </div>
           </div>
           <div className="flex-col-center order-details--card-cont full-width">
-            <GreenCard title="Products">
+            <OrangeCard title="Products">
               <PerfectScrollbar className="review-scroll--cont full-width">
                 {/* {productCards
                   .filter((productCard) =>
@@ -136,14 +136,14 @@ const OrderDetails = () => {
               <Link to={`/Products`} className="pointer lists-card--link">
                 <i className="bi bi-arrow-right flex-row-right-start"></i>
               </Link>
-            </GreenCard>
+            </OrangeCard>
 
-            <GreenCard title="Review">
+            <OrangeCard title="Review">
               <PerfectScrollbar className="review-scroll--cont full-width"></PerfectScrollbar>
               <Link to={`/Reviews`} className="pointer lists-card--link">
                 <i className="bi bi-arrow-right flex-row-right-start"></i>
               </Link>
-            </GreenCard>
+            </OrangeCard>
           </div>
         </div>
       </div>

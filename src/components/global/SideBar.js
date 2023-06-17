@@ -16,7 +16,7 @@ const SideBar = () => {
   }
 
   return (
-    <div className="side-bar flex-col-center mint-green-bg">
+    <div className="side-bar flex-col-center orange-bg">
       <PerfectScrollbar className="side-bar--cont flex-col-top-start">
         <NavLink end to={'/'}>
           <i className={`bi bi-house-door margin-8px-V size-24px ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`side-bar--cont--description inter size-20px font-light ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Home</span>

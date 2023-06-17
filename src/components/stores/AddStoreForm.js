@@ -226,7 +226,7 @@ const AddStoreForm = ({ popupToggle }) => {
     return (
         <form noValidate className='add-store' onSubmit={formSubmissionHandler}>
             {popupToggle && currentSection === 1 && <div className='full-width flex-col-center add-store--input-container'>
-                <div className={`add-store--header ${mode === 'dark-mode' ? 'gray' : 'mint-green'} full-width size-18px font-bold margin-6px-V`}>Owner Section</div>
+                <div className={`add-store--header ${mode === 'dark-mode' ? 'gray' : 'orange'} full-width size-18px font-bold margin-6px-V`}>Owner Section</div>
                 <div className='full-width flex-col-left-start add-store--input-container'>
                     <label className='pointer full-width text-shadow gray font-bold margin-6px-V' htmlFor='ownerName'>Owner Name <span className='red'>*</span></label>
                     <div className={`full-width gray radius-10px white-bg flex-row-left-start add-store--input ${ownerNameClasses}`}>
@@ -280,7 +280,7 @@ const AddStoreForm = ({ popupToggle }) => {
                 </div>
                 <div className="add-store--actions flex-row-between full-width">
                     <button
-                        className={`add-store--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                        className={`add-store--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                         onClick={() => {
                             setCurrentSection(2);
                         }}
@@ -301,7 +301,7 @@ const AddStoreForm = ({ popupToggle }) => {
             </div>}
 
             {popupToggle && currentSection === 2 && <div className='full-width flex-col-center add-store--input-container'>
-                <div className={`add-store--header ${mode === 'dark-mode' ? 'gray' : 'mint-green'} full-width size-18px font-bold margin-6px-V`}>Store Section</div>
+                <div className={`add-store--header ${mode === 'dark-mode' ? 'gray' : 'orange'} full-width size-18px font-bold margin-6px-V`}>Store Section</div>
                 <div className='full-width flex-col-left-start add-store--input-container'>
                     <label className='pointer full-width text-shadow gray font-bold margin-6px-V' htmlFor='store-name'>Store Name <span className='red'>*</span></label>
                     <div className={`full-width gray radius-10px white-bg flex-row-left-start add-store--input ${storeNameClasses}`}>
@@ -340,7 +340,7 @@ const AddStoreForm = ({ popupToggle }) => {
                     </label>
                     <button
                         type="button"
-                        className={`add-admin--actions--button${photoFile === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                        className={`add-admin--actions--button${photoFile === 'No Image' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                         onClick={clearIMG}
                     >
                         Clear
@@ -431,7 +431,7 @@ const AddStoreForm = ({ popupToggle }) => {
                 )}
                 <div className="add-store--actions flex-row-between full-width">
                     <button
-                        className={`add-store--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                        className={`add-store--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                         type="submit"
                     >
                         Confirm
