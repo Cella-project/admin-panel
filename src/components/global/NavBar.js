@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 // import LangMenu from '../common/LangMenu';
 
-import logo from '../../assets/images/mint-logo.png';
+import logo from '../../assets/images/green-logo.png';
 import darkLogo from '../../assets/images/white-logo.png';
 import Canvas from '../common/Canvas';
 
