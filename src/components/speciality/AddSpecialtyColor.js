@@ -84,7 +84,7 @@ const AddSpecialtyColorForm = ({ popupToggle, data }) => {
             </div>
             <div className="add-speciality-color--actions flex-row-between full-width">
                 <button
-                    className={`add-speciality-color--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                    className={`add-speciality-color--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                     type="submit"
                 >
                     Confirm

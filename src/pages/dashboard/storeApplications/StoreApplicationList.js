@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import GreenCard from '../../../components/common/GreenCard';
+import OrangeCard from '../../../components/common/OrangeCard';
 import Search from '../../../components/common/Search';
 import Popup from '../../../components/common/PopupForm';
 import StoreApplicationCard from '../../../components/storeApplications/StoreApplicationCard';
@@ -73,12 +73,12 @@ const StoreApplicationList = () => {
         {
           cards.map((card) => {
             return (
-              <GreenCard title={card.title} key={Math.random().toString()}>
+              <OrangeCard title={card.title} key={Math.random().toString()}>
                 <div className="full-width flex-row-center">
-                  <i className={`${card.icon} mint-green size-28px`}></i>
+                  <i className={`${card.icon} orange size-28px`}></i>
                   <p className="gray inter size-28px margin-12px-H text-shadow">{card.content}</p>
                 </div>
-              </GreenCard>
+              </OrangeCard>
             );
           })
         }

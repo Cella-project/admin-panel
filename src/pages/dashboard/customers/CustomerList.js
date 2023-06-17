@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import GreenCard from '../../../components/common/GreenCard';
+import OrangeCard from '../../../components/common/OrangeCard';
 import Search from '../../../components/common/Search';
 import ListsCard from '../../../components/common/ListsCard';
 import CustomerCard from '../../../components/customers/CustomerCard';
@@ -22,9 +22,9 @@ const CustomerList = () => {
   }, [dispatch]);
 
   let cards = [
-    { title: 'Customers', content: 0, icon: "bi bi-people mint-green" },
-    { title: 'Active Customers', content: 0, icon: "bi bi-people mint-green" },
-    { title: 'Inactive Customers', content: 0, icon: "bi bi-people mint-green" },
+    { title: 'Customers', content: 0, icon: "bi bi-people orange" },
+    { title: 'Active Customers', content: 0, icon: "bi bi-people orange" },
+    { title: 'Inactive Customers', content: 0, icon: "bi bi-people orange" },
   ]
 
   let content = <Loading />;
@@ -87,9 +87,9 @@ const CustomerList = () => {
         });
 
       cards = [
-        { title: 'Customers', content: numberOfCustomers, icon: "bi bi-people mint-green" },
-        { title: 'Active Customers', content: activeCutomers, icon: "bi bi-people mint-green" },
-        { title: 'Inactive Customers', content: inActiveCutomers, icon: "bi bi-people mint-green" },
+        { title: 'Customers', content: numberOfCustomers, icon: "bi bi-people orange" },
+        { title: 'Active Customers', content: activeCutomers, icon: "bi bi-people orange" },
+        { title: 'Inactive Customers', content: inActiveCutomers, icon: "bi bi-people orange" },
       ]
     }
   }
@@ -103,12 +103,12 @@ const CustomerList = () => {
         {
           cards.map((card, index) => {
             return (
-              <GreenCard title={card.title} key={index}>
+              <OrangeCard title={card.title} key={index}>
                 <div className="full-width flex-row-center">
-                  <i className={`${card.icon} mint-green size-28px`}></i>
+                  <i className={`${card.icon} orange size-28px`}></i>
                   <p className="gray inter size-28px margin-12px-H text-shadow">{card.content}</p>
                 </div>
-              </GreenCard>
+              </OrangeCard>
             );
           })
         }

@@ -46,7 +46,7 @@ const SpecialityCard = ({ speciality }) => {
 
     return (
         <form noValidate onSubmit={handleUpdateName} className='speciality-card lists-card--info gray shadow-5px size-16px margin-10px-V inter radius-15px white-bg full-width flex-row-between2col'>
-            <i className={`bi bi-bookmarks margin-12px-H size-34px ${mode === 'dark-mode' ? 'gray' : 'mint-green'}`} />
+            <i className={`bi bi-bookmarks margin-12px-H size-34px ${mode === 'dark-mode' ? 'gray' : 'orange'}`} />
             <div className='flex-col-center speciality-card--info padding-10px-H'>
                 <div className='flex-row-between2col full-width '>
                     <div className='margin-2px-V speciality-card--info--child'>
@@ -69,7 +69,7 @@ const SpecialityCard = ({ speciality }) => {
                     {editMode ?
                         <div className='flex-row-center2col speciality-card--actions'>
                             <button
-                                className={`pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px mint-green-bg speciality-card--button margin-6px-H`}
+                                className={`pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px orange-bg speciality-card--button margin-6px-H`}
                                 onClick={() => {
                                     setEditMode(false);
                                     resetTitleInput(); // Add this line to reset the input data
@@ -79,13 +79,13 @@ const SpecialityCard = ({ speciality }) => {
                                 Cancel
                             </button>
                             <input
-                                className={`pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px mint-green-bg speciality-card--button margin-6px-H`}
+                                className={`pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px orange-bg speciality-card--button margin-6px-H`}
                                 onClick={handleChangeState}
                                 value='Change State'
                                 type='button'
                             />
                             <button
-                                className={`pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px mint-green-bg speciality-card--button margin-6px-H`}
+                                className={`pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px orange-bg speciality-card--button margin-6px-H`}
                                 disabled={!enteredTitleIsValid}
                                 type='submit'
                             >
@@ -95,13 +95,13 @@ const SpecialityCard = ({ speciality }) => {
                         :
                         <div className='flex-row-right-start2col speciality-card--actions'>
                             <input
-                                className={`pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px mint-green-bg speciality-card--button margin-6px-H`}
+                                className={`pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px orange-bg speciality-card--button margin-6px-H`}
                                 onClick={() => setEditMode(true)}
                                 value='Edit'
                                 type='button'
                             />
                             <input
-                                className={`pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px mint-green-bg speciality-card--button margin-6px-H`}
+                                className={`pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px orange-bg speciality-card--button margin-6px-H`}
                                 onClick={handleDelete}
                                 value='Delete'
                                 type='button'

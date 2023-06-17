@@ -105,7 +105,7 @@ export const RefillProductForm = ({ popupToggle }) => {
                                     Colors :
                                     {
 
-                                        remainingQuantitiesOfColors !== 0 && (remainingQuantitiesOfColors >= 0 ? (<span className={`${mode === 'dark-mode' ? 'gray' : 'white'} mint-green-bg radius-10px padding-6px-H`}>Remaining {remainingQuantitiesOfColors}</span>) : (<span className={`${mode === 'dark-mode' ? 'gray' : 'white'} red-bg radius-10px padding-6px-H`}>{remainingQuantitiesOfColors}</span>))
+                                        remainingQuantitiesOfColors !== 0 && (remainingQuantitiesOfColors >= 0 ? (<span className={`${mode === 'dark-mode' ? 'gray' : 'white'} orange-bg radius-10px padding-6px-H`}>Remaining {remainingQuantitiesOfColors}</span>) : (<span className={`${mode === 'dark-mode' ? 'gray' : 'white'} red-bg radius-10px padding-6px-H`}>{remainingQuantitiesOfColors}</span>))
                                     }
                                 </label>
 
@@ -124,7 +124,7 @@ export const RefillProductForm = ({ popupToggle }) => {
                             <label className='pointer full-width flex-row-between text-shadow gray font-bold margin-6px-V' htmlFor='size'>
                                 Sizes :
                                 {
-                                    remainingQuantitiesOfSizes !== 0 && (remainingQuantitiesOfSizes >= 0 ? (<span className={`${mode === 'dark-mode' ? 'gray' : 'white'} mint-green-bg radius-10px padding-6px-H`}>Remaining {remainingQuantitiesOfSizes}</span>) : (<span className={`${mode === 'dark-mode' ? 'gray' : 'white'} red-bg radius-10px padding-6px-H`}>{remainingQuantitiesOfSizes}</span>))
+                                    remainingQuantitiesOfSizes !== 0 && (remainingQuantitiesOfSizes >= 0 ? (<span className={`${mode === 'dark-mode' ? 'gray' : 'white'} orange-bg radius-10px padding-6px-H`}>Remaining {remainingQuantitiesOfSizes}</span>) : (<span className={`${mode === 'dark-mode' ? 'gray' : 'white'} red-bg radius-10px padding-6px-H`}>{remainingQuantitiesOfSizes}</span>))
                                 }
                             </label>
 
@@ -140,7 +140,7 @@ export const RefillProductForm = ({ popupToggle }) => {
 
                         <div className="refill-product--actions flex-row-between full-width">
                             <button
-                                className={`refill-product--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+                                className={`refill-product--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
                                 type="submit"
                             >
                                 Confirm

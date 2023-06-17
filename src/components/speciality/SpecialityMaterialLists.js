@@ -31,7 +31,7 @@ const SpecialityMaterialLists = ({ material }) => {
         {editMode ?
           <div className='flex-row-center'>
             <input
-              className='pointer white size-14px radius-15px mint-green-bg materials-card--button-edit margin-6px-H'
+              className='pointer white size-14px radius-15px orange-bg materials-card--button-edit margin-6px-H'
               onClick={() => {
                 setEditMode(false);
                 setMaterialTitle(material.title.toUpperCase());
@@ -40,7 +40,7 @@ const SpecialityMaterialLists = ({ material }) => {
               type='button'
             />
             <button
-              className='pointer size-14px white radius-15px mint-green-bg materials-card--button-edit'
+              className='pointer size-14px white radius-15px orange-bg materials-card--button-edit'
               disabled={materialTitle === material.title}
               type='submit'
             >
@@ -50,13 +50,13 @@ const SpecialityMaterialLists = ({ material }) => {
           :
           <div className='flex-row-center'>
             <i
-              className='bi bi-pencil-square pointer white size-18px radius-15px mint-green-bg materials-card--button margin-6px-H'
+              className='bi bi-pencil-square pointer white size-18px radius-15px orange-bg materials-card--button margin-6px-H'
               onClick={() => setEditMode(true)}
               value='Edit'
               type='button'
             />
             <i
-              className='bi bi-trash pointer white size-18px radius-15px mint-green-bg materials-card--button margin-6px-H'
+              className='bi bi-trash pointer white size-18px radius-15px orange-bg materials-card--button margin-6px-H'
               onClick={handleDeleteMaterial}
               value='Delete'
               type='button'

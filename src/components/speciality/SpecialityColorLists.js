@@ -38,13 +38,13 @@ const SpecialitycolorLists = ({ color }) => {
                         {color.title.toUpperCase()}
                     </div>
                     <i
-                        className='bi bi-pencil-square pointer white size-18px radius-15px mint-green-bg colors-card--button margin-6px-H'
+                        className='bi bi-pencil-square pointer white size-18px radius-15px orange-bg colors-card--button margin-6px-H'
                         onClick={handleEditcolor}
                         value='Edit'
                         type='button'
                     />
                     <i
-                        className='bi bi-trash pointer white size-18px radius-15px mint-green-bg colors-card--button margin-6px-H'
+                        className='bi bi-trash pointer white size-18px radius-15px orange-bg colors-card--button margin-6px-H'
                         onClick={handleDeletecolor}
                         value='Delete'
                         type='button'

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import PerfectScrollbar from "react-perfect-scrollbar";
 
-import GreenCard from "../../../components/common/GreenCard";
+import OrangeCard from "../../../components/common/OrangeCard";
 import OrderInfo from "../../../components/orders/OrderInfo";
 import ProductCard from "../../../components/products/ProductCard";
 import ListsCard from "../../../components/common/ListsCard";
@@ -50,7 +50,7 @@ const OrderHistoryDetails = () => {
                         <div className="flex-col-left-start orderHistory-details--card-cont full-width">
                             <div className="flex-row-left-start2col full-width">
                                 <div className="flex-row-top-between2col full-width" >
-                                    <GreenCard title="Delivery">
+                                    <OrangeCard title="Delivery">
                                         {order.driver.state === 'NotAssigned' ? (
                                             <div className="gray inter size-20px font-bold flex-row-center">Not Assigned</div>
                                         ) : (
@@ -58,18 +58,18 @@ const OrderHistoryDetails = () => {
                                                 <DeliveryInfo delivery={order.driver} />
                                             </Link>
                                         )}
-                                    </GreenCard>
-                                    <GreenCard title="Store">
+                                    </OrangeCard>
+                                    <OrangeCard title="Store">
                                         {
                                             <Link to={`/stores/${order.store.storeId}`} className="pointer lists-card--link">
                                                 <StoreInfo store={order.store} />
                                             </Link>
                                         }
-                                    </GreenCard>
+                                    </OrangeCard>
                                 </div>
                             </div>
                             <div className="flex-col-center full-width">
-                                <GreenCard title="Products">
+                                <OrangeCard title="Products">
                                     <PerfectScrollbar className="review-scroll--cont full-width">
                                         {order.items
                                             .map((item) => {
@@ -93,16 +93,16 @@ const OrderHistoryDetails = () => {
                                     <Link to={`/Products`} className="pointer lists-card--link">
                                         <i className="bi bi-arrow-right flex-row-right-start"></i>
                                     </Link>
-                                </GreenCard>
+                                </OrangeCard>
                             </div>
                             <div className="flex-row-top-between2col full-width full-width">
-                                <GreenCard title="Review">
+                                <OrangeCard title="Review">
                                     {/* <PerfectScrollbar className="review-scroll--cont full-width"></PerfectScrollbar> */}
                                     <Link to={`/Reviews`} className="pointer lists-card--link">
                                         <i className="bi bi-arrow-right flex-row-right-start"></i>
                                     </Link>
-                                </GreenCard>
-                                <GreenCard title="Voucher">
+                                </OrangeCard>
+                                <OrangeCard title="Voucher">
                                     {/* {
                                     voucherCards.map((voucher) => {
                                         return (
@@ -119,27 +119,27 @@ const OrderHistoryDetails = () => {
                                     <Link to={`/Vouchers`} className="pointer lists-card--link">
                                     <i className="bi bi-arrow-right flex-row-right-start"></i>
                                 </Link> */}
-                                </GreenCard>
+                                </OrangeCard>
                             </div>
                         </div>
 
                     </div>
                     <div className="flex-col-top-start orderHistory-details--card-cont width-20-100">
-                        <GreenCard title="Customer">
+                        <OrangeCard title="Customer">
                             {
                                 <Link to={`/customers/${order.customer.customerId}`} className="pointer lists-card--link orderHistory-details--customer">
                                     <div className="gray inter size-20px font-bold flex-row-center">{order.customer.name}</div>
                                 </Link>
                             }
-                        </GreenCard>
-                        <GreenCard title="Pickup Location">
+                        </OrangeCard>
+                        <OrangeCard title="Pickup Location">
                             {order && order.pickupLocation && (
                                 <div>
                                     <div className="pointer flex-col-right-start" onClick={() => handleExpandPick()}>
                                         <div className="orderHistory-details--content-container shadow-2px flex-col-left-start radius-15px margin-8px-V gray inter full-width">
                                             <div className="text-shadow full-width flex-row-center">{order.pickupLocation.addressTitle}</div>
                                             {expandedPickup && (
-                                                <div className="flex-col-left-start gray mint-green full-width margin-8px-V">
+                                                <div className="flex-col-left-start gray orange full-width margin-8px-V">
                                                     <div className="margin-6px-V flex-row-left-start">Address Type:
                                                         <div className='gray margin-12px-H'>
                                                             {order.pickupLocation.addressType}
@@ -196,15 +196,15 @@ const OrderHistoryDetails = () => {
                                 </div>
                             )}
 
-                        </GreenCard>
-                        <GreenCard title="Drop Location">
+                        </OrangeCard>
+                        <OrangeCard title="Drop Location">
                             {order && order.dropLocation && (
                                 <div>
                                     <div className="pointer flex-col-right-start" onClick={() => handleExpandDrop()}>
                                         <div className="orderHistory-details--content-container shadow-2px flex-col-center radius-15px margin-8px-V gray inter full-width">
                                             <div className="text-shadow">{order.dropLocation.addressTitle}</div>
                                             {expandedDrop && (
-                                                <div className="flex-col-left-start gray mint-green full-width margin-8px-V">
+                                                <div className="flex-col-left-start gray orange full-width margin-8px-V">
                                                     <div className="margin-6px-V flex-row-left-start">Address Type:
                                                         <div className='gray margin-12px-H'>
                                                             {order.dropLocation.addressType}
@@ -261,7 +261,7 @@ const OrderHistoryDetails = () => {
                                 </div>
                             )}
 
-                        </GreenCard>
+                        </OrangeCard>
                     </div>
                 </div>
             </>)}

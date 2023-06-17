@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 
-import GreenCard from '../../../components/common/GreenCard';
+import OrangeCard from '../../../components/common/OrangeCard';
 import Search from '../../../components/common/Search';
 import Popup from '../../../components/common/PopupForm';
 import StoreCard from '../../../components/stores/StoreCard';
@@ -149,17 +149,17 @@ const StoreList = () => {
         {
           cards.map((card) => {
             return (
-              <GreenCard title={card.title} key={Math.random().toString()}>
+              <OrangeCard title={card.title} key={Math.random().toString()}>
                 <div className="full-width flex-row-center">
-                  <i className={`${card.icon} mint-green size-28px`}></i>
+                  <i className={`${card.icon} orange size-28px`}></i>
                   <p className="gray inter size-28px margin-12px-H text-shadow">{card.content}</p>
                 </div>
-              </GreenCard>
+              </OrangeCard>
             );
           })
         }
         {storeApplications !== null && (
-          <Link to={`/stores/storeApplications`} className={`stores--application-container full-width mint-green-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
+          <Link to={`/stores/storeApplications`} className={`stores--application-container full-width orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
             Application Stores
             {storeApplications.filter(storeApplication => storeApplication.status === 'Pending').length > 0 && (
               <div className='stores--pending-badge shadow-5px white font-bold red-bg size-12px flex-row-center'>
@@ -172,7 +172,7 @@ const StoreList = () => {
       </div>
       <div className='flex-row-top-start'>
         <Search width={'width-90-100'} onSearch={handleSearch} page={'Stores'} />
-        <div className='stores add-icon flex-row-center size-34px mint-green-bg radius-circular pointer' onClick={handleClick}>
+        <div className='stores add-icon flex-row-center size-34px orange-bg radius-circular pointer' onClick={handleClick}>
           <i className="bi bi-plus-lg white"></i>
         </div>
       </div>

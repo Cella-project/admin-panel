@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import GreenCard from '../../../components/common/GreenCard';
+import OrangeCard from '../../../components/common/OrangeCard';
 import Search from '../../../components/common/Search';
 import SpecialityCard from '../../../components/speciality/SpecialityCard';
 import Popup from '../../../components/common/PopupForm';
@@ -104,12 +104,12 @@ const SpecialityList = () => {
       <div className="speciality--cards">
         {cards.map((card, index) => {
           return (
-            <GreenCard title={card.title} key={index}>
+            <OrangeCard title={card.title} key={index}>
               <div className="full-width flex-row-center">
-                <i className={`${card.icon} mint-green size-28px`}></i>
+                <i className={`${card.icon} orange size-28px`}></i>
                 <p className="gray inter size-28px margin-12px-H text-shadow">{card.content}</p>
               </div>
-            </GreenCard>
+            </OrangeCard>
           );
         })}
       </div>
@@ -117,7 +117,7 @@ const SpecialityList = () => {
       <div className="flex-row-top-start">
         <Search width={'width-90-100'} page={'Specialty'} onSearch={handleSearch} />
 
-        <div className="speciality add-icon flex-row-center size-34px mint-green-bg radius-circular pointer" onClick={handleClick}>
+        <div className="speciality add-icon flex-row-center size-34px orange-bg radius-circular pointer" onClick={handleClick}>
           <i className="bi bi-plus-lg white" ></i>
         </div>
       </div>

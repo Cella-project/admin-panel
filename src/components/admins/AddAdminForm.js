@@ -218,7 +218,7 @@ const AddAdminForm = ({ popupToggle }) => {
           </label>
           <button
             type="button"
-            className={`add-admin--actions--button${photoFile === 'NO IMAGE' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold mint-green-bg`}
+            className={`add-admin--actions--button${photoFile === 'NO IMAGE' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
             onClick={clearIMG}
           >
             Clear
@@ -228,7 +228,7 @@ const AddAdminForm = ({ popupToggle }) => {
       </div>
       <div className="add-admin--actions flex-row-between full-width">
         <button
-          className={`add-admin--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px mint-green-bg`}
+          className={`add-admin--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px orange-bg`}
           type="submit"
         >
           Confirm

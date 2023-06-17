@@ -92,7 +92,7 @@ const ResetPassword = () => {
                     style={{ marginLeft: '5px' }}
                     className="no-padding margin-6px-V size-16px inter gray">New Password
                 </p>
-                <i className={`reset--slot--icon ${mode === 'dark-mode' ? 'gray' : 'mint-green'} size-20px bi bi-key`}></i>
+                <i className={`reset--slot--icon ${mode === 'dark-mode' ? 'gray' : 'orange'} size-20px bi bi-key`}></i>
                 <input
                     className={`reset--slot--input inter gray size-14px radius-10px shadow-2px ${passwordClasses}`}
                     placeholder="New password"
@@ -104,7 +104,7 @@ const ResetPassword = () => {
                     autoComplete="off"
                 />
                 <i
-                    className={`reset--slot--icon-Right ${mode === 'dark-mode' ? 'gray' : 'mint-green'} bi bi-eye${!passwordShown ? "-slash" : ""} size-20px pointer`}
+                    className={`reset--slot--icon-Right ${mode === 'dark-mode' ? 'gray' : 'orange'} bi bi-eye${!passwordShown ? "-slash" : ""} size-20px pointer`}
                     onClick={() => setPasswordShown(!passwordShown)}
                 />
             </div>
@@ -116,7 +116,7 @@ const ResetPassword = () => {
                     style={{ marginLeft: '5px' }}
                     className="no-padding margin-6px-V size-16px inter gray">Confirm New Password
                 </p>
-                <i className={`reset--slot--icon ${mode === 'dark-mode' ? 'gray' : 'mint-green'} size-20px bi bi-key`}></i>
+                <i className={`reset--slot--icon ${mode === 'dark-mode' ? 'gray' : 'orange'} size-20px bi bi-key`}></i>
                 <input
                     className={`reset--slot--input inter gray size-14px radius-10px shadow-2px ${confirmedPasswordClasses}`}
                     placeholder="Confirm New Password"
@@ -130,18 +130,18 @@ const ResetPassword = () => {
                     autoComplete="off"
                 />
                 <i
-                    className={`reset--slot--icon-Right ${mode === 'dark-mode' ? 'gray' : 'mint-green'} bi bi-eye${!confirmedPasswordShown ? "-slash" : ""} size-20px pointer`}
+                    className={`reset--slot--icon-Right ${mode === 'dark-mode' ? 'gray' : 'orange'} bi bi-eye${!confirmedPasswordShown ? "-slash" : ""} size-20px pointer`}
                     onClick={() => setConfirmedPasswordShown(!confirmedPasswordShown)}
                 />
             </div>
             {confirmedPasswordError && (
                 <p className="error-message inter">{confirmedPasswordError}</p>
             )}
-            <button type='submit' className={`reset--btn full-width mint-green-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
+            <button type='submit' className={`reset--btn full-width orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
                 RESET PASSWORD
             </button>
             <div className="full-width flex-row-left-start">
-                <NavLink to={'/login/forget-password'} style={{ textDecoration: 'none' }} className={`space-none inter ${mode === 'dark-mode' ? 'gray' : 'mint-green'} size-14px margin-12px-H pointer`}>Back</NavLink>
+                <NavLink to={'/login/forget-password'} style={{ textDecoration: 'none' }} className={`space-none inter ${mode === 'dark-mode' ? 'gray' : 'orange'} size-14px margin-12px-H pointer`}>Back</NavLink>
             </div>
         </form>
 

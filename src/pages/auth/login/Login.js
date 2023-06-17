@@ -92,7 +92,7 @@ const Login = () => {
     return (
         <form noValidate className='login flex-col-left-start white-bg radius-5px shadow-2px' onSubmit={handleLogin}>
             <div className={`login--slot full-width flex-col-left-start margin-12px-V `}>
-                <i className={`login--slot--icon bi bi-envelope size-20px ${mode === 'dark-mode' ? 'gray' : 'mint-green'}`} />
+                <i className={`login--slot--icon bi bi-envelope size-20px ${mode === 'dark-mode' ? 'gray' : 'orange'}`} />
                 <p style={{ marginLeft: '5px' }} className="no-padding margin-6px-V size-16px inter gray">Email Address</p>
                 <input
                     className={`login--slot--input login--slot--input--error inter gray size-14px radius-10px shadow-2px ${emailClasses}`}
@@ -110,7 +110,7 @@ const Login = () => {
                 </p>
             )}
             <div className={`login--slot full-width flex-col-left-start margin-12px-V `}>
-                <i className={`login--slot--icon bi bi-key gray size-18px ${mode === 'dark-mode' ? 'gray' : 'mint-green'}`} />
+                <i className={`login--slot--icon bi bi-key gray size-18px ${mode === 'dark-mode' ? 'gray' : 'orange'}`} />
                 <p style={{ marginLeft: '5px' }} className="no-padding margin-6px-V size-16px inter gray">Password</p>
                 <input
                     className={`login--slot--input inter gray size-14px radius-10px shadow-2px ${passwordClasses}`}
@@ -121,7 +121,7 @@ const Login = () => {
                     onBlur={passwordBlurHandler}
                     autoComplete="off"
                 />
-                <i className={`login--slot--icon-Right bi bi-eye${!passwordShown ? "-slash" : ""} size-20px pointer ${mode === 'dark-mode' ? 'gray' : 'mint-green'}`} onClick={() => setPasswordShown(!passwordShown)} />
+                <i className={`login--slot--icon-Right bi bi-eye${!passwordShown ? "-slash" : ""} size-20px pointer ${mode === 'dark-mode' ? 'gray' : 'orange'}`} onClick={() => setPasswordShown(!passwordShown)} />
 
             </div>
             {passwordIsTouched && (
@@ -129,11 +129,11 @@ const Login = () => {
                     {passwordError}
                 </p>
             )}
-            <button type="submit" className={`login--btn full-width mint-green-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
+            <button type="submit" className={`login--btn full-width orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
                 LOG IN
             </button>
             <div className="full-width flex-row-left-start">
-                <NavLink to={'/login/forget-password'} style={{ textDecoration: 'none' }} className={`space-none inter ${mode === 'dark-mode' ? 'gray' : 'mint-green'} size-14px margin-12px-H pointer`}>Forget password</NavLink>
+                <NavLink to={'/login/forget-password'} style={{ textDecoration: 'none' }} className={`space-none inter ${mode === 'dark-mode' ? 'gray' : 'orange'} size-14px margin-12px-H pointer`}>Forget password</NavLink>
             </div>
         </form>
     );
