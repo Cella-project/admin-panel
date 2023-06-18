@@ -1,4 +1,4 @@
-$dark-orange: #163a4a;
+$dark-orange: #fc6011;
 
 $dark-white: #242526;
 
@@ -39,7 +39,7 @@ $dark-gold: #FDCC0D;
 }
 
 .dark-mode .orange-bg {
-    background-color: $dark-orange;
+    background: linear-gradient(to top , $dark-orange, darken($dark-orange, 8%));
 }
 
 .dark-mode .yellow {

@@ -1,4 +1,4 @@
-$orange: #ff8800;
+$orange: #fc6011;
 
 $white: #ffffff;
 
@@ -35,7 +35,7 @@ $gold: #FDCC0D;
 }
 
 .orange-bg {
-    background-color: $orange;
+    background: linear-gradient(to top , $orange, lighten($orange, 8%));
 }
 
 .yellow {
