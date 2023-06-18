@@ -16,7 +16,7 @@ const Login = () => {
     useEffect(() => {
         document.title = 'Login • Admin Panel';
 
-        if (localStorage.getItem('Token')) {
+        if (localStorage.getItem('Access Token')) {
             // Redirect to the dashboard
             navigate('/');
         }

@@ -36,7 +36,7 @@ const AddSubCategoryForm = ({ popupToggle,data }) => {
         data.append('path', 'category/profile');
         data.append('file', e.target.files[0]);
         dispatch(subCategoryActions.addSubCategoryPicture(data, (response) => {
-            setSubCategory('http://143.244.196.79:4012/api/file-manager/' + response.data.data);
+            setSubCategory('http://www.actore.store/api/file-manager/file/' + response.data.data);
         }))
     }
 

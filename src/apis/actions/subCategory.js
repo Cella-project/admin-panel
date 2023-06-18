@@ -1,5 +1,4 @@
 import Axios from '../AxiosInstance';
-import AxiosFileManager from '../AxiosFileManager';
 import { subCategoryMutations, popupMutation, stickyMutations } from '../../redux/mutations';
 import errorHandler from '../../services/errorHandler';
 

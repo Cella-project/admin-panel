@@ -16,7 +16,7 @@ const EditMainCategoryForm = ({ popupToggle, data }) => {
         data.append('path', 'category/profile');
         data.append('file', e.target.files[0]);
         dispatch(mainCategoryActions.addMainCategoryPicture(data, (response) => {
-            setMainCategory('http://143.244.196.79:4012/api/file-manager/' + response.data.data);
+            setMainCategory('http://www.actore.store/api/file-manager/file/' + response.data.data);
         }))
     }
 

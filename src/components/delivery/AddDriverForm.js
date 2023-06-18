@@ -259,7 +259,7 @@ const AddDriverForm = ({ popupToggle }) => {
         data.append('path', 'driver/profile');
         data.append('file', e.target.files[0]);
         dispatch(driverActions.addDriverPicture(data, (response) => {
-            setdriverImg('http://143.244.196.79:4012/api/file-manager/' + response.data.data);
+            setdriverImg('http://www.actore.store/api/file-manager/file/' + response.data.data);
         }))
     }
 
@@ -269,7 +269,7 @@ const AddDriverForm = ({ popupToggle }) => {
         data.append('path', 'driver/nationalId');
         data.append('file', e.target.files[0]);
         dispatch(driverActions.addDriverPicture(data, (response) => {
-            setNationalIdImgFront('http://143.244.196.79:4012/api/file-manager/' + response.data.data);
+            setNationalIdImgFront('http://www.actore.store/api/file-manager/file/' + response.data.data);
         }))
     }
 
@@ -279,7 +279,7 @@ const AddDriverForm = ({ popupToggle }) => {
         data.append('path', 'driver/vehicleLicense');
         data.append('file', e.target.files[0]);
         dispatch(driverActions.addDriverPicture(data, (response) => {
-            setVehicleLicenseImgFront('http://143.244.196.79:4012/api/file-manager/' + response.data.data);
+            setVehicleLicenseImgFront('http://www.actore.store/api/file-manager/file/' + response.data.data);
         }))
     }
 
@@ -289,7 +289,7 @@ const AddDriverForm = ({ popupToggle }) => {
         data.append('path', 'driver/vehicleLicense');
         data.append('file', e.target.files[0]);
         dispatch(driverActions.addDriverPicture(data, (response) => {
-            setVehicleLicenseImgBack('http://143.244.196.79:4012/api/file-manager/' + response.data.data);
+            setVehicleLicenseImgBack('http://www.actore.store/api/file-manager/file/' + response.data.data);
         }))
     }
 
@@ -299,7 +299,7 @@ const AddDriverForm = ({ popupToggle }) => {
         data.append('path', 'driver/driverLicense');
         data.append('file', e.target.files[0]);
         dispatch(driverActions.addDriverPicture(data, (response) => {
-            setDriverLicenseImgFront('http://143.244.196.79:4012/api/file-manager/' + response.data.data);
+            setDriverLicenseImgFront('http://www.actore.store/api/file-manager/file/' + response.data.data);
         }))
     }
 
@@ -309,7 +309,7 @@ const AddDriverForm = ({ popupToggle }) => {
         data.append('path', 'driver/driverLicense');
         data.append('file', e.target.files[0]);
         dispatch(driverActions.addDriverPicture(data, (response) => {
-            setDriverLicenseImgBack('http://143.244.196.79:4012/api/file-manager/' + response.data.data);
+            setDriverLicenseImgBack('http://www.actore.store/api/file-manager/file/' + response.data.data);
         }))
     }
 
@@ -319,7 +319,7 @@ const AddDriverForm = ({ popupToggle }) => {
         data.append('path', 'driver/nationalId');
         data.append('file', e.target.files[0]);
         dispatch(driverActions.addDriverPicture(data, (response) => {
-            setNationalIdImgBack('http://143.244.196.79:4012/api/file-manager/' + response.data.data);
+            setNationalIdImgBack('http://www.actore.store/api/file-manager/file/' + response.data.data);
         }))
     }
 

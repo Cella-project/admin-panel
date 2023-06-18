@@ -1,5 +1,4 @@
 import Axios from '../AxiosInstance';
-import AxiosFileManager from '../AxiosFileManager';
 
 import { adminMutations, popupMutation, stickyMutations } from '../../redux/mutations';
 import errorHandler from '../../services/errorHandler';
@@ -41,7 +40,7 @@ const adminActions = {
                 dispatch(popupMutation.clearPopPanel());
                 dispatch(stickyMutations.popAllNotes());
                 dispatch(popupMutation.popLoading());
-                const response = await AxiosFileManager.post('/api/file-manager/file', payload);
+                const response = await Axios.post('/api/file-manager/file', payload);
                 dispatch(popupMutation.clearPopPanel());
                 afterSuccess(response);
             } catch (error) {

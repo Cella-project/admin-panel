@@ -1,7 +1,5 @@
 import Axios from '../AxiosInstance';
 
-import AxiosFileManager from '../AxiosFileManager';
-
 import errorHandler from '../../services/errorHandler';
 
 import router from '../../router/router'
@@ -22,10 +20,12 @@ const authActions = {
                 const response = await Axios.post('/api/admin-auth/login', payload);
                 if (response.status === 200) {
                     dispatch(authMutations.setAuthData({
-                        token: response.data.token,
+                        access: response.data.token.access,
+                        refresh: response.data.token.refresh,
                         userData: response.data.data
                     }));
-                    localStorage.setItem('Token', response.data.token);
+                    localStorage.setItem('Access Token', response.data.token.access);
+                    localStorage.setItem('Refresh Token', response.data.token.refresh);
                     localStorage.setItem('User', JSON.stringify(response.data.data));
 
                     router.navigate('/');
@@ -39,6 +39,23 @@ const authActions = {
                 }
             } catch (error) {
                 errorHandler(dispatch, error.response, 'Incorrect email or password.');
+            }
+        }
+    },
+    refreshToken(payload) {
+        return async (dispatch) => {
+            try {
+                const response = await Axios.post('/api/admin-auth/refresh-token', {
+                    refreshToken: payload
+                });
+                if (response.status === 200) {
+                    dispatch(authMutations.setToken(response.data.token));
+                    localStorage.setItem('Access Token', response.data.token.access);
+                    localStorage.setItem('Refresh Token', response.data.token.refresh);
+                }
+            }
+            catch (error) {
+                errorHandler(dispatch, error.response);
             }
         }
     },
@@ -111,7 +128,7 @@ const authActions = {
                 dispatch(popupMutation.clearPopPanel());
                 dispatch(stickyMutations.popAllNotes());
                 dispatch(popupMutation.popLoading());
-                const response = await AxiosFileManager.post('/api/file-manager/file', payload);
+                const response = await Axios.post('/api/file-manager/file', payload);
                 dispatch(popupMutation.clearPopPanel());
                 afterSuccess(response);
             } catch (error) {
@@ -168,7 +185,8 @@ const authActions = {
                 type: 'success',
                 msg: 'You logged out successfully.'
             }));
-            localStorage.removeItem('Token');
+            localStorage.removeItem('Access Token');
+            localStorage.removeItem('Refresh Token');
             localStorage.removeItem('User');
             router.navigate('/login');
         }

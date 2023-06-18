@@ -216,7 +216,7 @@ const EditStoreForm = ({ popupToggle }) => {
         data.append('path', 'store/profile');
         data.append('file', e.target.files[0]);
         dispatch(storeActions.addStorePicture(data, (response) => {
-            setStoreIMG('http://143.244.196.79:4012/api/file-manager/' + response.data.data);
+            setStoreIMG('http://www.actore.store/api/file-manager/file/' + response.data.data);
         }))
     }
 

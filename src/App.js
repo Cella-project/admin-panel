@@ -9,6 +9,7 @@ import Popup from './components/popups/Popup';
 
 import { authMutations } from "./redux/mutations";
 import router from "./router/router";
+import { authActions } from "./apis/actions";
 
 let isloaded = false;
 
@@ -16,25 +17,37 @@ const App = () => {
   const dispatch = useDispatch();
 
   const mode = useSelector(state => state.theme.mode);
+  const accessToken = localStorage.getItem('Access Token');
+  const refreshToken = localStorage.getItem('Refresh Token');
+  const user = JSON.parse(localStorage.getItem('User'));
 
   const checkAuth = () => {
-    const user = JSON.parse(localStorage.getItem('User'));
-    const token = localStorage.getItem('Token');
-
-    if (user && token) {
+    if (user && accessToken && refreshToken) {
       dispatch(authMutations.setAuthData({
         userData: user,
-        token: token
+        access: accessToken,
+        refresh: refreshToken
       }));
     } else {
       localStorage.removeItem('User');
-      localStorage.removeItem('Token');
+      localStorage.removeItem('Access Token');
+      localStorage.removeItem('Refresh Token');
       router.navigate('/login');
+    }
+  };
+
+  const refreshTokenHandler = (token) => {
+    if (token) {
+      dispatch(authActions.refreshToken(token));
     }
   };
 
   if (!isloaded) {
     checkAuth();
+    refreshTokenHandler(refreshToken);
+    setInterval(() => {
+      refreshTokenHandler(refreshToken);
+    }, 14 * 60 * 1000);
     isloaded = true;
   }
 
