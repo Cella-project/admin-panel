@@ -45,7 +45,7 @@ const Subtitle = styled.h2`
 `;
 
 const Button = styled(Link)`
-  background-color: #ff8800;
+  background-color: #fc6011;
   color: white;
   font-size: 2rem;
   font-weight: bold;
@@ -59,7 +59,7 @@ const Button = styled(Link)`
 
   &:hover {
     background-color: #737373;
-    color: #ff8800;
+    color: #fc6011;
     transform: scale(1.1);
   }
 `;
