@@ -10,11 +10,9 @@ import ListsCard from "../../../components/common/ListsCard";
 import ExpandDocument from "../../../components/common/ExpandDocument";
 
 import { reviewCards } from "../reviews/Reviews";
-import { orderCards } from "../orders/OrderList";
 
 import "./DeliveryApplicationDetails.scss";
 import ReviewCard from "../../../components/reviews/ReviewCard";
-import OrderCard from "../../../components/orders/OrderCard";
 
 import { useSelector, useDispatch } from 'react-redux';
 import { driverApplicationActions } from '../../../apis/actions';
@@ -49,27 +47,6 @@ const DeliveryApplicationDetails = (props) => {
         <div className="full-width flex-row-top-between2col ">
           <div className="width-70-100 flex-col-center delivery-details--container">
             <OrangeCard title="Balance"></OrangeCard>
-            <OrangeCard title="Orders">
-              <PerfectScrollbar className="delivery-details--scroll--cont full-width flex-col-top-start">
-                {orderCards.map((orderCard) => {
-                  return (
-                    orderCard.driver === deliveryApplication.name &&
-                    <OrderCard
-                      customerName={orderCard.customerName}
-                      orderCode={orderCard.orderCode}
-                      delivery={orderCard.delivery}
-                      date={orderCard.date}
-                      total={orderCard.total}
-                      img={orderCard.img}
-                      id={orderCard.id}
-                    />
-                  );
-                })}
-              </PerfectScrollbar>
-              <Link to={`/orders`} className="pointer link">
-                <i className="bi bi-arrow-right flex-row-right-start"></i>
-              </Link>
-            </OrangeCard>
             <OrangeCard title="Reviews">
               <PerfectScrollbar className="deliveryApplication-details--scroll--cont full-width flex-col-top-start">
                 {reviewCards.map((reviewCard) => {

@@ -1,25 +1,37 @@
 import React from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { orderActions } from '../../apis/actions';
+import router from '../../router/router';
 import "./OrderControl.scss";
 
-const OrderControl = () => {
+const OrderControl = ({ id }) => {
+  const dispatch = useDispatch();
+  const mode = useSelector((state) => state.theme.mode);
+
+  //handle change state
+  const handleCancel = async () => {
+    dispatch(orderActions.cancelOrder(id))
+  };
+
+  //handle delete 
+  const handleDelete = () => {
+    dispatch(orderActions.deleteOrder(id, () => {
+      router.navigate("/orders");
+    }))
+  }
+
   return (
     <div className="full-width flex-col-left-start order-control flex-wrap">
-      <div className="order-control--btn flex-row-center white orange-bg radius-circular pointer">
-        <i className="bi bi-arrow-clockwise size-28px"></i>
-        <div className="order-control--btn--tag flex-row-center white inter size-12px radius-5px shadow-5px">
-          Change State
+      <div className="order-control--btn flex-row-center white orange-bg radius-circular pointer" onClick={handleCancel}>
+        <i className={`bi bi-x-lg ${mode === 'dark-mode' ? 'gray' : 'white'} size-28px`}></i>
+        <div className={`order-control--btn--tag flex-row-center ${mode === 'dark-mode' ? 'gray' : 'white'} inter size-12px radius-5px shadow-5px`}>
+          Cancel
         </div>
       </div>
-      <div className="order-control--btn flex-row-center white orange-bg radius-circular pointer">
-        <i className="bi bi-trash pointer size-28px"></i>
-        <div className="order-control--btn--tag flex-row-center white inter size-12px radius-5px shadow-5px">
+      <div className="order-control--btn flex-row-center white orange-bg radius-circular pointer" onClick={handleDelete}>
+        <i className={`bi bi-trash pointer ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`}></i>
+        <div className={`order-control--btn--tag flex-row-center ${mode === 'dark-mode' ? 'gray' : 'white'} inter size-12px radius-5px shadow-5px`}>
           Delete
-        </div>
-      </div>
-      <div className="order-control--btn flex-row-center white orange-bg radius-circular pointer">
-        <i className="bi bi-pencil-square size-28px"></i>
-        <div className="order-control--btn--tag flex-row-center white inter size-12px radius-5px shadow-5px">
-          Edit
         </div>
       </div>
     </div>

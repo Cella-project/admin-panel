@@ -8,6 +8,7 @@ import specialtieslice from './slices/speciality';
 import specialityControlSlice from './slices/specialityControl';
 import mainCategorySlice from './slices/mainCategory';
 import subCategorySlice from './slices/subCategory';
+import orderSlice from './slices/order';
 import orderHistorySlice from './slices/orderHistory';
 import stickySlice from './slices/sticky';
 import popupSlice from './slices/popup';
@@ -28,6 +29,7 @@ const store = configureStore({
                 specialityControl: specialityControlSlice.reducer,
                 mainCategory: mainCategorySlice.reducer,
                 subCategory: subCategorySlice.reducer,
+                order: orderSlice.reducer,
                 orderHistory: orderHistorySlice.reducer,
                 sticky: stickySlice.reducer,
                 popup: popupSlice.reducer,

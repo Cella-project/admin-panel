@@ -6,6 +6,7 @@ import specialityMutations from './mutations/speciality';
 import specialityControlMutations from './mutations/specialityControl';
 import mainCategoryMutations from './mutations/mainCategory';
 import subCategoryMutations from './mutations/subCategory';
+import orderMutations from './mutations/order';
 import orderHistoryMutations from './mutations/orderHistory';
 import stickyMutations from './mutations/sticky';
 import popupMutation from './mutations/popup';
@@ -25,6 +26,7 @@ export {
     specialityControlMutations,
     mainCategoryMutations,
     subCategoryMutations,
+    orderMutations,
     orderHistoryMutations,
     stickyMutations,
     popupMutation,

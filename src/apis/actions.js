@@ -5,6 +5,7 @@ import specialityActions from './actions/speciality';
 import specialityControlActions from './actions/specialityControl';
 import mainCategoryActions from './actions/mainCategory';
 import subCategoryActions from './actions/subCategory';
+import orderActions from './actions/order';
 import orderHistoryActions from './actions/orderHistory';
 import storeApplicationActions from './actions/storeApplication';
 import driverActions from './actions/driver';
@@ -21,6 +22,7 @@ export {
     specialityControlActions,
     mainCategoryActions,
     subCategoryActions,
+    orderActions,
     orderHistoryActions,
     storeApplicationActions,
     driverActions,

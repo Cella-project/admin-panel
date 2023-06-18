@@ -36,9 +36,9 @@ const SideBar = () => {
         <NavLink to={'/products'} >
           <i className={`bi bi-box-seam margin-8px-V ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`side-bar--cont--description inter size-20px font-light ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Products</span>
         </NavLink>
-        {/* <NavLink to={'/orders'} >
+        <NavLink to={'/orders'} >
           <i className={`bi bi-receipt margin-8px-V ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`side-bar--cont--description inter size-20px font-light ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Orders</span>
-        </NavLink> */}
+        </NavLink>
         <NavLink to={'/ordersHistory'} >
           <i className={`bi bi-hourglass-split margin-8px-V ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`side-bar--cont--description inter size-20px font-light ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Orders History</span>
         </NavLink>
