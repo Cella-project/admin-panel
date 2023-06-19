@@ -330,7 +330,7 @@ export const AddProduct = () => {
         event.preventDefault();
 
         const product = {
-            title: enteredDescription,
+            title: enteredTitle,
             description: enteredDescription,
             price: parseInt(enteredPrice),
             avilableQuantity: parseInt(enteredQuantity),
@@ -355,8 +355,10 @@ export const AddProduct = () => {
                 tag: item.tag
             })),
             material: enteredMaterial.title,
-            album: album,
         };
+        if (album.length > 0) {
+            product.album = album;
+        }
 
         if (discountType !== 'None') {
             product.discount = {
