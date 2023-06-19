@@ -108,7 +108,7 @@ const ChangeInfo = () => {
             updatedFields.email = enteredEmail.trim();
         }
 
-        if (enteredPhone && userData.phoneNum && enteredPhone.replace("+20", "") !== userData.phoneNum.replace("+20", "")) {
+        if (enteredPhone && userData.phoneNum && enteredPhone.replace("+2", "") !== userData.phoneNum.replace("+20", "")) {
             updatedFields.phoneNum = enteredPhone.replace("+2", "");
         }
 
@@ -119,6 +119,7 @@ const ChangeInfo = () => {
 
     };
 
+    if (userData === null) return (<div></div>);
 
     return (
         <form onSubmit={handleSubmit} noValidate className={`profile--info full-width white-bg shadow-5px flex-col-center margin-12px-V`}>
@@ -148,6 +149,7 @@ const ChangeInfo = () => {
                             <i className="bi bi-person gray size-18px " />
                             <input className='profile--input full-width margin-8px-H gray radius-10px'
                                 type="text"
+                                id="fullName"
                                 disabled={!editMode}
                                 value={enteredFullName}
                                 onChange={fullNameChangedHandler}

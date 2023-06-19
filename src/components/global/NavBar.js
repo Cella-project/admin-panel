@@ -12,14 +12,16 @@ import { useSelector } from 'react-redux';
 import './NavBar.scss';
 
 const NavBar = ({ menuToggle }) => {
-    const userData = useSelector(state => state.auth.userData)
+    const userData = useSelector(state => state.auth.userData);
     const mode = useSelector(state => state.theme.mode);
 
     // Extract the first name from the user data
     const firstName = userData.name.split(' ')[0];
 
+    if (userData === null) return (<div></div>);
+
     return (
-        <div className={`nav-bar ${mode === 'dark-mode' ? 'dark' : ''} full-width`}>
+        <div className={`nav-bar ${mode === 'dark-mode' ? 'dark' : ''} full-width`} style={{ marginTop: (userData.validEmail !== null && userData.validEmail) ? '0px' : '15px' }}>
             <div className='nav-bar--cont full-width white-bg flex-row-between'>
                 <Link to={'/'} className='home-link'>
                     <img src={mode === 'dark-mode' ? darkLogo : logo} alt='ACTORE' className='nav-bar--logo pointer' />

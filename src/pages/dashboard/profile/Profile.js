@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import './Profile.scss';
 
 const Profile = () => {
+    const dispatch = useDispatch();
     const userData = useSelector((state) => state.auth.userData);
     const [adminIMG, setAdminIMG] = useState(userData.img);
     const [editIMG, setEditIMG] = useState(false);
@@ -22,8 +23,6 @@ const Profile = () => {
     useEffect(() => {
         document.title = 'Profile • Admin Panel';
     }, []);
-
-    const dispatch = useDispatch();
 
     const uploadImg = async (e) => {
         setEditIMG(true);
@@ -47,6 +46,8 @@ const Profile = () => {
         setAdminIMG(userData.img);
         setEditIMG(false);
     }
+
+    if (userData === null) return (<div></div>);
 
     return (
         <div className="profile full-width" >
