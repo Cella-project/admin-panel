@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import OrangeCard from '../../../components/common/OrangeCard';
 import Search from '../../../components/common/Search';
 import ProductCard from '../../../components/products/ProductCard';
 import { useDispatch, useSelector } from 'react-redux';
-import { productActions } from '../../../apis/actions';
+import { productActions, subCategoryActions } from '../../../apis/actions';
 import { productMutations } from '../../../redux/mutations';
 import Loading from '../../../components/global/Loading';
 
@@ -13,12 +13,21 @@ import './ProductList.scss';
 const ProductList = () => {
   const dispatch = useDispatch();
   const products = useSelector(state => state.product.products);
+  const subCategoryData = useSelector(state => state.subCategory.subCategoryData);
+
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const categoryID = searchParams.get('category');
 
   useEffect(() => {
     document.title = 'Products • Admin Panel';
     dispatch(productMutations.setProducts(null));
     dispatch(productActions.getProducts());
-  }, [dispatch]);
+
+    if (categoryID) {
+      dispatch(subCategoryActions.getSubCategoryById(categoryID));
+    }
+  }, [dispatch, categoryID]);
 
   let cards = [
     { title: 'Products', content: 0, icon: "bi bi-box-seam" },
@@ -63,6 +72,11 @@ const ProductList = () => {
         }
         );
       }
+    }
+    if (categoryID) {
+      filteredProducts = filteredProducts.filter(
+        (product) => product.category.title === subCategoryData.title
+      );
     }
     if (searchStatus !== '' && searchStatus !== 'all') {
       filteredProducts = filteredProducts.filter(product => {
@@ -117,7 +131,16 @@ const ProductList = () => {
   return (
     <div className="products full-width" >
       <div className="products--braud-cramb gray inter size-16px font-bold">
-        Products
+        {categoryID ? (
+          <>
+            {subCategoryData.title} {'>'}
+            <Link to={`/products`} className="margin-6px-H gray pointer lists-card--link">
+              Products
+            </Link>
+          </>
+        ) : (
+          'Products'
+        )}
       </div>
       <div className="products--cards">
         {

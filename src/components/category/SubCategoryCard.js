@@ -145,7 +145,7 @@ const SubCategoryCard = ({ category }) => {
                     }
                 </div>
                 {!editMode && <div className='flex-row-right-start full-width' >
-                    <Link to={`/products`} className="flex-row-right-start margin-6px-V size-12px pointer lists-card--link category-card--info--child">
+                    <Link to={`/products?category=${category._id}`} className="flex-row-right-start margin-6px-V size-12px pointer lists-card--link category-card--info--child">
                         Products
                         <i className="bi bi-arrow-right margin-4px-H" style={{ width: 'fit-content' }} />
                     </Link>
