@@ -85,7 +85,7 @@ const OrderHistoryList = () => {
             filteredOrderHistory.map((orderHistoryCard) => {
                 return (
                     <ListsCard key={orderHistoryCard._id}>
-                        <OrderCard
+                        <OrderCard type='history'
                             order={orderHistoryCard}
                         />
                     </ListsCard>

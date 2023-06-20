@@ -136,6 +136,8 @@ const productActions = {
                 errorHandler(dispatch, error.response, 'Something went wrong, please try again.');
             }
         }
+
+        
     },
     addProductColor(payload) {
         return async (dispatch) => {

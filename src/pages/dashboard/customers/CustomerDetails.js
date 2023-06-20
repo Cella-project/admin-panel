@@ -166,7 +166,7 @@ const CustomerDetails = () => {
                 <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
                   {order ? (
                     order.map((order) => (
-                      <OrderCard key={order._id} order={order} />
+                      <OrderCard type='history' key={order._id} order={order} />
                     ))
                   ) : (
                     <p className="gray inter size-20px font-bold">No orders to display.</p>
