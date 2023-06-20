@@ -55,10 +55,13 @@ const MainCategoryCard = ({ category }) => {
         if (!formIsValid && enteredTitle !== category.title) {
             return;
         }
-        dispatch(mainCategoryActions.updateMainCategory({ _id: category._id, title: enteredTitle }))
+        dispatch(mainCategoryActions.updateMainCategory({ _id: category._id, title: enteredTitle }, () => {
+            setEditMode(false);
+        }));
     }
 
     const [popupShown, setPopupShown] = useState(false);
+
     const handleClick = () => {
         setPopupShown(true);
         document.getElementById('dashboard-view').style.zIndex = 60;
@@ -70,7 +73,7 @@ const MainCategoryCard = ({ category }) => {
     }
 
     return (
-        <form noValidate onSubmit={handleEdit} className='category-card lists-card--info gray shadow-5px size-16px margin-10px-V inter radius-15px white-bg full-width flex-row-left-start2col'>
+        <div className='category-card lists-card--info gray shadow-5px size-16px margin-10px-V inter radius-15px white-bg full-width flex-row-left-start2col'>
             {popupShown &&
                 <Popup popupToggle={setPopupShown} header={'Edit Main Category'} data={category} />
             }
@@ -102,7 +105,7 @@ const MainCategoryCard = ({ category }) => {
                         <div className={`${category.status === 'Active' ? 'green' : 'red'}`}>{category.status}</div>
                     </div>
                     {editMode ?
-                        <div className='flex-row-center2col category-card--actions'>
+                        <div className='flex-row-between2col category-card--actions'>
                             <button
                                 className={`pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px orange-bg category-card--button margin-6px-H`}
                                 onClick={() => {
@@ -123,6 +126,7 @@ const MainCategoryCard = ({ category }) => {
                                 className={`pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px orange-bg category-card--button margin-6px-H`}
                                 disabled={!enteredTitleIsValid}
                                 type='submit'
+                                onClick={handleEdit}
                             >
                                 Save
                             </button>
@@ -155,7 +159,7 @@ const MainCategoryCard = ({ category }) => {
 
             </div>
 
-        </form>
+        </div>
     )
 }
 

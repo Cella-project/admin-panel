@@ -73,9 +73,9 @@ const ProductList = () => {
         );
       }
     }
-    if (categoryID) {
-      filteredProducts = filteredProducts.filter(
-        (product) => product.category.title === subCategoryData.title
+    if (categoryID && subCategoryData.title !== null) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.category.title?.toLowerCase() === subCategoryData.title?.toLowerCase()
       );
     }
     if (searchStatus !== '' && searchStatus !== 'all') {
@@ -131,7 +131,7 @@ const ProductList = () => {
   return (
     <div className="products full-width" >
       <div className="products--braud-cramb gray inter size-16px font-bold">
-        {categoryID ? (
+        {(categoryID && subCategoryData.title !== null) ? (
           <>
             {subCategoryData.title} {'>'}
             <Link to={`/products`} className="margin-6px-H gray pointer lists-card--link">

@@ -95,7 +95,7 @@ const Login = () => {
                 <i className={`login--slot--icon bi bi-envelope size-20px ${mode === 'dark-mode' ? 'gray' : 'orange'}`} />
                 <p style={{ marginLeft: '5px' }} className="no-padding margin-6px-V size-16px inter gray">Email Address</p>
                 <input
-                    className={`login--slot--input login--slot--input--error inter gray size-14px radius-10px shadow-2px ${emailClasses}`}
+                    className={`login--slot--input inter gray size-14px radius-10px shadow-2px ${emailClasses}`}
                     placeholder="Email Address"
                     type="text"
                     value={enteredEmail}

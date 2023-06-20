@@ -22,10 +22,11 @@ const EditSubCategoryForm = ({ popupToggle, data }) => {
 
     const formSubmissionHandler = (e) => {
         e.preventDefault();
-        dispatch(subCategoryActions.updateSubCategory({ _id: data._id, img: subCategory }));
-        popupToggle(false);
-        document.getElementById("dashboard-view").style.zIndex = 10;
-        window.onscroll = function () { };
+        dispatch(subCategoryActions.updateSubCategory({ _id: data._id, img: subCategory }, () => {
+            popupToggle(false);
+            document.getElementById("dashboard-view").style.zIndex = 10;
+            window.onscroll = function () { };
+        }));
     }
 
     return (

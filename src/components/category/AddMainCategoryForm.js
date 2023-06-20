@@ -1,11 +1,11 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { mainCategoryActions } from '../../apis/actions';
 
 import useInput from "../../hooks/useInput";
 
 import './AddMainCategoryForm.scss'
-const AddMainCategoryForm = ({ popupToggle,data }) => {
+const AddMainCategoryForm = ({ popupToggle, data }) => {
     const [photoFile, setPhotoFile] = useState('No Image');
     const [mainCategory, setMainCategory] = useState('No Image');
     const dispatch = useDispatch();
@@ -46,7 +46,7 @@ const AddMainCategoryForm = ({ popupToggle,data }) => {
 
     const formSubmissionHandler = (e) => {
         e.preventDefault();
-        dispatch(mainCategoryActions.addMainCategory({ "title": enteredTitle ,"img":mainCategory,"type":"Main","parent":data }, () => {
+        dispatch(mainCategoryActions.addMainCategory({ "title": enteredTitle, "img": mainCategory, "type": "Main", "parent": data }, () => {
             resetTitleInput();
             popupToggle(false);
             document.getElementById("dashboard-view").style.zIndex = 10;
