@@ -54,7 +54,9 @@ const SubCategoryCard = ({ category }) => {
         if (!formIsValid && enteredTitle !== category.title) {
             return;
         }
-        dispatch(subCategoryActions.updateSubCategory({ _id: category._id, title: enteredTitle }))
+        dispatch(subCategoryActions.updateSubCategory({ _id: category._id, title: enteredTitle }, () => {
+            setEditMode(false);
+        }))
     }
 
     const [popupShown, setPopupShown] = useState(false);
@@ -101,7 +103,7 @@ const SubCategoryCard = ({ category }) => {
                         <div className={`${category.status === 'Active' ? 'green' : 'red'}`}>{category.status}</div>
                     </div>
                     {editMode ?
-                        <div className='flex-row-center2col category-card--actions'>
+                        <div className='flex-row-between2col category-card--actions'>
                             <button
                                 className={`pointer ${mode === 'dark-mode' ? 'gray' : 'white'} radius-15px orange-bg category-card--button margin-6px-H`}
                                 onClick={() => {
@@ -145,7 +147,7 @@ const SubCategoryCard = ({ category }) => {
                     }
                 </div>
                 {!editMode && <div className='flex-row-right-start full-width' >
-                    <Link to={`/products`} className="flex-row-right-start margin-6px-V size-12px pointer lists-card--link category-card--info--child">
+                    <Link to={`/products?category=${category._id}`} className="flex-row-right-start margin-6px-V size-12px pointer lists-card--link category-card--info--child">
                         Products
                         <i className="bi bi-arrow-right margin-4px-H" style={{ width: 'fit-content' }} />
                     </Link>

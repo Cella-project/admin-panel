@@ -23,8 +23,8 @@ const Auth = () => {
                 <img className="auth--body--img" src={mode === 'dark-mode' ? AuthImgDark : AuthImg} alt="ok" />
                 <Outlet />
             </div>
-            <div className={`auth--sign full-width flex-row-center inter ${mode === 'dark-mode' ? 'baby-blue' : 'orange'} size-12px`}>
-                © 2023. All Rights Reserved. made with <i className="bi bi-suit-heart-fill margin-4px-H" /> By ACTORE
+            <div className={`auth--sign full-width flex-row-center inter ${mode === 'dark-mode' ? 'gray' : 'orange'} size-12px`}>
+                © 2023. All Rights Reserved. made with <i className="bi bi-suit-heart-fill red margin-4px-H" /> By ACTORE
             </div>
         </div>
     );

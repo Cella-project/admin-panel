@@ -26,7 +26,6 @@ const authActions = {
                     }));
                     localStorage.setItem('Access Token', response.data.token.access);
                     localStorage.setItem('Refresh Token', response.data.token.refresh);
-                    localStorage.setItem('User', JSON.stringify(response.data.data));
 
                     router.navigate('/');
 
@@ -35,10 +34,21 @@ const authActions = {
                         type: 'success',
                         msg: 'Logged In successfully, Welcome Back.'
                     }));
-
                 }
             } catch (error) {
                 errorHandler(dispatch, error.response, 'Incorrect email or password.');
+            }
+        }
+    },
+    getProfile() {
+        return async (dispatch) => {
+            try {
+                const response = await Axios.get('/api/admin-profile/profile');
+                if (response.status === 200) {
+                    dispatch(authMutations.setUserData(response.data.data));
+                }
+            } catch (error) {
+                errorHandler(dispatch, error.response);
             }
         }
     },
@@ -55,6 +65,11 @@ const authActions = {
                 }
             }
             catch (error) {
+                if (error.response.status === 401 && error.response.message === 'jwt expired') {
+                    localStorage.removeItem('Access Token');
+                    localStorage.removeItem('Refresh Token');
+                    router.navigate('/login');
+                }
                 errorHandler(dispatch, error.response);
             }
         }
@@ -145,7 +160,6 @@ const authActions = {
                 const response = await Axios.put('/api/admin-profile/admin', payload);
                 if (response.status === 200) {
                     dispatch(authMutations.setUserData(response.data.data));
-                    localStorage.setItem('User', JSON.stringify(response.data.data));
                     dispatch(popupMutation.clearPopPanel());
                     dispatch(stickyMutations.pushNote({
                         type: 'success',
@@ -187,7 +201,6 @@ const authActions = {
             }));
             localStorage.removeItem('Access Token');
             localStorage.removeItem('Refresh Token');
-            localStorage.removeItem('User');
             router.navigate('/login');
         }
     }

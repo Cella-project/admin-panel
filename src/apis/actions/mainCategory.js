@@ -51,7 +51,7 @@ const mainCategoryActions = {
             }
         }
     },
-    updateMainCategory(payload) {
+    updateMainCategory(payload, afterSuccess) {
         return async (dispatch) => {
             try {
                 dispatch(popupMutation.clearPopPanel());
@@ -64,6 +64,7 @@ const mainCategoryActions = {
                     type: 'success',
                     msg: 'Main category updated successfully.'
                 }));
+                afterSuccess();
             } catch (error) {
                 errorHandler(dispatch, error.response, 'Something went wrong, please try again.');
             }
