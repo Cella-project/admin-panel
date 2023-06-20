@@ -34,10 +34,21 @@ const authActions = {
                         type: 'success',
                         msg: 'Logged In successfully, Welcome Back.'
                     }));
-
                 }
             } catch (error) {
                 errorHandler(dispatch, error.response, 'Incorrect email or password.');
+            }
+        }
+    },
+    getProfile() {
+        return async (dispatch) => {
+            try {
+                const response = await Axios.get('/api/admin-profile/profile');
+                if (response.status === 200) {
+                    dispatch(authMutations.setUserData(response.data.data));
+                }
+            } catch (error) {
+                errorHandler(dispatch, error.response);
             }
         }
     },
@@ -155,18 +166,6 @@ const authActions = {
                         msg: 'Your profile updated successfully.'
                     }));
                     afterSuccess();
-                }
-            } catch (error) {
-                errorHandler(dispatch, error.response);
-            }
-        }
-    },
-    getProfile() {
-        return async (dispatch) => {
-            try {
-                const response = await Axios.get('/api/admin-profile/profile');
-                if (response.status === 200) {
-                    dispatch(authMutations.setUserData(response.data.data));
                 }
             } catch (error) {
                 errorHandler(dispatch, error.response);
