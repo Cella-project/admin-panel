@@ -16,7 +16,7 @@ const customerSlice = createSlice({
         setCustomerData(state, action) {
             state.customerData = action.payload;
         },
-        changeCustomerstate(state, action) {
+        changeCustomerState(state, action) {
             state.customerData = action.payload;
         },
         deleteCustomer(state, action) {

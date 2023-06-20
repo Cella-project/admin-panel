@@ -22,11 +22,11 @@ const EditMainCategoryForm = ({ popupToggle, data }) => {
 
     const formSubmissionHandler = async (e) => {
         e.preventDefault();
-        dispatch(mainCategoryActions.updateMainCategory({ "_id": data._id, "img": mainCategory }), () => {
+        dispatch(mainCategoryActions.updateMainCategory({ "_id": data._id, "img": mainCategory } ,() => {
             popupToggle(false);
             document.getElementById("dashboard-view").style.zIndex = 10;
             window.onscroll = function () { };
-        });
+        }));
     }
 
     return (
