@@ -29,6 +29,18 @@ const ProductList = () => {
     }
   }, [dispatch, categoryID]);
 
+  let braudCramb = 'Products';
+
+  if (categoryID && subCategoryData.title !== null) {
+    braudCramb = (
+      <>
+        <Link to="/products" className="gray pointer lists-card--link">Products</Link>
+        <span> / </span>
+        <span>{subCategoryData.title}</span>
+      </>
+    );
+  };
+
   let cards = [
     { title: 'Products', content: 0, icon: "bi bi-box-seam" },
     { title: 'Available Products', content: 0, icon: "bi bi-box-seam" },
@@ -47,7 +59,6 @@ const ProductList = () => {
     setSearchType(type);
     setSearchStatus(filter.status);
   };
-
 
   if (products !== null && products.length === 0) {
     content = <p>Found no products.</p>
@@ -131,16 +142,7 @@ const ProductList = () => {
   return (
     <div className="products full-width" >
       <div className="products--braud-cramb gray inter size-16px font-bold">
-        {(categoryID && subCategoryData.title !== null) ? (
-          <>
-            {subCategoryData.title} {'>'}
-            <Link to={`/products`} className="margin-6px-H gray pointer lists-card--link">
-              Products
-            </Link>
-          </>
-        ) : (
-          'Products'
-        )}
+        {braudCramb}
       </div>
       <div className="products--cards">
         {
