@@ -29,9 +29,17 @@ const ProductList = () => {
     }
   }, [dispatch, categoryID]);
 
-  let braudCramb = 'Products';
+  let braudCramb;
 
-  if (categoryID && subCategoryData.title !== null) {
+  if (subCategoryData === null || subCategoryData.title === null) {
+    braudCramb = (
+      <>
+        <span>Products</span>
+      </>
+    );
+  }
+
+  if (categoryID && subCategoryData !== null) {
     braudCramb = (
       <>
         <Link to="/products" className="gray pointer lists-card--link">Products</Link>

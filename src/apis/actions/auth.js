@@ -2,7 +2,9 @@ import Axios from '../AxiosInstance';
 
 import errorHandler from '../../services/errorHandler';
 
-import router from '../../router/router'
+import router from '../../router/router';
+
+import socket from '../../Socket';
 
 import {
     stickyMutations,
@@ -26,8 +28,11 @@ const authActions = {
                     }));
                     localStorage.setItem('Access Token', response.data.token.access);
                     localStorage.setItem('Refresh Token', response.data.token.refresh);
-
+                    
                     router.navigate('/');
+
+                    socket.auth = { token: response.data.token.access }; 
+                    socket.connect();   
 
                     dispatch(popupMutation.clearPopPanel());
                     dispatch(stickyMutations.pushNote({
@@ -201,6 +206,9 @@ const authActions = {
             }));
             localStorage.removeItem('Access Token');
             localStorage.removeItem('Refresh Token');
+
+            socket.disconnect();
+
             router.navigate('/login');
         }
     }
