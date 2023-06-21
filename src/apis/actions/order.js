@@ -88,9 +88,8 @@ const orderActions = {
                 dispatch(stickyMutations.popAllNotes());
                 dispatch(popupMutation.popQuestion({
                     msg: 'Are you sure you want to delete this order?',
-                    onsubmit: async () => {
+                    onSubmit: async () => {
                         dispatch(popupMutation.clearPopPanel());
-                        dispatch(stickyMutations.popAllNotes());
                         dispatch(popupMutation.popLoading());
                         await Axios.delete(`/api/order-main/order/${orderId}`);
                         dispatch(orderMutations.deleteOrder(orderId));
@@ -107,23 +106,24 @@ const orderActions = {
             }
         }
     },
-    cancelOrder(orderId) {
+    cancelOrder(orderId,afterSuccess) {
         return async (dispatch) => {
             try {
                 dispatch(popupMutation.clearPopPanel());
                 dispatch(stickyMutations.popAllNotes());
                 dispatch(popupMutation.popQuestion({
                     msg: 'Are you sure you want to cancel this order?',
-                    onsubmit: async () => {
+                    onSubmit: async () => {
                         dispatch(popupMutation.clearPopPanel());
                         dispatch(popupMutation.popLoading());
-                        const response = await Axios.put('/api/order-operation/canceled-by-admin', { _id: orderId });
+                        const response = await Axios.put(`/api/order-operations/canceled-by-admin`, { _id: orderId });
                         dispatch(orderMutations.setOrderData(response.data.data));
                         dispatch(popupMutation.clearPopPanel());
                         dispatch(stickyMutations.pushNote({
                             type: 'success',
                             msg: 'Order cancelled successfully.'
                         }));
+                        afterSuccess();
                     }
                 }));
             } catch (error) {

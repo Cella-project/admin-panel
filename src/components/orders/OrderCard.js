@@ -21,7 +21,7 @@ const OrderCard = ({ order,type }) => {
                     </div>
                     <div className='flex-row-left-start margin-2px-V'>
                         <span className='lists-card--info--disc--hide margin-2px-H font-bold'>Status: </span>
-                        <span className={`${order.status === 'Delivered' ? 'green' : order.status === 'pending' ? 'yellow' : 'red'}`}>
+                        <span className={`${order.status === 'Delivered' || order.status === 'Ready' ? 'green' : order.status === 'Pending' ? 'yellow' : order.status === 'Approved' ? 'orange' : 'red'}`}>
                             {order.status}
                         </span>
                     </div>
