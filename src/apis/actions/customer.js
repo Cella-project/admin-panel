@@ -57,7 +57,7 @@ const customerActions = {
                         dispatch(popupMutation.clearPopPanel());
                         dispatch(popupMutation.popLoading());
                         const response = await Axios.put(`/api/customer-main/change-state/`, { _id: customerId });
-                        dispatch(customerMutations.changeCustomerstate(response.data.data));
+                        dispatch(customerMutations.changeCustomerState(response.data.data));
                         dispatch(popupMutation.clearPopPanel());
                         dispatch(stickyMutations.pushNote({
                             type: 'success',

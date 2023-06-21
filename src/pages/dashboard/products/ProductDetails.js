@@ -30,7 +30,7 @@ const ProductDetails = () => {
   product && (document.title = `${product.title} • Admin Panel`);
 
   let cards = [
-    { title: 'Quantitiy', content: 0, icon: "bi bi-box-seam" },
+    { title: 'Quantity', content: 0, icon: "bi bi-box-seam" },
     { title: '# of orders', content: 0, icon: "bi bi-box-seam" },
     { title: 'Success Orders', content: 0, icon: "bi bi-box-seam" },
     { title: 'returned orders', content: 0, icon: "bi bi-box-seam" },

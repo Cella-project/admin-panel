@@ -10,7 +10,7 @@ const EditMainCategoryForm = ({ popupToggle, data }) => {
     const [photoFile, setPhotoFile] = useState(data.img);
     const [mainCategory, setMainCategory] = useState(data.img);
 
-    const uploadmainCategory = async (e) => {
+    const uploadMainCategory = async (e) => {
         setPhotoFile(URL.createObjectURL(e.target.files[0]))
         const data = new FormData();
         data.append('path', 'category/profile');
@@ -22,11 +22,11 @@ const EditMainCategoryForm = ({ popupToggle, data }) => {
 
     const formSubmissionHandler = async (e) => {
         e.preventDefault();
-        dispatch(mainCategoryActions.updateMainCategory({ "_id": data._id, "img": mainCategory }), () => {
+        dispatch(mainCategoryActions.updateMainCategory({ "_id": data._id, "img": mainCategory } ,() => {
             popupToggle(false);
             document.getElementById("dashboard-view").style.zIndex = 10;
             window.onscroll = function () { };
-        });
+        }));
     }
 
     return (
@@ -44,7 +44,7 @@ const EditMainCategoryForm = ({ popupToggle, data }) => {
                                 type="file"
                                 id="photo"
                                 accept="image/*"
-                                onChange={uploadmainCategory}
+                                onChange={uploadMainCategory}
                             />
                         </label>
                     </div>
@@ -81,4 +81,4 @@ const EditMainCategoryForm = ({ popupToggle, data }) => {
         </form >
     )
 }
-export default EditMainCategoryForm
+export default EditMainCategoryForm;

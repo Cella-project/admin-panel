@@ -10,7 +10,10 @@ const OrderControl = ({ id }) => {
 
   //handle change state
   const handleCancel = async () => {
-    dispatch(orderActions.cancelOrder(id))
+    dispatch(orderActions.cancelOrder(id , () => {
+      router.navigate(`/ordersHistory/${id}`);
+      }
+      ))
   };
 
   //handle delete 

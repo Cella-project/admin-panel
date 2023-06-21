@@ -6,6 +6,15 @@
         align-items: flex-start !important;
     }
 
+    &--customer {
+        &>div {
+            transition: all 0.3s ease-in-out;
+        }
+        &:hover>div {
+            transform: translateY(3px);
+        }
+    }
+
     &--control {
         align-items: flex-start !important;
     }
@@ -17,7 +26,6 @@
     &--content-container {
         box-sizing: border-box;
         padding: 7px;
-        text-align: center;
     }
 
     &--card-cont {

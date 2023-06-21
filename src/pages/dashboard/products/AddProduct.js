@@ -351,11 +351,13 @@ export const AddProduct = () => {
                 size: item.size,
                 quantity: parseInt(item.quantity)
             })),
-            tags: selectedTags.map(item => ({
-                tag: item.tag
-            })),
             material: enteredMaterial.title,
         };
+        if (selectedTags.length > 0) {
+            product.tags = selectedTags.map(item => ({
+                tag: item.tag
+            }));
+        }
         if (album.length > 0) {
             product.album = album;
         }
@@ -370,10 +372,9 @@ export const AddProduct = () => {
 
         dispatch(productActions.addProduct(product,
             () => {
-                navigate(`/stores/${enterStore.id}`);
+                navigate(`/products/`);
             }));
     };
-
 
     return (
         <div className='add-product flex-row-center inter'>

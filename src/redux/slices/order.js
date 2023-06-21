@@ -14,6 +14,10 @@ const orderSlice = createSlice({
         setOrderData(state, action) {
             state.orderData = action.payload;
         },
+        deleteOrder(state, action) {
+            const index = state.orders.findIndex(order => order._id === action.payload._id);
+            state.orders.splice(index, 1);
+        }
     }
 });
 

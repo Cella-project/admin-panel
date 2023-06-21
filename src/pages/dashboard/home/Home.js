@@ -121,7 +121,7 @@ const Home = () => {
                     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                     .slice(0, 5)
                     .map((order) => (
-                      <OrderCard key={order._id} order={order} />
+                      <OrderCard type='history' key={order._id} order={order} />
                     ))}
                 </PerfectScrollbar> : <Loading />
               }
