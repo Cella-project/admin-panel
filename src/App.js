@@ -10,6 +10,7 @@ import { authActions } from "./apis/actions";
 import { authMutations } from "./redux/mutations";
 
 import router from "./router/router";
+import socket from "./Socket";
 
 let isloaded = false;
 
@@ -34,6 +35,8 @@ const App = () => {
         access: accessToken,
         refresh: refreshToken
       }));
+      socket.auth = { token: accessToken };
+      socket.connect();
     } else {
       // localStorage.removeItem('User');
       localStorage.removeItem('Access Token');
