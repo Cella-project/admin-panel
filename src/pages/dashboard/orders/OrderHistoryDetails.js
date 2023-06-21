@@ -54,7 +54,7 @@ const OrderHistoryDetails = () => {
                                         {order.driver.state === 'NotAssigned' ? (
                                             <div className="gray inter size-20px font-bold flex-row-center">Not Assigned</div>
                                         ) : (
-                                            <Link to={`/delivery/${order.driver.id}`} className="pointer lists-card--link">
+                                            <Link to={`/drivers/${order.driver.driverId}`} className="pointer lists-card--link">
                                                 <DeliveryInfo delivery={order.driver} />
                                             </Link>
                                         )}
