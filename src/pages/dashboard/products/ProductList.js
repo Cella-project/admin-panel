@@ -18,7 +18,7 @@ const ProductList = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const categoryID = searchParams.get('category');
-  
+
   useEffect(() => {
     document.title = 'Products • Admin Panel';
     dispatch(productMutations.setProducts(null));
@@ -149,7 +149,6 @@ const ProductList = () => {
       </>
 
     );
-    return <Loading />;
   }
 
   return (
