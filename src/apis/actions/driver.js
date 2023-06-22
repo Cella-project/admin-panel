@@ -1,13 +1,22 @@
 import Axios from '../AxiosInstance';
+
 import { driverMutations, popupMutation, stickyMutations } from '../../redux/mutations';
 import errorHandler from '../../services/errorHandler';
+
+import store from '../../redux/index';
 
 const driverActions = {
     getDrivers() {
         return async (dispatch) => {
             try {
+                const connectedUsers = store.getState().connectedUsers.connectedUsers;
                 const response = await Axios.get('/api/driver-main/drivers');
-                dispatch(driverMutations.setDrivers(response.data.data));
+                dispatch(driverMutations.setDrivers(response.data.data.map(driver => {
+                    return {
+                        ...driver,
+                        connected: connectedUsers.find(el => el.userId === driver._id) ? true : false
+                    }
+                })));
             } catch (error) {
                 dispatch(driverMutations.setDrivers([]));
                 errorHandler(dispatch, error.response);
@@ -58,7 +67,7 @@ const driverActions = {
                 dispatch(stickyMutations.popAllNotes());
                 dispatch(popupMutation.popLoading());
                 const response = await Axios.put('/api/driver-main/driver', payload);
-                dispatch(driverMutations.updateDriver(response.data.data));
+                dispatch(driverMutations.setDriverData(response.data.data));
                 dispatch(popupMutation.clearPopPanel());
                 dispatch(stickyMutations.pushNote({
                     type: 'success',
@@ -120,7 +129,7 @@ const driverActions = {
                         dispatch(popupMutation.clearPopPanel());
                         dispatch(popupMutation.popLoading());
                         const response = await Axios.put(`api/driver-main/change-state/`, { _id: driverId });
-                        dispatch(driverMutations.changeDriverState(response.data.data));
+                        dispatch(driverMutations.setDriverData(response.data.data));
                         dispatch(popupMutation.clearPopPanel());
                         dispatch(stickyMutations.pushNote({
                             type: 'success',

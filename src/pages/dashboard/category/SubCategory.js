@@ -90,8 +90,8 @@ const SubCategory = () => {
     const handleClick = () => {
         setPopupShown(true)
         document.getElementById('dashboard-view').style.zIndex = 60;
-        const TopScroll = window.pageYOffset || document.documentElement.scrollTop;
-        const LeftScroll = window.pageXOffset || document.documentElement.scrollLeft;
+        const TopScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        const LeftScroll = document.documentElement.scrollLeft || document.body.scrollLeft;
         window.onscroll = () => {
             window.scrollTo(LeftScroll, TopScroll);
         };
@@ -102,7 +102,11 @@ const SubCategory = () => {
                 <Popup popupToggle={setPopupShown} header={'Add Sub Category'} data={mainCategoryData} />
             }
             <div className="sub-category--braud-cramb gray inter size-16px font-bold">
-                {(mainCategoryData && mainCategoryData !== null) && ('Specialties > ' + mainCategoryData.parent.title + ' > ' + mainCategoryData.title + ' / Sub Categories')}
+                {(mainCategoryData && mainCategoryData !== null) ?
+                    ('Specialties > ' + mainCategoryData.parent.title + ' > ' + mainCategoryData.title + ' / Sub Categories') :
+                    ('Specialties')
+                }
+
             </div>
 
             <div className="sub-category--cards">

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import StickyBoard from './components/sticky/StickyBoard';
 import Popup from './components/popups/Popup';
 import { adminActions, authActions } from "./apis/actions";
-import { authMutations, connectedUsersMutations, adminMutations } from "./redux/mutations";
+import { authMutations, connectedUsersMutations, adminMutations, driverMutations } from "./redux/mutations";
 
 import router from "./router/router";
 import socket from "./Socket";
@@ -16,19 +16,20 @@ let isloaded = false;
 
 const App = () => {
   const dispatch = useDispatch();
-  
+
   const lastRefreshTime = localStorage.getItem('Refresh Token Time');
   const currentTime = new Date().getTime();
   const timeDifference = currentTime - lastRefreshTime;
-  
+
   const mode = useSelector(state => state.theme.mode);
   const accessToken = localStorage.getItem('Access Token');
   const refreshToken = localStorage.getItem('Refresh Token');
   // const user = JSON.parse(localStorage.getItem('User'));
   const user = useSelector(state => state.auth.userData);
-  
+
   const checkAuth = () => {
     if (accessToken && refreshToken) {
+      dispatch(authMutations.setUserData(null));
       dispatch(authActions.getProfile());
       dispatch(authMutations.setAuthData({
         userData: user,
@@ -42,22 +43,25 @@ const App = () => {
         dispatch(connectedUsersMutations.setUsers(users));
         dispatch(adminActions.getAdmins());
       });
-      
+
       socket.on('user:connected', user => {
         dispatch(connectedUsersMutations.addUser(user));
         if (user.role === 'admin') {
           dispatch(adminMutations.userConnected(user))
+        } else if (user.role === 'driver') {
+          dispatch(driverMutations.driverConnected(user))
         }
       });
-      
+
       socket.on('user:disconnected', userId => {
         dispatch(connectedUsersMutations.removeUser(userId));
         if (user.role === 'admin') {
           dispatch(adminMutations.userDisconnected(userId))
+        } else if (user.role === 'driver') {
+          dispatch(driverMutations.driverDisconnected(userId))
         }
       });
     } else {
-      // localStorage.removeItem('User');
       localStorage.removeItem('Access Token');
       localStorage.removeItem('Refresh Token');
       router.navigate('/login');
@@ -71,14 +75,16 @@ const App = () => {
     }
   };
 
+  if (timeDifference >= 14 * 60 * 1000) {
+    refreshTokenHandler(refreshToken);
+
+  }
+  setInterval(() => {
+    refreshTokenHandler(refreshToken);
+  }, 14 * 60 * 1000);
+
   if (!isloaded) {
     checkAuth();
-    if (timeDifference >= 14 * 60 * 1000) {
-      refreshTokenHandler(refreshToken);
-    }
-    setInterval(() => {
-      refreshTokenHandler(refreshToken);
-    }, 14 * 60 * 1000);
     isloaded = true;
   }
 

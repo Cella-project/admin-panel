@@ -60,9 +60,9 @@ const DeliveryList = () => {
   }
 
   if (drivers !== null && drivers.length > 0) {
-    const numberOfdrivers = drivers.length;
-    const activedrivers = drivers.filter(driver => driver.isWorking === true).length;
-    const inactivedrivers = drivers.filter(driver => driver.isWorking === false).length;
+    const numberOfDrivers = drivers.length;
+    const onlineDrivers = drivers.filter(driver => driver.connected === true ).length;
+    const offlineDrivers = drivers.filter(driver => driver.connected === false).length;
 
     if (drivers && drivers.length > 0) {
       const sorteddrivers = [...drivers].sort((a, b) => a.name.localeCompare(b.name)); // Sort drivers by name
@@ -131,22 +131,28 @@ const DeliveryList = () => {
                       :
                       <img src={driver.img} className='white-bg' alt="" />
                     }
-                    <div className={`lists-status ${driver.isWorking === true ? 'green-bg' : 'red-bg'} radius-circular`}></div>
+                    <div className={`lists-status ${driver.connected === true ? 'green-bg' : 'red-bg'} radius-circular`}></div>
                   </div>
-                  <div className='lists-card--info gray pointer shadow-5px size-16px margin-10px-V inter radius-15px white-bg full-width flex-row-left-start2col'>
-                    <div className='width-35-100 margin-2px-V'>
+                  <div className='lists-card--info gray pointer shadow-5px size-16px margin-10px-V inter radius-15px white-bg full-width flex-row-between2col'>
+                    <div className='margin-2px-V'>
                       <span className='lists-card--info--disc--hide margin-2px-H font-bold'>Name: </span>{driver.name.toUpperCase()}
                     </div>
-                    <div className='width-25-100 margin-2px-V'>
+                    <div className='margin-2px-V'>
                       <span className='lists-card--info--disc--hide margin-2px-H font-bold'>Phone: </span>{driver.phoneNum}
                     </div>
-                    <div className='width-20-100 margin-2px-V'>
+                    <div className='margin-2px-V'>
                       <span className='lists-card--info--disc--hide margin-2px-H font-bold'>Status: </span>
                       <span className={`margin-2px-H font-bold ${driver.status === 'Active' ? 'green' : 'red'}`}>
                         {driver.status}
                       </span>
                     </div>
-                    <div className='width-20-100 margin-2px-V font-bold'>
+                    <div className='margin-2px-V'>
+                      <span className='lists-card--info--disc--hide margin-2px-H font-bold'>Working: </span>
+                      <span className={`margin-2px-H font-bold ${driver.isWorking === true ? 'green' : 'red'}`}>
+                        {driver.isWorking === true ? 'Working' : 'NotWorking'}
+                      </span>
+                    </div>
+                    <div className='margin-2px-V font-bold'>
                       <span className='lists-card--info--disc--hide margin-2px-H font-bold'>Rating: </span>
                       <div className='flex-row-left-start'>
                         <Rating name="rating" emptyIcon={<StarBorder className='gray' fontSize='inherit' />} style={{ color: '#FDCC0D' }} value={parseFloat(driver.rating)} precision={0.5} size={"small"} readOnly />
@@ -161,9 +167,9 @@ const DeliveryList = () => {
         });
 
       cards = [
-        { title: 'Drivers', content: numberOfdrivers, icon: "bi bi-truck orange" },
-        { title: 'Online Drivers', content: activedrivers, icon: "bi bi-truck orange" },
-        { title: 'Offline Drivers', content: inactivedrivers, icon: "bi bi-truck orange" },
+        { title: 'Drivers', content: numberOfDrivers, icon: "bi bi-truck orange" },
+        { title: 'Online Drivers', content: onlineDrivers, icon: "bi bi-truck orange" },
+        { title: 'Offline Drivers', content: offlineDrivers, icon: "bi bi-truck orange" },
       ];
     }
   }
@@ -172,8 +178,8 @@ const DeliveryList = () => {
   const handleClick = () => {
     setPopupShown(true)
     document.getElementById('dashboard-view').style.zIndex = 60;
-    const TopScroll = window.pageYOffset || document.documentElement.scrollTop;
-    const LeftScroll = window.pageXOffset || document.documentElement.scrollLeft;
+    const TopScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    const LeftScroll = document.documentElement.scrollLeft || document.body.scrollLeft;
     window.onscroll = () => {
       window.scrollTo(LeftScroll, TopScroll);
     };

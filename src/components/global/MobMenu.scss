@@ -3,6 +3,7 @@
     top: 0px;
     left: 0px;
     width: 320px;
+    height: 100%;
     border-radius: 0px 15px 15px 0px;
     box-sizing: border-box;
     padding: 20px 15px;
@@ -26,16 +27,6 @@
             width: 100%;
             outline: none;
             text-decoration: none;
-        }
-
-        & a:hover i,
-        & a:hover span {
-            color: #242526;
-        }
-
-        & a:last-of-type:hover i,
-        & a:last-of-type:hover span {
-            color: #FF3636;
         }
 
         & a.active i,

@@ -7,10 +7,21 @@
 
     &--link {
         transition: all .2s ease-in-out;
-        position: absolute;
 
         &:hover {
             transform: translateY(1.5px);
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .verify-email {
+        &>p {
+            font-size: 10px;
+
+            &:hover {
+                transform: none;
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ import { adminMutations, authMutations, popupMutation, stickyMutations } from '.
 import errorHandler from '../../services/errorHandler';
 
 import store from '../../redux/index';
+import authActions from './auth';
 
 const adminActions = {
     getAdmins() {
@@ -72,6 +73,7 @@ const adminActions = {
                         type: 'success',
                         msg: 'OTP verified successfully.'
                     }));
+                    dispatch(authActions.getProfile());
                     afterSuccess();
                 }
             } catch (error) {

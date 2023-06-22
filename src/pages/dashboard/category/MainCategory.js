@@ -94,8 +94,8 @@ const MainCategory = () => {
     const handleClick = () => {
         setPopupShown(true)
         document.getElementById('dashboard-view').style.zIndex = 60;
-        const TopScroll = window.pageYOffset || document.documentElement.scrollTop;
-        const LeftScroll = window.pageXOffset || document.documentElement.scrollLeft;
+        const TopScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        const LeftScroll = document.documentElement.scrollLeft || document.body.scrollLeft;
         window.onscroll = () => {
             window.scrollTo(LeftScroll, TopScroll);
         };
@@ -108,7 +108,10 @@ const MainCategory = () => {
             }
 
             <div className="main-category--braud-cramb gray inter size-16px font-bold">
-                {(specialityData && specialityData !== null) && ('Specialties > ' + specialityData.title + ' / Main Categories')}
+                {(specialityData && specialityData !== null) ?
+                    ('Specialties > ' + specialityData.title + ' / Main Categories') :
+                    ('Specialties')
+                }
             </div>
 
             <div className="main-category--cards">

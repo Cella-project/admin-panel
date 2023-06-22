@@ -12,15 +12,25 @@ const Canvas = ({ name, width, height, fontSize, borderRadius = '15px' }) => {
         canvas.height = height;
 
         // Set text align and baseline to center
-        context.textAlign = 'center';
+        context.textAlign = 'left';
         context.textBaseline = 'middle';
 
         // Set the font size and color
         context.font = `${fontSize} sans`;
         context.fillStyle = '#ffffff';
 
+        // Measure the width of the text
+        const textWidth = context.measureText(name.charAt(0).toUpperCase()).width;
+
+        // Calculate the coordinates for text placement
+        const textX = (canvas.width - textWidth) / 2;
+        const textY = (canvas.height / 2);
+
+        // Clear the canvas
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
         // Draw the characters onto the canvas
-        context.fillText(name.charAt(0).toUpperCase(), canvas.width / 2, canvas.height / 2);
+        context.fillText(name.charAt(0).toUpperCase(), textX, textY);
     });
 
     return (

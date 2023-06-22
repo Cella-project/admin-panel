@@ -97,7 +97,7 @@ const Login = () => {
                 <input
                     className={`login--slot--input inter gray size-14px radius-10px shadow-2px ${emailClasses}`}
                     placeholder="Email Address"
-                    type="text"
+                    type="email"
                     value={enteredEmail}
                     onChange={emailChangedHandler}
                     onBlur={emailBlurHandler}
