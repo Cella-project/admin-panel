@@ -16,17 +16,17 @@ let isloaded = false;
 
 const App = () => {
   const dispatch = useDispatch();
-  
+
   const lastRefreshTime = localStorage.getItem('Refresh Token Time');
   const currentTime = new Date().getTime();
   const timeDifference = currentTime - lastRefreshTime;
-  
+
   const mode = useSelector(state => state.theme.mode);
   const accessToken = localStorage.getItem('Access Token');
   const refreshToken = localStorage.getItem('Refresh Token');
   // const user = JSON.parse(localStorage.getItem('User'));
   const user = useSelector(state => state.auth.userData);
-  
+
   const checkAuth = () => {
     if (accessToken && refreshToken) {
       dispatch(authMutations.setUserData(null));
@@ -43,14 +43,14 @@ const App = () => {
         dispatch(connectedUsersMutations.setUsers(users));
         dispatch(adminActions.getAdmins());
       });
-      
+
       socket.on('user:connected', user => {
         dispatch(connectedUsersMutations.addUser(user));
         if (user.role === 'admin') {
           dispatch(adminMutations.userConnected(user))
         }
       });
-      
+
       socket.on('user:disconnected', userId => {
         dispatch(connectedUsersMutations.removeUser(userId));
         if (user.role === 'admin') {
@@ -71,14 +71,16 @@ const App = () => {
     }
   };
 
+  if (timeDifference >= 14 * 60 * 1000) {
+    refreshTokenHandler(refreshToken);
+
+  }
+  setInterval(() => {
+    refreshTokenHandler(refreshToken);
+  }, 14 * 60 * 1000);
+
   if (!isloaded) {
     checkAuth();
-    if (timeDifference >= 14 * 60 * 1000) {
-      refreshTokenHandler(refreshToken);
-    }
-    setInterval(() => {
-      refreshTokenHandler(refreshToken);
-    }, 14 * 60 * 1000);
     isloaded = true;
   }
 
