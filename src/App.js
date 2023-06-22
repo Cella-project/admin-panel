@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import StickyBoard from './components/sticky/StickyBoard';
 import Popup from './components/popups/Popup';
 import { adminActions, authActions } from "./apis/actions";
-import { authMutations, connectedUsersMutations, adminMutations } from "./redux/mutations";
+import { authMutations, connectedUsersMutations, adminMutations, driverMutations } from "./redux/mutations";
 
 import router from "./router/router";
 import socket from "./Socket";
@@ -48,6 +48,8 @@ const App = () => {
         dispatch(connectedUsersMutations.addUser(user));
         if (user.role === 'admin') {
           dispatch(adminMutations.userConnected(user))
+        } else if (user.role === 'driver') {
+          dispatch(driverMutations.driverConnected(user))
         }
       });
 
@@ -55,6 +57,8 @@ const App = () => {
         dispatch(connectedUsersMutations.removeUser(userId));
         if (user.role === 'admin') {
           dispatch(adminMutations.userDisconnected(userId))
+        } else if (user.role === 'driver') {
+          dispatch(driverMutations.driverDisconnected(userId))
         }
       });
     } else {
