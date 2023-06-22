@@ -15,6 +15,15 @@ const NavBar = ({ menuToggle }) => {
     const userData = useSelector(state => state.auth.userData);
     const mode = useSelector(state => state.theme.mode);
 
+    const handleClick = () => {
+        menuToggle(true)
+        const TopScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        const LeftScroll = document.documentElement.scrollLeft || document.body.scrollLeft;
+        window.onscroll = () => {
+            window.scrollTo(LeftScroll, TopScroll);
+        };
+    }
+
     // Extract the first name from the user data
     const firstName = userData.name.split(' ')[0];
 
@@ -26,7 +35,7 @@ const NavBar = ({ menuToggle }) => {
                 <Link to={'/'} className='home-link'>
                     <img src={mode === 'dark-mode' ? darkLogo : logo} alt='ACTORE' className='nav-bar--logo pointer' />
                 </Link>
-                <i className={`nav-bar--btn bi bi-list ${mode === 'dark-mode' ? 'gray' : 'orange'} size-38px pointer`} onClick={menuToggle.bind(null, true)}></i>
+                <i className={`nav-bar--btn bi bi-list ${mode === 'dark-mode' ? 'gray' : 'orange'} size-38px pointer`} onClick={handleClick}></i>
                 <div className='flex-row-center'>
                     {/* <LangMenu /> */}
                     <div className='nav-bar--card flex-row-center radius-15px margin-6px-H white-bg shadow-2px pointer'>

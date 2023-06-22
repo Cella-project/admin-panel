@@ -85,13 +85,6 @@ const Admins = () => {
     window.onscroll = () => {
       window.scrollTo(LeftScroll, TopScroll);
     };
-
-    // handle mobile scrolling as well
-    const TopScroll2 = document.body.scrollTop;
-    const LeftScroll2 = document.body.scrollLeft;
-    window.onscroll = () => {
-      window.scrollTo(LeftScroll2, TopScroll2);
-    }
   }
 
   return (

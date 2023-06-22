@@ -23,6 +23,7 @@ const MobMenu = ({ menuToggle }) => {
         let handler = (e) => {
             if (!menuRef.current.contains(e.target)) {
                 menuToggle(false);
+                window.onscroll = function () { };
             }
         };
 
@@ -34,9 +35,14 @@ const MobMenu = ({ menuToggle }) => {
     });
 
     return (
-        <div className='mob-menu flex-col-top-start orange-bg full-screen-height shadow-5px' ref={menuRef}>
+        <div className='mob-menu flex-col-top-start orange-bg shadow-5px' ref={menuRef}>
             <div className='full-width flex-row-right-start'>
-                <i className={`bi bi-x size-40px ${mode === 'dark-mode' ? 'gray' : 'white'} pointer`} onClick={menuToggle.bind(null, false)} />
+                <i className={`bi bi-x size-40px ${mode === 'dark-mode' ? 'gray' : 'white'} pointer`}
+                    onClick={() => {
+                        menuToggle(false)
+                        window.onscroll = function () { };
+                    }}
+                />
             </div>
             <div className='full-width flex-row-center margin-10px-V'>
                 {/* <h1 className='pt-sans white space-none size-32px'>CELLA</h1> */}
