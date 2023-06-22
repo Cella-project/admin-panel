@@ -108,7 +108,10 @@ const MainCategory = () => {
             }
 
             <div className="main-category--braud-cramb gray inter size-16px font-bold">
-                {(specialityData && specialityData !== null) && ('Specialties > ' + specialityData.title + ' / Main Categories')}
+                {(specialityData && specialityData !== null) ?
+                    ('Specialties > ' + specialityData.title + ' / Main Categories') :
+                    ('Specialties')
+                }
             </div>
 
             <div className="main-category--cards">

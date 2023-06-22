@@ -10,19 +10,32 @@ const driverSlice = createSlice({
         setDrivers(state, action) {
             state.drivers = action.payload;
         },
+        driverConnected(state, action) {
+            if (state.drivers !== null) {
+                const index = state.drivers.findIndex(el => el._id === action.payload.userId);
+                if (state.drivers[index]) {
+                    state.drivers[index].connected = true;
+                }
+            }
+        },
+        driverDisconnected(state, action) {
+            if (state.drivers !== null) {
+                const index = state.drivers.findIndex(el => el._id === action.payload);
+                if (state.drivers[index]) {
+                    state.drivers[index].connected = false;
+                }
+            }
+        },
         addDriver(state, action) {
             if (state.drivers === null) {
                 state.drivers = [];
             }
-            state.drivers.push(action.payload);
-        },
-        updateDriver(state, action) {
-            state.driverData = action.payload;
+            state.drivers.push({
+                ...action.payload,
+                connected: false
+            });
         },
         setDriverData(state, action) {
-            state.driverData = action.payload;
-        },
-        changeDriverState(state, action) {
             state.driverData = action.payload;
         },
         deleteDriver(state, action) {

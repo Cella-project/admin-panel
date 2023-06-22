@@ -104,7 +104,7 @@ const OrderList = () => {
     return (
         <div className="orders full-width" >
             <div className="orders--braud-cramb gray inter size-16px font-bold">
-                Order 
+                Orders
             </div>
             <div className="orders--cards">
                 {

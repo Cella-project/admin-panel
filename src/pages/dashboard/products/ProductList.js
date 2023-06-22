@@ -5,7 +5,7 @@ import Search from '../../../components/common/Search';
 import ProductCard from '../../../components/products/ProductCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { productActions, subCategoryActions } from '../../../apis/actions';
-import { productMutations } from '../../../redux/mutations';
+import { productMutations, subCategoryMutations } from '../../../redux/mutations';
 import Loading from '../../../components/global/Loading';
 
 import './ProductList.scss';
@@ -25,6 +25,7 @@ const ProductList = () => {
     dispatch(productActions.getProducts());
 
     if (categoryID) {
+      dispatch(subCategoryMutations.setSubCategoryData(null));
       dispatch(subCategoryActions.getSubCategoryById(categoryID));
     }
   }, [dispatch, categoryID]);

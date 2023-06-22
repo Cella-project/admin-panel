@@ -102,7 +102,11 @@ const SubCategory = () => {
                 <Popup popupToggle={setPopupShown} header={'Add Sub Category'} data={mainCategoryData} />
             }
             <div className="sub-category--braud-cramb gray inter size-16px font-bold">
-                {(mainCategoryData && mainCategoryData !== null) && ('Specialties > ' + mainCategoryData.parent.title + ' > ' + mainCategoryData.title + ' / Sub Categories')}
+                {(mainCategoryData && mainCategoryData !== null) ?
+                    ('Specialties > ' + mainCategoryData.parent.title + ' > ' + mainCategoryData.title + ' / Sub Categories') :
+                    ('Specialties')
+                }
+
             </div>
 
             <div className="sub-category--cards">
