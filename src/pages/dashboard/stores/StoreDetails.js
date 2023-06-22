@@ -52,8 +52,8 @@ const StoreDetails = () => {
     setPopupShown(true);
     setHeader('Add Social Media Accounts');
     document.getElementById('dashboard-view').style.zIndex = 60;
-    const TopScroll = window.pageYOffset || document.documentElement.scrollTop;
-    const LeftScroll = window.pageXOffset || document.documentElement.scrollLeft;
+    const TopScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    const LeftScroll = document.documentElement.scrollLeft || document.body.scrollLeft;
     window.onscroll = () => {
       window.scrollTo(LeftScroll, TopScroll);
     };
@@ -62,8 +62,8 @@ const StoreDetails = () => {
     setPopupShown(true);
     setHeader('Add Branch');
     document.getElementById('dashboard-view').style.zIndex = 60;
-    const TopScroll = window.pageYOffset || document.documentElement.scrollTop;
-    const LeftScroll = window.pageXOffset || document.documentElement.scrollLeft;
+    const TopScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    const LeftScroll = document.documentElement.scrollLeft || document.body.scrollLeft;
     window.onscroll = () => {
       window.scrollTo(LeftScroll, TopScroll);
     };

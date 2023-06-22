@@ -23,8 +23,8 @@ const Dashboard = () => {
     const handleClick = () => {
         setPopupShown(true)
         document.getElementById('dashboard-view').style.zIndex = 60;
-        const TopScroll = window.pageYOffset || document.documentElement.scrollTop;
-        const LeftScroll = window.pageXOffset || document.documentElement.scrollLeft;
+        const TopScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        const LeftScroll = document.documentElement.scrollLeft || document.body.scrollLeft;
         window.onscroll = () => {
             window.scrollTo(LeftScroll, TopScroll);
         };
