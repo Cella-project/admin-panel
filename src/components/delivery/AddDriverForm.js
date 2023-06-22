@@ -372,7 +372,7 @@ const AddDriverForm = ({ popupToggle }) => {
                     <div className={`full-width gray radius-10px white-bg flex-row-left-start add-driver--input ${driverEmailClasses}`}>
                         <i className='bi bi-envelope size-20px' />
                         <input className='full-width gray margin-4px-H'
-                            type={'DriverEmail'}
+                            type={'email'}
                             placeholder={'Driver email'}
                             id={'DriverEmail'}
                             value={enteredDriverEmail}
