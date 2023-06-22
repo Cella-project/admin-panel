@@ -11,13 +11,14 @@ import VoucherCard from '../../../components/vouchers/VoucherCard';
 import OrderCard from "../../../components/orders/OrderCard";
 
 import "./CustomerDetails.scss";
-import { customerMutations, orderHistoryMutations } from "../../../redux/mutations";
-import { customerActions,orderHistoryActions } from "../../../apis/actions";
+import { customerMutations, orderHistoryMutations,orderMutations } from "../../../redux/mutations";
+import { customerActions, orderHistoryActions ,orderActions} from "../../../apis/actions";
 
 const CustomerDetails = () => {
   const params = useParams();
   const customer = useSelector((state) => state.customer.customerData);
-  const order = useSelector((state) => state.orderHistory.orderHistory);
+  const order = useSelector((state) => state.order.orders)
+  const orderHistory = useSelector((state) => state.orderHistory.ordersHistory)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,6 +26,8 @@ const CustomerDetails = () => {
     dispatch(customerActions.getCustomerData(params.id))
     dispatch(orderHistoryMutations.setOrderHistory(null));
     dispatch(orderHistoryActions.getOrderHistoryForCustomer(params.id));
+    dispatch(orderMutations.setOrder(null));
+    dispatch(orderActions.getOrderForCustomer(params.id));
   }, [dispatch, params.id]);
 
   const [expandedAddressId, setExpandedAddressId] = useState(null);
@@ -166,12 +169,26 @@ const CustomerDetails = () => {
                 <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
                   {order ? (
                     order.map((order) => (
-                      <OrderCard type='history' key={order._id} order={order} />
+                      <OrderCard key={order._id} order={order} />
                     ))
                   ) : (
                     <p className="gray inter size-20px font-bold">No orders to display.</p>
                   )}
 
+                </PerfectScrollbar>
+                <Link to={`/Orders`} className="pointer lists-card--link">
+                  <i className="bi bi-arrow-right flex-row-right-start"></i>
+                </Link>
+              </OrangeCard>
+              <OrangeCard title="Orders History">
+                <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
+                  {orderHistory ? (
+                    orderHistory.map((order) => (
+                      <OrderCard type='history' key={order._id} order={order} />
+                    ))
+                  ) : (
+                    <p className="gray inter size-20px font-bold">No orders to display.</p>
+                  )}
                 </PerfectScrollbar>
                 <Link to={`/OrdersHistory`} className="pointer lists-card--link">
                   <i className="bi bi-arrow-right flex-row-right-start"></i>

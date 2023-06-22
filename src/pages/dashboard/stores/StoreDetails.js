@@ -13,8 +13,8 @@ import Instagram from "../../../assets/images/instagram.png";
 import Whatsapp from "../../../assets/images/whatsapp.png";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { storeActions, productActions, orderHistoryActions } from '../../../apis/actions';
-import { storeMutations, productMutations, orderHistoryMutations } from '../../../redux/mutations';
+import { storeActions, productActions, orderHistoryActions, orderActions } from '../../../apis/actions';
+import { storeMutations, productMutations, orderHistoryMutations, orderMutations } from '../../../redux/mutations';
 import Popup from "../../../components/common/PopupForm";
 
 import "./StoreDetails.scss";
@@ -23,7 +23,8 @@ const StoreDetails = () => {
   const params = useParams();
   const store = useSelector((state) => state.store.storeData);
   const products = useSelector((state) => state.product.products)
-  const order = useSelector((state) => state.orderHistory.orderHistory)
+  const order = useSelector((state) => state.order.orders)
+  const orderHistory = useSelector((state) => state.orderHistory.ordersHistory)
   let editmode = false;
   const dispatch = useDispatch();
   const [popupShown, setPopupShown] = useState(false);
@@ -36,6 +37,8 @@ const StoreDetails = () => {
     dispatch(productActions.getProducts());
     dispatch(orderHistoryMutations.setOrderHistory(null));
     dispatch(orderHistoryActions.getOrderHistoryForStore(params.id));
+    dispatch(orderMutations.setOrder(null));
+    dispatch(orderActions.getOrderForStore(params.id));
   }, [dispatch, params.id]);
 
   const [expandedAddressId, setExpandedAddressId] = useState(null);
@@ -107,6 +110,20 @@ const StoreDetails = () => {
                 <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
                   {order ? (
                     order.map((order) => (
+                      <OrderCard key={order._id} order={order} />
+                    ))
+                  ) : (
+                    <p className="gray inter size-20px font-bold">No orders to display</p>
+                  )}
+                </PerfectScrollbar>
+                <Link to={`/Orders`} className="pointer lists-card--link">
+                  <i className="bi bi-arrow-right flex-row-right-start"></i>
+                </Link>
+              </OrangeCard>
+              <OrangeCard title="Orders History">
+                <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
+                  {orderHistory ? (
+                    orderHistory.map((order) => (
                       <OrderCard type='history' key={order._id} order={order} />
                     ))
                   ) : (
@@ -266,6 +283,14 @@ const StoreDetails = () => {
             </div>
 
             <div className="store-details--card-cont flex-col-top-start width-20-100">
+              {order && order.length > 0 &&
+                <OrangeCard title="Active orders" >
+                  <div className="full-width flex-row-center">
+                    <p className="gray inter size-28px margin-12px-H text-shadow">{order.length}</p>
+                    <i className={`bi bi-receipt orange size-30px`} />
+                  </div>
+                </OrangeCard>
+              }
               <OrangeCard title="Owner">
                 <div className="full-width flex-col-center">
                   <div className="gray inter size-20px font-bold">{store.owner.name}</div>
@@ -333,6 +358,7 @@ const StoreDetails = () => {
               <OrangeCard title="Speciality" >
                 <div className="inter size-22px text-shadow gray flex-row-center font-bold">{store.speciality.title}</div>
               </OrangeCard>
+
             </div>
           </div>
         </>)
