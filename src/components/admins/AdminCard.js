@@ -18,7 +18,7 @@ const AdminCard = ({ adminCard }) => {
                         <Canvas name={adminCard.name} borderRadius='50%' width={55} height={55} fontSize={'42px'} /> :
                         <img src={adminCard.img} className='white-bg' alt='admin-pic' />
                     }
-                    <div className={`lists-status ${adminCard.status ? adminCard.status : 'red'}-bg radius-circular`}></div>
+                    <div className={`lists-status ${adminCard.connected ? 'green' : 'red'}-bg radius-circular`}></div>
                 </div>
                 <div className='lists-card--info flex-col-left-start gray full-width white-bg inter radius-15px margin-10px-V shadow-5px size-16px'>
                     <div className='full-width margin-4px-V pointer flex-row-between2col' onClick={toggleExpanding}>

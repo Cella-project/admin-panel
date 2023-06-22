@@ -18,6 +18,7 @@ import customerSlice from './slices/customer';
 import paymentSlice from './slices/payment';
 import productSlice from './slices/product';
 import themeSlice from './slices/theme';
+import connectedUsersSlice from './slices/connectedUsers';
 
 const store = configureStore({
         reducer: {
@@ -39,6 +40,7 @@ const store = configureStore({
                 payment: paymentSlice.reducer,
                 product: productSlice.reducer,
                 theme: themeSlice.reducer,
+                connectedUsers: connectedUsersSlice.reducer
         }
 });
 

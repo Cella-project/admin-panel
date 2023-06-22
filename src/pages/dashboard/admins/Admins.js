@@ -71,7 +71,7 @@ const Admins = () => {
 
     cards = [
       { title: 'Admins', content: admins.length, icon: "bi bi-person-square" },
-      { title: 'Online Admins', content: 0, icon: "bi bi-person-square" },
+      { title: 'Online Admins', content: admins.filter(admin => admin.connected).length, icon: "bi bi-person-square" },
     ];
   }
 

@@ -18,7 +18,7 @@ const ProductList = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const categoryID = searchParams.get('category');
-
+  
   useEffect(() => {
     document.title = 'Products • Admin Panel';
     dispatch(productMutations.setProducts(null));
@@ -29,15 +29,7 @@ const ProductList = () => {
     }
   }, [dispatch, categoryID]);
 
-  let braudCramb;
-
-  if (subCategoryData === null || subCategoryData.title === null) {
-    braudCramb = (
-      <>
-        <span>Products</span>
-      </>
-    );
-  }
+  let braudCramb = '';
 
   if (categoryID && subCategoryData !== null) {
     braudCramb = (
@@ -92,11 +84,13 @@ const ProductList = () => {
         );
       }
     }
-    if (categoryID && subCategoryData.title !== null) {
+
+    if (categoryID && subCategoryData) {
       filteredProducts = filteredProducts.filter((product) =>
         product.category.title?.toLowerCase() === subCategoryData.title?.toLowerCase()
       );
     }
+
     if (searchStatus !== '' && searchStatus !== 'all') {
       filteredProducts = filteredProducts.filter(product => {
         return (
@@ -147,6 +141,17 @@ const ProductList = () => {
     ];
 
   };
+
+  if (!subCategoryData || !subCategoryData.title) {
+    braudCramb = (
+      <>
+        <span>Products</span>
+      </>
+
+    );
+    return <Loading />;
+  }
+
   return (
     <div className="products full-width" >
       <div className="products--braud-cramb gray inter size-16px font-bold">

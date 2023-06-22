@@ -3,13 +3,22 @@ import Axios from '../AxiosInstance';
 import { adminMutations, authMutations, popupMutation, stickyMutations } from '../../redux/mutations';
 import errorHandler from '../../services/errorHandler';
 
+import store from '../../redux/index';
+
 const adminActions = {
     getAdmins() {
         return async (dispatch) => {
             try {
+                const connectedUsers = store.getState().connectedUsers.connectedUsers;
                 const response = await Axios.get('/api/admin-main/admins');
-                dispatch(adminMutations.setAdmins(response.data.data));
+                dispatch(adminMutations.setAdmins(response.data.data.map(admin => {
+                    return {
+                        ...admin,
+                        connected: connectedUsers.find(el => el.userId === admin._id) ? true : false
+                    }
+                })));
             } catch (error) {
+                console.log(error);
                 dispatch(adminMutations.setAdmins([]));
                 errorHandler(dispatch, error.response);
             }
