@@ -10,7 +10,7 @@ const VerifyEmail = ({ popupToggle }) => {
     return (
         <div className='verify-email full-width flex-row-center yellow-bg shadow-2px'>
             <i className={`bi bi-exclamation-circle ${mode === 'dark-mode' ? 'white' : 'gray'} size-14px`} />
-            <p className={`space-none inter ${mode === 'dark-mode' ? 'white' : 'gray'} margin-4px-H size-12px`}>
+            <p className={`space-none inter flex-row-center ${mode === 'dark-mode' ? 'white' : 'gray'} margin-4px-H size-12px flex-wrap`}>
                 Hello {userData.name.split(' ')[0]}, Please verify your email by clicking
                 <span style={{ textDecoration: 'underLine', color: 'blue' }} className='margin-4px-H pointer verify-email--link' onClick={popupToggle}>
                     this link.

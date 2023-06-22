@@ -29,6 +29,7 @@ const App = () => {
   
   const checkAuth = () => {
     if (accessToken && refreshToken) {
+      dispatch(authMutations.setUserData(null));
       dispatch(authActions.getProfile());
       dispatch(authMutations.setAuthData({
         userData: user,
@@ -57,7 +58,6 @@ const App = () => {
         }
       });
     } else {
-      // localStorage.removeItem('User');
       localStorage.removeItem('Access Token');
       localStorage.removeItem('Refresh Token');
       router.navigate('/login');

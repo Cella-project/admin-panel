@@ -29,16 +29,6 @@
             text-decoration: none;
         }
 
-        & a:hover i,
-        & a:hover span {
-            color: #242526;
-        }
-
-        & a:last-of-type:hover i,
-        & a:last-of-type:hover span {
-            color: #FF3636;
-        }
-
         & a.active i,
         & a.active span {
             color: #242526;

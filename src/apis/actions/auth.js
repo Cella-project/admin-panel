@@ -170,6 +170,7 @@ const authActions = {
                         type: 'success',
                         msg: 'Your profile updated successfully.'
                     }));
+                    this.getProfile();
                     afterSuccess();
                 }
             } catch (error) {

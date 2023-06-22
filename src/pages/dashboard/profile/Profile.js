@@ -22,7 +22,9 @@ const Profile = () => {
 
     useEffect(() => {
         document.title = 'Profile • Admin Panel';
-    }, []);
+
+        dispatch(authActions.getProfile());
+    }, [dispatch]);
 
     const uploadImg = async (e) => {
         setEditIMG(true);
