@@ -4,8 +4,8 @@ import OrangeCard from '../../../components/common/OrangeCard';
 import Search from '../../../components/common/Search';
 import ProductCard from '../../../components/products/ProductCard';
 import { useDispatch, useSelector } from 'react-redux';
-import { productActions, subCategoryActions } from '../../../apis/actions';
-import { productMutations, subCategoryMutations } from '../../../redux/mutations';
+import { productActions, storeActions, subCategoryActions } from '../../../apis/actions';
+import { productMutations, storeMutations, subCategoryMutations } from '../../../redux/mutations';
 import Loading from '../../../components/global/Loading';
 
 import './ProductList.scss';
@@ -14,10 +14,12 @@ const ProductList = () => {
   const dispatch = useDispatch();
   const products = useSelector(state => state.product.products);
   const subCategoryData = useSelector(state => state.subCategory.subCategoryData);
+  const storeData = useSelector(state => state.store.storeData);
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const categoryID = searchParams.get('category');
+  const storeID = searchParams.get('store');
 
   useEffect(() => {
     document.title = 'Products • Admin Panel';
@@ -28,19 +30,29 @@ const ProductList = () => {
       dispatch(subCategoryMutations.setSubCategoryData(null));
       dispatch(subCategoryActions.getSubCategoryById(categoryID));
     }
-  }, [dispatch, categoryID]);
+    if (storeID) {
+      dispatch(storeMutations.setStoreData(null));
+      dispatch(storeActions.getStoreData(storeID));
+    }
+  }, [dispatch, categoryID, storeID]);
 
-  let braudCramb = '';
-
-  if (categoryID && subCategoryData !== null) {
-    braudCramb = (
-      <>
-        <Link to="/products" className="gray pointer lists-card--link">Products</Link>
-        <span> / </span>
-        <span>{subCategoryData.title}</span>
-      </>
-    );
-  };
+  const braudCramb = (storeID && storeData !== null) ? (
+    <>
+      <Link to="/products" className="gray pointer lists-card--link">Products</Link>
+      <span> / </span>
+      <span>{storeData.storeName}</span>
+    </>
+  ) : (categoryID && subCategoryData !== null) ? (
+    <>
+      <Link to="/products" className="gray pointer lists-card--link">Products</Link>
+      <span> / </span>
+      <span>{subCategoryData.title}</span>
+    </>
+  ) : (
+    <>
+      <span>Products</span>
+    </>
+  );
 
   let cards = [
     { title: 'Products', content: 0, icon: "bi bi-box-seam" },
@@ -88,7 +100,12 @@ const ProductList = () => {
 
     if (categoryID && subCategoryData) {
       filteredProducts = filteredProducts.filter((product) =>
-        product.category.title?.toLowerCase() === subCategoryData.title?.toLowerCase()
+        product.category._id === subCategoryData._id
+      );
+    }
+    if (storeID && storeData) {
+      filteredProducts = filteredProducts.filter((product) =>
+        product.store._id === storeData._id
       );
     }
 
@@ -142,15 +159,6 @@ const ProductList = () => {
     ];
 
   };
-
-  if (!subCategoryData || !subCategoryData.title) {
-    braudCramb = (
-      <>
-        <span>Products</span>
-      </>
-
-    );
-  }
 
   return (
     <div className="products full-width" >

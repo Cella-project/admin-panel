@@ -109,29 +109,37 @@ const StoreDetails = () => {
               <OrangeCard title="Orders">
                 <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
                   {order ? (
-                    order.map((order) => (
-                      <OrderCard key={order._id} order={order} />
-                    ))
+                    order
+                      .slice()
+                      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                      .slice(0, 3)
+                      .map((order) => (
+                        <OrderCard key={order._id} order={order} />
+                      ))
                   ) : (
                     <p className="gray inter size-20px font-bold">No orders to display</p>
                   )}
                 </PerfectScrollbar>
-                <Link to={`/Orders`} className="pointer lists-card--link">
+                <Link to={`/Orders?store=${store._id}`} className="pointer lists-card--link">
                   <i className="bi bi-arrow-right flex-row-right-start"></i>
                 </Link>
               </OrangeCard>
               <OrangeCard title="Orders History">
                 <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
                   {orderHistory ? (
-                    orderHistory.map((order) => (
-                      <OrderCard type='history' key={order._id} order={order} />
-                    ))
+                    orderHistory
+                      .slice()
+                      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                      .slice(0, 3)
+                      .map((order) => (
+                        <OrderCard type='history' key={order._id} order={order} />
+                      ))
                   ) : (
                     <p className="gray inter size-20px font-bold">No orders to display</p>
                   )}
 
                 </PerfectScrollbar>
-                <Link to={`/OrdersHistory`} className="pointer lists-card--link">
+                <Link to={`/OrdersHistory?store=${store._id}`} className="pointer lists-card--link">
                   <i className="bi bi-arrow-right flex-row-right-start"></i>
                 </Link>
               </OrangeCard>
@@ -220,17 +228,21 @@ const StoreDetails = () => {
                       <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
                         {products.filter((productCard) =>
                           productCard.store._id === store._id
-                        ).slice(0, 3).map((product) => {
-                          return (
-                            <ProductCard
-                              key={product._id}
-                              productCard={product}
-                            />
-                          );
-                        })}
+                        )
+                          .slice()
+                          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                          .slice(0, 3)
+                          .map((product) => {
+                            return (
+                              <ProductCard
+                                key={product._id}
+                                productCard={product}
+                              />
+                            );
+                          })}
                       </PerfectScrollbar>
                     }
-                    <Link to={`/Products`} className="pointer lists-card--link">
+                    <Link to={`/products?store=${store._id}`} className="pointer lists-card--link">
                       <i className="bi bi-arrow-right flex-row-right-start"></i>
                     </Link>
                   </OrangeCard>

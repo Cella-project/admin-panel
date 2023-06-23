@@ -16,8 +16,8 @@ import ReviewCard from "../../../components/reviews/ReviewCard";
 import OrderCard from "../../../components/orders/OrderCard";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { driverActions, orderHistoryActions,orderActions } from '../../../apis/actions';
-import { driverMutations, orderHistoryMutations,orderMutations } from '../../../redux/mutations';
+import { driverActions, orderHistoryActions, orderActions } from '../../../apis/actions';
+import { driverMutations, orderHistoryMutations, orderMutations } from '../../../redux/mutations';
 
 const DeliveryDetails = () => {
   const params = useParams();
@@ -59,30 +59,38 @@ const DeliveryDetails = () => {
             <OrangeCard title="Orders">
               <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
                 {order ? (
-                  order.map((order) => (
-                    <OrderCard key={order._id} order={order} />
-                  ))
+                  order
+                    .slice()
+                    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                    .slice(0, 3)
+                    .map((order) => (
+                      <OrderCard key={order._id} order={order} />
+                    ))
                 ) : (
                   <p className="gray inter size-20px font-bold">No orders to display</p>
                 )}
 
               </PerfectScrollbar>
-              <Link to={`/Orders`} className="pointer lists-card--link">
+              <Link to={`/Orders?driver=${delivery._id}`} className="pointer lists-card--link">
                 <i className="bi bi-arrow-right flex-row-right-start"></i>
               </Link>
             </OrangeCard>
             <OrangeCard title="Orders History">
               <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
                 {orderHistory ? (
-                  orderHistory.map((order) => (
-                    <OrderCard type='history' key={order._id} order={order} />
-                  ))
+                  orderHistory
+                    .slice()
+                    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                    .slice(0, 3)
+                    .map((order) => (
+                      <OrderCard type='history' key={order._id} order={order} />
+                    ))
                 ) : (
                   <p className="gray inter size-20px font-bold">No orders to display</p>
                 )}
 
               </PerfectScrollbar>
-              <Link to={`/OrdersHistory`} className="pointer lists-card--link">
+              <Link to={`/OrdersHistory?driver=${delivery._id}`} className="pointer lists-card--link">
                 <i className="bi bi-arrow-right flex-row-right-start"></i>
               </Link>
             </OrangeCard>

@@ -66,7 +66,7 @@ const Search = ({ width, onSearch, page }) => {
       </div>
       {(filterList && page) &&
         <form noValidate className="flex-row-top-between2col search-bar--filter orange-bg shadow-5px full-width gray inter">
-          {(page === 'Admins' || page === 'Stores' || page === 'Customers' || page === 'Products' || page === 'OrdersHistory' || page === 'Drivers') &&
+          {(page === 'Admins' || page === 'Stores' || page === 'Customers' || page === 'Products' || page === 'OrdersHistory' || page === 'Orders' || page === 'Drivers') &&
             <div className="flex-row-top-start size-16px margin-8px-V width-50-100">
               Search by:
               <div className="flex-col-left-start search-bar--filter--options">
@@ -87,7 +87,7 @@ const Search = ({ width, onSearch, page }) => {
                     onChange={() => {
                       searchType.current = page === 'Stores' ? 'storeName' :
                         (page === 'Admins' || page === 'Customers' || page === 'Products' || page === 'Drivers') ? 'name' :
-                          page === 'OrdersHistory' ? 'customer.name' : 'all';
+                          (page === 'OrdersHistory' || page === 'Orders') ? 'customer.name' : 'all';
                       handleSearch();
                     }
                     }
@@ -95,6 +95,7 @@ const Search = ({ width, onSearch, page }) => {
                   <label className="pointer" htmlFor="name">
                     {page === 'Stores' && 'Store '}
                     {page === 'OrdersHistory' && 'Customer '}
+                    {page === 'Orders' && 'Customer '}
                     Name
                   </label>
                 </div>
@@ -140,7 +141,7 @@ const Search = ({ width, onSearch, page }) => {
                     </label>
                   </div>
                 }
-                {(page === 'Products' || page === 'OrdersHistory') &&
+                {(page === 'Products' || page === 'OrdersHistory' || page === 'Orders') &&
                   <div className="flex-row-left-start">
                     <input type="radio" name="search-type" className="margin-12px-H pointer" id="storeName"
                       value="storeName"
@@ -180,7 +181,7 @@ const Search = ({ width, onSearch, page }) => {
                     </div>
                   </>
                 }
-                {page === 'OrdersHistory' &&
+                {(page === 'OrdersHistory' || page === 'Orders') &&
                   <div className="flex-row-left-start">
                     <input type="radio" name="search-type" className="margin-12px-H pointer" id="code"
                       value="code"
@@ -210,7 +211,7 @@ const Search = ({ width, onSearch, page }) => {
             </div>
           }
 
-          {(page === 'Stores' || page === 'Customers' || page === 'Specialty' || page === 'Categories' || page === 'Products' || page === 'OrdersHistory' || page === 'Drivers' || page === 'Payments') &&
+          {(page === 'Stores' || page === 'Customers' || page === 'Specialty' || page === 'Categories' || page === 'Products' || page === 'OrdersHistory' || page === 'Orders' || page === 'Drivers' || page === 'Payments') &&
             <div className="flex-col-left-start size-16px margin-8px-V width-50-100">
               {(page === 'Stores' || page === 'Customers' || page === 'Specialty' || page === 'Categories' || page === 'Products' || page === 'Drivers' || page === 'Payments') &&
                 <div className="flex-row-top-start">
@@ -289,7 +290,6 @@ const Search = ({ width, onSearch, page }) => {
                 <div className="flex-row-top-start">
                   Status:
                   <div className="flex-col-left-start2col search-bar--filter--options">
-
                     <div className="flex-row-left-start">
                       <input type="radio" name="search-orders-status" className="margin-12px-H pointer" id="all-orders-status"
                         value="all" defaultChecked
@@ -300,28 +300,6 @@ const Search = ({ width, onSearch, page }) => {
                         }
                       />
                       <label className="pointer" htmlFor="all-orders-status">All</label>
-                    </div>
-                    <div className="flex-row-left-start">
-                      <input type="radio" name="search-orders-status" className="margin-12px-H pointer" id="pending"
-                        value="pending"
-                        onChange={() => {
-                          filter.current.status = 'Pending';
-                          handleSearch();
-                        }
-                        }
-                      />
-                      <label className="pointer" htmlFor="pending">Pending</label>
-                    </div>
-                    <div className="flex-row-left-start">
-                      <input type="radio" name="search-orders-status" className="margin-12px-H pointer" id="delivered"
-                        value="delivered"
-                        onChange={() => {
-                          filter.current.status = 'Delivered';
-                          handleSearch();
-                        }
-                        }
-                      />
-                      <label className="pointer" htmlFor="delivered">Delivered</label>
                     </div>
                     <div className="flex-row-left-start">
                       <input type="radio" name="search-orders-status" className="margin-12px-H pointer" id="cancelledByAdmin"
@@ -344,6 +322,68 @@ const Search = ({ width, onSearch, page }) => {
                         }
                       />
                       <label className="pointer" htmlFor="cancelledByCustomer">Cancelled By Customer</label>
+                    </div>
+                    <div className="flex-row-left-start">
+                      <input type="radio" name="search-orders-status" className="margin-12px-H pointer" id="delivered"
+                        value="delivered"
+                        onChange={() => {
+                          filter.current.status = 'Delivered';
+                          handleSearch();
+                        }
+                        }
+                      />
+                      <label className="pointer" htmlFor="delivered">Delivered</label>
+                    </div>
+                  </div>
+                </div>
+              }
+              {page === 'Orders' &&
+                <div className="flex-row-top-start">
+                  Status:
+                  <div className="flex-col-left-start2col search-bar--filter--options">
+                    <div className="flex-row-left-start">
+                      <input type="radio" name="search-orders-status" className="margin-12px-H pointer" id="all-orders-status"
+                        value="all" defaultChecked
+                        onChange={() => {
+                          filter.current.status = 'all';
+                          handleSearch();
+                        }
+                        }
+                      />
+                      <label className="pointer" htmlFor="all-orders-status">All</label>
+                    </div>
+                    <div className="flex-row-left-start">
+                      <input type="radio" name="search-orders-status" className="margin-12px-H pointer" id="approved"
+                        value="approved"
+                        onChange={() => {
+                          filter.current.status = 'Approved';
+                          handleSearch();
+                        }
+                        }
+                      />
+                      <label className="pointer" htmlFor="approved">Approved</label>
+                    </div>
+                    <div className="flex-row-left-start">
+                      <input type="radio" name="search-orders-status" className="margin-12px-H pointer" id="pending"
+                        value="pending"
+                        onChange={() => {
+                          filter.current.status = 'Pending';
+                          handleSearch();
+                        }
+                        }
+                      />
+                      <label className="pointer" htmlFor="pending">Pending</label>
+                    </div>
+                    <div className="flex-row-left-start">
+                      <input type="radio" name="search-orders-status" className="margin-12px-H pointer" id="ready"
+                        value="ready"
+                        onChange={() => {
+                          filter.current.status = 'Ready';
+                          handleSearch();
+                        }
+                        }
+                      />
+                      <label className="pointer" htmlFor="ready">Ready</label>
                     </div>
                   </div>
                 </div>

@@ -3,25 +3,74 @@ import React, { useEffect, useState } from 'react';
 import OrangeCard from '../../../components/common/OrangeCard';
 import Search from '../../../components/common/Search';
 import ListsCard from '../../../components/common/ListsCard';
-import './OrderHistoryList.scss';
 import OrderCard from '../../../components/orders/OrderCard';
 import { useDispatch, useSelector } from 'react-redux';
-import { orderHistoryActions } from '../../../apis/actions';
-import { orderHistoryMutations } from '../../../redux/mutations';
+import { customerActions, driverActions, orderHistoryActions, storeActions } from '../../../apis/actions';
+import { customerMutations, driverMutations, orderHistoryMutations, storeMutations } from '../../../redux/mutations';
 import Loading from '../../../components/global/Loading';
+import { useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
+
+import './OrderHistoryList.scss';
 
 const OrderHistoryList = () => {
     const dispatch = useDispatch();
     const orderHistoryCards = useSelector(state => state.orderHistory.ordersHistory);
+    const storeData = useSelector(state => state.store.storeData);
+    const customerData = useSelector(state => state.customer.customerData);
+    const driverData = useSelector(state => state.driver.driverData);
+
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const storeID = searchParams.get('store');
+    const customerID = searchParams.get('customer');
+    const driverID = searchParams.get('driver');
 
     useEffect(() => {
         dispatch(orderHistoryMutations.setOrderHistory(null));
         dispatch(orderHistoryActions.getOrderHistory());
-    }, [dispatch]);
+
+        if (storeID) {
+            dispatch(storeMutations.setStoreData(null));
+            dispatch(storeActions.getStoreData(storeID));
+        }
+        if (customerID) {
+            dispatch(customerMutations.setCustomerData(null));
+            dispatch(customerActions.getCustomerData(customerID));
+        }
+        if (driverID) {
+            dispatch(driverMutations.setDriverData(null));
+            dispatch(driverActions.getDriverData(driverID));
+        }
+    }, [dispatch, storeID, customerID, driverID]);
 
     useEffect(() => {
         document.title = 'OrdersHistory • Admin Panel';
     }, []);
+
+    const braudCramb = (storeID && storeData !== null) ? (
+        <>
+            <Link to="/OrdersHistory" className="gray pointer lists-card--link">Order History</Link>
+            <span> / </span>
+            <span>{storeData.storeName}</span>
+        </>
+    ) : (customerID && customerData !== null) ? (
+        <>
+            <Link to="/OrdersHistory" className="gray pointer lists-card--link">Order History</Link>
+            <span> / </span>
+            <span>{customerData.name}</span>
+        </>
+    ) : (driverID && driverData !== null) ? (
+        <>
+            <Link to="/OrdersHistory" className="gray pointer lists-card--link">Order History</Link>
+            <span> / </span>
+            <span>{driverData.name}</span>
+        </>
+    ) : (
+        <>
+            <span>Order History</span>
+        </>
+    );
 
     let cards = [
         { title: 'Total Orders', content: 0, icon: "bi bi-people orange" },
@@ -48,7 +97,7 @@ const OrderHistoryList = () => {
     }
 
     if (orderHistoryCards !== null && orderHistoryCards.length > 0) {
-        const sortedOrderHistory = [...orderHistoryCards].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        const sortedOrderHistory = [...orderHistoryCards].sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
 
         let filteredOrderHistory = sortedOrderHistory;
         if (searchQuery !== '') {
@@ -64,6 +113,23 @@ const OrderHistoryList = () => {
                 });
             }
         }
+
+        if (storeID && storeData) {
+            filteredOrderHistory = filteredOrderHistory.filter(order =>
+                order.store.storeId === storeData._id
+            );
+        }
+        if (customerID && customerData) {
+            filteredOrderHistory = filteredOrderHistory.filter(order =>
+                order.customer.customerId === customerData._id
+            );
+        }
+        if (driverID && driverData) {
+            filteredOrderHistory = filteredOrderHistory.filter(order =>
+                order.driver.driverId === driverData._id
+            );
+        }
+
         if (searchStatus !== '' && searchStatus !== 'all') {
             filteredOrderHistory = filteredOrderHistory.filter(order => {
                 return (
@@ -104,7 +170,7 @@ const OrderHistoryList = () => {
     return (
         <div className="orderHistorys full-width" >
             <div className="orderHistorys--braud-cramb gray inter size-16px font-bold">
-                Order History
+                {braudCramb}
             </div>
             <div className="orderHistorys--cards">
                 {
