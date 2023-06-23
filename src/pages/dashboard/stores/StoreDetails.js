@@ -220,7 +220,7 @@ const StoreDetails = () => {
                       <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
                         {products.filter((productCard) =>
                           productCard.store._id === store._id
-                        ).map((product) => {
+                        ).slice(0, 3).map((product) => {
                           return (
                             <ProductCard
                               key={product._id}
