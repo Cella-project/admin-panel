@@ -79,11 +79,11 @@ const App = () => {
     refreshTokenHandler(refreshToken);
 
   }
-  setInterval(() => {
-    refreshTokenHandler(refreshToken);
-  }, 14 * 60 * 1000);
 
   if (!isloaded) {
+    setInterval(() => {
+      refreshTokenHandler(refreshToken);
+    }, 14 * 60 * 1000);
     checkAuth();
     isloaded = true;
   }
