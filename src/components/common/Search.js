@@ -324,6 +324,28 @@ const Search = ({ width, onSearch, page }) => {
                       <label className="pointer" htmlFor="cancelledByCustomer">Cancelled By Customer</label>
                     </div>
                     <div className="flex-row-left-start">
+                      <input type="radio" name="search-orders-status" className="margin-12px-H pointer" id="cancelledByStore"
+                        value="cancelled"
+                        onChange={() => {
+                          filter.current.status = 'CanceledByStore';
+                          handleSearch();
+                        }
+                        }
+                      />
+                      <label className="pointer" htmlFor="cancelledByStore">Cancelled By Store</label>
+                    </div>
+                    <div className="flex-row-left-start">
+                      <input type="radio" name="search-orders-status" className="margin-12px-H pointer" id="returned"
+                        value="returned"
+                        onChange={() => {
+                          filter.current.status = 'Returned';
+                          handleSearch();
+                        }
+                        }
+                      />
+                      <label className="pointer" htmlFor="returned">Returned</label>
+                    </div>
+                    <div className="flex-row-left-start">
                       <input type="radio" name="search-orders-status" className="margin-12px-H pointer" id="delivered"
                         value="delivered"
                         onChange={() => {
@@ -383,7 +405,18 @@ const Search = ({ width, onSearch, page }) => {
                         }
                         }
                       />
-                      <label className="pointer" htmlFor="ready">Ready</label>
+                      <label className="pointer" htmlFor="ready">Ready For Pickup</label>
+                    </div>
+                    <div className="flex-row-left-start">
+                      <input type="radio" name="search-orders-status" className="margin-12px-H pointer" id="picked"
+                        value="picked"
+                        onChange={() => {
+                          filter.current.status = 'Picked';
+                          handleSearch();
+                        }
+                        }
+                      />
+                      <label className="pointer" htmlFor="ready">Picked</label>
                     </div>
                   </div>
                 </div>
