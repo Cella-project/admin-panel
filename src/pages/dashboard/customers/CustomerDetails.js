@@ -159,7 +159,7 @@ const CustomerDetails = () => {
                     })}
                   </PerfectScrollbar>
                 )}
-                <Link to={`/vouchers`} className="pointer link">
+                <Link to={`/admin-panel/vouchers`} className="pointer link">
                   <i className="bi bi-arrow-right flex-row-right-start pointer"></i>
                 </Link>
               </OrangeCard>
@@ -180,7 +180,7 @@ const CustomerDetails = () => {
                   )}
 
                 </PerfectScrollbar>
-                <Link to={`/Orders?customer=${customer._id}`} className="pointer lists-card--link">
+                <Link to={`/admin-panel/Orders?customer=${customer._id}`} className="pointer lists-card--link">
                   <i className="bi bi-arrow-right flex-row-right-start"></i>
                 </Link>
               </OrangeCard>
@@ -198,7 +198,7 @@ const CustomerDetails = () => {
                     <p className="gray inter size-20px font-bold">No orders to display.</p>
                   )}
                 </PerfectScrollbar>
-                <Link to={`/OrdersHistory?customer=${customer._id}`} className="pointer lists-card--link">
+                <Link to={`/admin-panel/OrdersHistory?customer=${customer._id}`} className="pointer lists-card--link">
                   <i className="bi bi-arrow-right flex-row-right-start"></i>
                 </Link>
               </OrangeCard>

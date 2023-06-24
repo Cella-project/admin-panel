@@ -177,7 +177,7 @@ export const EditProduct = () => {
 
         dispatch(productActions.updateProduct(editedProduct,
             () => {
-                navigate(`/products/${product._id}`);
+                navigate(`/admin-panel/products/${product._id}`);
             }));
     };
 
@@ -299,7 +299,7 @@ export const EditProduct = () => {
                                     <button
                                         className="edit-product--actions--button pointer radius-10px shadow-4px white text-shadow size-18px gray-bg"
                                         onClick={() => {
-                                            navigate('/products');
+                                            navigate('/admin-panel/products');
                                         }}
                                     >
                                         Cancel

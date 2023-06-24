@@ -159,7 +159,7 @@ const StoreList = () => {
           })
         }
         {storeApplications !== null && (
-          <Link to={`/stores/storeApplications`} className={`stores--application-container full-width orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
+          <Link to={`/admin-panel/stores/storeApplications`} className={`stores--application-container full-width orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
             Store Applications
             {storeApplications.filter(storeApplication => storeApplication.status === 'Pending').length > 0 && (
               <div className='stores--pending-badge shadow-5px white font-bold red-bg size-12px flex-row-center'>

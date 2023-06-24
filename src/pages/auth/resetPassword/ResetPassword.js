@@ -141,7 +141,7 @@ const ResetPassword = () => {
                 RESET PASSWORD
             </button>
             <div className="full-width flex-row-left-start">
-                <NavLink to={'/login/forget-password'} style={{ textDecoration: 'none' }} className={`space-none inter ${mode === 'dark-mode' ? 'gray' : 'orange'} size-14px margin-12px-H pointer`}>Back</NavLink>
+                <NavLink to={'/admin-panel/login/forget-password'} style={{ textDecoration: 'none' }} className={`space-none inter ${mode === 'dark-mode' ? 'gray' : 'orange'} size-14px margin-12px-H pointer`}>Back</NavLink>
             </div>
         </form>
 

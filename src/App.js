@@ -64,7 +64,7 @@ const App = () => {
     } else {
       localStorage.removeItem('Access Token');
       localStorage.removeItem('Refresh Token');
-      router.navigate('/login');
+      router.navigate('/admin-panel/login');
     }
   };
 

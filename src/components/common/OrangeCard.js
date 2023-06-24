@@ -7,7 +7,7 @@ const OrangeCard = ({ title, children, icon, iconClickHandle }, props) => {
     const mode = useSelector(state => state.theme.mode);
 
     return (
-        <div key={props.key} className="green-card radius-15px shadow-5px">
+        <div className="green-card radius-15px shadow-5px">
             <div className={`green-card--header flex-row-${icon ? 'between' : 'center'} orange-bg`}>
                 <p className={`inter ${mode === 'dark-mode' ? 'gray' : 'white'} size-16px space-none text-shadow`}>{title}</p>
                 {icon &&

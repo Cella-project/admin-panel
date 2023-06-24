@@ -213,7 +213,7 @@ const ProductDetails = () => {
 
           <div className="full-width flex-row-center">
             <OrangeCard title="Reviews">
-              <Link to={`/Reviews`} className="pointer lists-card--link">
+              <Link to={`/admin-panel/Reviews`} className="pointer lists-card--link">
                 <i className="bi bi-arrow-right flex-row-right-start"></i>
               </Link>
             </OrangeCard>

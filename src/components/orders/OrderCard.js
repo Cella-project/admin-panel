@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const OrderCard = ({ order,type }) => {
     return (
         <>
-            <Link to={`/orders${type === 'history' ? 'History' : ''}/${order._id}`} className='orders--link full-width flex-row-left-start2col'>
+            <Link to={`/admin-panel/orders${type === 'history' ? 'History' : ''}/${order._id}`} className='orders--link full-width flex-row-left-start2col'>
                 <div className='lists-card--info gray pointer shadow-5px size-16px margin-10px-V inter radius-15px white-bg full-width flex-row-between2col flex-wrap'>
                     <div className='flex-row-left-start margin-2px-V flex-wrap'>
                         <span className='lists-card--info--disc--hide margin-2px-H font-bold'>Customer: </span>{order.customer.name}

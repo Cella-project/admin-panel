@@ -63,11 +63,11 @@ import AutoGuard from "./guards/AuthGuard";
 
 export const routes = [
   {
-    path: "/",
+    path: "/admin-panel",
     element: <App />,
     children: [
       {
-        path: "/login",
+        path: "login",
         element: <Auth />,
         children: [
           {
@@ -90,7 +90,7 @@ export const routes = [
         ],
       },
       {
-        path: "/",
+        path: "",
         element: <AutoGuard component={Dashboard} />,
         children: [
           {

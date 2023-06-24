@@ -71,7 +71,7 @@ const DeliveryDetails = () => {
                 )}
 
               </PerfectScrollbar>
-              <Link to={`/Orders?driver=${delivery._id}`} className="pointer lists-card--link">
+              <Link to={`/admin-panel/Orders?driver=${delivery._id}`} className="pointer lists-card--link">
                 <i className="bi bi-arrow-right flex-row-right-start"></i>
               </Link>
             </OrangeCard>
@@ -90,7 +90,7 @@ const DeliveryDetails = () => {
                 )}
 
               </PerfectScrollbar>
-              <Link to={`/OrdersHistory?driver=${delivery._id}`} className="pointer lists-card--link">
+              <Link to={`/admin-panel/OrdersHistory?driver=${delivery._id}`} className="pointer lists-card--link">
                 <i className="bi bi-arrow-right flex-row-right-start"></i>
               </Link>
             </OrangeCard>
@@ -112,7 +112,7 @@ const DeliveryDetails = () => {
                   )
                 })}
               </PerfectScrollbar>
-              <Link to={`/Reviews`} className="pointer lists-card--link">
+              <Link to={`/admin-panel/Reviews`} className="pointer lists-card--link">
                 <i className="bi bi-arrow-right flex-row-right-start"></i>
               </Link>
             </OrangeCard>

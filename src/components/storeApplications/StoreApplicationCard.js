@@ -12,7 +12,7 @@ const StoreApplicationCard = ({ storeApplicationCards, index }) => {
 
     return (
         <div key={index} className='storeApplication-card width-90-100 shadow-5px margin-10px-V inter radius-15px white-bg pointer'>
-            <Link to={`/stores/storeApplications/${storeApplicationCards._id}`} className='storeApplication-card--link full-width flex-row-between2col flex-wrap'>
+            <Link to={`/admin-panel/stores/storeApplications/${storeApplicationCards._id}`} className='storeApplication-card--link full-width flex-row-between2col flex-wrap'>
                 <div className='storeApplication-card--img flex-row-center'>
                     {storeApplicationCards.logo === 'No Image' ?
                         <Canvas name={storeApplicationCards.storeName} width={130} height={130} fontSize={'100px'} />

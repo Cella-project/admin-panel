@@ -32,7 +32,7 @@ const NavBar = ({ menuToggle }) => {
     return (
         <div className={`nav-bar ${mode === 'dark-mode' ? 'dark' : ''} full-width`} style={{ marginTop: (userData.validEmail !== null && userData.validEmail) ? '0px' : '15px' }}>
             <div className='nav-bar--cont full-width white-bg flex-row-between'>
-                <Link to={'/'} className='home-link'>
+                <Link to={'/admin-panel'} className='home-link'>
                     <img src={mode === 'dark-mode' ? darkLogo : logo} alt='ACTORE' className='nav-bar--logo pointer' />
                 </Link>
                 <i className={`nav-bar--btn bi bi-list ${mode === 'dark-mode' ? 'gray' : 'orange'} size-38px pointer`} onClick={handleClick}></i>
@@ -44,7 +44,7 @@ const NavBar = ({ menuToggle }) => {
                             Notification
                         </div>
                     </div>
-                    <Link to={'/profile'}>
+                    <Link to={'/admin-panel/profile'}>
                         <div className='nav-bar--card flex-row-center white-bg radius-15px margin-6px-H shadow-2px pointer'>
                             <div className='nav-bar--card--img flex-row-center radius-circular'>
                                 {userData.img === 'NO IMAGE' ?

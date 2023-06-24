@@ -22,7 +22,7 @@ const ProductControl = ({ id }) => {
   const handleDelete = () => {
     dispatch(
       productActions.deleteProduct(id, () => {
-        router.navigate("/products");
+        router.navigate("/admin-panel/products");
       })
     );
   };
@@ -37,7 +37,7 @@ const ProductControl = ({ id }) => {
   }
 
   const handleEdit =()=>{
-    navigate(`/products/editProduct/${id}`);
+    navigate(`/admin-panel/products/editProduct/${id}`);
   }
 
 

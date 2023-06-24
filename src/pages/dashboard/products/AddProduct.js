@@ -372,7 +372,7 @@ export const AddProduct = () => {
 
         dispatch(productActions.addProduct(product,
             () => {
-                navigate(`/products/`);
+                navigate(`/admin-panel/products/`);
             }));
     };
 
@@ -572,7 +572,7 @@ export const AddProduct = () => {
                                 <button
                                     className="add-product--actions--button pointer radius-10px shadow-4px white text-shadow size-18px gray-bg"
                                     onClick={() => {
-                                        navigate('/products');
+                                        navigate('/admin-panel/products');
                                     }}
                                 >
                                     Cancel

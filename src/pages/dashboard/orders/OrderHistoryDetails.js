@@ -54,14 +54,14 @@ const OrderHistoryDetails = () => {
                                         {order.driver.state === 'NotAssigned' ? (
                                             <div className="gray inter size-20px font-bold flex-row-center">Not Assigned</div>
                                         ) : (
-                                            <Link to={`/drivers/${order.driver.driverId}`} className="pointer lists-card--link">
+                                            <Link to={`/admin-panel/drivers/${order.driver.driverId}`} className="pointer lists-card--link">
                                                 <DeliveryInfo delivery={order.driver} />
                                             </Link>
                                         )}
                                     </OrangeCard>
                                     <OrangeCard title="Store">
                                         {
-                                            <Link to={`/stores/${order.store.storeId}`} className="pointer lists-card--link">
+                                            <Link to={`/admin-panel/stores/${order.store.storeId}`} className="pointer lists-card--link">
                                                 <StoreInfo store={order.store} />
                                             </Link>
                                         }
@@ -90,7 +90,7 @@ const OrderHistoryDetails = () => {
                                             })
                                         }
                                     </PerfectScrollbar>
-                                    <Link to={`/Products`} className="pointer lists-card--link">
+                                    <Link to={`/admin-panel/Products`} className="pointer lists-card--link">
                                         <i className="bi bi-arrow-right flex-row-right-start"></i>
                                     </Link>
                                 </OrangeCard>
@@ -98,7 +98,7 @@ const OrderHistoryDetails = () => {
                             <div className="flex-row-top-between2col full-width full-width">
                                 <OrangeCard title="Review">
                                     {/* <PerfectScrollbar className="review-scroll--cont full-width"></PerfectScrollbar> */}
-                                    <Link to={`/Reviews`} className="pointer lists-card--link">
+                                    <Link to={`/admin-panel/Reviews`} className="pointer lists-card--link">
                                         <i className="bi bi-arrow-right flex-row-right-start"></i>
                                     </Link>
                                 </OrangeCard>
@@ -116,7 +116,7 @@ const OrderHistoryDetails = () => {
                                             );
                                         })
                                     }
-                                    <Link to={`/Vouchers`} className="pointer lists-card--link">
+                                    <Link to={`/admin-panel/Vouchers`} className="pointer lists-card--link">
                                     <i className="bi bi-arrow-right flex-row-right-start"></i>
                                 </Link> */}
                                 </OrangeCard>
@@ -127,7 +127,7 @@ const OrderHistoryDetails = () => {
                     <div className="flex-col-top-start orderHistory-details--card-cont width-20-100">
                         <OrangeCard title="Customer">
                             {
-                                <Link to={`/customers/${order.customer.customerId}`} className="pointer lists-card--link orderHistory-details--customer">
+                                <Link to={`/admin-panel/customers/${order.customer.customerId}`} className="pointer lists-card--link orderHistory-details--customer">
                                     <div className="gray inter size-20px font-bold flex-row-center">{order.customer.name}</div>
                                 </Link>
                             }

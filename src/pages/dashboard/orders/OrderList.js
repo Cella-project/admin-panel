@@ -50,19 +50,19 @@ const OrderList = () => {
 
     const braudCramb = (storeID && storeData !== null) ? (
         <>
-            <Link to="/orders" className="gray pointer lists-card--link">Orders</Link>
+            <Link to="/admin-panel/orders" className="gray pointer lists-card--link">Orders</Link>
             <span> / </span>
             <span>{storeData.storeName}</span>
         </>
     ) : (customerID && customerData !== null) ? (
         <>
-            <Link to="/orders" className="gray pointer lists-card--link">Orders</Link>
+            <Link to="/admin-panel/orders" className="gray pointer lists-card--link">Orders</Link>
             <span> / </span>
             <span>{customerData.name}</span>
         </>
     ) : (driverID && driverData !== null) ? (
         <>
-            <Link to="/orders" className="gray pointer lists-card--link">Orders</Link>
+            <Link to="/admin-panel/orders" className="gray pointer lists-card--link">Orders</Link>
             <span> / </span>
             <span>{driverData.name}</span>
         </>
@@ -74,10 +74,10 @@ const OrderList = () => {
 
     let cards = [
         { title: 'Total Orders', content: 0, icon: "bi bi-people orange" },
-        { title: 'Delivered', content: 0, icon: "bi bi-people orange" },
         { title: 'Pending', content: 0, icon: "bi bi-people orange" },
-        { title: 'Cancelled By Customer', content: 0, icon: "bi bi-people orange" },
-        { title: 'Cancelled By Admin', content: 0, icon: "bi bi-people orange" },
+        { title: 'Approved', content: 0, icon: "bi bi-people orange" },
+        { title: 'Ready For Pickup', content: 0, icon: "bi bi-people orange" },
+        { title: 'Picked', content: 0, icon: "bi bi-people orange" },
     ]
 
     let content = <Loading />;
@@ -160,10 +160,10 @@ const OrderList = () => {
 
         cards = [
             { title: 'Total Orders', content: orderCards.length, icon: "bi bi-people orange" },
-            { title: 'Delivered', content: orderCards.filter(orderCard => orderCard.status === 'Delivered').length, icon: "bi bi-people orange" },
             { title: 'Pending', content: orderCards.filter(orderCard => orderCard.status === 'Pending').length, icon: "bi bi-people orange" },
-            { title: 'Cancelled By Customer', content: orderCards.filter(orderCard => orderCard.status === 'CanceledByCustomer').length, icon: "bi bi-people orange" },
-            { title: 'Cancelled By Admin', content: orderCards.filter(orderCard => orderCard.status === 'CanceledByAdmin').length, icon: "bi bi-people orange" },
+            { title: 'Approved', content: orderCards.filter(orderCard => orderCard.status === 'Approved').length, icon: "bi bi-people orange" },
+            { title: 'Ready For Pickup', content: orderCards.filter(orderCard => orderCard.status === 'Ready').length, icon: "bi bi-people orange" },
+            { title: 'Picked', content: orderCards.filter(orderCard => orderCard.status === 'Picked').length, icon: "bi bi-people orange" },
         ]
     }
 

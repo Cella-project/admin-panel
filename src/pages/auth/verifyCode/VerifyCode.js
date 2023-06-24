@@ -31,7 +31,7 @@ const VerifyCode = () => {
 
     // Set the timer for 5 minutes
     const timer = setTimeout(() => {
-      router.navigate('/login/forget-password');
+      router.navigate('/admin-panel/login/forget-password');
       dispatch(popupMutation.popFeedBack({
         type: 'info',
         msg: 'Your verification code has expired. Please request a new one.',
@@ -65,7 +65,7 @@ const VerifyCode = () => {
     <form noValidate onSubmit={handleVerifyOTP} className="verify flex-col-center white-bg radius-5px shadow-2px">
       <Timer className={'gold margin-12px-V'} sec={5 * 60} />
       <div className="verify--info full-width flex-col-left-start gray-bg radius-5px">
-        <p className={`space-none inter ${mode === 'dark-mode' ? 'white' : 'gray'} margin-4px-V size-12px`}>
+        <p className={`space-none inter ${mode === 'dark-mode' ? 'white' : 'white'} margin-4px-V size-12px`}>
           A Reset code has been sent to your email address. Please enter the code below.
         </p>
       </div>
@@ -95,7 +95,7 @@ const VerifyCode = () => {
         VERIFY
       </button>
       <div className="full-width flex-row-left-start">
-        <NavLink to={'/login/forget-password'}
+        <NavLink to={'/admin-panel/login/forget-password'}
           style={{ textDecoration: 'none' }}
           className={`space-none inter ${mode === 'dark-mode' ? 'gray' : 'orange'} size-14px margin-12px-H pointer`}>
           didn't receive a code?, Try again.

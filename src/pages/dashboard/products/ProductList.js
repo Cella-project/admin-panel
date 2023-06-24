@@ -38,13 +38,13 @@ const ProductList = () => {
 
   const braudCramb = (storeID && storeData !== null) ? (
     <>
-      <Link to="/products" className="gray pointer lists-card--link">Products</Link>
+      <Link to="/admin-panel/products" className="gray pointer lists-card--link">Products</Link>
       <span> / </span>
       <span>{storeData.storeName}</span>
     </>
   ) : (categoryID && subCategoryData !== null) ? (
     <>
-      <Link to="/products" className="gray pointer lists-card--link">Products</Link>
+      <Link to="/admin-panel/products" className="gray pointer lists-card--link">Products</Link>
       <span> / </span>
       <span>{subCategoryData.title}</span>
     </>
@@ -137,9 +137,9 @@ const ProductList = () => {
       });
 
     const counts = products.reduce((acc, product) => {
-      if (product.status === 'Active' && product.quantity > 0) {
+      if (product.status === 'Active' && product.avilableQuantity > 0) {
         acc.activeCount++; // Active and has quantity
-      } else if (product.status === 'Active' && product.quantity === 0) {
+      } else if (product.status === 'Active' && product.avilableQuantity === 0) {
         acc.outOfStockCount++; // Active but no quantity
       } else if (product.status === 'InActive') {
         acc.inactiveCount++; // Inactive
@@ -181,7 +181,7 @@ const ProductList = () => {
       </div>
       <div className='flex-row-top-start'>
         <Search width={'width-90-100'} page={'Products'} onSearch={handleSearch} />
-        <Link to={`/products/addProduct`} className='pointer flex-row-left-start2col flex-wrap'>
+        <Link to={`/admin-panel/products/addProduct`} className='pointer flex-row-left-start2col flex-wrap'>
           <div className='add-icon flex-row-center size-34px orange-bg radius-circular pointer'>
             <i className="bi bi-plus-lg white" />
           </div>

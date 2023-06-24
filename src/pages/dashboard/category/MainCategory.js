@@ -126,7 +126,7 @@ const MainCategory = () => {
                     );
                 })}
                 {specialityData && specialityData._id &&
-                    <Link to={`/specialty/specialtyControl/${specialityData._id}`} className={`flex-row-center main-category--control full-width orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
+                    <Link to={`/admin-panel/specialty/specialtyControl/${specialityData._id}`} className={`flex-row-center main-category--control full-width orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
                         Speciality Control
                     </Link>
                 }

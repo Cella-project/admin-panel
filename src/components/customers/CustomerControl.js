@@ -17,7 +17,7 @@ const CustomerControl = ({ id }) => {
   //handle delete 
   const handleDelete = () => {
     dispatch(customerActions.deleteCustomer(id, () => {
-      router.navigate("/customers");
+      router.navigate("/admin-panel/customers");
     }))
   }
 

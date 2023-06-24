@@ -38,7 +38,7 @@ const Home = () => {
   ]
 
   if (customers !== null && products !== null && order !== null) {
-    const sales = order.reduce((total, order) => total + order.total, 0);
+    const sales = order.filter(order => order.status === 'Delivered').reduce((total, order) => total + order.total, 0);
 
     cards = [
       { title: 'Sales', content: sales.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") },
@@ -73,7 +73,7 @@ const Home = () => {
         </div>
         <div className="full-width flex-row2col home">
           {storeApplications !== null && (
-            <Link to={`/stores/storeApplications`} className={`home--application-container full-width orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
+            <Link to={`/admin-panel/stores/storeApplications`} className={`home--application-container full-width orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
               Application Stores
               {storeApplications.filter(storeApplication => storeApplication.status === 'Pending').length > 0 && (
                 <div className='home--pending-badge shadow-5px white font-bold red-bg size-12px flex-row-center'>
@@ -83,7 +83,7 @@ const Home = () => {
             </Link>
           )}
           {driverApplications !== null && (
-            <Link to={`/drivers/driverApplications`} className={`home--application-container full-width orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
+            <Link to={`/admin-panel/drivers/driverApplications`} className={`home--application-container full-width orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
               Application Drivers
               {driverApplications.filter(driverApplication => driverApplication.status === 'Pending').length > 0 && (
                 <div className='home--pending-badge red-bg size-12px font-bold flex-row-center'>
@@ -109,7 +109,7 @@ const Home = () => {
                 </PerfectScrollbar>
                 : <Loading />
               }
-              <Link to={`/Products`} className="pointer lists-card--link">
+              <Link to={`/admin-panel/Products`} className="pointer lists-card--link">
                 <i className="bi bi-arrow-right flex-row-right-start"></i>
               </Link>
             </OrangeCard>
@@ -125,7 +125,7 @@ const Home = () => {
                     ))}
                 </PerfectScrollbar> : <Loading />
               }
-              <Link to={`/OrdersHistory`} className="pointer lists-card--link">
+              <Link to={`/admin-panel/OrdersHistory`} className="pointer lists-card--link">
                 <i className="bi bi-arrow-right flex-row-right-start"></i>
               </Link>
             </OrangeCard>

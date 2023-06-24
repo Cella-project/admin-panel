@@ -48,7 +48,7 @@ const DeliveryList = () => {
       content = sorteddriverApplications.map((driverApplication, index) => {
         return (
           <ListsCard key={index}>
-            <Link to={`/drivers/driverApplications/${driverApplication._id}`} className='link pointer full-width flex-row-left-start2col'>
+            <Link to={`/admin-panel/drivers/driverApplications/${driverApplication._id}`} className='link pointer full-width flex-row-left-start2col'>
               <div className='flex-row-left-start full-width'>
                 <div className='lists-card--img radius-circular flex-row-left-start'>
                   {driverApplication.img === 'No Image' ?

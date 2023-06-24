@@ -154,7 +154,7 @@ const StoreApplicationDetails = () => {
                         })
                     }
                   </PerfectScrollbar>
-                  <Link to={`/Products`} className="pointer lists-card--link">
+                  <Link to={`/admin-panel/Products`} className="pointer lists-card--link">
                     <i className="bi bi-arrow-right flex-row-right-start"></i>
                   </Link>
                 </OrangeCard>
@@ -176,7 +176,7 @@ const StoreApplicationDetails = () => {
                   );
                 })} */}
                   {/* </PerfectScrollbar> */}
-                  <Link to={`/vouchers`} className="pointer bi bi-arrow-right flex-row-right-start lists-card--link" />
+                  <Link to={`/admin-panel/vouchers`} className="pointer bi bi-arrow-right flex-row-right-start lists-card--link" />
                 </OrangeCard>
                 <OrangeCard title="Reviews">
                   {/* <PerfectScrollbar className="store-application-details--scroll--cont full-width flex-col-top-start"> */}
@@ -196,7 +196,7 @@ const StoreApplicationDetails = () => {
                   )
                 })} */}
                   {/* </PerfectScrollbar> */}
-                  <Link to={`/Reviews`} className="pointer lists-card--link">
+                  <Link to={`/admin-panel/Reviews`} className="pointer lists-card--link">
                     <i className="bi bi-arrow-right flex-row-right-start"></i>
                   </Link>
                 </OrangeCard>
