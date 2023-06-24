@@ -30,6 +30,7 @@ import VerifyOTP from "../verifyEmail/VerifyOTP";
 
 import './PopupForm.scss';
 
+
 const Popup = ({ popupToggle, header, data }) => {
     let popupRef = useRef();
     const mode = useSelector(state => state.theme.mode);
