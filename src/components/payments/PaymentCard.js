@@ -31,7 +31,7 @@ const PaymentCard = ({ payment }) => {
             <div className='width-30-100 margin-2px-V flex-row-left-start'>
                 <span className='lists-card--info--disc--hide margin-6px-H font-bold'>Title: </span>
                 <input
-                    className={`payments-card--input${editMode ? '--editing' : ''} ${mode === 'dark-mode' ? 'gray' : 'white'}`}
+                    className={`payments-card--input${editMode ? '--editing' : ''} gray`}
                     value={paymentTitle}
                     onChange={(e) => setPaymentTitle(e.target.value)}
                     disabled={!editMode}
