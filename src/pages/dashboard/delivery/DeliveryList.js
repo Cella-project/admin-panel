@@ -123,7 +123,7 @@ const DeliveryList = () => {
         filtereddrivers.map((driver) => {
           return (
             <ListsCard key={driver._id}>
-              <Link to={`/drivers/${driver._id}`} className='link pointer full-width flex-row-left-start2col'>
+              <Link to={`/admin-panel/drivers/${driver._id}`} className='link pointer full-width flex-row-left-start2col'>
                 <div className='flex-row-left-start full-width'>
                   <div className='lists-card--img radius-circular flex-row-left-start'>
                     {driver.img === 'No Image' ?
@@ -207,7 +207,7 @@ const DeliveryList = () => {
           })
         }
         {driverApplications !== null && (
-          <Link to={`/drivers/driverApplications`} className={`application-container full-width orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
+          <Link to={`/admin-panel/drivers/driverApplications`} className={`application-container full-width orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} inter pointer radius-10px shadow-2px`}>
             Application Drivers
             {driverApplications.filter(driverApplication => driverApplication.status === 'Pending').length > 0 && (
               <div className='pending-badge red-bg size-12px font-bold flex-row-center'>

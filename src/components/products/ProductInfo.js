@@ -99,7 +99,7 @@ export const ProductInfo = ({ product }) => {
         <div className="flex-col-left-start gray size-24px margin-8px-V font-bold">
           {product.title}
         </div>
-        <Link to={`/stores/${product.store._id}`} className={`pointer lists-card--link product-info--store size-20px margin-8px-V ${mode === 'dark-mode' ? 'gray' : 'orange'}`}>
+        <Link to={`/admin-panel/stores/${product.store._id}`} className={`pointer lists-card--link product-info--store size-20px margin-8px-V ${mode === 'dark-mode' ? 'gray' : 'orange'}`}>
           Store : {product.store.storeName}
         </Link>
         <div className="product-info-details">{product.description}</div>

@@ -181,7 +181,7 @@ const ProductList = () => {
       </div>
       <div className='flex-row-top-start'>
         <Search width={'width-90-100'} page={'Products'} onSearch={handleSearch} />
-        <Link to={`/products/addProduct`} className='pointer flex-row-left-start2col flex-wrap'>
+        <Link to={`/admin-panel/products/addProduct`} className='pointer flex-row-left-start2col flex-wrap'>
           <div className='add-icon flex-row-center size-34px orange-bg radius-circular pointer'>
             <i className="bi bi-plus-lg white" />
           </div>

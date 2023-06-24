@@ -18,7 +18,7 @@ const Login = () => {
 
         if (localStorage.getItem('Access Token')) {
             // Redirect to the dashboard
-            navigate('/');
+            navigate('/admin-panel/');
         }
     }, [navigate]);
 
@@ -133,7 +133,7 @@ const Login = () => {
                 LOG IN
             </button>
             <div className="full-width flex-row-left-start">
-                <NavLink to={'/login/forget-password'} style={{ textDecoration: 'none' }} className={`space-none inter ${mode === 'dark-mode' ? 'gray' : 'orange'} size-14px margin-12px-H pointer`}>Forget password</NavLink>
+                <NavLink to={'/admin-panel/login/forget-password'} style={{ textDecoration: 'none' }} className={`space-none inter ${mode === 'dark-mode' ? 'gray' : 'orange'} size-14px margin-12px-H pointer`}>Forget password</NavLink>
             </div>
         </form>
     );

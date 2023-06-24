@@ -120,7 +120,7 @@ const StoreDetails = () => {
                     <p className="gray inter size-20px font-bold">No orders to display</p>
                   )}
                 </PerfectScrollbar>
-                <Link to={`/Orders?store=${store._id}`} className="pointer lists-card--link">
+                <Link to={`/admin-panel/Orders?store=${store._id}`} className="pointer lists-card--link">
                   <i className="bi bi-arrow-right flex-row-right-start"></i>
                 </Link>
               </OrangeCard>
@@ -139,7 +139,7 @@ const StoreDetails = () => {
                   )}
 
                 </PerfectScrollbar>
-                <Link to={`/OrdersHistory?store=${store._id}`} className="pointer lists-card--link">
+                <Link to={`/admin-panel/OrdersHistory?store=${store._id}`} className="pointer lists-card--link">
                   <i className="bi bi-arrow-right flex-row-right-start"></i>
                 </Link>
               </OrangeCard>
@@ -242,7 +242,7 @@ const StoreDetails = () => {
                           })}
                       </PerfectScrollbar>
                     }
-                    <Link to={`/products?store=${store._id}`} className="pointer lists-card--link">
+                    <Link to={`/admin-panel/products?store=${store._id}`} className="pointer lists-card--link">
                       <i className="bi bi-arrow-right flex-row-right-start"></i>
                     </Link>
                   </OrangeCard>
@@ -264,7 +264,7 @@ const StoreDetails = () => {
                   );
                 })} */}
                     {/* </PerfectScrollbar> */}
-                    <Link to={`/vouchers`} className="pointer bi bi-arrow-right flex-row-right-start lists-card--link" />
+                    <Link to={`/admin-panel/vouchers`} className="pointer bi bi-arrow-right flex-row-right-start lists-card--link" />
                   </OrangeCard>
                   <OrangeCard title="Reviews">
                     {/* <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start"> */}
@@ -284,7 +284,7 @@ const StoreDetails = () => {
                   )
                 })} */}
                     {/* </PerfectScrollbar> */}
-                    <Link to={`/Reviews`} className="pointer lists-card--link">
+                    <Link to={`/admin-panel/Reviews`} className="pointer lists-card--link">
                       <i className="bi bi-arrow-right flex-row-right-start"></i>
                     </Link>
                   </OrangeCard>

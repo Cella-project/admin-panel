@@ -44,7 +44,7 @@ const NavBar = ({ menuToggle }) => {
                             Notification
                         </div>
                     </div>
-                    <Link to={'/profile'}>
+                    <Link to={'/admin-panel/profile'}>
                         <div className='nav-bar--card flex-row-center white-bg radius-15px margin-6px-H shadow-2px pointer'>
                             <div className='nav-bar--card--img flex-row-center radius-circular'>
                                 {userData.img === 'NO IMAGE' ?

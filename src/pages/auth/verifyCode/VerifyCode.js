@@ -31,7 +31,7 @@ const VerifyCode = () => {
 
     // Set the timer for 5 minutes
     const timer = setTimeout(() => {
-      router.navigate('/login/forget-password');
+      router.navigate('/admin-panel/login/forget-password');
       dispatch(popupMutation.popFeedBack({
         type: 'info',
         msg: 'Your verification code has expired. Please request a new one.',
@@ -95,7 +95,7 @@ const VerifyCode = () => {
         VERIFY
       </button>
       <div className="full-width flex-row-left-start">
-        <NavLink to={'/login/forget-password'}
+        <NavLink to={'/admin-panel/login/forget-password'}
           style={{ textDecoration: 'none' }}
           className={`space-none inter ${mode === 'dark-mode' ? 'gray' : 'orange'} size-14px margin-12px-H pointer`}>
           didn't receive a code?, Try again.

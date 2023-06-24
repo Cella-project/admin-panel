@@ -11,7 +11,7 @@ const OrderControl = ({ id }) => {
   //handle change state
   const handleCancel = async () => {
     dispatch(orderActions.cancelOrder(id , () => {
-      router.navigate(`/ordersHistory/${id}`);
+      router.navigate(`/admin-panel/ordersHistory/${id}`);
       }
       ))
   };

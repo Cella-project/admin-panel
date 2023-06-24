@@ -110,7 +110,7 @@ const SpecialityCard = ({ speciality }) => {
                     }
                 </div>
                 {!editMode && <div className='flex-row-right-start full-width' >
-                    <Link to={`/specialty/${speciality._id}`} className="flex-row-right-start margin-6px-V size-12px pointer lists-card--link speciality-card--info--child">
+                    <Link to={`/admin-panel/specialty/${speciality._id}`} className="flex-row-right-start margin-6px-V size-12px pointer lists-card--link speciality-card--info--child">
                         Main Categories
                         <i className="bi bi-arrow-right margin-4px-H" style={{ width: 'fit-content' }} />
                     </Link>

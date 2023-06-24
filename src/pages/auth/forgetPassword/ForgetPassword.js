@@ -73,7 +73,7 @@ const ForgetPassword = () => {
                 REQUEST PASSWORD RESET
             </button>
             <div className="full-width flex-row-left-start">
-                <NavLink to={'/login'} style={{ textDecoration: 'none' }} className={`space-none inter ${mode === 'dark-mode' ? 'gray' : 'orange'} size-14px margin-12px-H pointer`}>Login</NavLink>
+                <NavLink to={'/admin-panel/login'} style={{ textDecoration: 'none' }} className={`space-none inter ${mode === 'dark-mode' ? 'gray' : 'orange'} size-14px margin-12px-H pointer`}>Login</NavLink>
             </div>
         </form>
     );

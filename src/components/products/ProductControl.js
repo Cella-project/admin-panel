@@ -37,7 +37,7 @@ const ProductControl = ({ id }) => {
   }
 
   const handleEdit =()=>{
-    navigate(`/products/editProduct/${id}`);
+    navigate(`/admin-panel/products/editProduct/${id}`);
   }
 
 
