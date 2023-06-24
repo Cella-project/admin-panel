@@ -38,7 +38,7 @@ const Home = () => {
   ]
 
   if (customers !== null && products !== null && order !== null) {
-    const sales = order.filter(order => order.status === 'delivered').reduce((total, order) => total + order.total, 0);
+    const sales = order.filter(order => order.status === 'Delivered').reduce((total, order) => total + order.total, 0);
 
     cards = [
       { title: 'Sales', content: sales.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") },
