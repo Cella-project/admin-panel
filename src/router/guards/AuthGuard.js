@@ -6,7 +6,7 @@ const AuthGuard = ({ component: Component, ...rest }) => {
   return isLoggedIn ? (
     <Component {...rest} />
   ) : (
-    <Navigate to="/login" />
+    <Navigate to="/admin-panel/login" />
   );
 };
 

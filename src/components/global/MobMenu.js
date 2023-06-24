@@ -55,7 +55,7 @@ const MobMenu = ({ menuToggle }) => {
                             menuToggle(false)
                             window.onscroll = function () { };
                         }}
-                        end to={'/'} className="margin-8px-V"
+                        end to={'/admin-panel/'} className="margin-8px-V"
                     >
                         <i className={`bi bi-house-door ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`mob-menu--body--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Home</span>
                     </NavLink>
@@ -64,7 +64,7 @@ const MobMenu = ({ menuToggle }) => {
                             menuToggle(false)
                             window.onscroll = function () { };
                         }}
-                        to={'/admins'} className="margin-8px-V"
+                        to={'/admin-panel/admins'} className="margin-8px-V"
                     >
                         <i className={`bi bi-person-square ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`mob-menu--body--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Admins</span>
                     </NavLink>
@@ -73,7 +73,7 @@ const MobMenu = ({ menuToggle }) => {
                             menuToggle(false)
                             window.onscroll = function () { };
                         }}
-                        to={'/stores'} className="margin-8px-V"
+                        to={'/admin-panel/stores'} className="margin-8px-V"
                     >
                         <i className={`bi bi-shop-window ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`mob-menu--body--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Stores</span>
                     </NavLink>
@@ -82,7 +82,7 @@ const MobMenu = ({ menuToggle }) => {
                             menuToggle(false)
                             window.onscroll = function () { };
                         }}
-                        to={'/customers'} className="margin-8px-V"
+                        to={'/admin-panel/customers'} className="margin-8px-V"
                     >
                         <i className={`bi bi-people ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`mob-menu--body--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Customers</span>
                     </NavLink>
@@ -91,7 +91,7 @@ const MobMenu = ({ menuToggle }) => {
                             menuToggle(false)
                             window.onscroll = function () { };
                         }}
-                        to={'/specialty'} className="margin-8px-V"
+                        to={'/admin-panel/specialty'} className="margin-8px-V"
                     >
                         <i className={`bi bi-patch-check ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`mob-menu--body--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Specialty</span>
                     </NavLink>
@@ -100,7 +100,7 @@ const MobMenu = ({ menuToggle }) => {
                             menuToggle(false)
                             window.onscroll = function () { };
                         }}
-                        to={'/products'} className="margin-8px-V"
+                        to={'/admin-panel/products'} className="margin-8px-V"
                     >
                         <i className={`bi bi-box-seam ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`mob-menu--body--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Products</span>
                     </NavLink>
@@ -109,7 +109,7 @@ const MobMenu = ({ menuToggle }) => {
                             menuToggle(false)
                             window.onscroll = function () { };
                         }}
-                        to={'/orders'} className="margin-8px-V"
+                        to={'/admin-panel/orders'} className="margin-8px-V"
                     >
                         <i className={`bi bi-receipt ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`mob-menu--body--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Orders</span>
                     </NavLink>
@@ -118,7 +118,7 @@ const MobMenu = ({ menuToggle }) => {
                             menuToggle(false)
                             window.onscroll = function () { };
                         }}
-                        to={'/ordersHistory'} className="margin-8px-V"
+                        to={'/admin-panel/ordersHistory'} className="margin-8px-V"
                     >
                         <i className={`bi bi-hourglass-split ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`mob-menu--body--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Order History</span>
                     </NavLink>
@@ -127,7 +127,7 @@ const MobMenu = ({ menuToggle }) => {
                             menuToggle(false)
                             window.onscroll = function () { };
                         }}
-                        to={'/drivers'} className="margin-8px-V"
+                        to={'/admin-panel/drivers'} className="margin-8px-V"
                     >
                         <i className={`bi bi-truck ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`mob-menu--body--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Drivers</span>
                     </NavLink>
@@ -136,7 +136,7 @@ const MobMenu = ({ menuToggle }) => {
                             menuToggle(false)
                             window.onscroll = function () { };
                         }}
-                        to={'/reviews'} className="margin-8px-V"
+                        to={'/admin-panel/reviews'} className="margin-8px-V"
                     >
                         <i className={`bi bi-stars ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`mob-menu--body--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Reviews</span>
                     </NavLink>
@@ -145,7 +145,7 @@ const MobMenu = ({ menuToggle }) => {
                             menuToggle(false)
                             window.onscroll = function () { };
                         }}
-                        to={'/vouchers'} className="margin-8px-V"
+                        to={'/admin-panel/vouchers'} className="margin-8px-V"
                     >
                         <i className={`bi bi-tags ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`mob-menu--body--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Vouchers</span>
                     </NavLink>
@@ -154,7 +154,7 @@ const MobMenu = ({ menuToggle }) => {
                             menuToggle(false)
                             window.onscroll = function () { };
                         }}
-                        to={'/payments'} className="margin-8px-V"
+                        to={'/admin-panel/payments'} className="margin-8px-V"
                     >
                         <i className={`bi bi-credit-card-2-front ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`mob-menu--body--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Payment Methods</span>
                     </NavLink>
@@ -163,7 +163,7 @@ const MobMenu = ({ menuToggle }) => {
                             menuToggle(false)
                             window.onscroll = function () { };
                         }}
-                        to={'/logActivities'} className="margin-8px-V"
+                        to={'/admin-panel/logActivities'} className="margin-8px-V"
                     >
                         <i className={`bi bi-clock-history ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`mob-menu--body--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Log Activity</span>
                     </NavLink>
@@ -172,11 +172,11 @@ const MobMenu = ({ menuToggle }) => {
                             menuToggle(false)
                             window.onscroll = function () { };
                         }}
-                        to={'/comp&suggestions'} className="margin-8px-V"
+                        to={'/admin-panel/comp&suggestions'} className="margin-8px-V"
                     >
                         <i className={`bi bi-exclamation-triangle ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`mob-menu--body--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Comp & Suggestions</span>
                     </NavLink>
-                    <NavLink onClick={handleLogout} to={'/login'} className="margin-8px-V"
+                    <NavLink onClick={handleLogout} to={'/admin-panel/login'} className="margin-8px-V"
                     >
                         <i className={`bi bi-door-open ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`mob-menu--body--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Log out</span>
                     </NavLink>

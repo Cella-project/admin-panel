@@ -29,7 +29,7 @@ const authActions = {
                     localStorage.setItem('Access Token', response.data.token.access);
                     localStorage.setItem('Refresh Token', response.data.token.refresh);
                     
-                    router.navigate('/');
+                    router.navigate('/admin-panel');
 
                     socket.auth = { token: response.data.token.access }; 
                     socket.connect();   
@@ -73,7 +73,7 @@ const authActions = {
                 if (error.response.status === 401 && error.response.message === 'jwt expired') {
                     localStorage.removeItem('Access Token');
                     localStorage.removeItem('Refresh Token');
-                    router.navigate('/login');
+                    router.navigate('/admin-panel/login');
                 }
                 errorHandler(dispatch, error.response);
             }
@@ -88,7 +88,7 @@ const authActions = {
                 const response = await Axios.post('/api/admin-auth/forget-password', payload);
                 if (response.status === 200) {
                     dispatch(authMutations.setEmail(payload.email));
-                    router.navigate('/login/verify-code');
+                    router.navigate('/admin-panel/login/verify-code');
                     dispatch(popupMutation.clearPopPanel());
                     dispatch(stickyMutations.pushNote({
                         type: 'success',
@@ -109,7 +109,7 @@ const authActions = {
                 const response = await Axios.post('/api/admin-auth/validate-otp', payload);
                 if (response.status === 200) {
                     dispatch(authMutations.setOTP(payload.otp));
-                    router.navigate('/login/reset-password');
+                    router.navigate('/admin-panel/login/reset-password');
                     dispatch(popupMutation.clearPopPanel());
                     dispatch(stickyMutations.pushNote({
                         type: 'success',
@@ -130,7 +130,7 @@ const authActions = {
                 const response = await Axios.put('/api/admin-auth/reset-password', payload);
                 if (response.status === 200) {
                     dispatch(authMutations.clearForgetPasswordCycle());
-                    router.navigate('/login');
+                    router.navigate('/admin-panel/login');
                     dispatch(popupMutation.clearPopPanel());
                     dispatch(stickyMutations.pushNote({
                         type: 'success',
@@ -210,7 +210,7 @@ const authActions = {
 
             socket.disconnect();
 
-            router.navigate('/login');
+            router.navigate('/admin-panel/login');
         }
     }
 }
