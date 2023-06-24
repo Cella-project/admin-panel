@@ -23,7 +23,7 @@ const DeliveryApplicationControl = ({id,status}) => {
   //handle delete 
   const handleDelete = () => {
     dispatch(driverApplicationActions.deleteDriverApplication(id, () => {
-      router.navigate("/drivers/driverApplications");      
+      router.navigate("/admin-panel/drivers/driverApplications");      
     }))
   }
 

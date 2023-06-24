@@ -19,7 +19,7 @@ const StoreControl = ({ id }) => {
   //handle delete 
   const handleDelete = () => {
     dispatch(storeActions.deleteStore(id, () => {
-      router.navigate("/stores");
+      router.navigate("/admin-panel/stores");
     }))
   }
 

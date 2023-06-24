@@ -19,7 +19,7 @@ const OrderControl = ({ id }) => {
   //handle delete 
   const handleDelete = () => {
     dispatch(orderActions.deleteOrder(id, () => {
-      router.navigate("/orders");
+      router.navigate("/admin-panel/orders");
     }))
   }
 

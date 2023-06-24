@@ -38,13 +38,13 @@ const ProductList = () => {
 
   const braudCramb = (storeID && storeData !== null) ? (
     <>
-      <Link to="/products" className="gray pointer lists-card--link">Products</Link>
+      <Link to="/admin-panel/products" className="gray pointer lists-card--link">Products</Link>
       <span> / </span>
       <span>{storeData.storeName}</span>
     </>
   ) : (categoryID && subCategoryData !== null) ? (
     <>
-      <Link to="/products" className="gray pointer lists-card--link">Products</Link>
+      <Link to="/admin-panel/products" className="gray pointer lists-card--link">Products</Link>
       <span> / </span>
       <span>{subCategoryData.title}</span>
     </>

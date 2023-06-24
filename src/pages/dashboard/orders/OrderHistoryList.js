@@ -50,19 +50,19 @@ const OrderHistoryList = () => {
 
     const braudCramb = (storeID && storeData !== null) ? (
         <>
-            <Link to="/OrdersHistory" className="gray pointer lists-card--link">Order History</Link>
+            <Link to="/admin-panel/OrdersHistory" className="gray pointer lists-card--link">Order History</Link>
             <span> / </span>
             <span>{storeData.storeName}</span>
         </>
     ) : (customerID && customerData !== null) ? (
         <>
-            <Link to="/OrdersHistory" className="gray pointer lists-card--link">Order History</Link>
+            <Link to="/admin-panel/OrdersHistory" className="gray pointer lists-card--link">Order History</Link>
             <span> / </span>
             <span>{customerData.name}</span>
         </>
     ) : (driverID && driverData !== null) ? (
         <>
-            <Link to="/OrdersHistory" className="gray pointer lists-card--link">Order History</Link>
+            <Link to="/admin-panel/OrdersHistory" className="gray pointer lists-card--link">Order History</Link>
             <span> / </span>
             <span>{driverData.name}</span>
         </>

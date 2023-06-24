@@ -17,7 +17,7 @@ const DeliveryControl = ({ id }) => {
   //handle delete 
   const handleDelete = () => {
     dispatch(driverActions.deleteDriver(id, () => {
-      router.navigate("/drivers");
+      router.navigate("/admin-panel/drivers");
     }))
   }
 

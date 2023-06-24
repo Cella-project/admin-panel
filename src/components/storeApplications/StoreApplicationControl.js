@@ -16,7 +16,7 @@ const StoreApplicationControl = ({ id, status }) => {
   //handle delete 
   const handleDelete = () => {
     dispatch(storeApplicationActions.deleteStoreApplication(id, () => {
-      router.navigate("/stores/storeApplications");
+      router.navigate("/admin-panel/stores/storeApplications");
     }))
   }
 
