@@ -1,3 +1,4 @@
+import PushNotification from './PushNotification';
 import React from "react";
 
 import { Outlet } from "react-router-dom";
@@ -93,6 +94,7 @@ const App = () => {
     <div className={`u-disable-touch ${mode}`}>
       {notes.length > 0 && <StickyBoard />}
       {isPopupShown && <Popup />}
+      <PushNotification />
 
       <Outlet />
     </div>

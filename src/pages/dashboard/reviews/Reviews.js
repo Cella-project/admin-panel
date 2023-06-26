@@ -77,7 +77,7 @@ const Reviews = () => {
       </div>
 
       <div className='flex-col-left-start inter gray'>
-        {
+        {/* {
           reviewCards.map((reviewCard, index) => {
             return (
               <ListsCard key={index}>
@@ -92,7 +92,7 @@ const Reviews = () => {
               </ListsCard>
             )
           })
-        }
+        } */}
       </div>
     </div>
   )
