@@ -17,6 +17,7 @@ import paymentMutations from './mutations/payment';
 import productMutations from './mutations/product';
 import themeMutations from './mutations/theme';
 import connectedUsersMutations from './mutations/connectedUsers';
+import reviewMutations from './mutations/reviews';
 
 export {
     authMutations,
@@ -37,5 +38,6 @@ export {
     paymentMutations,
     productMutations,
     themeMutations,
-    connectedUsersMutations
+    connectedUsersMutations,
+    reviewMutations
 }

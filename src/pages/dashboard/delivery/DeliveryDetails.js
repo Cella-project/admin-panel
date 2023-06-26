@@ -9,7 +9,7 @@ import DeliveryControl from "../../../components/delivery/DeliveryControl";
 import ListsCard from "../../../components/common/ListsCard";
 import ExpandDocument from "../../../components/common/ExpandDocument";
 
-import { reviewCards } from "../reviews/Reviews";
+// import { reviewCards } from "../reviews/Reviews";
 
 import "./DeliveryDetails.scss";
 import ReviewCard from "../../../components/reviews/ReviewCard";
@@ -96,7 +96,7 @@ const DeliveryDetails = () => {
             </OrangeCard>
             <OrangeCard title="Reviews">
               <PerfectScrollbar className="delivery-details--scroll--cont full-width flex-col-top-start">
-                {reviewCards.map((reviewCard) => {
+                {/* {reviewCards.map((reviewCard) => {
                   return (
                     reviewCard.type === 'bi bi-truck' && reviewCard.name === delivery.name &&
                     <ListsCard width="full-width">
@@ -110,7 +110,7 @@ const DeliveryDetails = () => {
                       </div>
                     </ListsCard>
                   )
-                })}
+                })} */}
               </PerfectScrollbar>
               <Link to={`/admin-panel/Reviews`} className="pointer lists-card--link">
                 <i className="bi bi-arrow-right flex-row-right-start"></i>

@@ -13,6 +13,7 @@ import driverApplicationActions from './actions/driverApplication';
 import customerActions from './actions/customer';
 import paymentActions from './actions/payment';
 import productActions from './actions/product';
+import reviewActions from './actions/reviews';
 
 export {
     authActions,
@@ -30,4 +31,5 @@ export {
     customerActions,
     paymentActions,
     productActions,
+    reviewActions
 };
