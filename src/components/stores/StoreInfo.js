@@ -35,7 +35,7 @@ const StoreInfo = ({ store }) => {
               name="rating"
               style={{ color: "#FDCC0D" }}
               emptyIcon={<StarBorder className="gray" fontSize='inherit' />}
-              value={store.raing}
+              value={store.rating}
               precision={0.1}
               size={"medium"}
               readOnly

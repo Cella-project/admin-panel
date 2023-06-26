@@ -74,7 +74,15 @@ const DeliveryInfo = ({ delivery }) => {
               {delivery.gender.charAt(0).toUpperCase() + delivery.gender.slice(1)}
             </div>
           </div>
-          <div className="gray">{delivery.country && delivery.city ? `${delivery.country}, ${delivery.city}` : ''}</div>
+          <div className="flex-row-between full-width flex-wrap">
+            <div className="gray">
+              Working Status:
+              <span className={`${delivery.isWorking === true ? 'green' : 'red'} margin-6px-H`}>
+                {delivery.isWorking === true ? 'Working' : 'Not Working'}
+              </span>
+            </div>
+            <div className="gray">{delivery.country && delivery.city ? `${delivery.city}, ${delivery.country}` : ''}</div>
+          </div>
         </div>
       </div>
     </div>
