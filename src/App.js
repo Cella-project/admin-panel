@@ -24,7 +24,6 @@ const App = () => {
   const mode = useSelector(state => state.theme.mode);
   const accessToken = localStorage.getItem('Access Token');
   const refreshToken = localStorage.getItem('Refresh Token');
-  // const user = JSON.parse(localStorage.getItem('User'));
   const user = useSelector(state => state.auth.userData);
 
   const checkAuth = () => {
@@ -71,7 +70,6 @@ const App = () => {
   const refreshTokenHandler = (token) => {
     if (token) {
       dispatch(authActions.refreshToken(token));
-      localStorage.setItem('Refresh Token Time', new Date().getTime());
     }
   };
 

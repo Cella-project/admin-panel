@@ -28,11 +28,11 @@ const authActions = {
                     }));
                     localStorage.setItem('Access Token', response.data.token.access);
                     localStorage.setItem('Refresh Token', response.data.token.refresh);
-                    
+
                     router.navigate('/admin-panel');
 
-                    socket.auth = { token: response.data.token.access }; 
-                    socket.connect();   
+                    socket.auth = { token: response.data.token.access };
+                    socket.connect();
 
                     dispatch(popupMutation.clearPopPanel());
                     dispatch(stickyMutations.pushNote({
@@ -67,6 +67,7 @@ const authActions = {
                     dispatch(authMutations.setToken(response.data.token));
                     localStorage.setItem('Access Token', response.data.token.access);
                     localStorage.setItem('Refresh Token', response.data.token.refresh);
+                    localStorage.setItem('Refresh Token Time', new Date().getTime());
                 }
             }
             catch (error) {
