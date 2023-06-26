@@ -3,28 +3,15 @@ import OrangeCard from '../../../components/common/OrangeCard';
 import Search from '../../../components/common/Search';
 import ListsCard from '../../../components/common/ListsCard';
 import ReviewCard from '../../../components/reviews/ReviewCard';
+import { useDispatch, useSelector } from 'react-redux';
+import { reviewMutations } from '../../../redux/mutations';
+import { reviewActions } from '../../../apis/actions';
 
 import './Reviews.scss';
 
-export const reviewCards = [
-  { reviewShown: false, customer: 'Admin admin', status: 'green', type: 'bi bi-shop-window', name: 'Dima', rating: 2.6 },
-  { reviewShown: false, customer: 'Admin admin', status: 'green', type: 'bi bi-shop-window', name: 'Dima', rating: 2.2 },
-  { reviewShown: false, customer: 'Admin admin', status: 'green', type: 'bi bi-shop-window', name: 'Dima', rating: 3.4 },
-  { reviewShown: false, customer: 'Admin admin', status: 'green', type: 'bi bi-shop-window', name: 'Dima', rating: 4.6 },
-  { reviewShown: false, customer: 'Admin admin', status: 'red', type: 'bi bi-shop-window', name: 'Dima', rating: 5 },
-  { reviewShown: false, customer: 'Admin admin', status: 'red', type: 'bi bi-truck', name: 'Delivery', rating: 5 },
-  { reviewShown: false, customer: 'Admin admin', status: 'red', type: 'bi bi-box-seam', name: 'Blouse', rating: 4 },
-  { reviewShown: false, customer: 'Admin admin', status: 'red', type: 'bi bi-truck', name: 'Delivery', rating: 1 },
-  { reviewShown: false, customer: 'Admin admin', status: 'red', type: 'bi bi-shop-window', name: 'Mr & Mrs', rating: 4.5 },
-  { reviewShown: false, customer: 'Admin admin', status: 'green', type: 'bi bi-shop-window', name: 'Mr & Mrs', rating: 3.5 },
-  { reviewShown: false, customer: 'Admin admin', status: 'green', type: 'bi bi-shop-window', name: 'Mr & Mrs', rating: 4 },
-  { reviewShown: false, customer: 'Admin admin', status: 'green', type: 'bi bi-shop-window', name: 'Open Shop', rating: 1.4 },
-  { reviewShown: false, customer: 'Admin admin', status: 'red', type: 'bi bi-shop-window', name: 'Open Shop', rating: 1.9 },
-  { reviewShown: false, customer: 'Admin admin', status: 'red', type: 'bi bi-shop-window', name: 'Open Shop', rating: 1.8 },
-  { reviewShown: false, customer: 'Admin admin', status: 'red', type: 'bi bi-shop-window', name: 'Open Shop', rating: 2.4 },
-];
-
 const Reviews = () => {
+  const dispatch = useDispatch();
+  const reviewCards = useSelector(state => state.review.reviews);
   let active = 0;
   let deactivated = 0;
   let stores = 0;
@@ -33,7 +20,9 @@ const Reviews = () => {
 
   useEffect(() => {
     document.title = 'Reviews • Admin Panel';
-  }, []);
+    dispatch(reviewMutations.setReviews(null));
+    dispatch(reviewActions.getReviews());
+  }, [dispatch]);
 
   reviewCards.map((card) => {
     if (card.status === 'green') {

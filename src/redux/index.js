@@ -19,6 +19,7 @@ import paymentSlice from './slices/payment';
 import productSlice from './slices/product';
 import themeSlice from './slices/theme';
 import connectedUsersSlice from './slices/connectedUsers';
+import reviewSlice from './slices/reviews';
 
 const store = configureStore({
         reducer: {
@@ -40,7 +41,8 @@ const store = configureStore({
                 payment: paymentSlice.reducer,
                 product: productSlice.reducer,
                 theme: themeSlice.reducer,
-                connectedUsers: connectedUsersSlice.reducer
+                connectedUsers: connectedUsersSlice.reducer,
+                review: reviewSlice.reducer
         }
 });
 
