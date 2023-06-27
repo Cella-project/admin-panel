@@ -72,6 +72,10 @@ const authActions = {
             }
             catch (error) {
                 if (error.response.status === 401 && error.response.message === 'jwt expired') {
+                    stickyMutations.pushNote({
+                        type: 'error',
+                        msg: 'Your session has expired, please login again.'
+                    });
                     localStorage.removeItem('Access Token');
                     localStorage.removeItem('Refresh Token');
                     router.navigate('/admin-panel/login');

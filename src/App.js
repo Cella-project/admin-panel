@@ -28,6 +28,9 @@ const App = () => {
 
   const checkAuth = () => {
     if (accessToken && refreshToken) {
+      if (timeDifference >= 14 * 60 * 1000) {
+        refreshTokenHandler(refreshToken);
+      }
       dispatch(authMutations.setUserData(null));
       dispatch(authActions.getProfile());
       dispatch(authMutations.setAuthData({
@@ -52,12 +55,12 @@ const App = () => {
         }
       });
 
-      socket.on('user:disconnected', userId => {
-        dispatch(connectedUsersMutations.removeUser(userId));
+      socket.on('user:disconnected', user => {
+        dispatch(connectedUsersMutations.removeUser(user));
         if (user.role === 'admin') {
-          dispatch(adminMutations.userDisconnected(userId))
+          dispatch(adminMutations.userDisconnected(user))
         } else if (user.role === 'driver') {
-          dispatch(driverMutations.driverDisconnected(userId))
+          dispatch(driverMutations.driverDisconnected(user))
         }
       });
     } else {
@@ -73,10 +76,6 @@ const App = () => {
     }
   };
 
-  if (timeDifference >= 14 * 60 * 1000) {
-    refreshTokenHandler(refreshToken);
-
-  }
   setInterval(() => {
     refreshTokenHandler(refreshToken);
   }, 14 * 60 * 1000);
