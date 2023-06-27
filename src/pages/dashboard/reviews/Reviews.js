@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import OrangeCard from '../../../components/common/OrangeCard';
 import Search from '../../../components/common/Search';
-import ListsCard from '../../../components/common/ListsCard';
-import ReviewCard from '../../../components/reviews/ReviewCard';
+// import ListsCard from '../../../components/common/ListsCard';
+// import ReviewCard from '../../../components/reviews/ReviewCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { reviewMutations } from '../../../redux/mutations';
 import { reviewActions } from '../../../apis/actions';
