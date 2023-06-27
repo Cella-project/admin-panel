@@ -1,6 +1,10 @@
 .log-activity {
     position: relative;
-    z-index: 2;
+    transition: top 0.3s ease-out; 
+
+    &.loading {
+        top: -100%;
+    }
 
     &--list-header {
         box-sizing: border-box;

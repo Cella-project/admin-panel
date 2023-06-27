@@ -7,12 +7,12 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import CustomerInfo from "../../../components/customers/CustomerInfo";
 import CustomerControl from "../../../components/customers/CustomerControl";
 import OrangeCard from "../../../components/common/OrangeCard";
-import VoucherCard from '../../../components/vouchers/VoucherCard';
 import OrderCard from "../../../components/orders/OrderCard";
 
-import "./CustomerDetails.scss";
 import { customerMutations, orderHistoryMutations, orderMutations } from "../../../redux/mutations";
 import { customerActions, orderHistoryActions, orderActions } from "../../../apis/actions";
+
+import "./CustomerDetails.scss";
 
 const CustomerDetails = () => {
   const params = useParams();
@@ -128,36 +128,6 @@ const CustomerDetails = () => {
               <OrangeCard title="Voucher">
                 {customer.activeVouchers.length === 0 && customer.usedVouchers.length === 0 && (
                   <p className="gray inter size-20px font-bold flex-row-center">No vouchers found.</p>
-                )}
-                {customer.activeVouchers.length > 0 && (
-                  <PerfectScrollbar className="customer-details--scroll--cont full-width flex-col-top-start">
-                    {customer.activeVouchers.map((voucher) => {
-                      return (
-                        <VoucherCard
-                          type={voucher.type}
-                          status={voucher.status}
-                          value={voucher.value}
-                          store={voucher.store}
-                          code={voucher.code}
-                        />
-                      );
-                    })}
-                  </PerfectScrollbar>
-                )}
-                {customer.usedVouchers.length > 0 && (
-                  <PerfectScrollbar className="customer-details--scroll--cont full-width flex-col-top-start">
-                    {customer.usedVouchers.map((voucher) => {
-                      return (
-                        <VoucherCard
-                          type={voucher.type}
-                          status={voucher.status}
-                          value={voucher.value}
-                          store={voucher.store}
-                          code={voucher.code}
-                        />
-                      );
-                    })}
-                  </PerfectScrollbar>
                 )}
                 <Link to={`/admin-panel/vouchers`} className="pointer link">
                   <i className="bi bi-arrow-right flex-row-right-start pointer"></i>

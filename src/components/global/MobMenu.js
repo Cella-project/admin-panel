@@ -145,15 +145,6 @@ const MobMenu = ({ menuToggle }) => {
                             menuToggle(false)
                             window.onscroll = function () { };
                         }}
-                        to={'/admin-panel/vouchers'} className="margin-8px-V"
-                    >
-                        <i className={`bi bi-tags ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`mob-menu--body--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Vouchers</span>
-                    </NavLink>
-                    <NavLink
-                        onClick={() => {
-                            menuToggle(false)
-                            window.onscroll = function () { };
-                        }}
                         to={'/admin-panel/payments'} className="margin-8px-V"
                     >
                         <i className={`bi bi-credit-card-2-front ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`mob-menu--body--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Payment Methods</span>
@@ -166,15 +157,6 @@ const MobMenu = ({ menuToggle }) => {
                         to={'/admin-panel/logActivities'} className="margin-8px-V"
                     >
                         <i className={`bi bi-clock-history ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`mob-menu--body--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Log Activity</span>
-                    </NavLink>
-                    <NavLink
-                        onClick={() => {
-                            menuToggle(false)
-                            window.onscroll = function () { };
-                        }}
-                        to={'/admin-panel/comp&suggestions'} className="margin-8px-V"
-                    >
-                        <i className={`bi bi-exclamation-triangle ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`mob-menu--body--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Comp & Suggestions</span>
                     </NavLink>
                     <NavLink onClick={handleLogout} to={'/admin-panel/login'} className="margin-8px-V"
                     >

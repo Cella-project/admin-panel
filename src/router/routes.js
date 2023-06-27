@@ -52,10 +52,8 @@ import DeliveryApplicationList from "../pages/dashboard/deliveryApplications/Del
 import DeliveryApplicationDetails from "../pages/dashboard/deliveryApplications/DeliveryApplicationDetails";
 
 import Reviews from "../pages/dashboard/reviews/Reviews";
-import Vouchers from "../pages/dashboard/vouchers/Vouchers";
 import Payments from "../pages/dashboard/payments/Payments";
 import LogActivity from "../pages/dashboard/logActivity/LogActivity";
-import ComplainsAndSuggestions from "../pages/dashboard/comp&suggestions/ComplainsAndSuggestions";
 import Profile from "../pages/dashboard/profile/Profile";
 import NotFound from "../components/global/NotFound";
 
@@ -249,20 +247,12 @@ export const routes = [
             element: <Reviews />,
           },
           {
-            path: "vouchers",
-            element: <Vouchers />,
-          },
-          {
             path: "payments",
             element: <Payments />,
           },
           {
             path: "logActivities",
             element: <LogActivity />,
-          },
-          {
-            path: "comp&suggestions",
-            element: <ComplainsAndSuggestions />,
           },
           {
             path: "profile",

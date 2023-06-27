@@ -48,17 +48,11 @@ const SideBar = () => {
         <NavLink to={'/admin-panel/reviews'} >
           <i className={`bi bi-stars margin-8px-V ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`side-bar--cont--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Reviews</span>
         </NavLink>
-        <NavLink to={'/admin-panel/vouchers'} >
-          <i className={`bi bi-tags margin-8px-V ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`side-bar--cont--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Vouchers</span>
-        </NavLink>
         <NavLink to={'/admin-panel/payments'} >
           <i className={`bi bi-credit-card-2-front margin-8px-V ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`side-bar--cont--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Payment Methods</span>
         </NavLink>
         <NavLink to={'/admin-panel/logActivities'} >
           <i className={`bi bi-clock-history margin-8px-V ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`side-bar--cont--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Log Activity</span>
-        </NavLink>
-        <NavLink to={'/admin-panel/comp&suggestions'} >
-          <i className={`bi bi-exclamation-triangle margin-8px-V ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`side-bar--cont--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Comp & Suggestions</span>
         </NavLink>
         <NavLink onClick={handleLogout} to={'/admin-panel/login'} >
           <i className={`bi bi-door-open margin-8px-V ${mode === 'dark-mode' ? 'gray' : 'white'} size-24px`} /><span className={`side-bar--cont--description inter size-20px ${mode === 'dark-mode' ? 'gray' : 'white'}`}>Log out</span>

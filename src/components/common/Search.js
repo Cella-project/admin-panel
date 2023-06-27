@@ -66,7 +66,7 @@ const Search = ({ width, onSearch, page }) => {
       </div>
       {(filterList && page) &&
         <form noValidate className="flex-row-top-between2col search-bar--filter orange-bg shadow-5px full-width gray inter">
-          {(page === 'Admins' || page === 'Stores' || page === 'Customers' || page === 'Products' || page === 'OrdersHistory' || page === 'Orders' || page === 'Drivers') &&
+          {(page === 'Admins' || page === 'Stores' || page === 'Customers' || page === 'Products' || page === 'OrdersHistory' || page === 'Orders' || page === 'Drivers' || page === 'Logs') &&
             <div className="flex-row-top-start size-16px margin-8px-V width-50-100">
               Search by:
               <div className="flex-col-left-start search-bar--filter--options">
@@ -86,7 +86,7 @@ const Search = ({ width, onSearch, page }) => {
                     value='name'
                     onChange={() => {
                       searchType.current = page === 'Stores' ? 'storeName' :
-                        (page === 'Admins' || page === 'Customers' || page === 'Products' || page === 'Drivers') ? 'name' :
+                        (page === 'Admins' || page === 'Customers' || page === 'Products' || page === 'Drivers' || page === 'Logs') ? 'name' :
                           (page === 'OrdersHistory' || page === 'Orders') ? 'customer.name' : 'all';
                       handleSearch();
                     }
@@ -99,7 +99,7 @@ const Search = ({ width, onSearch, page }) => {
                     Name
                   </label>
                 </div>
-                {(page === 'Admins' || page === 'Customers' || page === 'Drivers') &&
+                {(page === 'Admins' || page === 'Customers' || page === 'Drivers' || page === 'Logs') &&
                   <div className="flex-row-left-start">
                     <input type="radio" name="search-type" className="margin-12px-H pointer" id="email"
                       value="email"
@@ -513,6 +513,59 @@ const Search = ({ width, onSearch, page }) => {
 
                 </>
               }
+            </div>
+          }
+          {page === 'Logs' &&
+            <div className="flex-col-left-start size-16px margin-8px-V width-50-100">
+              <div className="flex-row-top-start margin-12px-V">
+                Role:
+                <div className="flex-col-left-start2col search-bar--filter--options">
+                  <div className="flex-row-left-start">
+                    <input type="radio" name="search-roles" className="margin-12px-H pointer" id="all-roles"
+                      value="all" defaultChecked
+                      onChange={() => {
+                        filter.current.status = 'all';
+                        handleSearch();
+                      }
+                      }
+                    />
+                    <label className="pointer" htmlFor="all-roles">All</label>
+                  </div>
+                  <div className="flex-row-left-start">
+                    <input type="radio" name="search-roles" className="margin-12px-H pointer" id="admin"
+                      value="admin"
+                      onChange={() => {
+                        filter.current.status = 'admin';
+                        handleSearch();
+                      }
+                      }
+                    />
+                    <label className="pointer" htmlFor="admin">Admin</label>
+                  </div>
+                  <div className="flex-row-left-start">
+                    <input type="radio" name="search-roles" className="margin-12px-H pointer" id="store"
+                      value="store"
+                      onChange={() => {
+                        filter.current.status = 'store';
+                        handleSearch();
+                      }
+                      }
+                    />
+                    <label className="pointer" htmlFor="store">Store</label>
+                  </div>
+                  <div className="flex-row-left-start">
+                    <input type="radio" name="search-roles" className="margin-12px-H pointer" id="driver"
+                      value="driver"
+                      onChange={() => {
+                        filter.current.status = 'driver';
+                        handleSearch();
+                      }
+                      }
+                    />
+                    <label className="pointer" htmlFor="driver">Driver</label>
+                  </div>
+                </div>
+              </div>
             </div>
           }
         </form>
