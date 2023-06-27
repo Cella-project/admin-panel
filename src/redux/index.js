@@ -20,6 +20,7 @@ import productSlice from './slices/product';
 import themeSlice from './slices/theme';
 import connectedUsersSlice from './slices/connectedUsers';
 import reviewSlice from './slices/reviews';
+import logActivitySlice from './slices/logActivity';
 
 const store = configureStore({
         reducer: {
@@ -42,7 +43,8 @@ const store = configureStore({
                 product: productSlice.reducer,
                 theme: themeSlice.reducer,
                 connectedUsers: connectedUsersSlice.reducer,
-                review: reviewSlice.reducer
+                review: reviewSlice.reducer,
+                log: logActivitySlice.reducer
         }
 });
 

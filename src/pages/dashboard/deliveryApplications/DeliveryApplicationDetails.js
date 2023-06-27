@@ -6,13 +6,13 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import OrangeCard from "../../../components/common/OrangeCard";
 import DeliveryApplicationInfo from "../../../components/deliveryApplications/DeliveryApplicationInfo";
 import DeliveryApplicationControl from "../../../components/deliveryApplications/DeliveryApplicationControl";
-import ListsCard from "../../../components/common/ListsCard";
+// import ListsCard from "../../../components/common/ListsCard";
 import ExpandDocument from "../../../components/common/ExpandDocument";
 
 // import { reviewCards } from "../reviews/Reviews";
 
 import "./DeliveryApplicationDetails.scss";
-import ReviewCard from "../../../components/reviews/ReviewCard";
+// import ReviewCard from "../../../components/reviews/ReviewCard";
 
 import { useSelector, useDispatch } from 'react-redux';
 import { driverApplicationActions } from '../../../apis/actions';

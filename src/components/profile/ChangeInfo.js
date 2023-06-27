@@ -147,7 +147,7 @@ const ChangeInfo = () => {
                         <label className='font-bold size-20px pt-sans margin-12px-H' htmlFor="fullName">Name: </label>
                         <div className={`profile--input--container ${editMode && 'focus'} full-width shadow-2px flex-row-left-start radius-10px ${fullNameClasses}`}>
                             <i className="bi bi-person gray size-18px " />
-                            <input className='profile--input full-width margin-8px-H gray radius-10px'
+                            <input className='profile--input full-width margin-8px-H gray'
                                 type="text"
                                 id="fullName"
                                 disabled={!editMode}
@@ -166,7 +166,7 @@ const ChangeInfo = () => {
                         <label className='font-bold size-20px pt-sans margin-12px-H' htmlFor="email">Email:</label>
                         <div className={`profile--input--container ${editMode && 'focus'} full-width shadow-2px flex-row-left-start radius-10px ${emailClasses}`}>
                             <i className="bi bi-envelope gray size-18px " />
-                            <input className='profile--input full-width margin-8px-H gray radius-10px'
+                            <input className='profile--input full-width margin-8px-H gray'
                                 type="email"
                                 id={'email'}
                                 disabled={!editMode}

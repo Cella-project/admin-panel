@@ -14,6 +14,7 @@ import customerActions from './actions/customer';
 import paymentActions from './actions/payment';
 import productActions from './actions/product';
 import reviewActions from './actions/reviews';
+import logActivityActions from './actions/logActivity';
 
 export {
     authActions,
@@ -31,5 +32,6 @@ export {
     customerActions,
     paymentActions,
     productActions,
-    reviewActions
+    reviewActions,
+    logActivityActions
 };

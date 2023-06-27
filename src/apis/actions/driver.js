@@ -142,6 +142,44 @@ const driverActions = {
             }
         }
     },
+    cashIn(payload, afterSuccess) {
+        return async (dispatch) => {
+            try {
+                dispatch(popupMutation.clearPopPanel());
+                dispatch(stickyMutations.popAllNotes());
+                dispatch(popupMutation.popLoading());
+                const response = await Axios.put(`/api/driver-main/cash-in`, payload);
+                dispatch(driverMutations.setDriverData(response.data.data));
+                dispatch(popupMutation.clearPopPanel());
+                dispatch(stickyMutations.pushNote({
+                    type: 'success',
+                    msg: 'Cash in successfully.'
+                }));
+                afterSuccess();
+            } catch (error) {
+                errorHandler(dispatch, error.response, 'Something went wrong, please try again.');
+            }
+        }
+    },
+    cashOut(payload, afterSuccess) {
+        return async (dispatch) => {
+            try {
+                dispatch(popupMutation.clearPopPanel());
+                dispatch(stickyMutations.popAllNotes());
+                dispatch(popupMutation.popLoading());
+                const response = await Axios.put(`/api/driver-main/cash-out`, payload);
+                dispatch(driverMutations.setDriverData(response.data.data));
+                dispatch(popupMutation.clearPopPanel());
+                dispatch(stickyMutations.pushNote({
+                    type: 'success',
+                    msg: 'Cash out successfully.'
+                }));
+                afterSuccess();
+            } catch (error) {
+                errorHandler(dispatch, error.response, 'Something went wrong, please try again.');
+            }
+        }
+    }
 }
 
 export default driverActions;

@@ -1,7 +1,7 @@
 import Axios from '../AxiosInstance';
 import errorHandler from '../../services/errorHandler';
 
-import { reviewMutations,popupMutation, stickyMutations } from '../../redux/mutations';
+import { reviewMutations, popupMutation, stickyMutations } from '../../redux/mutations';
 
 const reviewActions = {
     getReviews() {

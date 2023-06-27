@@ -5,6 +5,23 @@
     padding: 10px;
   }
 
+  &--cash {
+    box-sizing: border-box;
+    padding: 5px;
+  
+    &--btn {
+      box-sizing: border-box;
+      padding: 5px;
+      border: none;
+      margin: 5px;
+      transition: all 0.2s ease-out;
+
+      &:hover {
+        transform: translateY(3px);
+      }
+    }
+  }
+
   &--scroll--cont {
     width: 100%;
     max-height: 370px;

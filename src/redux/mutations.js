@@ -18,6 +18,7 @@ import productMutations from './mutations/product';
 import themeMutations from './mutations/theme';
 import connectedUsersMutations from './mutations/connectedUsers';
 import reviewMutations from './mutations/reviews';
+import logActivityMutations from './mutations/logActivity';
 
 export {
     authMutations,
@@ -39,5 +40,6 @@ export {
     productMutations,
     themeMutations,
     connectedUsersMutations,
-    reviewMutations
+    reviewMutations,
+    logActivityMutations
 }

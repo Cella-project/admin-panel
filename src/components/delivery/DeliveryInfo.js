@@ -9,8 +9,6 @@ const DeliveryInfo = ({ delivery }) => {
   const calculateAge = (birthDate) => {
     const today = new Date();
     const birthDateObj = new Date(birthDate.split('/').reverse().join('-'));
-    console.log(birthDate);
-    console.log(birthDateObj);
     let age = today.getFullYear() - birthDateObj.getFullYear();
     const monthDiff = today.getMonth() - birthDateObj.getMonth();
 

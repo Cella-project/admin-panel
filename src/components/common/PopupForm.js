@@ -27,9 +27,9 @@ import AddProductSizeForm from "../products/AddProductSizeForm";
 import RefillProductForm from "../products/RefillProductForm";
 import { useSelector } from "react-redux";
 import VerifyOTP from "../verifyEmail/VerifyOTP";
+import Cash from "../../components/delivery/Cash";
 
 import './PopupForm.scss';
-
 
 const Popup = ({ popupToggle, header, data }) => {
     let popupRef = useRef();
@@ -55,7 +55,7 @@ const Popup = ({ popupToggle, header, data }) => {
 
     return (
         <div className={`popup--overlay ${mode === 'dark-mode' ? 'dark' : ''} full-width flex-row-${header === 'Verify Email' ? 'top-start' : 'right-start'}`}>
-            {header === 'Verify Email' ? (
+            {(header === 'Verify Email' || header === 'Cash in' || header === 'Cash out') ? (
                 <div className='popup--verify flex-col-top-start inter white-bg' ref={popupRef}>
                     <img src={mode === 'dark-mode' ? backgroundDark : background} className={mode === 'dark-mode' ? 'dark' : ''} alt='bg' />
 
@@ -64,7 +64,9 @@ const Popup = ({ popupToggle, header, data }) => {
                     </div>
 
                     <div className='popup--verify--cont flex-col-top-start'>
-                        <VerifyOTP popupToggle={popupToggle} />
+                        {header === 'Verify Email' && <VerifyOTP popupToggle={popupToggle} />}
+                        {header === 'Cash in' && <Cash popupToggle={popupToggle} header={header} />}
+                        {header === 'Cash out' && <Cash popupToggle={popupToggle} header={header} />}
                     </div>
                 </div>
             ) : (
