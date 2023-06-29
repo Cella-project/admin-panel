@@ -21,10 +21,11 @@ const Search = ({ width, onSearch, page }) => {
   });
 
   useEffect(() => {
-    dispatch(specialityMutations.setSpecialties(null));
-    dispatch(specialityActions.getSpecialties());
-  }, [dispatch]);
-
+    if (page === 'Stores') {
+      dispatch(specialityMutations.setSpecialties(null));
+      dispatch(specialityActions.getSpecialties());
+    }
+  }, [dispatch, page]);
   const filterClickHandler = (isFilterList) => {
     if (isFilterList === true) {
       query.current = '';

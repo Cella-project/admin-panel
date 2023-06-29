@@ -3,27 +3,52 @@ import ListsCard from '../../../components/common/ListsCard';
 import Search from '../../../components/common/Search';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { logActivityMutations } from '../../../redux/mutations';
-import { logActivityActions } from '../../../apis/actions';
+import { driverMutations, logActivityMutations, storeMutations } from '../../../redux/mutations';
+import { authActions, driverActions, logActivityActions, storeActions } from '../../../apis/actions';
 import Loading from '../../../components/global/Loading';
+import LogActivityCard from '../../../components/logActivity/LogActivityCard';
+import { useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import './LogActivity.scss';
 
 const LogActivity = () => {
   const dispatch = useDispatch();
   const logs = useSelector(state => state.log.logs);
+  const driverData = useSelector(state => state.driver.driverData);
+  const storeData = useSelector(state => state.store.storeData);
+  const userData = useSelector(state => state.auth.userData);
+
   const [offset, setOffset] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [showLoading, setShowLoading] = useState(false);
+
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const storeID = searchParams.get('store');
+  const driverID = searchParams.get('driver');
+  const adminID = searchParams.get('admin');
 
   useEffect(() => {
     document.title = 'Log Activity • Admin Panel';
 
     dispatch(logActivityMutations.setLogs(null));
-  }, [dispatch]);
+
+    if (storeID) {
+      dispatch(storeMutations.setStoreData(null));
+      dispatch(storeActions.getStoreData(storeID));
+    }
+    if (driverID) {
+      dispatch(driverMutations.setDriverData(null));
+      dispatch(driverActions.getDriverData(driverID));
+    }
+    if (adminID) {
+      dispatch(authActions.getProfile());
+    }
+  }, [dispatch, storeID, driverID, adminID]);
 
   useEffect(() => {
-    function handleScroll() {
+    const handleScroll = () => {
       if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
         setOffset((prevOffset) => prevOffset + 10);
       }
@@ -34,15 +59,35 @@ const LogActivity = () => {
     setIsLoading(true);
     setShowLoading(true);
 
-    dispatch(logActivityActions.getAllLogs(offset)).then(() => {
-      setIsLoading(false);
-      setShowLoading(false);
-    });
+    if (storeID) {
+      dispatch(logActivityActions.getStoreLogs(storeID, offset)).then(() => {
+        setIsLoading(false);
+        setShowLoading(false);
+      });
+    }
+    if (driverID) {
+      dispatch(logActivityActions.getDriverLogs(driverID, offset)).then(() => {
+        setIsLoading(false);
+        setShowLoading(false);
+      });
+    }
+    if (adminID) {
+      dispatch(logActivityActions.getAdminLogs(adminID, offset)).then(() => {
+        setIsLoading(false);
+        setShowLoading(false);
+      });
+    }
+    if (!storeID && !driverID && !adminID) {
+      dispatch(logActivityActions.getAllLogs(offset)).then(() => {
+        setIsLoading(false);
+        setShowLoading(false);
+      });
+    }
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [dispatch, offset]);
+  }, [dispatch, offset, storeID, driverID, adminID]);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [searchType, setSearchType] = useState("");
@@ -87,29 +132,7 @@ const LogActivity = () => {
     cards = filteredLogs.map((log) => {
       return (
         <ListsCard key={log._id} width={'full-width'}>
-          <div className='flex-row-left-start full-width'>
-            <div className='lists-card--info gray shadow-5px size-16px margin-10px-V inter radius-15px white-bg full-width flex-row-left-start2col'>
-              <div className='width-25-100 margin-2px-V'>
-                <span className='lists-card--info--disc--hide margin-6px-H font-bold'>Name: </span>{log.user.name}
-              </div>
-              <div className='width-10-100 margin-2px-V orange'>
-                <span className='lists-card--info--disc--hide margin-6px-H font-bold gray'>Role: </span>{log.user.role.toUpperCase()}
-              </div>
-              <div className='width-45-100 margin-2px-V'>
-                <span className='lists-card--info--disc--hide margin-6px-H font-bold'>Action: </span>{log.action}
-              </div>
-              <div className='width-20-100 margin-2px-V'>
-                <span className='lists-card--info--disc--hide margin-6px-H font-bold'>Time stamp: </span>{new Date(log.createdAt.toLocaleString("en-US", { timeZone: "Africa/Cairo" })).toLocaleString("en-US", {
-                  timeZone: "Africa/Cairo",
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                  hour: "numeric",
-                  minute: "numeric",
-                })}
-              </div>
-            </div>
-          </div>
+          <LogActivityCard log={log} />
         </ListsCard>
       );
     });
@@ -123,6 +146,12 @@ const LogActivity = () => {
 
       {logs !== null && logs.length > 0 && (
         <>
+          <div className='log-activity--list-header full-width flex-row-left-start margin-2px-V'>
+            <div className='width-25-100 flex-row-left-start font-bold size-14px' style={{ marginLeft: '-45px' }}>Name</div>
+            <div className='width-10-100 flex-row-left-start font-bold size-14px'>Role</div>
+            <div className='width-45-100 flex-row-left-start font-bold size-14px'>Action</div>
+            <div className='width-20-100 flex-row-left-start font-bold size-14px' style={{ marginLeft: '20px' }}>Time stamp</div>
+          </div>
           {cards}
           {showLoading && <Loading />}
         </>
@@ -132,27 +161,46 @@ const LogActivity = () => {
     </>
   );
 
+  let braudCramb = 'Log Activities';
+
+  if (logs !== null) {
+    if (storeID && storeData) {
+      braudCramb =
+        <>
+          <Link to={'/admin-panel/logActivities'} className='gray pointer lists-card--link'>Log Activities</Link>
+          <span> / </span>
+          <span>{storeData.storeName}</span>
+        </>
+    } else if (driverID && driverData) {
+      braudCramb =
+        <>
+          <Link to={'/admin-panel/logActivities'} className='gray pointer lists-card--link'>Log Activities</Link>
+          <span> / </span>
+          <span>{driverData.name}</span>
+        </>
+    } else if (adminID && userData) {
+      braudCramb =
+        <>
+          <Link to={'/admin-panel/logActivities'} className='gray pointer lists-card--link'>Log Activities</Link>
+          <span> / </span>
+          <span>{userData.name}</span>
+        </>
+    }
+  }
+
   return (
     <div className={`log-activity full-width ${showLoading ? 'loading' : ''}`}>
       <div className="log-activity--braud-cramb gray inter size-16px font-bold">
-        Log Activity
+        {braudCramb}
       </div>
 
       <Search width={'full-width'} page={'Logs'} onSearch={handleSearch} />
 
       <div className='flex-col-left-start full-width inter gray'>
-        <div className='log-activity--list-header full-width flex-row-left-start margin-2px-V'>
-          <div className='width-25-100 flex-row-left-start font-bold size-14px' style={{ marginLeft: '-45px' }}>Name</div>
-          <div className='width-10-100 flex-row-left-start font-bold size-14px'>Role</div>
-          <div className='width-45-100 flex-row-left-start font-bold size-14px'>Action</div>
-          <div className='width-20-100 flex-row-left-start font-bold size-14px' style={{ marginLeft: '10px' }}>Time stamp</div>
-        </div>
-
         {content}
       </div>
     </div>
   )
 }
-
 
 export default LogActivity;

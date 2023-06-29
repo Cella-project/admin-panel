@@ -6,26 +6,28 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import OrangeCard from "../../../components/common/OrangeCard";
 import DeliveryInfo from "../../../components/delivery/DeliveryInfo";
 import DeliveryControl from "../../../components/delivery/DeliveryControl";
-// import ListsCard from "../../../components/common/ListsCard";
 import ExpandDocument from "../../../components/common/ExpandDocument";
-
-// import { reviewCards } from "../reviews/Reviews";
-
-import "./DeliveryDetails.scss";
-// import ReviewCard from "../../../components/reviews/ReviewCard";
 import OrderCard from "../../../components/orders/OrderCard";
 
+// import ReviewCard from "../../../components/reviews/ReviewCard";
+
+
 import { useSelector, useDispatch } from 'react-redux';
-import { driverActions, orderHistoryActions, orderActions } from '../../../apis/actions';
-import { driverMutations, orderHistoryMutations, orderMutations } from '../../../redux/mutations';
+import { driverActions, orderHistoryActions, orderActions, logActivityActions } from '../../../apis/actions';
+import { driverMutations, logActivityMutations, orderHistoryMutations, orderMutations } from '../../../redux/mutations';
 import Popup from "../../../components/common/PopupForm";
+import ListsCard from "../../../components/common/ListsCard";
+import LogActivityCard from "../../../components/logActivity/LogActivityCard";
+
+import "./DeliveryDetails.scss";
 
 const DeliveryDetails = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const delivery = useSelector(state => state.driver.driverData);
-  const order = useSelector((state) => state.order.orders)
-  const orderHistory = useSelector((state) => state.orderHistory.ordersHistory)
+  const order = useSelector((state) => state.order.orders);
+  const orderHistory = useSelector((state) => state.orderHistory.ordersHistory);
+  const logs = useSelector(state => state.log.logs);
   const [popupShown, setPopupShown] = useState(false);
   const [popupHeader, setPopupHeader] = useState('');
 
@@ -36,6 +38,8 @@ const DeliveryDetails = () => {
     dispatch(orderHistoryActions.getOrderHistoryForDriver(params.id));
     dispatch(orderMutations.setOrder(null));
     dispatch(orderActions.getOrderForDriver(params.id));
+    dispatch(logActivityMutations.setLogs(null));
+    dispatch(logActivityActions.getDriverLogs(params.id, 0));
   }, [dispatch, params.id]);
 
 
@@ -86,7 +90,7 @@ const DeliveryDetails = () => {
             </OrangeCard>
             <OrangeCard title="Orders">
               <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
-                {order ? (
+                {(order && order.length > 0) ? (
                   order
                     .slice()
                     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
@@ -95,7 +99,7 @@ const DeliveryDetails = () => {
                       <OrderCard key={order._id} order={order} />
                     ))
                 ) : (
-                  <p className="gray inter size-20px font-bold">No orders to display</p>
+                  <p className="gray inter size-16px font-bold">No orders to display</p>
                 )}
 
               </PerfectScrollbar>
@@ -105,7 +109,7 @@ const DeliveryDetails = () => {
             </OrangeCard>
             <OrangeCard title="Orders History">
               <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
-                {orderHistory ? (
+                {(orderHistory && orderHistory.length > 0) ? (
                   orderHistory
                     .slice()
                     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
@@ -114,7 +118,7 @@ const DeliveryDetails = () => {
                       <OrderCard type='history' key={order._id} order={order} />
                     ))
                 ) : (
-                  <p className="gray inter size-20px font-bold">No orders to display</p>
+                  <p className="gray inter size-16px font-bold">No orders to display</p>
                 )}
 
               </PerfectScrollbar>
@@ -124,7 +128,7 @@ const DeliveryDetails = () => {
             </OrangeCard>
             <OrangeCard title="Reviews">
               {/* <PerfectScrollbar className="delivery-details--scroll--cont full-width flex-col-top-start"> */}
-                {/* {reviewCards.map((reviewCard) => {
+              {/* {reviewCards.map((reviewCard) => {
                   return (
                     reviewCard.type === 'bi bi-truck' && reviewCard.name === delivery.name &&
                     <ListsCard width="full-width">
@@ -141,6 +145,33 @@ const DeliveryDetails = () => {
                 })} */}
               {/* </PerfectScrollbar> */}
               <Link to={`/admin-panel/Reviews`} className="pointer lists-card--link">
+                <i className="bi bi-arrow-right flex-row-right-start"></i>
+              </Link>
+            </OrangeCard>
+            <OrangeCard title="Log Activities">
+              <PerfectScrollbar className="delivery-details--scroll--cont full-width flex-col-top-start">
+                {(logs && logs.length > 0) ?
+                  <div className='flex-col-left-start full-width inter gray'>
+                    <div className='log-activity--list-header full-width flex-row-left-start margin-2px-V'>
+                      <div className='width-25-100 flex-row-left-start font-bold size-14px' style={{ marginLeft: '-45px' }}>Name</div>
+                      <div className='width-10-100 flex-row-left-start font-bold size-14px'>Role</div>
+                      <div className='width-45-100 flex-row-left-start font-bold size-14px'>Action</div>
+                      <div className='width-20-100 flex-row-left-start font-bold size-14px' style={{ marginLeft: '10px' }}>Time stamp</div>
+                    </div>
+                    {logs
+                      .slice(0, 5)
+                      .map((log) => {
+                        return (
+                          <ListsCard key={log._id} width="full-width">
+                            <LogActivityCard log={log} />
+                          </ListsCard>
+                        )
+                      })}
+                  </div>
+                  : <p className="gray inter size-16px font-bold">No logs to display</p>
+                }
+              </PerfectScrollbar>
+              <Link to={`/admin-panel/logActivities?driver=${delivery._id}`} className="pointer lists-card--link">
                 <i className="bi bi-arrow-right flex-row-right-start"></i>
               </Link>
             </OrangeCard>

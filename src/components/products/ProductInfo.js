@@ -107,7 +107,7 @@ export const ProductInfo = ({ product }) => {
         <div className="product-info-details margin-4px-V size-12px gray ">Product material: {product.material}</div>
 
         <div className="full-width flex-row-between">
-          <div className="flex-row-left-start lavender">{product.category.title}</div>
+          <div className="flex-row-left-start lavender">{product.subCategory.title}</div>
           <div className="product-info--price flex-row-center orange margin-2px-V">
             {hasDiscount && (
               <div className='gray'>

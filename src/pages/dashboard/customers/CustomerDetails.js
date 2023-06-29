@@ -54,15 +54,15 @@ const CustomerDetails = () => {
             </div>
           </div>
 
-          <div className="full-width flex-col-left-start customer-details--control">
-            <div className="full-width flex-row-top-between2col">
+          <div className="full-width flex-col-top-start customer-details--control">
+            <div className="full-width flex-row-top-start2col">
               <OrangeCard title="Addresses">
-                {(customer.addresses && customer.addresses.length > 0) && (
-                  <div>
-                    {customer.addresses.map((address) => {
+                <div className="full-width flex-col-top-start">
+                  {(customer.addresses && customer.addresses.length > 0) ? (
+                    customer.addresses.map((address) => {
                       const isExpanded = expandedAddressId === address._id;
                       return (
-                        <div key={address._id}>
+                        <div key={address._id} className="full-width">
                           <div className="pointer flex-col-right-start" onClick={() => toggleAddress(address._id)}>
                             <div className="customer-details--content-container shadow-2px flex-col-center radius-15px margin-8px-V gray inter full-width">
                               <div className="text-shadow">{address.addressTitle}</div>
@@ -121,23 +121,18 @@ const CustomerDetails = () => {
                           </div>
                         </div>
                       )
-                    })}
-                  </div>
-                )}
-              </OrangeCard>
-              <OrangeCard title="Voucher">
-                {customer.activeVouchers.length === 0 && customer.usedVouchers.length === 0 && (
-                  <p className="gray inter size-20px font-bold flex-row-center">No vouchers found.</p>
-                )}
-                <Link to={`/admin-panel/vouchers`} className="pointer link">
-                  <i className="bi bi-arrow-right flex-row-right-start pointer"></i>
-                </Link>
+                    })
+                  ) : (
+                    <p className="gray inter size-16px font-bold">No addresses found.</p>
+                  )
+                  }
+                </div>
               </OrangeCard>
             </div>
-            <div className="full-width flex-col-center">
+            <div className="full-width flex-row-top-between2col">
               <OrangeCard title="Orders">
                 <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
-                  {order ? (
+                  {(order && order.length > 0) ? (
                     order
                       .slice()
                       .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
@@ -146,7 +141,7 @@ const CustomerDetails = () => {
                         <OrderCard key={order._id} order={order} />
                       ))
                   ) : (
-                    <p className="gray inter size-20px font-bold">No orders to display.</p>
+                    <p className="gray inter size-16px font-bold">No orders to display.</p>
                   )}
 
                 </PerfectScrollbar>
@@ -156,7 +151,7 @@ const CustomerDetails = () => {
               </OrangeCard>
               <OrangeCard title="Orders History">
                 <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
-                  {orderHistory ? (
+                  {(orderHistory && orderHistory.length > 0) ? (
                     orderHistory
                       .slice()
                       .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
@@ -165,7 +160,7 @@ const CustomerDetails = () => {
                         <OrderCard type='history' key={order._id} order={order} />
                       ))
                   ) : (
-                    <p className="gray inter size-20px font-bold">No orders to display.</p>
+                    <p className="gray inter size-16px font-bold">No orders to display.</p>
                   )}
                 </PerfectScrollbar>
                 <Link to={`/admin-panel/OrdersHistory?customer=${customer._id}`} className="pointer lists-card--link">

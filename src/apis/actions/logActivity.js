@@ -16,11 +16,14 @@ const logActivityActions = {
 
                 const response = await Axios.get(`/api/log-archive/logs?skip=${offset}&limit=10`);
 
-                
+
                 const newLogs = [...logs, ...response.data.data];
 
                 if (response.data.data.length > 0) {
                     dispatch(logActivityMutations.setLogs(newLogs));
+                }
+                if (response.data.data.length === 0 && logs.length === 0) {
+                    dispatch(logActivityMutations.setLogs([]));
                 }
             } catch (error) {
                 dispatch(logActivityMutations.setLogs([]));
@@ -28,33 +31,72 @@ const logActivityActions = {
             }
         }
     },
-    getAdminLogs(adminId) {
+    getAdminLogs(adminId, offset) {
         return async (dispatch) => {
             try {
-                const response = await Axios.get(`/api/log-archive/admin-logs/${adminId}`);
-                dispatch(logActivityMutations.setLogs(response.data.data));
+                let logs = store.getState().log.logs;
+                if (logs === null) {
+                    logs = [];
+                }
+
+                const response = await Axios.get(`/api/log-archive/admin-logs/${adminId}?skip=${offset}&limit=10`);
+
+                const newLogs = [...logs, ...response.data.data];
+
+                if (response.data.data.length > 0) {
+                    dispatch(logActivityMutations.setLogs(newLogs));
+                }
+                if (response.data.data.length === 0 && logs.length === 0) {
+                    dispatch(logActivityMutations.setLogs([]));
+                }
             } catch (error) {
                 dispatch(logActivityMutations.setLogs([]));
                 errorHandler(dispatch, error.response);
             }
         }
     },
-    getStoreLogs(storeId) {
+    getStoreLogs(storeId, offset) {
         return async (dispatch) => {
             try {
-                const response = await Axios.get(`/api/log-archive/store-logs/${storeId}`);
-                dispatch(logActivityMutations.setLogs(response.data.data));
+                let logs = store.getState().log.logs;
+                if (logs === null) {
+                    logs = [];
+                }
+
+                const response = await Axios.get(`/api/log-archive/store-logs/${storeId}?skip=${offset}&limit=10`);
+
+                const newLogs = [...logs, ...response.data.data];
+
+                if (response.data.data.length > 0) {
+                    dispatch(logActivityMutations.setLogs(newLogs));
+                }
+                if (response.data.data.length === 0 && logs.length === 0) {
+                    dispatch(logActivityMutations.setLogs([]));
+                }
             } catch (error) {
                 dispatch(logActivityMutations.setLogs([]));
                 errorHandler(dispatch, error.response);
             }
         }
     },
-    getDriverLogs(driverId) {
+    getDriverLogs(driverId, offset) {
         return async (dispatch) => {
             try {
-                const response = await Axios.get(`/api/log-archive/driver-logs/${driverId}`);
-                dispatch(logActivityMutations.setLogs(response.data.data));
+                let logs = store.getState().log.logs;
+                if (logs === null) {
+                    logs = [];
+                }
+
+                const response = await Axios.get(`/api/log-archive/driver-logs/${driverId}?skip=${offset}&limit=10`);
+
+                const newLogs = [...logs, ...response.data.data];
+
+                if (response.data.data.length > 0) {
+                    dispatch(logActivityMutations.setLogs(newLogs));
+                }
+                if (response.data.data.length === 0 && logs.length === 0) {
+                    dispatch(logActivityMutations.setLogs([]));
+                }
             } catch (error) {
                 dispatch(logActivityMutations.setLogs([]));
                 errorHandler(dispatch, error.response);
