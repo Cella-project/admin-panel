@@ -38,7 +38,7 @@
         &--size {
             box-sizing: border-box;
             padding: 10px;
-            width: 40px;
+            min-width: 40px;
             height: 40px;
             text-align: center;
         }
@@ -69,38 +69,6 @@
             width: 40px;
             height: 40px;
         }
-        &--info{
-            box-sizing: border-box;
-            padding: 3px;
-            position: absolute;
-            right: -3px;
-            bottom: 1px;
-            transition: all 0.15s ease-in-out;
-
-            &:hover {
-                transform: scale(1.5);
-            }
-        }
-
-        &--size {
-            box-sizing: border-box;
-            padding: 10px;
-            width: 40px;
-            height: 40px;
-            text-align: center;
-        }
-    }
-        &--piece {
-        box-sizing: border-box;
-        position: relative;
-        margin: 5px;
-
-        &--color {
-            box-sizing: border-box;
-            margin: 2px;
-            width: 40px;
-            height: 40px;
-        }
 
         &--delete {
             box-sizing: border-box;
@@ -113,6 +81,32 @@
             &:hover {
                 transform: scale(1.5);
             }
+
+        }
+    }
+        &--piece {
+        box-sizing: border-box;
+        position: relative;
+        margin: 5px;
+
+        &--color {
+            box-sizing: border-box;
+            width: 40px;
+            height: 40px;
+            border-radius: 0 50% 50% 0;
+        }
+
+        &--info{
+            box-sizing: border-box;
+            padding: 10px 4px 10px 4px;
+        }
+
+        &--size {
+            box-sizing: border-box;
+            min-width: 40px;
+            height: 40px;
+            text-align: center;
+            border-radius: 50% 0 0 50%;
 
         }
     }

@@ -78,6 +78,7 @@ const App = () => {
 
   if (!isloaded) {
     checkAuth();
+    console.log(timeDifference/1000/60)
     setInterval(() => {
       refreshTokenHandler(refreshToken);
     }, 14 * 60 * 1000);

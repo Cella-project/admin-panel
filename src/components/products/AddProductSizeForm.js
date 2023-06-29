@@ -1,8 +1,7 @@
-import React ,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
-import { productActions, specialityActions, specialityControlActions } from '../../apis/actions';
-import { specialityMutations } from '../../redux/mutations';
+import { productActions, specialityControlActions } from '../../apis/actions';
 import Loading from '../global/Loading';
 import './AddProductSizeForm.scss';
 
@@ -10,13 +9,12 @@ const AddProductSizeForm = ({ popupToggle }) => {
     const dispatch = useDispatch();
     const mode = useSelector(state => state.theme.mode);
     const sizes = useSelector(state => state.specialityControl.sizes);
-    const category = useSelector(state => state.speciality.categoryData);
     const product = useSelector(state => state.product.productData);
 
     // Handle size Select
     const handleSizeSelect = (size) => {
         const selectedsize = size;
-        const index = product.sizes.findIndex((t) => t.size === selectedsize.target.label);
+        const index = product.sizes.findIndex((t) => t.title === selectedsize.target.label);
         if (index === -1) {
             dispatch(productActions.addProductSize({
                 _id: product._id,
@@ -38,21 +36,8 @@ const AddProductSizeForm = ({ popupToggle }) => {
     };
 
     useEffect(() => {
-        if (category === null) {
-            dispatch(specialityActions.getCategoryData(product.category._id));
-            dispatch(specialityMutations.setCategoryData(product.category._id));
-        }
-        else if (category.type === 'Sub') {
-            dispatch(specialityActions.getCategoryData(category.parent._id));
-            dispatch(specialityMutations.setCategoryData(category.parent._id));
-        }
-        else if (category.type === 'Main') {
-            dispatch(specialityActions.getSpecialityData(category.parent._id));
-            dispatch(specialityMutations.setSpecialityData(category.parent._id));
-            dispatch(specialityControlActions.getSizes(category.parent._id));
-        }
-
-    }, [dispatch, category, product.category._id]);
+        dispatch(specialityControlActions.getSizes(product.speciality._id));
+    }, [dispatch, product.speciality._id]);
 
     const formSubmissionHandler = (e) => {
         e.preventDefault();
@@ -95,13 +80,13 @@ const AddProductSizeForm = ({ popupToggle }) => {
                         <div className="flex-row-between flex-wrap ">
                             {product.sizes.map((size, index) => (
                                 <div key={index} className={`add-product-size--selected-item shadow-2px radius-15px flex-row-between size-14px ${mode === 'dark-mode' ? 'gray-bg' : 'white-bg'} text-shadow`}>
-                                    <span className={`margin-4px-H ${mode === 'dark-mode' ? 'white' : 'gray'}`}>{size.size}</span>
+                                    <span className={`margin-4px-H ${mode === 'dark-mode' ? 'white' : 'gray'}`}>{size.title}</span>
                                     <button className={`add-product-size--input--number--button bi bi-trash pointer ${mode === 'dark-mode' ? 'white' : 'gray'} size-20px pointer `} type="button" onClick={() => handleSizeDelete(size._id)}></button>
                                 </div>
                             ))}
                         </div>
                     </div>
-                ): <Loading />
+                ) : <Loading />
             }
             <div className="add-product--actions flex-row-between full-width">
                 <button

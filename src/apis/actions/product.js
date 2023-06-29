@@ -53,7 +53,7 @@ const productActions = {
             }
         }
     },
-    updateProduct(payload,afterSuccess) {
+    updateProduct(payload, afterSuccess) {
         return async (dispatch) => {
             try {
                 dispatch(popupMutation.clearPopPanel());
@@ -137,7 +137,7 @@ const productActions = {
             }
         }
 
-        
+
     },
     addProductColor(payload) {
         return async (dispatch) => {
@@ -199,7 +199,7 @@ const productActions = {
             }
         }
     },
-    deleteProductSize(payload, afterSuccess) {
+    deleteProductSize(payload) {
         return async (dispatch) => {
             try {
                 dispatch(popupMutation.clearPopPanel());
@@ -216,7 +216,6 @@ const productActions = {
                             type: 'success',
                             msg: 'product size deleted successfully.'
                         }));
-                        afterSuccess();
                     }
                 }));
             } catch (error) {
@@ -281,6 +280,8 @@ const productActions = {
                 }));
                 afterSuccess();
             } catch (error) {
+                console.log(error)
+                console.log(payload)
                 errorHandler(dispatch, error.response, 'Something went wrong, please try again.');
             }
         }
@@ -299,7 +300,7 @@ const productActions = {
                     msg: 'product image added successfully.'
                 }));
             } catch (error) {
-                console.log("error ",error);
+                console.log("error ", error);
                 errorHandler(dispatch, error.response, 'Something went wrong, please try again.');
             }
         }
@@ -314,7 +315,7 @@ const productActions = {
                     try {
                         dispatch(popupMutation.clearPopPanel());
                         dispatch(popupMutation.popLoading());
-                        console.log("payload ",payload);
+                        console.log("payload ", payload);
                         const response = await Axios.put('/api/product-profile/remove-img', payload);
                         dispatch(productMutations.setProductData(response.data.data));
                         dispatch(popupMutation.clearPopPanel());
@@ -323,7 +324,7 @@ const productActions = {
                             msg: 'product image deleted successfully.'
                         }));
                     } catch (error) {
-                        
+
                         errorHandler(dispatch, error.response, 'Something went wrong, please try again.');
                     }
                 }

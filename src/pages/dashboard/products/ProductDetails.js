@@ -170,55 +170,55 @@ const ProductDetails = () => {
           </div>
           <div className="full-width">
             <div className="full-width flex-row-top-start2col">
-              <OrangeCard title="Sizes" icon={'bi bi-plus-circle'} iconClickHandle={addProductSize}>
-                <div className="product-details--sizes flex-row-center flex-wrap">
-                  {product.sizes.map((size, index) => (
-                    <div key={index} className="product-details--sizes flex-row-center flex-wrap">
-                      <div className="orange-bg shadow-2px margin-6px-H radius-circular white flex-row-between">
-                        <div className="product-details--sizes--size font-bold size-20px ">{size.title}</div>
-                        <i
-                          className="product-details--sizes--delete shadow-2px bi bi-trash pointer size-12px orange white-bg radius-circular flex-row-center"
-                          onClick={() => handleSizeDelete(size._id)}
-                        />
+              <div className="flex-col-center width-50-100">
+                <OrangeCard title="Sizes" icon={'bi bi-plus-circle'} iconClickHandle={addProductSize}>
+                  <div className="product-details--sizes flex-row-center flex-wrap">
+                    {product.sizes.map((size, index) => (
+                      <div key={index} className="product-details--sizes flex-row-center flex-wrap">
+                        <div className="orange-bg shadow-2px margin-6px-H radius-circular white flex-row-between">
+                          <div className="product-details--sizes--size font-bold size-20px ">{size.title}</div>
+                          <i
+                            className="product-details--sizes--delete shadow-2px bi bi-trash pointer size-12px orange white-bg radius-circular flex-row-center"
+                            onClick={() => handleSizeDelete(size._id)}
+                          />
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-
-              </OrangeCard>
-              <OrangeCard title="Colors" icon={'bi bi-plus-circle'} iconClickHandle={addProductColor}>
-                <div className="product-details--colors flex-row-center flex-wrap">
-                  {product.colors.map((color, index) => (
-                    <div key={index} className="product-details--colors flex-row-center flex-wrap">
-                      <div style={{ backgroundColor: color.hexCode }} className=" shadow-2px margin-6px-H full-width radius-circular flex-row-between">
-                        <div className="box-shadow-5px product-details--colors--color"/>
-                        <i
-                          className="product-details--colors--delete shadow-2px bi bi-trash pointer size-12px orange white-bg radius-circular flex-row-center"
-                          onClick={() => handleColorDelete(color._id)}
-                        />
+                    ))}
+                  </div>
+                </OrangeCard>
+              </div>
+              <div className="flex-col-center margin-10px-H width-50-100">
+                <OrangeCard title="Colors" icon={'bi bi-plus-circle'} iconClickHandle={addProductColor}>
+                  <div className="product-details--colors flex-row-center flex-wrap">
+                    {product.colors.map((color, index) => (
+                      <div key={index} className="product-details--colors flex-row-center flex-wrap">
+                        <div style={{ backgroundColor: color.hexCode }} className=" shadow-5px margin-6px-H full-width radius-circular flex-row-between">
+                          <div className=" product-details--colors--color" />
+                          <i
+                            className="product-details--colors--delete shadow-2px bi bi-trash pointer size-12px orange white-bg radius-circular flex-row-center"
+                            onClick={() => handleColorDelete(color._id)}
+                          />
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              </OrangeCard>
-
-              <OrangeCard title="Pieces" icon={'bi bi-plus-circle'} iconClickHandle={addProductColor}>
+                    ))}
+                  </div>
+                </OrangeCard>
+              </div>
+              <OrangeCard title="Pieces">
                 <div className="product-details--piece flex-row-center flex-wrap">
                   {product.pieces.map((piece, index) => (
-                    <div key={index} className="product-details--piece--color flex-row-center flex-wrap">
-                      <div style={{ backgroundColor: piece.color.hexCode }} className="box-shadow-5px product-details--colors--color shadow-2px margin-6px-H full-width radius-circular flex-row-between" />
-                      <div className="product-details--piece--info">
-                        Available: {piece.quantity}
-                      </div>
-                      <div className="orange-bg shadow-2px margin-6px-H radius-circular white flex-row-between product-details--piece--size font-bold size-20px">
+                    <div key={index} className="product-details--piece flex-row-center flex-wrap">
+                      <div className="flex-row-center orange-bg shadow-2px white product-details--piece--size font-bold size-20px">
                         {piece.size}
                       </div>
+                      <div className="white-bg font-bold gray shadow-5px product-details--piece--info flex-row-between">
+                        Available: {piece.quantity}
+                      </div>
+                      <div style={{ backgroundColor: piece.color.hexCode }} className="shadow-5px product-details--piece--color shadow-2px flex-row-between" />
                     </div>
                   ))}
                 </div>
               </OrangeCard>
-
-
             </div>
           </div>
 
