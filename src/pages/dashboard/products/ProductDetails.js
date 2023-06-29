@@ -123,7 +123,7 @@ const ProductDetails = () => {
               <div className="product-details--tags flex-row-between full-width" >
                 {product.tags.map((tag, index) => (
                   <div key={index} className="add-product--selected-item shadow-2px radius-15px flex-row-between size-14px lavender-bg text-shadow">
-                    <span className={`margin-4px-H ${mode === 'dark-mode' ? 'white' : 'gray'}`}>{tag.tag}</span>
+                    <span className={`margin-4px-H ${mode === 'dark-mode' ? 'white' : 'gray'}`}>{tag.title}</span>
                     <button className={`add-product--input--number--button bi bi-trash pointer ${mode === 'dark-mode' ? 'white' : 'gray'} size-20px pointer `} type="button" onClick={() => handleTagDelete(tag._id)}></button>
                   </div>
                 ))}
@@ -139,9 +139,6 @@ const ProductDetails = () => {
             )}
 
           </PerfectScrollbar>
-
-
-
           <div className="full-width">
             <div className="full-width flex-row-between2col">
               {
@@ -177,9 +174,8 @@ const ProductDetails = () => {
                 <div className="product-details--sizes flex-row-center flex-wrap">
                   {product.sizes.map((size, index) => (
                     <div key={index} className="product-details--sizes flex-row-center flex-wrap">
-                      <div className="orange-bg shadow-2px margin-6px-V radius-15px white flex-row-between">
-                        <div className="product-details--sizes--quantity white-bg gray radius-15px">{size.quantity} Available</div>
-                        <div className="product-details--sizes--size font-bold size-20px ">{size.size}</div>
+                      <div className="orange-bg shadow-2px margin-6px-H radius-circular white flex-row-between">
+                        <div className="product-details--sizes--size font-bold size-20px ">{size.title}</div>
                         <i
                           className="product-details--sizes--delete shadow-2px bi bi-trash pointer size-12px orange white-bg radius-circular flex-row-center"
                           onClick={() => handleSizeDelete(size._id)}
@@ -193,14 +189,29 @@ const ProductDetails = () => {
               <OrangeCard title="Colors" icon={'bi bi-plus-circle'} iconClickHandle={addProductColor}>
                 <div className="product-details--colors flex-row-center flex-wrap">
                   {product.colors.map((color, index) => (
-                    <div key={index} className="product-details--colors flex-row-center">
-                      <div style={{ backgroundColor: color.hexCode }} className=" shadow-2px margin-6px-V full-width radius-15px white flex-row-between">
-                        <div className="product-details--colors--quantity white-bg gray radius-15px">{color.quantity} Available from {color.color}</div>
-                        <div className="gray size-14px margin-10px-H text-shadow"> </div>
+                    <div key={index} className="product-details--colors flex-row-center flex-wrap">
+                      <div style={{ backgroundColor: color.hexCode }} className=" shadow-2px margin-6px-H full-width radius-circular flex-row-between">
+                        <div className="box-shadow-5px product-details--colors--color"/>
                         <i
                           className="product-details--colors--delete shadow-2px bi bi-trash pointer size-12px orange white-bg radius-circular flex-row-center"
                           onClick={() => handleColorDelete(color._id)}
                         />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </OrangeCard>
+
+              <OrangeCard title="Pieces" icon={'bi bi-plus-circle'} iconClickHandle={addProductColor}>
+                <div className="product-details--piece flex-row-center flex-wrap">
+                  {product.pieces.map((piece, index) => (
+                    <div key={index} className="product-details--piece--color flex-row-center flex-wrap">
+                      <div style={{ backgroundColor: piece.color.hexCode }} className="box-shadow-5px product-details--colors--color shadow-2px margin-6px-H full-width radius-circular flex-row-between" />
+                      <div className="product-details--piece--info">
+                        Available: {piece.quantity}
+                      </div>
+                      <div className="orange-bg shadow-2px margin-6px-H radius-circular white flex-row-between product-details--piece--size font-bold size-20px">
+                        {piece.size}
                       </div>
                     </div>
                   ))}
