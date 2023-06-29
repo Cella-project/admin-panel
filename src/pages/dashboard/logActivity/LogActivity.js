@@ -140,11 +140,9 @@ const LogActivity = () => {
 
   let content = (
     <>
-      {logs !== null && logs.length === 0 && (
+      {(logs !== null && logs.length === 0) ? (
         <div className='gray inter size-16px font-bold'>No logs found</div>
-      )}
-
-      {logs !== null && logs.length > 0 && (
+      ) : (logs !== null && logs.length > 0) ? (
         <>
           <div className='log-activity--list-header full-width flex-row-left-start margin-2px-V'>
             <div className='width-25-100 flex-row-left-start font-bold size-14px' style={{ marginLeft: '-45px' }}>Name</div>
@@ -155,7 +153,10 @@ const LogActivity = () => {
           {cards}
           {showLoading && <Loading />}
         </>
-      )}
+      ) : (
+        <Loading />
+      )
+      }
 
       {isLoading && !showLoading && <Loading />}
     </>
