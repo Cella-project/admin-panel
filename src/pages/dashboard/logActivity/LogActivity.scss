@@ -1,6 +1,6 @@
 .log-activity {
     position: relative;
-    transition: top 0.3s ease-out; 
+    transition: top 0.3s ease-out;
 
     &.loading {
         top: -100%;
@@ -8,8 +8,11 @@
 
     &--list-header {
         box-sizing: border-box;
-        padding: 5px 0px;
-        padding-left: 80px;
+        padding: 0 20px;
+
+        &>div {
+            margin: 0 5px;
+        }
     }
 
     &--braud-cramb {

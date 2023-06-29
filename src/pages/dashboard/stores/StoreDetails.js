@@ -286,17 +286,16 @@ const StoreDetails = () => {
                     {(logs && logs.length > 0) ?
                       <div className='flex-col-left-start full-width inter gray'>
                         <div className='log-activity--list-header full-width flex-row-left-start margin-2px-V'>
-                          <div className='width-25-100 flex-row-left-start font-bold size-14px' style={{ marginLeft: '-45px' }}>Name</div>
-                          <div className='width-10-100 flex-row-left-start font-bold size-14px'>Role</div>
-                          <div className='width-45-100 flex-row-left-start font-bold size-14px'>Action</div>
-                          <div className='width-20-100 flex-row-left-start font-bold size-14px' style={{ marginLeft: '10px' }}>Time stamp</div>
+                          <div className='width-30-100 flex-row-left-start font-bold size-14px'>Name</div>
+                          <div className='width-50-100 flex-row-left-start font-bold size-14px'>Action</div>
+                          <div className='width-20-100 flex-row-left-start font-bold size-14px'>Time stamp</div>
                         </div>
                         {logs
                           .slice(0, 5)
                           .map((log) => {
                             return (
                               <ListsCard key={log._id} width={'full-width'}>
-                                <LogActivityCard log={log} />
+                                <LogActivityCard log={log} role={false} />
                               </ListsCard>
                             )
                           })}
