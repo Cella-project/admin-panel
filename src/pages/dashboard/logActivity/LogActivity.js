@@ -64,20 +64,17 @@ const LogActivity = () => {
         setIsLoading(false);
         setShowLoading(false);
       });
-    }
-    if (driverID) {
+    } else if (driverID) {
       dispatch(logActivityActions.getDriverLogs(driverID, offset)).then(() => {
         setIsLoading(false);
         setShowLoading(false);
       });
-    }
-    if (adminID) {
+    } else if (adminID) {
       dispatch(logActivityActions.getAdminLogs(adminID, offset)).then(() => {
         setIsLoading(false);
         setShowLoading(false);
       });
-    }
-    if (!storeID && !driverID && !adminID) {
+    } else {
       dispatch(logActivityActions.getAllLogs(offset)).then(() => {
         setIsLoading(false);
         setShowLoading(false);
@@ -132,7 +129,7 @@ const LogActivity = () => {
     cards = filteredLogs.map((log) => {
       return (
         <ListsCard key={log._id} width={'full-width'}>
-          <LogActivityCard log={log} />
+          <LogActivityCard log={log} role={true} />
         </ListsCard>
       );
     });
@@ -140,23 +137,23 @@ const LogActivity = () => {
 
   let content = (
     <>
-      {logs !== null && logs.length === 0 && (
+      {(logs !== null && logs.length === 0) ? (
         <div className='gray inter size-16px font-bold'>No logs found</div>
-      )}
-
-      {logs !== null && logs.length > 0 && (
+      ) : (logs !== null && logs.length > 0) ? (
         <>
           <div className='log-activity--list-header full-width flex-row-left-start margin-2px-V'>
-            <div className='width-25-100 flex-row-left-start font-bold size-14px' style={{ marginLeft: '-45px' }}>Name</div>
+            <div className='width-25-100 flex-row-left-start font-bold size-14px'>Name</div>
             <div className='width-10-100 flex-row-left-start font-bold size-14px'>Role</div>
             <div className='width-45-100 flex-row-left-start font-bold size-14px'>Action</div>
-            <div className='width-20-100 flex-row-left-start font-bold size-14px' style={{ marginLeft: '20px' }}>Time stamp</div>
+            <div className='width-20-100 flex-row-left-start font-bold size-14px'>Time stamp</div>
           </div>
           {cards}
           {showLoading && <Loading />}
         </>
-      )}
-
+      ) : (
+        <Loading />
+      )
+      }
       {isLoading && !showLoading && <Loading />}
     </>
   );
@@ -167,21 +164,33 @@ const LogActivity = () => {
     if (storeID && storeData) {
       braudCramb =
         <>
-          <Link to={'/admin-panel/logActivities'} className='gray pointer lists-card--link'>Log Activities</Link>
+          <Link to={'/admin-panel/logActivities'} className='gray pointer lists-card--link'
+            onClick={() => {
+              dispatch(logActivityMutations.setLogs(null))
+              dispatch(logActivityActions.getAllLogs(0))
+            }}>Log Activities</Link>
           <span> / </span>
           <span>{storeData.storeName}</span>
         </>
     } else if (driverID && driverData) {
       braudCramb =
         <>
-          <Link to={'/admin-panel/logActivities'} className='gray pointer lists-card--link'>Log Activities</Link>
+          <Link to={'/admin-panel/logActivities'} className='gray pointer lists-card--link'
+            onClick={() => {
+              dispatch(logActivityMutations.setLogs(null))
+              dispatch(logActivityActions.getAllLogs(0))
+            }}>Log Activities</Link>
           <span> / </span>
           <span>{driverData.name}</span>
         </>
     } else if (adminID && userData) {
       braudCramb =
         <>
-          <Link to={'/admin-panel/logActivities'} className='gray pointer lists-card--link'>Log Activities</Link>
+          <Link to={'/admin-panel/logActivities'} className='gray pointer lists-card--link'
+            onClick={() => {
+              dispatch(logActivityMutations.setLogs(null))
+              dispatch(logActivityActions.getAllLogs(0))
+            }}>Log Activities</Link>
           <span> / </span>
           <span>{userData.name}</span>
         </>
