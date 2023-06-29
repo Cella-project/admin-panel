@@ -26,6 +26,12 @@ const App = () => {
   const refreshToken = localStorage.getItem('Refresh Token');
   const user = useSelector(state => state.auth.userData);
 
+  const refreshTokenHandler = (token) => {
+    if (token) {
+      dispatch(authActions.refreshToken(token));
+    }
+  };
+
   const checkAuth = () => {
     if (accessToken && refreshToken) {
       if (timeDifference >= 14 * 60 * 1000) {
@@ -70,18 +76,11 @@ const App = () => {
     }
   };
 
-  const refreshTokenHandler = (token) => {
-    if (token) {
-      dispatch(authActions.refreshToken(token));
-    }
-  };
-
-  setInterval(() => {
-    refreshTokenHandler(refreshToken);
-  }, 14 * 60 * 1000);
-
   if (!isloaded) {
     checkAuth();
+    setInterval(() => {
+      refreshTokenHandler(refreshToken);
+    }, 14 * 60 * 1000);
     isloaded = true;
   }
 

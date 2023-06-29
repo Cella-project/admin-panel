@@ -3,7 +3,6 @@ import PhoneInput from 'react-phone-number-input';
 import useInput from '../../hooks/useInput';
 
 import { useDispatch, useSelector } from 'react-redux';
-
 import authActions from '../../apis/actions/auth';
 
 const ChangeInfo = () => {
@@ -115,7 +114,9 @@ const ChangeInfo = () => {
 
         dispatch(authActions.editProfile({
             ...updatedFields, _id: userData._id
-        }, () => setEditMode(false)))
+        }, () => setEditMode(false))).then(() => {
+            dispatch(authActions.getProfile());
+        });
 
     };
 
