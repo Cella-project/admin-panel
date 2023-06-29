@@ -167,21 +167,33 @@ const LogActivity = () => {
     if (storeID && storeData) {
       braudCramb =
         <>
-          <Link to={'/admin-panel/logActivities'} className='gray pointer lists-card--link'>Log Activities</Link>
+          <Link to={'/admin-panel/logActivities'} className='gray pointer lists-card--link'
+            onClick={() => {
+              dispatch(logActivityMutations.setLogs(null))
+              dispatch(logActivityActions.getAllLogs(0))
+            }}>Log Activities</Link>
           <span> / </span>
           <span>{storeData.storeName}</span>
         </>
     } else if (driverID && driverData) {
       braudCramb =
         <>
-          <Link to={'/admin-panel/logActivities'} className='gray pointer lists-card--link'>Log Activities</Link>
+          <Link to={'/admin-panel/logActivities'} className='gray pointer lists-card--link'
+            onClick={() => {
+              dispatch(logActivityMutations.setLogs(null))
+              dispatch(logActivityActions.getAllLogs(0))
+            }}>Log Activities</Link>
           <span> / </span>
           <span>{driverData.name}</span>
         </>
     } else if (adminID && userData) {
       braudCramb =
         <>
-          <Link to={'/admin-panel/logActivities'} className='gray pointer lists-card--link'>Log Activities</Link>
+          <Link to={'/admin-panel/logActivities'} className='gray pointer lists-card--link'
+            onClick={() => {
+              dispatch(logActivityMutations.setLogs(null))
+              dispatch(logActivityActions.getAllLogs(0))
+            }}>Log Activities</Link>
           <span> / </span>
           <span>{userData.name}</span>
         </>

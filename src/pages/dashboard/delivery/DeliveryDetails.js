@@ -171,7 +171,12 @@ const DeliveryDetails = () => {
                   : <p className="gray inter size-16px font-bold">No logs to display</p>
                 }
               </PerfectScrollbar>
-              <Link to={`/admin-panel/logActivities?driver=${delivery._id}`} className="pointer lists-card--link">
+              <Link to={`/admin-panel/logActivities?driver=${delivery._id}`} className="pointer lists-card--link"
+                onClick={() => {
+                  dispatch(logActivityMutations.setLogs(null))
+                  dispatch(logActivityActions.getDriverLogs(delivery._id, 0))
+                }}
+              >
                 <i className="bi bi-arrow-right flex-row-right-start"></i>
               </Link>
             </OrangeCard>
