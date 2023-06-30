@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
-import { productActions, specialityActions, specialityControlActions } from '../../apis/actions';
-import { specialityMutations } from '../../redux/mutations';
+import { productActions, specialityControlActions } from '../../apis/actions';
 import Loading from '../global/Loading';
 
 import './AddProductTagForm.scss';
@@ -11,13 +10,12 @@ const AddProductTagForm = ({ popupToggle }) => {
     const dispatch = useDispatch();
     const mode = useSelector(state => state.theme.mode);
     const tags = useSelector(state => state.specialityControl.tags);
-    const category = useSelector(state => state.speciality.categoryData);
     const product = useSelector(state => state.product.productData);
 
     // Handle Tag Select
     const handleTagSelect = (tag) => {
         const selectedTag = tag;
-        const index = product.tags.findIndex((t) => t.tag === selectedTag.target.label);
+        const index = product.tags.findIndex((t) => t.title === selectedTag.target.label);
         if (index === -1) {
             dispatch(productActions.addProductTag({
                 _id: product._id,
@@ -37,23 +35,10 @@ const AddProductTagForm = ({ popupToggle }) => {
             tagId: tagId
         }));
     };
+
     useEffect(() => {
-        if (category === null) {
-            dispatch(specialityActions.getCategoryData(product.category._id));
-            dispatch(specialityMutations.setCategoryData(product.category._id));
-        }
-        else if (category.type === 'Sub') {
-            dispatch(specialityActions.getCategoryData(category.parent._id));
-            dispatch(specialityMutations.setCategoryData(category.parent._id));
-        }
-        else if (category.type === 'Main') {
-            dispatch(specialityActions.getSpecialityData(category.parent._id));
-            dispatch(specialityMutations.setSpecialityData(category.parent._id));
-            dispatch(specialityControlActions.getTags(category.parent._id));
-        }
-
-    }, [dispatch, category, product.category._id]);
-
+        dispatch(specialityControlActions.getTags(product.speciality._id));
+    }, [dispatch, product.speciality._id]);
 
 
 
@@ -98,13 +83,13 @@ const AddProductTagForm = ({ popupToggle }) => {
                         <div className="flex-row-between flex-wrap ">
                             {product.tags.map((tag, index) => (
                                 <div key={index} className="add-product-tag--selected-item shadow-2px radius-15px flex-row-between size-14px lavender-bg text-shadow">
-                                    <span className={`margin-4px-H ${mode === 'dark-mode' ? 'white' : 'gray'}`}>{tag.tag}</span>
+                                    <span className={`margin-4px-H ${mode === 'dark-mode' ? 'white' : 'gray'}`}>{tag.title}</span>
                                     <button className={`add-product-tag--input--number--button bi bi-trash pointer ${mode === 'dark-mode' ? 'white' : 'gray'} size-20px pointer `} type="button" onClick={() => handleTagDelete(tag._id)}></button>
                                 </div>
                             ))}
                         </div>
                     </div>
-                ): <Loading />
+                ) : <Loading />
             }
             <div className="add-product-tag--actions flex-row-between full-width">
                 <button

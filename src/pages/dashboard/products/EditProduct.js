@@ -165,7 +165,7 @@ export const EditProduct = () => {
             title: enteredTitle,
             description: enteredDescription,
             price: parseInt(enteredPrice),
-            // material: enteredMaterial.title,
+            material: enteredMaterial.title,
         };
         if (discountType !== 'None') {
             editedProduct.discount = {

@@ -36,8 +36,8 @@ export const AddProduct = () => {
         if (value.trim() === '') {
             error = 'Please enter a title.';
         }
-        else if (value.length < 3 || value.length > 50) {
-            error = 'Please enter a title with at least 3 characters and at most 50 characters.';
+        else if (value.length < 3 || value.length > 80) {
+            error = 'Please enter a title with at least 3 characters and at most 80 characters.';
         }
         return { isValid, error };
     });
@@ -113,23 +113,6 @@ export const AddProduct = () => {
         }
         return { isValid, error };
     });
-    const {
-        value: enteredQuantity,
-        error: quantityError,
-        isTouched: quantityIsTouched,
-        valueChangeHandler: quantityChangedHandler,
-        inputBlurHandler: quantityBlurHandler,
-    } = useInput((value) => {
-        const isValid = value !== '';
-        let error = '';
-        if (value === '') {
-            error = 'Please enter a quantity.';
-        }
-        else if (value <= 0) {
-            error = 'Please enter a quantity greater than 0.';
-        }
-        return { isValid, error };
-    }, 0);
 
     const {
         value: enteredMaterial,
@@ -199,12 +182,6 @@ export const AddProduct = () => {
     // Handle Color Select
     const [selectedColors, setSelectedColors] = useState([]);
 
-    const handleColorQuantityChange = (index, event) => {
-        const newSelectedColors = [...selectedColors];
-        newSelectedColors[index].quantity = parseInt(event.target.value);
-        setSelectedColors(newSelectedColors);
-    };
-
     const handleColorDelete = (index) => {
         const newSelectedColors = [...selectedColors];
         newSelectedColors.splice(index, 1);
@@ -222,9 +199,6 @@ export const AddProduct = () => {
             setSelectedColors(newSelectedColors);
         }
     };
-    const totalColorQuantity = selectedColors.reduce((acc, curr) => acc + parseInt(curr.quantity), 0);
-    const remainingQuantitiesOfColors = enteredQuantity - totalColorQuantity;
-
     // Handle Size Select
     const [selectedSizes, setSelectedSizes] = useState([]);
     const handleSizeSelect = (size) => {
@@ -237,14 +211,6 @@ export const AddProduct = () => {
             newSelectedSizes[index].quantity++;
             setSelectedSizes(newSelectedSizes);
         }
-    };
-    const totalSizeQuantity = selectedSizes.reduce((acc, curr) => acc + parseInt(curr.quantity), 0);
-    const remainingQuantitiesOfSizes = enteredQuantity - totalSizeQuantity;
-
-    const handleSizeQuantityChange = (index, event) => {
-        const newSelectedSizes = [...selectedSizes];
-        newSelectedSizes[index].quantity = parseInt(event.target.value);
-        setSelectedSizes(newSelectedSizes);
     };
 
     const handleSizeDelete = (index) => {
@@ -333,29 +299,34 @@ export const AddProduct = () => {
             title: enteredTitle,
             description: enteredDescription,
             price: parseInt(enteredPrice),
-            avilableQuantity: parseInt(enteredQuantity),
             store: {
                 _id: enterStore.id,
                 storeName: enterStore.storeName,
             },
-            category: {
+            speciality: {
+                _id: enteredSpeciality.id,
+                title: enteredSpeciality.title,
+            },
+            mainCategory: {
+                _id: enteredMainCategory.id,
+                title: enteredMainCategory.title,
+            },
+            subCategory: {
                 _id: enteredSubCategory.id,
                 title: enteredSubCategory.title,
             },
             colors: selectedColors.map(item => ({
-                color: item.color,
+                title: item.color,
                 hexCode: item.hexCode,
-                quantity: parseInt(item.quantity)
             })),
             sizes: selectedSizes.map(item => ({
-                size: item.size,
-                quantity: parseInt(item.quantity)
+                title: item.size,
             })),
             material: enteredMaterial.title,
         };
         if (selectedTags.length > 0) {
             product.tags = selectedTags.map(item => ({
-                tag: item.tag
+                title: item.tag
             }));
         }
         if (album.length > 0) {
@@ -659,11 +630,7 @@ export const AddProduct = () => {
                             <div className='full-width flex-col-left-start add-product--header'>
                                 <label className='pointer full-width text-shadow gray font-bold size-26px'>Product Variants</label>
                             </div>
-                            <div>
-                                <label className='pointer full-width text-shadow gray font-bold margin-6px-V' htmlFor="quantity">Quantity : <span className='red'>*</span></label>
-                                <input className="pointer margin-12px-H gray add-product--input radius-10px" min='0' type="number" id="Quantity" value={enteredQuantity} onChange={quantityChangedHandler} onBlur={quantityBlurHandler} />
-                                {quantityIsTouched && (<div className="error-message">{quantityError}</div>)}
-                            </div>
+
                             {
                                 materials && materials.length > 0 && (
                                     <div className='full-width flex-col-left-start add-product--input-container'>
@@ -721,15 +688,12 @@ export const AddProduct = () => {
                                                 handleColorSelect({ target: { id: color.value.id, label: color.value.title, value: color.value.title, hexCode: color.value.hexCode } })
                                             }
                                         />
-                                        {
-                                            remainingQuantitiesOfColors !== 0 && (remainingQuantitiesOfColors >= 0 ? (<span className={`${mode === 'dark-mode' ? 'gray' : 'white'} orange-bg radius-10px padding-6px-H`}>{remainingQuantitiesOfColors}</span>) : (<span className={`${mode === 'dark-mode' ? 'gray' : 'white'} red-bg radius-10px padding-6px-H`}>{remainingQuantitiesOfColors}</span>))
-                                        }
+
                                     </div>
                                     <div className="flex-row-between flex-wrap ">
                                         {selectedColors.map((color, index) => (
                                             <div key={index} style={{ background: color.hexCode }} className="add-product--selected-item shadow-2px radius-10px flex-row-between size-14px white">
-                                                <span className={`margin-4px-H ${(mode === 'dark-mode') ? 'gray' : 'white'}`}>{color.color}:</span>
-                                                <input className='add-product--input--number shadow-2px radius-10px gray' type="number" min="1" max="999" value={color.quantity} onChange={(event) => handleColorQuantityChange(index, event)} />
+                                                <span className={`margin-4px-H ${(mode === 'dark-mode') ? 'gray' : 'white'}`}>{color.color}</span>
                                                 <button className={`add-product--input--number--button bi bi-trash pointer size-20px pointer ${mode === 'dark-mode' ? 'gray' : 'white'}`} type="button" onClick={() => handleColorDelete(index)}></button>
                                             </div>
                                         ))}
@@ -763,16 +727,15 @@ export const AddProduct = () => {
                                                     handleSizeSelect({ target: { id: size.value.id, label: size.value.title, value: size.value.title } })
                                                 }
                                             />
-                                            {
+                                            {/* {
                                                 remainingQuantitiesOfSizes !== 0 && (remainingQuantitiesOfSizes >= 0 ? (<span className={`${mode === 'dark-mode' ? 'gray' : 'white'} orange-bg radius-10px padding-6px-H`}>{remainingQuantitiesOfSizes}</span>) : (<span className={`${mode === 'dark-mode' ? 'gray' : 'white'} red-bg radius-10px padding-6px-H`}>{remainingQuantitiesOfSizes}</span>))
-                                            }
+                                            } */}
 
                                         </div>
                                         <div className="flex-row-between flex-wrap ">
                                             {selectedSizes.map((size, index) => (
                                                 <div key={index} className="add-product--selected-item shadow-2px radius-10px flex-row-between size-14px white-bg gray">
-                                                    <span className='margin-4px-H '>{size.size}:</span>
-                                                    <input className='add-product--input--number shadow-2px radius-10px gray' type="number" min="1" max="999" value={size.quantity} onChange={(event) => handleSizeQuantityChange(index, event)} />
+                                                    <span className='margin-4px-H '>{size.size}</span>
                                                     <button className='add-product--input--number--button bi bi-trash pointer size-20px pointer gray' type="button" onClick={() => handleSizeDelete(index)}></button>
                                                 </div>
                                             ))}
@@ -831,7 +794,6 @@ export const AddProduct = () => {
                                 </button>
                                 <button
                                     className={`add-product--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
-                                    disabled={remainingQuantitiesOfColors !== 0 || (remainingQuantitiesOfSizes !== 0 && enteredSpeciality.title === 'Clothes')}
                                     onClick={() => {
                                         setCurrentPage(4);
                                     }}

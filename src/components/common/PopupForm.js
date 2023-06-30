@@ -25,6 +25,7 @@ import AddProductTagForm from "../products/AddProductTagForm";
 import AddProductColorForm from "../products/AddProductColorForm";
 import AddProductSizeForm from "../products/AddProductSizeForm";
 import RefillProductForm from "../products/RefillProductForm";
+import DecreaseQuantity from "../products/DecreaseQuantity";
 import { useSelector } from "react-redux";
 import VerifyOTP from "../verifyEmail/VerifyOTP";
 import Cash from "../../components/delivery/Cash";
@@ -169,6 +170,10 @@ const Popup = ({ popupToggle, header, data }) => {
                         {
                             header === 'Refill Product' &&
                             <RefillProductForm popupToggle={popupToggle} data={data} />
+                        }
+                        {
+                            header === 'Decrease Quantity' &&
+                            <DecreaseQuantity popupToggle={popupToggle} data={data} />
                         }
                     </PerfectScrollbar>
                 </div>

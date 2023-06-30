@@ -53,7 +53,7 @@ const productActions = {
             }
         }
     },
-    updateProduct(payload,afterSuccess) {
+    updateProduct(payload, afterSuccess) {
         return async (dispatch) => {
             try {
                 dispatch(popupMutation.clearPopPanel());
@@ -137,7 +137,7 @@ const productActions = {
             }
         }
 
-        
+
     },
     addProductColor(payload) {
         return async (dispatch) => {
@@ -199,7 +199,7 @@ const productActions = {
             }
         }
     },
-    deleteProductSize(payload, afterSuccess) {
+    deleteProductSize(payload) {
         return async (dispatch) => {
             try {
                 dispatch(popupMutation.clearPopPanel());
@@ -216,7 +216,6 @@ const productActions = {
                             type: 'success',
                             msg: 'product size deleted successfully.'
                         }));
-                        afterSuccess();
                     }
                 }));
             } catch (error) {
@@ -285,6 +284,26 @@ const productActions = {
             }
         }
     },
+    decreaseQuantity(payload, afterSuccess) {
+        return async (dispatch) => {
+            try {
+                dispatch(popupMutation.clearPopPanel());
+                dispatch(stickyMutations.popAllNotes());
+                dispatch(popupMutation.popLoading());
+                const response = await Axios.put('/api/product-profile/decrease-quantity', payload);
+                dispatch(productMutations.setProductData(response.data.data));
+                dispatch(popupMutation.clearPopPanel());
+                dispatch(stickyMutations.pushNote({
+                    type: 'success',
+                    msg: 'Product quantity decreased successfully.'
+                }));
+                afterSuccess();
+            } catch (error) {
+                console.log(error)
+                errorHandler(dispatch, error.response, 'Something went wrong, please try again.');
+            }
+        }
+    },
     addProductImage(payload) {
         return async (dispatch) => {
             try {
@@ -299,7 +318,7 @@ const productActions = {
                     msg: 'product image added successfully.'
                 }));
             } catch (error) {
-                console.log("error ",error);
+                console.log("error ", error);
                 errorHandler(dispatch, error.response, 'Something went wrong, please try again.');
             }
         }
@@ -314,7 +333,7 @@ const productActions = {
                     try {
                         dispatch(popupMutation.clearPopPanel());
                         dispatch(popupMutation.popLoading());
-                        console.log("payload ",payload);
+                        console.log("payload ", payload);
                         const response = await Axios.put('/api/product-profile/remove-img', payload);
                         dispatch(productMutations.setProductData(response.data.data));
                         dispatch(popupMutation.clearPopPanel());
@@ -323,7 +342,7 @@ const productActions = {
                             msg: 'product image deleted successfully.'
                         }));
                     } catch (error) {
-                        
+
                         errorHandler(dispatch, error.response, 'Something went wrong, please try again.');
                     }
                 }

@@ -38,12 +38,9 @@
         &--size {
             box-sizing: border-box;
             padding: 10px;
-        }
-
-        &--quantity {
-            margin: 2px;
-            box-sizing: border-box;
-            padding: 10px;
+            min-width: 40px;
+            height: 40px;
+            text-align: center;
         }
 
         &--delete {
@@ -66,12 +63,6 @@
         position: relative;
         margin: 5px;
 
-        &--quantity {
-            margin: 2px;
-            box-sizing: border-box;
-            padding: 10px;
-        }
-
         &--color {
             box-sizing: border-box;
             margin: 2px;
@@ -90,6 +81,32 @@
             &:hover {
                 transform: scale(1.5);
             }
+
+        }
+    }
+        &--piece {
+        box-sizing: border-box;
+        position: relative;
+        margin: 5px;
+
+        &--color {
+            box-sizing: border-box;
+            width: 40px;
+            height: 40px;
+            border-radius: 0 50% 50% 0;
+        }
+
+        &--info{
+            box-sizing: border-box;
+            padding: 10px 4px 10px 4px;
+        }
+
+        &--size {
+            box-sizing: border-box;
+            min-width: 40px;
+            height: 40px;
+            text-align: center;
+            border-radius: 50% 0 0 50%;
 
         }
     }

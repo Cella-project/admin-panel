@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
-import { productActions, specialityActions, specialityControlActions } from '../../apis/actions';
-import { specialityMutations } from '../../redux/mutations';
+import { productActions, specialityControlActions } from '../../apis/actions';
 import Loading from '../global/Loading';
 
 import './AddProductColorForm.scss';
@@ -11,18 +10,17 @@ const AddProductColorForm = ({ popupToggle }) => {
     const dispatch = useDispatch();
     const mode = useSelector(state => state.theme.mode);
     const colors = useSelector(state => state.specialityControl.colors);
-    const category = useSelector(state => state.speciality.categoryData);
     const product = useSelector(state => state.product.productData);
 
     // Handle color Select
     const handleColorSelect = (color) => {
         const selectedcolor = color;
-        const index = product.colors.findIndex((t) => t.color === selectedcolor.target.label);
+        const index = product.colors.findIndex((t) => t.title === selectedcolor.target.label);
         if (index === -1) {
             dispatch(productActions.addProductColor({
                 _id: product._id,
                 color: {
-                    color: selectedcolor.target.label,
+                    title: selectedcolor.target.label,
                     hexCode: selectedcolor.target.hexCode
                 }
             }));
@@ -40,22 +38,10 @@ const AddProductColorForm = ({ popupToggle }) => {
             colorId: colorId
         }));
     };
-    useEffect(() => {
-        if (category === null) {
-            dispatch(specialityActions.getCategoryData(product.category._id));
-            dispatch(specialityMutations.setCategoryData(product.category._id));
-        }
-        else if (category.type === 'Sub') {
-            dispatch(specialityActions.getCategoryData(category.parent._id));
-            dispatch(specialityMutations.setCategoryData(category.parent._id));
-        }
-        else if (category.type === 'Main') {
-            dispatch(specialityActions.getSpecialityData(category.parent._id));
-            dispatch(specialityMutations.setSpecialityData(category.parent._id));
-            dispatch(specialityControlActions.getColors(category.parent._id));
-        }
 
-    }, [dispatch, category, product.category._id]);
+    useEffect(() => {
+        dispatch(specialityControlActions.getColors(product.speciality._id));
+    }, [dispatch, product.speciality._id]);
 
 
 
@@ -100,13 +86,13 @@ const AddProductColorForm = ({ popupToggle }) => {
                     <div className="flex-row-between flex-wrap ">
                         {product.colors.map((color, index) => (
                             <div key={index} style={{ background: color.hexCode }} className="add-product--selected-item shadow-2px radius-10px flex-row-between size-14px white">
-                                <span className={`margin-4px-H ${(mode === 'dark-mode') ? 'gray' : 'white'}`}>{color.color}:</span>
+                                <span className={`margin-4px-H ${(mode === 'dark-mode') ? 'gray' : 'white'}`}>{color.title}:</span>
                                 <button className={`add-product--input--number--button bi bi-trash pointer size-20px pointer ${mode === 'dark-mode' ? 'gray' : 'white'}`} type="button" onClick={() => handleColorDelete(color._id)}></button>
                             </div>
                         ))}
                     </div>
                 </div>
-            ): <Loading />
+            ) : <Loading />
             }
             <div className="add-product-color--actions flex-row-between full-width">
                 <button
