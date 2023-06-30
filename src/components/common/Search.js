@@ -57,7 +57,6 @@ const Search = ({ width, onSearch, page }) => {
             query.current = e.target.value;
             handleSearch();
           }}
-          autoFocus
           ref={inputRef}
         />
         {query.current !== '' &&

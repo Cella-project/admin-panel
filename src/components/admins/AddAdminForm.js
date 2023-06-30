@@ -146,6 +146,7 @@ const AddAdminForm = ({ popupToggle }) => {
             value={enteredFullName}
             onChange={fullNameChangedHandler}
             onBlur={fullNameBlurHandler}
+            autoFocus
           />
         </div>
         {fullNameIsTouched && (

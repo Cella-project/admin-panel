@@ -72,6 +72,7 @@ const AddSubCategoryForm = ({ popupToggle,data }) => {
                         value={enteredTitle}
                         onChange={titleChangedHandler}
                         onBlur={titleBlurHandler}
+                        autoFocus
                     />
                 </div>
                 {titleIsTouched && (
