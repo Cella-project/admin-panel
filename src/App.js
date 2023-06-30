@@ -16,7 +16,6 @@ let isloaded = false;
 
 const App = () => {
   const dispatch = useDispatch();
-
   
   const mode = useSelector(state => state.theme.mode);
   const accessToken = localStorage.getItem('Access Token');
