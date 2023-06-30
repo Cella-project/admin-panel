@@ -693,7 +693,7 @@ export const AddProduct = () => {
                                     <div className="flex-row-between flex-wrap ">
                                         {selectedColors.map((color, index) => (
                                             <div key={index} style={{ background: color.hexCode }} className="add-product--selected-item shadow-2px radius-10px flex-row-between size-14px white">
-                                                <span className={`margin-4px-H ${(mode === 'dark-mode') ? 'gray' : 'white'}`}>{color.color}:</span>
+                                                <span className={`margin-4px-H ${(mode === 'dark-mode') ? 'gray' : 'white'}`}>{color.color}</span>
                                                 <button className={`add-product--input--number--button bi bi-trash pointer size-20px pointer ${mode === 'dark-mode' ? 'gray' : 'white'}`} type="button" onClick={() => handleColorDelete(index)}></button>
                                             </div>
                                         ))}
@@ -735,7 +735,7 @@ export const AddProduct = () => {
                                         <div className="flex-row-between flex-wrap ">
                                             {selectedSizes.map((size, index) => (
                                                 <div key={index} className="add-product--selected-item shadow-2px radius-10px flex-row-between size-14px white-bg gray">
-                                                    <span className='margin-4px-H '>{size.size}:</span>
+                                                    <span className='margin-4px-H '>{size.size}</span>
                                                     <button className='add-product--input--number--button bi bi-trash pointer size-20px pointer gray' type="button" onClick={() => handleSizeDelete(index)}></button>
                                                 </div>
                                             ))}

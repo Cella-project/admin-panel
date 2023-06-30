@@ -280,8 +280,26 @@ const productActions = {
                 }));
                 afterSuccess();
             } catch (error) {
+                errorHandler(dispatch, error.response, 'Something went wrong, please try again.');
+            }
+        }
+    },
+    decreaseQuantity(payload, afterSuccess) {
+        return async (dispatch) => {
+            try {
+                dispatch(popupMutation.clearPopPanel());
+                dispatch(stickyMutations.popAllNotes());
+                dispatch(popupMutation.popLoading());
+                const response = await Axios.put('/api/product-profile/decrease-quantity', payload);
+                dispatch(productMutations.setProductData(response.data.data));
+                dispatch(popupMutation.clearPopPanel());
+                dispatch(stickyMutations.pushNote({
+                    type: 'success',
+                    msg: 'Product quantity decreased successfully.'
+                }));
+                afterSuccess();
+            } catch (error) {
                 console.log(error)
-                console.log(payload)
                 errorHandler(dispatch, error.response, 'Something went wrong, please try again.');
             }
         }

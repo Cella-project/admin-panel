@@ -101,6 +101,18 @@ const ProductDetails = () => {
     };
   }
 
+  
+  const decreaseQuantity = () => {
+    setPopupShown(true);
+    setHeader('Decrease Quantity');
+    document.getElementById('dashboard-view').style.zIndex = 60;
+    const TopScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    const LeftScroll = document.documentElement.scrollLeft || document.body.scrollLeft;
+    window.onscroll = () => {
+      window.scrollTo(LeftScroll, TopScroll);
+    };
+  }
+
   return (
     <div className="product-details--container full-width flex-col-left-start2col">
       {popupShown &&
@@ -204,7 +216,7 @@ const ProductDetails = () => {
                   </div>
                 </OrangeCard>
               </div>
-              <OrangeCard title="Pieces">
+              <OrangeCard title="Pieces" icon={'bi bi-dash-circle'} iconClickHandle={decreaseQuantity}>
                 <div className="product-details--piece flex-row-center flex-wrap">
                   {product.pieces.map((piece, index) => (
                     <div key={index} className="product-details--piece flex-row-center flex-wrap">
