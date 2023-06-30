@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Outlet } from "react-router-dom";
 
@@ -17,26 +17,33 @@ let isloaded = false;
 const App = () => {
   const dispatch = useDispatch();
 
-  const lastRefreshTime = localStorage.getItem('Refresh Token Time');
-  const currentTime = new Date().getTime();
-  const timeDifference = currentTime - lastRefreshTime;
-
+  
   const mode = useSelector(state => state.theme.mode);
   const accessToken = localStorage.getItem('Access Token');
   const refreshToken = localStorage.getItem('Refresh Token');
   const user = useSelector(state => state.auth.userData);
-
+  
   const refreshTokenHandler = (token) => {
     if (token) {
       dispatch(authActions.refreshToken(token));
     }
   };
+  
+  useEffect(() => {
+    const lastRefreshTime = localStorage.getItem('Refresh Token Time');
+    const currentTime = new Date().getTime();
+    const timeDifference = currentTime - lastRefreshTime;
+    
+    if (timeDifference >= 14 * 60 * 1000) {
+      refreshTokenHandler(refreshToken);
+    }
+    setInterval(() => {
+      refreshTokenHandler(refreshToken);
+    }, 14 * 60 * 1000);
+  });
 
   const checkAuth = () => {
     if (accessToken && refreshToken) {
-      if (timeDifference >= 14 * 60 * 1000) {
-        refreshTokenHandler(refreshToken);
-      }
       dispatch(authMutations.setUserData(null));
       dispatch(authActions.getProfile());
       dispatch(authMutations.setAuthData({
@@ -78,9 +85,6 @@ const App = () => {
 
   if (!isloaded) {
     checkAuth();
-    setInterval(() => {
-      refreshTokenHandler(refreshToken);
-    }, 14 * 60 * 1000);
     isloaded = true;
   }
 
