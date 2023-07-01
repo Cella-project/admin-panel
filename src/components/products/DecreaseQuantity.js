@@ -71,10 +71,10 @@ export const DecreaseQuantity = ({ popupToggle }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
+        console.log(newPieces);
         const formattedPieces = newPieces.map((piece) => ({
             pieceId: piece.value,
-            decreasedQuantity: piece.decreasedQuantity > piece.quantity ? piece.quantity : piece.decreasedQuantity,
+            decreasedQuantity: piece.decreasedQuantity >= piece.quantity ? piece.quantity : piece.decreasedQuantity,
         }));
 
         const product = {
