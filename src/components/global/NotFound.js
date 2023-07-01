@@ -3,10 +3,7 @@ import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const NotFound = () => {
-  const mode = useSelector((state) => state.theme.mode);
-
-  const notFoundTextAnimation = keyframes`
+const notFoundTextAnimation = keyframes`
   0% {
     transform: translateX(-50%);
   }
@@ -20,36 +17,38 @@ const NotFound = () => {
   }
 `;
 
-  const Container = styled.div`
+const Container = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: ${mode === "dark-mode" ? "#18191a" : "#f5f3fc"};
+  background-color: ${(props) => (props.darkmode ? "#18191a" : "#f5f3fc")};
 `;
 
-  const Title = styled.h1`
+const Title = styled.h1`
   font-size: 6rem;
   font-weight: bold;
-  text-shadow: ${mode === "dark-mode" ? "2px 2px 3px rgba($color: #000, $alpha: 0.5)" : "2px 2px 3px rgba($color: #737373, $alpha: 0.25)"}};
+  text-shadow: ${(props) =>
+    props.darkmode ? "2px 2px 3px rgba($color: #000, $alpha: 0.5)" : "2px 2px 3px rgba($color: #737373, $alpha: 0.25)"};
   color: #ff3636;
   text-align: center;
   margin-bottom: 0;
 `;
 
-  const Subtitle = styled.h2`
+const Subtitle = styled.h2`
   font-size: 3rem;
   font-weight: bold;
-  color: ${mode === "dark-mode" ? "#fefefe" : "#737373"};
-  text-shadow: ${mode === "dark-mode" ? "2px 2px 3px rgba($color: #000, $alpha: 0.5)" : "2px 2px 3px rgba($color: #737373, $alpha: 0.25)"};
+  color: ${(props) => (props.darkmode ? "#fefefe" : "#737373")};
+  text-shadow: ${(props) =>
+    props.darkmode ? "2px 2px 3px rgba($color: #000, $alpha: 0.5)" : "2px 2px 3px rgba($color: #737373, $alpha: 0.25)"};
   text-align: center;
   margin-top: 0;
   animation: ${notFoundTextAnimation} 4s ease-in-out infinite;
 `;
 
-  const Button = styled(Link)`
-  background-color: ${mode === "dark-mode" ? "#163a4a" : "#70c8b0"}};
+const StyledButton = styled(Link)`
+  background-color: ${(props) => (props.darkmode ? "#163a4a" : "#70c8b0")};
   color: white;
   font-size: 2rem;
   font-weight: bold;
@@ -59,20 +58,26 @@ const NotFound = () => {
   margin-top: 3rem;
   text-decoration: none;
   transition: all 0.2s ease-in-out;
-  text-shadow: ${mode === "dark-mode" ? "2px 2px 3px rgba($color: #000, $alpha: 0.5)" : "2px 2px 3px rgba($color: #737373, $alpha: 0.25)"};
+  text-shadow: ${(props) =>
+    props.darkmode ? "2px 2px 3px rgba($color: #000, $alpha: 0.5)" : "2px 2px 3px rgba($color: #737373, $alpha: 0.25)"};
 
   &:hover {
-    background-color: ${mode === "dark-mode" ? "#163a4a" : "70c8b0"};
-    color: ${mode === "dark-mode" ? "#fff" : "#fff"};
+    background-color: ${(props) => (props.darkmode ? "#163a4a" : "#70c8b0")};
+    color: ${(props) => (props.darkmode ? "#fff" : "#fff")};
     transform: scale(1.1);
   }
-`;
+}`;
+
+const NotFound = () => {
+  const mode = useSelector((state) => state.theme.mode);
 
   return (
-    <Container>
-      <Title>404</Title>
-      <Subtitle>Page not found</Subtitle>
-      <Button to="/admin-panel/">Go back to Home</Button>
+    <Container darkmode={mode === "dark-mode"}>
+      <Title darkmode={mode === "dark-mode"}>404</Title>
+      <Subtitle darkmode={mode === "dark-mode"}>Page not found</Subtitle>
+      <StyledButton to="/admin-panel/" darkmode={mode === "dark-mode"}>
+        Go back to Home
+      </StyledButton>
     </Container>
   );
 };
