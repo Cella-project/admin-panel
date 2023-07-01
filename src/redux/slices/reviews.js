@@ -4,16 +4,27 @@ const reviewSlice = createSlice({
     name: 'review',
     initialState: {
         reviews: null,
-        reviewsData:null
-
     },
     reducers: {
         setReviews(state, action) {
             state.reviews = action.payload;
         },
-        setReviewsData(state, action) {
-            state.reviewsData = action.payload;
+        changeReviewState(state, action) {
+            const updatedReview = action.payload;
+            const existingReviewIndex = state.reviews.findIndex(
+                (review) => review._id === updatedReview._id
+            );
+            if (existingReviewIndex !== -1) {
+                state.reviews[existingReviewIndex] = updatedReview;
+            }
         },
+        deleteReview(state, action) {
+            const deletedReviewId = action.payload || action;
+            return {
+                ...state,
+                reviews: state.reviews.filter(review => review._id !== deletedReviewId)
+            };
+        }
     }
 });
 

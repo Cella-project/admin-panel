@@ -109,45 +109,6 @@ const StoreDetails = () => {
 
           <div className='flex-row-left-start2col store-details--control full-width'>
             <div className="full-width store-details--card-cont flex-col-center">
-              <div className="full-width flex-row-top-between2col">
-                <OrangeCard title="Orders">
-                  <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
-                    {(order && order.length > 0) ? (
-                      order
-                        .slice()
-                        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                        .slice(0, 5)
-                        .map((order) => (
-                          <OrderCard key={order._id} order={order} />
-                        ))
-                    ) : (
-                      <p className="gray inter size-16px font-bold">No orders to display</p>
-                    )}
-                  </PerfectScrollbar>
-                  <Link to={`/admin-panel/Orders?store=${store._id}`} className="pointer lists-card--link">
-                    <i className="bi bi-arrow-right flex-row-right-start"></i>
-                  </Link>
-                </OrangeCard>
-                <OrangeCard title="Orders History">
-                  <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
-                    {(orderHistory && orderHistory.length > 0) ? (
-                      orderHistory
-                        .slice()
-                        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                        .slice(0, 5)
-                        .map((order) => (
-                          <OrderCard type='history' key={order._id} order={order} />
-                        ))
-                    ) : (
-                      <p className="gray inter size-16px font-bold">No orders to display</p>
-                    )}
-
-                  </PerfectScrollbar>
-                  <Link to={`/admin-panel/OrdersHistory?store=${store._id}`} className="pointer lists-card--link">
-                    <i className="bi bi-arrow-right flex-row-right-start"></i>
-                  </Link>
-                </OrangeCard>
-              </div>
               <div className="flex-row-top-between2col full-width">
                 <OrangeCard title="Branches" icon={'bi bi-plus-circle'} iconClickHandle={addBranch}>
                   <div className="full-width flex-col-top-start">
@@ -228,50 +189,63 @@ const StoreDetails = () => {
                     )}
                   </div>
                 </OrangeCard>
-                <OrangeCard title="Reviews">
-                  {/* <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start"> */}
-                  {/* {reviewCards.map((reviewCard) => {
-                    return (
-                    (reviewCard.type === 'bi bi-shop-window' && reviewCard.name === storeData.name) &&
-                    <ListsCard width="full-width">
-                      <div key={Math.random().toString()} className="flex-row-left-start full-width">
-                        <ReviewCard
-                          visible={reviewCard.reviewShown}
-                          img={reviewCard.img}
-                          customer={reviewCard.customer}
-                          rating={reviewCard.rating}
-                        />
-                      </div>
-                    </ListsCard>
-                    )
-                    })} */}
-                  {/* </PerfectScrollbar> */}
-                  <Link to={`/admin-panel/Reviews`} className="pointer lists-card--link">
+                <div>
+                </div>
+              </div>
+              <div className="full-width flex-row-top-between2col">
+                <OrangeCard title="Orders">
+                  <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
+                    {(order && order.length > 0) ? (
+                      order
+                        .slice()
+                        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                        .slice(0, 5)
+                        .map((order) => (
+                          <OrderCard key={order._id} order={order} />
+                        ))
+                    ) : (
+                      <p className="gray inter size-16px font-bold">No orders to display</p>
+                    )}
+                  </PerfectScrollbar>
+                  <Link to={`/admin-panel/Orders?store=${store._id}`} className="pointer lists-card--link">
                     <i className="bi bi-arrow-right flex-row-right-start"></i>
                   </Link>
                 </OrangeCard>
-                <div>
-                </div>
+                <OrangeCard title="Orders History">
+                  <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
+                    {(orderHistory && orderHistory.length > 0) ? (
+                      orderHistory
+                        .slice()
+                        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                        .slice(0, 5)
+                        .map((order) => (
+                          <OrderCard type='history' key={order._id} order={order} />
+                        ))
+                    ) : (
+                      <p className="gray inter size-16px font-bold">No orders to display</p>
+                    )}
+
+                  </PerfectScrollbar>
+                  <Link to={`/admin-panel/OrdersHistory?store=${store._id}`} className="pointer lists-card--link">
+                    <i className="bi bi-arrow-right flex-row-right-start"></i>
+                  </Link>
+                </OrangeCard>
               </div>
               <div className="flex-row-top-start2col full-width">
                 <OrangeCard title="Products">
                   <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
-                    {(products && products.length > 0) ? (
-                      products.filter((productCard) =>
-                        productCard.store._id === store._id)
+                    {products && (
+                      products.filter((productCard) => productCard.store._id === store._id).length === 0 ? (
+                        <p className="gray inter size-16px font-bold">No products to display</p>
+                      ) : products.filter((productCard) => productCard.store._id === store._id)
                         .slice()
                         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                         .slice(0, 5)
                         .map((product) => {
                           return (
-                            <ProductCard
-                              key={product._id}
-                              productCard={product}
-                            />
+                            <ProductCard key={product._id} productCard={product} />
                           );
                         })
-                    ) : (
-                      <p className="gray inter size-16px font-bold">No products to display</p>
                     )
                     }
                   </PerfectScrollbar>

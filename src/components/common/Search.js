@@ -18,6 +18,7 @@ const Search = ({ width, onSearch, page }) => {
     specialty: '',
     working: null,
     vehicle: '',
+    reviewee: '',
   });
 
   useEffect(() => {
@@ -26,6 +27,7 @@ const Search = ({ width, onSearch, page }) => {
       dispatch(specialityActions.getSpecialties());
     }
   }, [dispatch, page]);
+
   const filterClickHandler = (isFilterList) => {
     if (isFilterList === true) {
       query.current = '';
@@ -66,7 +68,7 @@ const Search = ({ width, onSearch, page }) => {
       </div>
       {(filterList && page) &&
         <form noValidate className="flex-row-top-between2col search-bar--filter orange-bg shadow-5px full-width gray inter">
-          {(page === 'Admins' || page === 'Stores' || page === 'Customers' || page === 'Products' || page === 'OrdersHistory' || page === 'Orders' || page === 'Drivers' || page === 'Logs') &&
+          {(page === 'Admins' || page === 'Stores' || page === 'Customers' || page === 'Products' || page === 'OrdersHistory' || page === 'Orders' || page === 'Drivers' || page === 'Logs' || page === 'Reviews') &&
             <div className="flex-row-top-start size-16px margin-8px-V width-50-100">
               Search by:
               <div className="flex-col-left-start search-bar--filter--options">
@@ -87,7 +89,8 @@ const Search = ({ width, onSearch, page }) => {
                     onChange={() => {
                       searchType.current = page === 'Stores' ? 'storeName' :
                         (page === 'Admins' || page === 'Customers' || page === 'Products' || page === 'Drivers' || page === 'Logs') ? 'name' :
-                          (page === 'OrdersHistory' || page === 'Orders') ? 'customer.name' : 'all';
+                          (page === 'OrdersHistory' || page === 'Orders') ? 'customer.name' :
+                            (page === 'Reviews') ? 'reviewer.name' : 'all';
                       handleSearch();
                     }
                     }
@@ -96,6 +99,7 @@ const Search = ({ width, onSearch, page }) => {
                     {page === 'Stores' && 'Store '}
                     {page === 'OrdersHistory' && 'Customer '}
                     {page === 'Orders' && 'Customer '}
+                    {page === 'Reviews' && 'Reviewer '}
                     Name
                   </label>
                 </div>
@@ -211,9 +215,9 @@ const Search = ({ width, onSearch, page }) => {
             </div>
           }
 
-          {(page === 'Stores' || page === 'Customers' || page === 'Specialty' || page === 'Categories' || page === 'Products' || page === 'OrdersHistory' || page === 'Orders' || page === 'Drivers' || page === 'Payments') &&
+          {(page === 'Stores' || page === 'Customers' || page === 'Specialty' || page === 'Categories' || page === 'Products' || page === 'OrdersHistory' || page === 'Orders' || page === 'Drivers' || page === 'Payments' || page === 'Reviews') &&
             <div className="flex-col-left-start size-16px margin-8px-V width-50-100">
-              {(page === 'Stores' || page === 'Customers' || page === 'Specialty' || page === 'Categories' || page === 'Products' || page === 'Drivers' || page === 'Payments') &&
+              {(page === 'Stores' || page === 'Customers' || page === 'Specialty' || page === 'Categories' || page === 'Products' || page === 'Drivers' || page === 'Payments' || page === 'Reviews') &&
                 <div className="flex-row-top-start">
                   Status:
                   <div className="flex-row-left-start2col search-bar--filter--options">
@@ -249,6 +253,46 @@ const Search = ({ width, onSearch, page }) => {
                         }
                       />
                       <label className="pointer" htmlFor="inactive">InActive</label>
+                    </div>
+                  </div>
+                </div>
+              }
+              {page === 'Reviews' &&
+                <div className="flex-row-top-start margin-12px-V">
+                  Review At:
+                  <div className="flex-col-left-start2col search-bar--filter--options">
+                    <div className="flex-row-left-start">
+                      <input type="radio" name="search-reviewee" className="margin-12px-H pointer" id="all-reviewees"
+                        value="all" defaultChecked
+                        onChange={() => {
+                          filter.current.reviewee = 'all';
+                          handleSearch();
+                        }
+                        }
+                      />
+                      <label className="pointer" htmlFor="all-reviewees">All</label>
+                    </div>
+                    <div className="flex-row-left-start">
+                      <input type="radio" name="search-reviewee" className="margin-12px-H pointer" id="driver"
+                        value="driver"
+                        onChange={() => {
+                          filter.current.reviewee = 'Driver';
+                          handleSearch();
+                        }
+                        }
+                      />
+                      <label className="pointer" htmlFor="driver">Driver</label>
+                    </div>
+                    <div className="flex-row-left-start">
+                      <input type="radio" name="search-reviewee" className="margin-12px-H pointer" id="product"
+                        value="product"
+                        onChange={() => {
+                          filter.current.reviewee = 'Product';
+                          handleSearch();
+                        }
+                        }
+                      />
+                      <label className="pointer" htmlFor="product">Product</label>
                     </div>
                   </div>
                 </div>

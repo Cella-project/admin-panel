@@ -1,46 +1,64 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Rating from '@mui/material/Rating';
 import StarBorder from '@material-ui/icons/StarBorder';
 
 import './ReviewCard.scss';
 import Canvas from '../common/Canvas';
+import { useDispatch, useSelector } from 'react-redux';
+import { driverMutations, productMutations } from '../../redux/mutations';
+import { driverActions, productActions } from '../../apis/actions';
 
-const ReviewCard = ({ visible, customer, type, name, rating, status }) => {
+const ReviewCard = ({ review, visible }) => {
     const [reviewShown, setreviewShown] = useState(visible);
+    const dispatch = useDispatch();
+    const driverData = useSelector(state => state.driver.driverData);
+    const productData = useSelector(state => state.product.productData);
+    const mode = useSelector(state => state.theme.mode);
 
     const toggleReview = () => {
         setreviewShown(!reviewShown);
     }
 
+    useEffect(() => {
+        if (review.reviewAt === 'Driver') {
+            dispatch(driverMutations.setDriverData(null))
+            dispatch(driverActions.getDriverData(review.revieweeId))
+        }
+        if (review.reviewAt === 'Product') {
+            dispatch(productMutations.setProductData(null))
+            dispatch(productActions.getProductData(review.revieweeId))
+        }
+    }, [dispatch, review.reviewAt, review.revieweeId])
+
     return (
         <>
             <div className='flex-row-left-start full-width'>
                 <div className='review-lists-card--img radius-circular flex-row-center'>
-                    <Canvas name={customer} borderRadius='50%' width={55} height={55} fontSize={'42px'} />
-                    <div className={`${status ? status + '-bg lists-status' : ''} radius-circular`}></div>
+                    <Canvas name={review.reviewer.name} borderRadius='50%' width={55} height={55} fontSize={'42px'} />
+                    <div className={`${review.status === 'Active' ? 'green' : 'red'}-bg lists-status radius-circular`}></div>
                 </div>
                 <div className='review-lists-card gray shadow-2px margin-10px-V inter radius-15px white-bg full-width flex-col-left-start flex-wrap'>
                     <div className='review-lists-card--info flex-row-between2col full-width flex-wrap pointer' onClick={toggleReview}>
                         <div className='review-lists-card--cont margin-2px-V'>
-                            <span className='lists-card--info--disc--hide margin-2px-H font-bold'>Customer: </span>{customer}
+                            <span className='lists-card--info--disc--hide margin-2px-H font-bold'>Reviewer: </span>{review.reviewer.name}
                         </div>
-                        {type &&
+                        {review.reviewAt &&
                             <div className='review-lists-card--cont margin-2px-V'>
                                 <span className='lists-card--info--disc--hide margin-2px-H font-bold'>Type: </span>
-                                <i className={`${type} orange size-30px`} />
+                                <i className={`${review.reviewAt === 'Driver' ? 'bi bi-truck' : 'bi bi-box-seam'} orange size-30px`} />
                             </div>
                         }
-                        {name &&
+                        {review.revieweeId && review.reviewAt &&
                             <div className='review-lists-card--cont margin-2px-V'>
-                                <span className='lists-card--info--disc--hide margin-2px-H font-bold'>Name: </span>{name}
+                                <span className='lists-card--info--disc--hide margin-2px-H font-bold'>Reviewee: </span>{review.reviewAt === 'Driver' ? driverData?.name : productData?.title}
                             </div>
                         }
                         <div className='flex-row-between2col review-lists-card--rating-cont flex-wrap'>
                             <div className='review-lists-card--cont margin-2px-V font-bold flex-row-left-start'>
                                 <span className='lists-card--info--disc--hide margin-2px-H font-bold'>Rating: </span>
                                 <div className='flex-row-left-start flex-wrap'>
-                                    <Rating name="rating" emptyIcon={<StarBorder className='gray' fontSize='inherit' />} style={{ color: '#FDCC0D' }} value={rating} precision={0.5} size={"small"} readOnly />
-                                    <span className='size-12px gray font-bold margin-4px-H'>{rating}</span>
+                                    <Rating name="rating" emptyIcon={<StarBorder className='gray' fontSize='inherit' />} style={{ color: '#FDCC0D' }} value={review.rate} precision={0.5} size={"small"} readOnly />
+                                    <span className='size-12px gray font-bold margin-4px-H'>{review.rate}</span>
                                 </div>
                             </div>
                             <div className='review-lists-card--arrow margin-2px-V size-14px font-bold'>
@@ -51,24 +69,19 @@ const ReviewCard = ({ visible, customer, type, name, rating, status }) => {
                     {reviewShown &&
                         <div className='full-width flex-row-between2col review-lists-card--exp'>
                             <div className='review-lists-card--content text-shadow shadow-5px radius-15px size-14px'>
-                                The best Store in the world.
-                                The best Store in the world.
-                                The best Store in the world.
-                                The best Delivery in the world.
-                                The best Delivery in the world.
-                                The best Delivery in the world.
+                                {review.comment}
                             </div>
                             <div className='flex-col-center review-lists-card--btns'>
-                                <div className='review-lists-card--btn flex-row-center white orange-bg radius-circular pointer'>
+                                <div className={`review-lists-card--btn flex-row-center ${mode === 'dark-mode' ? 'gray' : 'white'} orange-bg radius-circular pointer`}>
                                     <i className="bi bi-arrow-clockwise size-24px"></i>
-                                    <div className="review-lists-card--btn--tag flex-row-center white inter size-12px radius-5px shadow-5px">
-                                        Reset
+                                    <div className='review-lists-card--btn--tag flex-row-center inter size-12px radius-5px shadow-5px'>
+                                        Change State
                                     </div>
                                 </div>
-                                <div className='review-lists-card--btn flex-row-center white orange-bg radius-circular pointer'>
-                                    <i className="bi bi-pencil-square size-24px"></i>
-                                    <div className="review-lists-card--btn--tag flex-row-center white inter size-12px radius-5px shadow-5px">
-                                        Edit
+                                <div className={`review-lists-card--btn flex-row-center ${mode === 'dark-mode' ? 'gray' : 'white'} orange-bg radius-circular pointer`}>
+                                    <i className="bi bi-trash size-24px"></i>
+                                    <div className='review-lists-card--btn--tag flex-row-center inter size-12px radius-5px shadow-5px'>
+                                        Delete
                                     </div>
                                 </div>
                             </div>
