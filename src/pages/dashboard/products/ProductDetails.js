@@ -38,19 +38,10 @@ const ProductDetails = () => {
 
   let cards = [
     { title: 'Quantity', content: 0, icon: "bi bi-box-seam" },
-    { title: '# of orders', content: 0, icon: "bi bi-box-seam" },
-    { title: 'Success Orders', content: 0, icon: "bi bi-box-seam" },
-    { title: 'returned orders', content: 0, icon: "bi bi-box-seam" },
   ];
   if (product && product !== null) {
     cards = [
       { title: 'Quantity', content: product.avilableQuantity, icon: "bi bi-box-seam" },
-      { title: '# of Orders', content: 0, icon: "bi bi-box-seam" },
-      { title: 'Success Orders', content: 0, icon: "bi bi-box-seam" },
-      { title: 'Returned Orders', content: 0, icon: "bi bi-box-seam" },
-      // { title: '# of orders', content: product.orders.length, icon: "bi bi-box-seam" },
-      // { title: 'Success Orders', content: product.orders.filter((order) => order.status === 'Delivered').length, icon: "bi bi-box-seam" },
-      // { title: 'returned orders', content: product.orders.filter((order) => order.status === 'Returned').length, icon: "bi bi-box-seam" },
     ];
   }
   const hasDiscount = product?.discount?.hasDiscount;
@@ -108,7 +99,7 @@ const ProductDetails = () => {
     };
   }
 
-  
+
   const decreaseQuantity = () => {
     setPopupShown(true);
     setHeader('Decrease Quantity');
@@ -160,6 +151,7 @@ const ProductDetails = () => {
           </PerfectScrollbar>
           <div className="full-width">
             <div className="full-width flex-row-between2col">
+
               {
                 cards.map((card, index) => {
                   return (
@@ -172,57 +164,49 @@ const ProductDetails = () => {
                   );
                 })
               }
-              {
-                hasDiscount &&
-                <div className="flex-col-center width-20-100">
-                  <OrangeCard title="Discount">
-                    <div className="product-details--discount flex-row-center">
-                      <div className="product-details--discount--content flex-col-center">
-                        <p className="gray inter size-28px margin-12px-H text-shadow">{product.discount.discountAmount}{product.discount.discountType === 'Percentage' && <i className="bi bi-percent"></i>}</p>
-                        <p className="gray inter margin-12px-H text-shadow">{product.discount.discountType}</p>
+              <OrangeCard title="Sizes" icon={'bi bi-plus-circle'} iconClickHandle={addProductSize}>
+                <div className="product-details--sizes flex-row-center flex-wrap">
+                  {product.sizes.map((size, index) => (
+                    <div key={index} className="product-details--sizes flex-row-center flex-wrap">
+                      <div className="orange-bg shadow-2px margin-6px-H radius-circular white flex-row-between">
+                        <div className="product-details--sizes--size font-bold size-20px ">{size.title}</div>
+                        <i
+                          className="product-details--sizes--delete shadow-2px bi bi-trash pointer size-12px orange white-bg radius-circular flex-row-center"
+                          onClick={() => handleSizeDelete(size._id)}
+                        />
                       </div>
                     </div>
-                  </OrangeCard>
+                  ))}
                 </div>
+              </OrangeCard>
+              <OrangeCard title="Colors" icon={'bi bi-plus-circle'} iconClickHandle={addProductColor}>
+                <div className="product-details--colors flex-row-center flex-wrap">
+                  {product.colors.map((color, index) => (
+                    <div key={index} className="product-details--colors flex-row-center flex-wrap">
+                      <div style={{ backgroundColor: color.hexCode }} className=" shadow-5px margin-6px-H full-width radius-circular flex-row-between">
+                        <div className=" product-details--colors--color" />
+                        <i
+                          className="product-details--colors--delete shadow-2px bi bi-trash pointer size-12px orange white-bg radius-circular flex-row-center"
+                          onClick={() => handleColorDelete(color._id)}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </OrangeCard>
+              {
+                hasDiscount &&
+                <OrangeCard title="Discount">
+                  <div className=" flex-row-center">
+                    <p className="gray inter size-28px  margin-12px-H text-shadow">{product.discount.discountAmount}{product.discount.discountType === 'Percentage' && <i className="bi bi-percent"></i>}</p>
+                    <p className="gray inter margin-12px-H text-shadow">{product.discount.discountType}</p>
+                  </div>
+                </OrangeCard>
               }
             </div>
           </div>
           <div className="full-width">
             <div className="full-width flex-row-top-start2col">
-              <div className="flex-col-center width-50-100">
-                <OrangeCard title="Sizes" icon={'bi bi-plus-circle'} iconClickHandle={addProductSize}>
-                  <div className="product-details--sizes flex-row-center flex-wrap">
-                    {product.sizes.map((size, index) => (
-                      <div key={index} className="product-details--sizes flex-row-center flex-wrap">
-                        <div className="orange-bg shadow-2px margin-6px-H radius-circular white flex-row-between">
-                          <div className="product-details--sizes--size font-bold size-20px ">{size.title}</div>
-                          <i
-                            className="product-details--sizes--delete shadow-2px bi bi-trash pointer size-12px orange white-bg radius-circular flex-row-center"
-                            onClick={() => handleSizeDelete(size._id)}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </OrangeCard>
-              </div>
-              <div className="flex-col-center margin-10px-H width-50-100">
-                <OrangeCard title="Colors" icon={'bi bi-plus-circle'} iconClickHandle={addProductColor}>
-                  <div className="product-details--colors flex-row-center flex-wrap">
-                    {product.colors.map((color, index) => (
-                      <div key={index} className="product-details--colors flex-row-center flex-wrap">
-                        <div style={{ backgroundColor: color.hexCode }} className=" shadow-5px margin-6px-H full-width radius-circular flex-row-between">
-                          <div className=" product-details--colors--color" />
-                          <i
-                            className="product-details--colors--delete shadow-2px bi bi-trash pointer size-12px orange white-bg radius-circular flex-row-center"
-                            onClick={() => handleColorDelete(color._id)}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </OrangeCard>
-              </div>
               <OrangeCard title="Pieces" icon={'bi bi-dash-circle'} iconClickHandle={decreaseQuantity}>
                 <div className="product-details--piece flex-row-center flex-wrap">
                   {product.pieces.map((piece, index) => (
@@ -243,7 +227,7 @@ const ProductDetails = () => {
 
           <div className="full-width flex-row-center">
             <OrangeCard title="Reviews">
-            <PerfectScrollbar className="product-details--scroll--cont full-width flex-col-top-start">
+              <PerfectScrollbar className="product-details--scroll--cont full-width flex-col-top-start">
                 {(reviews && reviews.length > 0) ? (
                   reviews
                     .slice()

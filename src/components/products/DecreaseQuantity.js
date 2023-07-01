@@ -43,7 +43,7 @@ export const DecreaseQuantity = ({ popupToggle }) => {
             if (existingPiece) {
                 const updatedPiece = {
                     ...existingPiece,
-                    decreasedQuantity: existingPiece.decreasedQuantity + updatedQuantity,
+                    decreasedQuantity: updatedQuantity,
                     quantity: remainingQuantity >= 0 ? remainingQuantity : 0,
                 };
                 setNewPieces((prevPieces) =>
@@ -155,7 +155,7 @@ export const DecreaseQuantity = ({ popupToggle }) => {
                                 {piece.size}
                             </div>
                             <div className="white-bg font-bold gray shadow-5px product-details--piece--info flex-row-between">
-                                Available: {piece.quantity - piece.decreasedQuantity >=0 ? piece.quantity - piece.decreasedQuantity : 0}
+                                Available: {piece.quantity - piece.decreasedQuantity >= 0 ? piece.quantity - piece.decreasedQuantity : 0}
                             </div>
                             <div style={{ backgroundColor: piece.color.hexCode }} className="shadow-5px product-details--piece--color shadow-2px flex-row-between" />
                         </div>
