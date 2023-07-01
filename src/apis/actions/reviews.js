@@ -63,7 +63,7 @@ const reviewActions = {
                     onSubmit: async () => {
                         dispatch(popupMutation.clearPopPanel());
                         dispatch(popupMutation.popLoading());
-                        const response = await Axios.put(`/api/review-main/change-state`, { reviewId });
+                        const response = await Axios.put(`/api/review-main/change-state`, { "_id": reviewId });
                         dispatch(reviewMutations.changeReviewState(response.data.data));
                         dispatch(popupMutation.clearPopPanel());
                         dispatch(stickyMutations.pushNote({

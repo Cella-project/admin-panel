@@ -129,9 +129,6 @@ const Home = () => {
                 <i className="bi bi-arrow-right flex-row-right-start"></i>
               </Link>
             </OrangeCard>
-            <OrangeCard title="Reviews">
-
-            </OrangeCard>
           </div>
         </div>
       </div >

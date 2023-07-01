@@ -84,7 +84,8 @@
 
         }
     }
-        &--piece {
+
+    &--piece {
         box-sizing: border-box;
         position: relative;
         margin: 5px;
@@ -96,7 +97,7 @@
             border-radius: 0 50% 50% 0;
         }
 
-        &--info{
+        &--info {
             box-sizing: border-box;
             padding: 10px 4px 10px 4px;
         }
@@ -113,27 +114,16 @@
 
 
     &--scroll--cont {
+        width: 100%;
+        max-height: 370px;
         overflow: hidden;
-        position: relative;
-        &--add {
-            box-sizing: border-box;
-            padding: 3px;
-            position: absolute;
-            border: transparent;
-            right: 25px;
-            transition: all 0.15s ease-in-out;
+        box-sizing: border-box;
+        padding: 10px;
 
-            &:hover {
-                transform: scale(1.5);
-            }
-
-        }
-
-
-        & .ps__thumb-x,
-        & .ps__rail-x {
-            left: 0 !important;
-            width: 0 !important;
+        & .ps__thumb-y,
+        & .ps__rail-y {
+            top: 0 !important;
+            height: 0 !important;
         }
     }
 }

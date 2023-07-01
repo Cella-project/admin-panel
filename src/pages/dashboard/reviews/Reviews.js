@@ -8,7 +8,7 @@ import { reviewMutations } from '../../../redux/mutations';
 import { reviewActions } from '../../../apis/actions';
 
 import './Reviews.scss';
-import Loading from '../../../components/global/Loading';
+import { useLocation } from 'react-router-dom';
 
 const Reviews = () => {
   const dispatch = useDispatch();
@@ -16,14 +16,26 @@ const Reviews = () => {
 
   const visible = false;
 
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const driverID = searchParams.get('driver');
+  const productID = searchParams.get('product');
+
   useEffect(() => {
     document.title = 'Reviews • Admin Panel';
 
     dispatch(reviewMutations.setReviews(null));
-    dispatch(reviewActions.getReviews());
-  }, [dispatch]);
 
-  let content = <Loading />;
+    if (driverID) {
+      dispatch(reviewActions.getReviewsForDriver(driverID));
+    } else if (productID) {
+      dispatch(reviewActions.getReviewsForProduct(productID));
+    } else {
+      dispatch(reviewActions.getReviews());
+    }
+  }, [dispatch, driverID, productID]);
+
+  let content = <></>;
 
   const [searchQuery, setSearchQuery] = useState("");
   const [searchType, setSearchType] = useState("");
@@ -100,7 +112,7 @@ const Reviews = () => {
       filteredReviews.map((review) => {
         return (
           <ListsCard key={review._id} >
-            <ReviewCard review={review} visible={visible} />
+            <ReviewCard review={review} visible={visible} role={false} />
           </ListsCard>
         );
       });

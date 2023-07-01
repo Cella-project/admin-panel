@@ -9,15 +9,13 @@ import DeliveryControl from "../../../components/delivery/DeliveryControl";
 import ExpandDocument from "../../../components/common/ExpandDocument";
 import OrderCard from "../../../components/orders/OrderCard";
 
-// import ReviewCard from "../../../components/reviews/ReviewCard";
-
-
 import { useSelector, useDispatch } from 'react-redux';
-import { driverActions, orderHistoryActions, orderActions, logActivityActions } from '../../../apis/actions';
-import { driverMutations, logActivityMutations, orderHistoryMutations, orderMutations } from '../../../redux/mutations';
+import { driverActions, orderHistoryActions, orderActions, logActivityActions, reviewActions } from '../../../apis/actions';
+import { driverMutations, logActivityMutations, orderHistoryMutations, orderMutations, reviewMutations } from '../../../redux/mutations';
 import Popup from "../../../components/common/PopupForm";
 import ListsCard from "../../../components/common/ListsCard";
 import LogActivityCard from "../../../components/logActivity/LogActivityCard";
+import ReviewCard from "../../../components/reviews/ReviewCard";
 
 import "./DeliveryDetails.scss";
 
@@ -27,9 +25,11 @@ const DeliveryDetails = () => {
   const delivery = useSelector(state => state.driver.driverData);
   const order = useSelector((state) => state.order.orders);
   const orderHistory = useSelector((state) => state.orderHistory.ordersHistory);
+  const reviews = useSelector(state => state.review.reviews);
   const logs = useSelector(state => state.log.logs);
   const [popupShown, setPopupShown] = useState(false);
   const [popupHeader, setPopupHeader] = useState('');
+  const visible = false;
 
   useEffect(() => {
     dispatch(driverMutations.setDriverData(null));
@@ -40,6 +40,8 @@ const DeliveryDetails = () => {
     dispatch(orderActions.getOrderForDriver(params.id));
     dispatch(logActivityMutations.setLogs(null));
     dispatch(logActivityActions.getDriverLogs(params.id, 0));
+    dispatch(reviewMutations.setReviews(null));
+    dispatch(reviewActions.getReviewsForDriver(params.id));
   }, [dispatch, params.id]);
 
 
@@ -127,24 +129,23 @@ const DeliveryDetails = () => {
               </Link>
             </OrangeCard>
             <OrangeCard title="Reviews">
-              {/* <PerfectScrollbar className="delivery-details--scroll--cont full-width flex-col-top-start"> */}
-              {/* {reviewCards.map((reviewCard) => {
-                  return (
-                    reviewCard.type === 'bi bi-truck' && reviewCard.name === delivery.name &&
-                    <ListsCard width="full-width">
-                      <div key={Math.random().toString()} className="flex-row-left-start full-width">
-                        <ReviewCard
-                          visible={reviewCard.reviewShown}
-                          img={reviewCard.img}
-                          customer={reviewCard.customer}
-                          rating={reviewCard.rating}
-                        />
-                      </div>
-                    </ListsCard>
-                  )
-                })} */}
-              {/* </PerfectScrollbar> */}
-              <Link to={`/admin-panel/Reviews`} className="pointer lists-card--link">
+              <PerfectScrollbar className="delivery-details--scroll--cont full-width flex-col-top-start">
+                {(reviews && reviews.length > 0) ? (
+                  reviews
+                    .slice()
+                    .sort((a, b) => b.rate - a.rate)
+                    .slice(0, 3)
+                    .map((review) => (
+                      <ListsCard key={review._id} width="full-width">
+                        <ReviewCard review={review} visible={visible} role={true} />
+                      </ListsCard>
+                    ))
+                ) : (
+                  <p className="gray inter size-16px font-bold">No reviews to display</p>
+                )
+                }
+              </PerfectScrollbar>
+              <Link to={`/admin-panel/Reviews?driver=${delivery._id}`} className="pointer lists-card--link">
                 <i className="bi bi-arrow-right flex-row-right-start"></i>
               </Link>
             </OrangeCard>

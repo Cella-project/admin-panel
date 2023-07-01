@@ -6,9 +6,9 @@ import './ReviewCard.scss';
 import Canvas from '../common/Canvas';
 import { useDispatch, useSelector } from 'react-redux';
 import { driverMutations, productMutations } from '../../redux/mutations';
-import { driverActions, productActions } from '../../apis/actions';
+import { driverActions, productActions, reviewActions } from '../../apis/actions';
 
-const ReviewCard = ({ review, visible }) => {
+const ReviewCard = ({ review, visible, role }) => {
     const [reviewShown, setreviewShown] = useState(visible);
     const dispatch = useDispatch();
     const driverData = useSelector(state => state.driver.driverData);
@@ -20,15 +20,23 @@ const ReviewCard = ({ review, visible }) => {
     }
 
     useEffect(() => {
-        if (review.reviewAt === 'Driver') {
+        if (review.reviewAt === 'Driver' && !role) {
             dispatch(driverMutations.setDriverData(null))
             dispatch(driverActions.getDriverData(review.revieweeId))
         }
-        if (review.reviewAt === 'Product') {
+        if (review.reviewAt === 'Product' && !role) {
             dispatch(productMutations.setProductData(null))
             dispatch(productActions.getProductData(review.revieweeId))
         }
-    }, [dispatch, review.reviewAt, review.revieweeId])
+    }, [dispatch, review.reviewAt, review.revieweeId, role])
+
+    const handleChangeState = () => {
+        dispatch(reviewActions.changeReviewState(review._id))
+    }
+
+    const handleDelete = () => {
+        dispatch(reviewActions.deleteReview(review._id))
+    }
 
     return (
         <>
@@ -72,15 +80,15 @@ const ReviewCard = ({ review, visible }) => {
                                 {review.comment}
                             </div>
                             <div className='flex-col-center review-lists-card--btns'>
-                                <div className={`review-lists-card--btn flex-row-center ${mode === 'dark-mode' ? 'gray' : 'white'} orange-bg radius-circular pointer`}>
+                                <div className={`review-lists-card--btn flex-row-center ${mode === 'dark-mode' ? 'gray' : 'white'} orange-bg radius-circular pointer`} onClick={handleChangeState}>
                                     <i className="bi bi-arrow-clockwise size-24px"></i>
-                                    <div className='review-lists-card--btn--tag flex-row-center inter size-12px radius-5px shadow-5px'>
+                                    <div className='review-lists-card--btn--tag change flex-row-center inter size-12px radius-5px shadow-5px'>
                                         Change State
                                     </div>
                                 </div>
-                                <div className={`review-lists-card--btn flex-row-center ${mode === 'dark-mode' ? 'gray' : 'white'} orange-bg radius-circular pointer`}>
+                                <div className={`review-lists-card--btn flex-row-center ${mode === 'dark-mode' ? 'gray' : 'white'} orange-bg radius-circular pointer`} onClick={handleDelete}>
                                     <i className="bi bi-trash size-24px"></i>
-                                    <div className='review-lists-card--btn--tag flex-row-center inter size-12px radius-5px shadow-5px'>
+                                    <div className='review-lists-card--btn--tag delete flex-row-center inter size-12px radius-5px shadow-5px'>
                                         Delete
                                     </div>
                                 </div>
