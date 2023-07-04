@@ -14,7 +14,7 @@ const notificationActions = {
                     notifications = [];
                 }
 
-                const response = await Axios.get(`/api/notification-center/get-all-notifications?skip=${offset}&limit=4`);
+                const response = await Axios.get(`/api/notification-center/notifications?skip=${offset}&limit=5`);
 
                 const newNotifications = [...notifications, ...response.data.data];
 

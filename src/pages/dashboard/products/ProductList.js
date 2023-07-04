@@ -57,8 +57,8 @@ const ProductList = () => {
   let cards = [
     { title: 'Products', content: 0, icon: "bi bi-box-seam" },
     { title: 'Available Products', content: 0, icon: "bi bi-box-seam" },
-    { title: 'Unavailable Products', content: 0, icon: "bi bi-box-seam" },
-    { title: 'Deactivated Products', content: 0, icon: "bi bi-box-seam" },
+    { title: 'Out of Stock Products', content: 0, icon: "bi bi-box-seam" },
+    { title: 'InActive Products', content: 0, icon: "bi bi-box-seam" },
   ];
 
   let content = <Loading />;
@@ -155,7 +155,7 @@ const ProductList = () => {
       { title: 'Products', content: products.length, icon: "bi bi-box-seam" },
       { title: 'Available Products', content: counts.activeCount, icon: "bi bi-box-seam" },
       { title: 'Out of Stock Products', content: counts.outOfStockCount, icon: "bi bi-box-seam" },
-      { title: 'Inactive Products', content: counts.inactiveCount, icon: "bi bi-box-seam" },
+      { title: 'InActive Products', content: counts.inactiveCount, icon: "bi bi-box-seam" },
     ];
 
   };

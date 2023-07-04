@@ -164,12 +164,12 @@ const Search = ({ width, onSearch, page }) => {
                       <input type="radio" name="search-type" className="margin-12px-H pointer" id="category"
                         value="category"
                         onChange={() => {
-                          searchType.current = 'category.title';
+                          searchType.current = 'subCategory.title';
                           handleSearch();
                         }
                         }
                       />
-                      <label className="pointer" htmlFor="category">Category</label>
+                      <label className="pointer" htmlFor="category">Sub Category</label>
                     </div>
 
                     <div className="flex-row-left-start">

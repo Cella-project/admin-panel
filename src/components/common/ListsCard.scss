@@ -37,12 +37,12 @@
 }
 
 .lists-status {
-    position: absolute;
+    position: relative;
     width: 10px;
     height: 10px;
     border: rgba(255, 255, 255, 0.5) 2px solid;
     margin-top: 40px;
-    margin-left: 40px;
+    margin-left: -13px;
 }
 
 @media (max-width: 992px) {
@@ -64,7 +64,7 @@
 
         .lists-status {
             margin-top: 38px;
-            margin-left: 37px;
+            margin-left: -13px;
         }
     }
 }

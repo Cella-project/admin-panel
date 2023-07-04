@@ -1,0 +1,100 @@
+.notifications {
+    position: relative;
+    min-width: 40px;
+    height: 40px;
+
+    &--icon {
+        height: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+
+        &--tag {
+            display: none !important;
+            position: absolute;
+            top: 45px;
+            padding: 6px 8px;
+            background-color: rgba($color: #000000, $alpha: 0.6);
+            width: max-content;
+            z-index: 2;
+        }
+
+        &:hover &--tag {
+            display: flex !important;
+        }
+    }
+
+    & .bi-caret-up-fill {
+        position: absolute;
+        top: 37px;
+    }
+
+    &--scroll-cont {
+        width: 100%;
+        max-height: calc(100vh - 150px);
+        overflow: hidden;
+        top: 0;
+
+        &.loading {
+            top: -50%;
+        }
+
+        & .ps__thumb-y,
+        & .ps__rail-y {
+            top: 0 !important;
+            height: 0 !important;
+        }
+    }
+
+    &--menu {
+        position: absolute;
+        top: 47px;
+        right: -20px;
+        box-sizing: border-box;
+        padding: 10px;
+        width: max-content;
+        min-width: 350px;
+        max-width: 600px;
+        overflow: hidden;
+        z-index: 1;
+        box-shadow: 0 10px 10px 2px rgba($color: #000000, $alpha: 0.2);
+
+        &--header {
+            box-sizing: border-box;
+            padding-bottom: 10px;
+        }
+
+        &--item {
+            box-sizing: border-box;
+            padding: 10px;
+            transition: all .15s ease-in-out;
+
+            &:hover {
+                background-color: rgba($color: #444444, $alpha: 0.1);
+            }
+
+            &--body {
+                box-sizing: border-box;
+                padding: 10px;
+            }
+
+            &--date {
+                min-width: max-content;
+            }
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .notifications {
+        &--icon {
+            &:hover &--tag {
+                display: none !important;
+            }
+        }
+
+        &--menu {
+            max-width: 250px;
+            right: -70px;
+        }
+    }
+}

@@ -122,7 +122,7 @@ const Announcement = ({ popupToggle }) => {
                                     checked={roles.includes('admins')}
                                     onChange={handleRoleChange}
                                 />
-                                <label htmlFor="admins">All Admins</label>
+                                <label className='pointer' htmlFor="admins">All Admins</label>
                             </div>
                             <div>
                                 <input
@@ -134,7 +134,7 @@ const Announcement = ({ popupToggle }) => {
                                     checked={roles.includes('stores')}
                                     onChange={handleRoleChange}
                                 />
-                                <label htmlFor="stores">All Stores</label>
+                                <label className='pointer' htmlFor="stores">All Stores</label>
                             </div>
                             <div>
                                 <input
@@ -146,7 +146,7 @@ const Announcement = ({ popupToggle }) => {
                                     checked={roles.includes('drivers')}
                                     onChange={handleRoleChange}
                                 />
-                                <label htmlFor="drivers">All Drivers</label>
+                                <label className='pointer' htmlFor="drivers">All Drivers</label>
                             </div>
                             <div>
                                 <input
@@ -158,7 +158,7 @@ const Announcement = ({ popupToggle }) => {
                                     checked={roles.includes('customers')}
                                     onChange={handleRoleChange}
                                 />
-                                <label htmlFor="customers">All Customers</label>
+                                <label className='pointer' htmlFor="customers">All Customers</label>
                             </div>
                         </div>
 

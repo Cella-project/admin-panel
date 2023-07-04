@@ -48,7 +48,7 @@ const Subtitle = styled.h2`
 `;
 
 const StyledButton = styled(Link)`
-  background-color: ${(props) => (props.darkmode ? "#163a4a" : "#70c8b0")};
+  background-color: ${(props) => (props.darkmode ? "#d14e0d" : "#d14e0d")};
   color: white;
   font-size: 2rem;
   font-weight: bold;
@@ -62,7 +62,7 @@ const StyledButton = styled(Link)`
     props.darkmode ? "2px 2px 3px rgba($color: #000, $alpha: 0.5)" : "2px 2px 3px rgba($color: #737373, $alpha: 0.25)"};
 
   &:hover {
-    background-color: ${(props) => (props.darkmode ? "#163a4a" : "#70c8b0")};
+    background-color: ${(props) => (props.darkmode ? "#d14e0d" : "#d14e0d")};
     color: ${(props) => (props.darkmode ? "#fff" : "#fff")};
     transform: scale(1.1);
   }

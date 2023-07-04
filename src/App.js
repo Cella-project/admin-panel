@@ -21,25 +21,26 @@ const App = () => {
   const accessToken = localStorage.getItem('Access Token');
   const refreshToken = localStorage.getItem('Refresh Token');
   const user = useSelector(state => state.auth.userData);
-  
-  const refreshTokenHandler = (token) => {
-    if (token) {
-      dispatch(authActions.refreshToken(token));
-    }
-  };
-  
+
+
   useEffect(() => {
+    const refreshTokenHandler = async (token) => {
+      if (token) {
+        await dispatch(authActions.refreshToken(token));
+      }
+    };
     const lastRefreshTime = localStorage.getItem('Refresh Token Time');
     const currentTime = new Date().getTime();
     const timeDifference = currentTime - lastRefreshTime;
-    
+
     if (timeDifference >= 14 * 60 * 1000) {
       refreshTokenHandler(refreshToken);
     }
+
     setInterval(() => {
       refreshTokenHandler(refreshToken);
     }, 14 * 60 * 1000);
-  });
+  }, [refreshToken, dispatch]);
 
   const checkAuth = () => {
     if (accessToken && refreshToken) {
