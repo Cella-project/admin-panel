@@ -25,7 +25,6 @@ const Announcement = ({ popupToggle }) => {
 
     const {
         value: enteredSubject,
-        isValid: enteredSubjectIsValid,
         error: subjectError,
         isTouched: subjectIsTouched,
         valueChangeHandler: subjectChangedHandler,
@@ -58,10 +57,6 @@ const Announcement = ({ popupToggle }) => {
         return { isValid, error };
     });
 
-
-    const subjectClasses = subjectIsTouched && !enteredSubjectIsValid
-        ? 'form-control-invalid'
-        : '';
 
     const formSubmissionHandler = (e) => {
         e.preventDefault();
@@ -174,7 +169,7 @@ const Announcement = ({ popupToggle }) => {
                 <label className="pointer full-width text-shadow gray font-bold margin-6px-V" htmlFor="subject" >
                     Subject <span className='red'> *</span>
                 </label>
-                <div className={`full-width gray radius-10px white-bg flex-row-left-start announcement--input ${subjectClasses}`}>
+                <div className={`full-width gray radius-10px white-bg flex-row-left-start announcement--input`}>
                     <i className="bi bi-announcement size-20px" />
                     <input
                         className="full-width gray margin-4px-H"
