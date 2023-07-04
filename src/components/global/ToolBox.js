@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { themeMutations } from "../../redux/mutations";
+import Popup from "../../components/common/PopupForm";
 
 import Calendar from 'react-calendar';
 
@@ -8,6 +9,8 @@ import './ToolBox.scss';
 
 const Tools = () => {
     const [isMenuShown, setIsMenuShown] = useState(false);
+    const [popupShown, setPopupShown] = useState(false);
+    const [popupHeader, setPopupHeader] = useState('');
 
     const clickHandler = () => {
         setIsMenuShown(!isMenuShown);
@@ -46,6 +49,18 @@ const Tools = () => {
         setIsMenuShown(false);
     };
 
+    const announcementPanel = () => {
+        setPopupHeader('Announcement')
+        setIsMenuShown(false);
+        setPopupShown(true)
+        const TopScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        const LeftScroll = document.documentElement.scrollLeft || document.body.scrollLeft;
+        window.onscroll = () => {
+            window.scrollTo(LeftScroll, TopScroll);
+        };
+    }
+
+
     const [isCalendarShown, setIsCalendarShown] = useState(false);
     useEffect(() => {
         let mouseHandler = (e) => {
@@ -78,10 +93,13 @@ const Tools = () => {
                     <Calendar />
                 </div>
             }
+            {popupShown &&
+                <Popup popupToggle={setPopupShown} header={popupHeader} />
+            }
             {isMenuShown &&
                 <div className="tool-box--btns flex-col-center">
-                    <div className='tool-box--btn flex-row-center orange-bg pointer radius-circular margin-4px-V shadow-5px'>
-                        <i className={`bi bi-stickies ${mode === 'dark-mode' ? 'gray' : 'white'} size-22px`} />
+                    <div className='tool-box--btn flex-row-center orange-bg pointer radius-circular margin-4px-V shadow-5px' onClick={announcementPanel}>
+                        <i className={`bi bi-speaker ${mode === 'dark-mode' ? 'gray' : 'white'} size-22px`} />
                         <div className={`tool-box--btn--tag flex-row-center ${mode === 'dark-mode' ? 'gray' : 'white'} inter size-12px radius-5px shadow-5px`}>
                             Notes
                         </div>
