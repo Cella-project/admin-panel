@@ -10,16 +10,21 @@ import ListsCard from "../../../components/common/ListsCard";
 import StoreInfo from "../../../components/stores/StoreInfo";
 import DeliveryInfo from '../../../components/delivery/DeliveryInfo';
 import { useSelector, useDispatch } from 'react-redux';
-import { orderHistoryActions } from "../../../apis/actions";
-import { orderHistoryMutations } from "../../../redux/mutations";
+import { orderHistoryActions, reviewActions } from "../../../apis/actions";
+import { orderHistoryMutations, reviewMutations } from "../../../redux/mutations";
+import ReviewCard from "../../../components/reviews/ReviewCard";
 
 import "./OrderHistoryDetails.scss";
+
 const OrderHistoryDetails = () => {
     const params = useParams();
     const dispatch = useDispatch();
     const order = useSelector(state => state.orderHistory.orderHistoryData);
-    const [expandedPickup, setExpandedPickup] = useState(false)
-    const [expandedDrop, setExpandedDrop] = useState(false)
+    const reviews = useSelector(state => state.review.reviews);
+    const [expandedPickup, setExpandedPickup] = useState(false);
+    const [expandedDrop, setExpandedDrop] = useState(false);
+
+    const visible = false;
 
     const handleExpandPick = () => {
         setExpandedPickup(!expandedPickup)
@@ -32,6 +37,8 @@ const OrderHistoryDetails = () => {
     useEffect(() => {
         dispatch(orderHistoryMutations.setOrderHistoryData(null));
         dispatch(orderHistoryActions.getOrderHistoryData(params.id));
+        dispatch(reviewMutations.setReviews(null));
+        dispatch(reviewActions.getReviewsForOrder(params.id));
     }, [dispatch, params.id]);
 
     order && (document.title = `${order.code} • Admin Panel`);
@@ -39,7 +46,6 @@ const OrderHistoryDetails = () => {
     return (
         <div className="orderHistory-details--container full-width flex-col-left-start2col">
             {order && (<>
-
                 <div className="flex-row-left-start2col orderHistory-details full-width">
                     <div className="full-width orderHistory-details">
                         <OrderInfo order={order} />
@@ -95,30 +101,24 @@ const OrderHistoryDetails = () => {
                                     </Link>
                                 </OrangeCard>
                             </div>
-                            <div className="flex-row-top-between2col full-width full-width">
+                            <div className="flex-col-center full-width">
                                 <OrangeCard title="Review">
-                                    {/* <PerfectScrollbar className="review-scroll--cont full-width"></PerfectScrollbar> */}
-                                    <Link to={`/admin-panel/Reviews`} className="pointer lists-card--link">
-                                        <i className="bi bi-arrow-right flex-row-right-start"></i>
-                                    </Link>
-                                </OrangeCard>
-                                <OrangeCard title="Voucher">
-                                    {/* {
-                                    voucherCards.map((voucher) => {
-                                        return (
-                                            voucher.id === orderHistory.voucher &&
-                                            <VoucherCard type={voucher.type}
-                                            status={voucher.status}
-                                            store={voucher.store}
-                                            value={voucher.value}
-                                            code={voucher.code}
-                                            img={voucher.img} />
-                                            );
-                                        })
-                                    }
-                                    <Link to={`/admin-panel/Vouchers`} className="pointer lists-card--link">
-                                    <i className="bi bi-arrow-right flex-row-right-start"></i>
-                                </Link> */}
+                                    <PerfectScrollbar className="review-scroll--cont full-width flex-col-top-start">
+                                        {(reviews && reviews.length > 0) ? (
+                                            reviews
+                                                .slice()
+                                                .sort((a, b) => b.rate - a.rate)
+                                                .slice(0, 3)
+                                                .map((review) => (
+                                                    <ListsCard key={review._id} width="full-width">
+                                                        <ReviewCard review={review} visible={visible} />
+                                                    </ListsCard>
+                                                ))
+                                        ) : (
+                                            <p className="gray inter size-16px font-bold">No reviews to display</p>
+                                        )
+                                        }
+                                    </PerfectScrollbar>
                                 </OrangeCard>
                             </div>
                         </div>

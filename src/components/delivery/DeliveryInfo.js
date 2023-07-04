@@ -61,24 +61,28 @@ const DeliveryInfo = ({ delivery }) => {
               {calculateAge(delivery.dateOfBirth)} years
             </div>
           </div>
-          <div className="flex-row-between full-width margin-6px-V flex-wrap">
-            <div className="gray">
-              Status :
-              <span className={`${delivery.status === 'Active' ? 'green' : 'red'} margin-6px-H`}>
-                {delivery.status === "Active" ? 'Active' : 'Suspended'}
-              </span>
-            </div>
+          <div className={`flex-row-${delivery.status ? 'between' : 'right-start'} full-width margin-6px-V flex-wrap`}>
+            {delivery.status &&
+              <div className="gray">
+                Status :
+                <span className={`${delivery.status === 'Active' ? 'green' : 'red'} margin-6px-H`}>
+                  {delivery.status === "Active" ? 'Active' : 'Suspended'}
+                </span>
+              </div>
+            }
             <div className={delivery.gender === "male" ? "baby-blue" : "pink"}>
               {delivery.gender.charAt(0).toUpperCase() + delivery.gender.slice(1)}
             </div>
           </div>
           <div className="flex-row-between full-width flex-wrap">
-            <div className="gray">
-              Working Status:
-              <span className={`${delivery.isWorking === true ? 'green' : 'red'} margin-6px-H`}>
-                {delivery.isWorking === true ? 'Working' : 'Not Working'}
-              </span>
-            </div>
+            {delivery.isWorking &&
+              <div className="gray">
+                Working Status:
+                <span className={`${delivery.isWorking === true ? 'green' : 'red'} margin-6px-H`}>
+                  {delivery.isWorking === true ? 'Working' : 'Not Working'}
+                </span>
+              </div>
+            }
             <div className="gray">{delivery.country && delivery.city ? `${delivery.city}, ${delivery.country}` : ''}</div>
           </div>
         </div>

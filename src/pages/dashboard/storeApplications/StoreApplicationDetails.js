@@ -1,34 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
 
-import PerfectScrollbar from "react-perfect-scrollbar";
 import OrangeCard from "../../../components/common/OrangeCard";
 import StoreApplicationInfo from "../../../components/storeApplications/StoreApplicationInfo";
 import StoreApplicationControl from "../../../components/storeApplications/StoreApplicationControl";
-import ProductCard from "../../../components/products/ProductCard";
-import ListsCard from "../../../components/common/ListsCard";
 import FaceBook from "../../../assets/images/facebook.png";
 import Instagram from "../../../assets/images/instagram.png";
 import Whatsapp from "../../../assets/images/whatsapp.png";
 
-import "./StoreApplicationDetails.scss";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { storeApplicationActions, productActions } from '../../../apis/actions';
-import { storeApplicationMutations, productMutations } from '../../../redux/mutations';
+import { storeApplicationActions } from '../../../apis/actions';
+import { storeApplicationMutations } from '../../../redux/mutations';
+
+import "./StoreApplicationDetails.scss";
 
 const StoreApplicationDetails = () => {
   const params = useParams();
   const storeApplication = useSelector((state) => state.storeApplication.storeApplicationData);
-  const products = useSelector((state) => state.product.products)
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(storeApplicationMutations.setStoreApplicationData(null));
     dispatch(storeApplicationActions.getStoreApplicationData(params.id));
-    dispatch(productMutations.setProducts(null));
-    dispatch(productActions.getProducts());
   }, [dispatch, params.id]);
 
   const [expandedAddressId, setExpandedAddressId] = useState(null);
@@ -57,11 +51,11 @@ const StoreApplicationDetails = () => {
           </div>
           <div className='flex-row-left-start2col store-application-details--control full-width'>
             <div className="flex-row-top-between2col width-80-100">
-              <div className="flex-col-center store-application-details--card-cont width-50-100">
+              <div className="flex-col-center store-application-details--card-cont full-width">
                 <OrangeCard title="Branches">
-                  {(storeApplication && storeApplication.addresses && storeApplication.addresses.length > 0) && (
-                    <div>
-                      {storeApplication.addresses.map((address) => {
+                  <div className="full-width flex-col-top-start">
+                    {(storeApplication && storeApplication.addresses && storeApplication.addresses.length > 0) ? (
+                      storeApplication.addresses.map((address) => {
                         const isExpanded = expandedAddressId === address._id;
                         return (
                           <div key={address._id}>
@@ -125,80 +119,11 @@ const StoreApplicationDetails = () => {
                             </div>
                           </div>
                         );
-                      })}
-                    </div>
-                  )}
-                </OrangeCard>
-                <OrangeCard title="Products">
-                  <PerfectScrollbar className="store-details--scroll--cont full-width">
-
-                    {products &&
-                      products
-                        .filter((productCard) =>
-                          productCard.store._id === storeApplication._id
-                        )
-                        .map((product, index) => {
-                          return (
-                            <ListsCard width="full-width">
-                              <div
-                                key={Math.random().toString()}
-                                className="flex-row-left-start full-width"
-                              >
-                                <ProductCard
-                                  key={index}
-                                  productCard={product}
-                                />
-                              </div>
-                            </ListsCard>
-                          );
-                        })
-                    }
-                  </PerfectScrollbar>
-                  <Link to={`/admin-panel/Products`} className="pointer lists-card--link">
-                    <i className="bi bi-arrow-right flex-row-right-start"></i>
-                  </Link>
-                </OrangeCard>
-              </div>
-              <div className="flex-col-center store-application-details--card-cont width-50-100">
-                <OrangeCard title="Voucher">
-                  {/* <PerfectScrollbar className="store-application-details--scroll--cont full-width flex-col-top-start"> */}
-                  {/* {voucherCards.map((voucher) => {
-                  return (
-                    voucher.storeApplication === storeApplicationData.name && (
-                      <VoucherCard
-                        type={voucher.type}
-                        status={voucher.status}
-                        value={voucher.value}
-                        storeApplication={storeApplicationData.name}
-                        code={voucher.code}
-                      />
-                    )
-                  );
-                })} */}
-                  {/* </PerfectScrollbar> */}
-                  <Link to={`/admin-panel/vouchers`} className="pointer bi bi-arrow-right flex-row-right-start lists-card--link" />
-                </OrangeCard>
-                <OrangeCard title="Reviews">
-                  {/* <PerfectScrollbar className="store-application-details--scroll--cont full-width flex-col-top-start"> */}
-                  {/* {reviewCards.map((reviewCard) => {
-                  return (
-                    (reviewCard.type === 'bi bi-shop-window' && reviewCard.name === storeApplicationData.name) &&
-                    <ListsCard width="full-width">
-                      <div key={Math.random().toString()} className="flex-row-left-start full-width">
-                        <ReviewCard
-                          visible={reviewCard.reviewShown}
-                          img={reviewCard.img}
-                          store-application={reviewCard.store-application}
-                          rating={reviewCard.rating}
-                        />
-                      </div>
-                    </ListsCard>
-                  )
-                })} */}
-                  {/* </PerfectScrollbar> */}
-                  <Link to={`/admin-panel/Reviews`} className="pointer lists-card--link">
-                    <i className="bi bi-arrow-right flex-row-right-start"></i>
-                  </Link>
+                      })
+                    ) : (
+                      <p className="gray inter size-16px font-bold">No branches to display</p>
+                    )}
+                  </div>
                 </OrangeCard>
               </div>
             </div>

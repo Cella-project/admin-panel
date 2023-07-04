@@ -15,6 +15,7 @@ import { orderActions } from "../../../apis/actions";
 import { orderMutations } from "../../../redux/mutations";
 
 import "./OrderDetails.scss";
+
 const OrderDetails = () => {
   const params = useParams();
   const dispatch = useDispatch();
@@ -96,32 +97,6 @@ const OrderDetails = () => {
                   <Link to={`/admin-panel/Products`} className="pointer lists-card--link">
                     <i className="bi bi-arrow-right flex-row-right-start"></i>
                   </Link>
-                </OrangeCard>
-              </div>
-              <div className="flex-row-top-between2col full-width full-width">
-                <OrangeCard title="Review">
-                  {/* <PerfectScrollbar className="review-scroll--cont full-width"></PerfectScrollbar> */}
-                  <Link to={`/admin-panel/Reviews`} className="pointer lists-card--link">
-                    <i className="bi bi-arrow-right flex-row-right-start"></i>
-                  </Link>
-                </OrangeCard>
-                <OrangeCard title="Voucher">
-                  {/* {
-                                    voucherCards.map((voucher) => {
-                                        return (
-                                            voucher.id === order.voucher &&
-                                            <VoucherCard type={voucher.type}
-                                            status={voucher.status}
-                                            store={voucher.store}
-                                            value={voucher.value}
-                                            code={voucher.code}
-                                            img={voucher.img} />
-                                            );
-                                        })
-                                    }
-                                    <Link to={`/admin-panel/Vouchers`} className="pointer lists-card--link">
-                                    <i className="bi bi-arrow-right flex-row-right-start"></i>
-                                </Link> */}
                 </OrangeCard>
               </div>
             </div>

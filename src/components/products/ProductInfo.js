@@ -68,11 +68,11 @@ export const ProductInfo = ({ product }) => {
             <i className="bi bi-caret-right-fill flex-row-right-start"></i>
           </button>
         </div>
-        <div className="product-info--thumbnails flex-row-between">
+        <div className="product-info--thumbnails flex-row-center margin-12px-V">
           {product.album.length > 1 && product.album.map((_, index) => (
             <div
               key={index}
-              className={`pointer product-info--thumbnail ${index === currentPhotoIndex ? "orange-bg" : ""}`}
+              className={`pointer product-info--thumbnail margin-8px-H ${index === currentPhotoIndex ? "orange-bg" : ""}`}
               style={{ borderColor: "orange" }}
               
               onClick={() => handleSelectPhoto(index)}
@@ -104,7 +104,7 @@ export const ProductInfo = ({ product }) => {
         </Link>
         <div className="product-info-details">{product.description}</div>
 
-        <div className="product-info-details margin-4px-V size-12px gray ">Product material: {product.material}</div>
+        <div className="product-info-details margin-12px-V size-14px gray ">Product material: {product.material}</div>
 
         <div className="full-width flex-row-between">
           <div className="flex-row-left-start lavender">{product.subCategory.title}</div>

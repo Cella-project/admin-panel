@@ -3,11 +3,13 @@ import Select from 'react-select';
 import { useParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import {  productActions } from '../../../apis/actions';
+import { productActions, subCategoryActions } from '../../../apis/actions';
+import { subCategoryMutations } from '../../../redux/mutations';
 
 import useInput from '../../../hooks/useInput';
 
-import './EditProduct.scss'
+import './EditProduct.scss';
+
 export const EditProduct = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -15,32 +17,15 @@ export const EditProduct = () => {
     const mode = useSelector((state) => state.theme.mode);
     const productData = useSelector((state) => state.product.productData);
     const materials = useSelector(state => state.specialityControl.materials);
-    const product = useSelector((state) => state.product.products.find((p) => p._id === params.id));
+    const subCategories = useSelector(state => state.subCategory.subCategories);
     const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
         document.title = 'Edit product • Admin Panel';
-        dispatch(productActions.getProducts());
-    }, [dispatch]);
-
-
-    // useEffect(() => {
-    //     if (category === null) {
-    //         dispatch(specialityActions.getCategoryData(product.category._id));
-    //         dispatch(specialityMutations.setCategoryData(product.category._id));
-    //     }
-    //     else if (category.type === 'Sub') {
-    //         dispatch(specialityActions.getCategoryData(category.parent._id));
-    //         dispatch(specialityMutations.setCategoryData(category.parent._id));
-    //     }
-    //     else if (category.type === 'Main') {
-    //         dispatch(specialityActions.getSpecialityData(category.parent._id));
-    //         dispatch(specialityMutations.setSpecialityData(category.parent._id));
-    //         dispatch(specialityControlActions.getColors(category.parent._id));
-    //     }
-
-    // }, [dispatch, category, product.category._id]);
-
+        dispatch(productActions.getProductData(params.id));
+        dispatch(subCategoryMutations.setSubCategoryData(null));
+        dispatch(subCategoryActions.getSubCategories(productData.mainCategory._id));
+    }, [dispatch, params.id, productData.mainCategory._id]);
 
     const {
         value: enteredTitle,
@@ -58,7 +43,7 @@ export const EditProduct = () => {
             error = 'Please enter a title with at least 3 characters and at most 50 characters.';
         }
         return { isValid, error };
-    }, product.title);
+    }, productData.title);
 
     const {
         value: enteredDescription,
@@ -73,7 +58,7 @@ export const EditProduct = () => {
             error = 'Please enter a description.';
         }
         return { isValid, error };
-    }, product.description);
+    }, productData.description);
 
 
     const {
@@ -89,7 +74,7 @@ export const EditProduct = () => {
             error = 'Please select a material.';
         }
         return { isValid, error };
-    }, product.material);
+    }, productData.material);
 
     const {
         value: enteredPrice,
@@ -107,7 +92,22 @@ export const EditProduct = () => {
             error = 'Please enter a price greater than 0.';
         }
         return { isValid, error };
-    }, product.price);
+    }, productData.price);
+
+    const {
+        value: enteredSubCategory,
+        error: subCategoryError,
+        isTouched: subCategoryIsTouched,
+        valueChangeHandler: subCategoryChangedHandler,
+        inputBlurHandler: subCategoryBlurHandler,
+    } = useInput((value) => {
+        const isValid = value !== '';
+        let error = '';
+        if (value === '') {
+            error = 'Please select a sub category.';
+        }
+        return { isValid, error };
+    }, productData.subCategory.title);
 
 
     const handlePhotoAdd = (event) => {
@@ -118,24 +118,18 @@ export const EditProduct = () => {
         dispatch(productActions.addProductPicture(data, (response) => {
             const url = 'http://www.actore.store/api/file-manager/file/' + response.data.data;
             album.imgURL = url;
-            dispatch(productActions.addProductImage({ _id: product._id, imgURL: album.imgURL }));
+            dispatch(productActions.addProductImage({ _id: productData._id, imgURL: album.imgURL }));
         }));
     };
 
-    // const handlePhotoIndexChange = (oldIndex, newIndex) => {
-    //     const newPhotos = [...photos];
-    //     [newPhotos[oldIndex], newPhotos[newIndex]] = [newPhotos[newIndex], newPhotos[oldIndex]];
-    //     setPhotos(newPhotos);
-    // };
-
     const handlePhotoRemove = (_id) => {
-        dispatch(productActions.deleteProductImage({ _id: product._id, imgId: _id }));
+        dispatch(productActions.deleteProductImage({ _id: productData._id, imgId: _id }));
     };
 
 
     // Handle Price Change
-    const [discountType, setDiscountType] = useState(product.discount.discountType);
-    const [discountValue, setDiscountValue] = useState(product.discount.discountAmount);
+    const [discountType, setDiscountType] = useState(productData.discount.discountType);
+    const [discountValue, setDiscountValue] = useState(productData.discount.discountAmount);
 
     const handleDiscountTypeChange = (event) => {
         setDiscountType(event.target.value);
@@ -160,13 +154,35 @@ export const EditProduct = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        const editedProduct = {
-            _id: product._id,
-            title: enteredTitle,
-            description: enteredDescription,
-            price: parseInt(enteredPrice),
-            material: enteredMaterial.title,
-        };
+        const updatedProduct = {
+            _id: productData._id,
+        }
+
+        if (enteredTitle !== productData.title) {
+            updatedProduct.title = enteredTitle;
+        }
+
+        if (enteredDescription !== productData.description) {
+            updatedProduct.description = enteredDescription;
+        }
+
+        if (parseFloat(enteredPrice) !== productData.price) {
+            updatedProduct.price = parseFloat(enteredPrice);
+        }
+
+        if (enteredMaterial.title !== productData.material && enteredMaterial.title !== '') {
+            updatedProduct.material = enteredMaterial.title;
+        }
+
+        if (enteredSubCategory.title !== productData.subCategory.title && enteredSubCategory.title !== '') {
+            updatedProduct.subCategory = {
+                _id: enteredSubCategory.id,
+                title: enteredSubCategory.title,
+            };
+        }
+
+        const editedProduct = { ...updatedProduct };
+
         if (discountType !== 'None') {
             editedProduct.discount = {
                 hasDiscount: true,
@@ -177,7 +193,7 @@ export const EditProduct = () => {
 
         dispatch(productActions.updateProduct(editedProduct,
             () => {
-                navigate(`/admin-panel/products/${product._id}`);
+                navigate(`/admin-panel/products/${productData._id}`);
             }));
     };
 
@@ -187,41 +203,39 @@ export const EditProduct = () => {
         <div className='edit-product flex-row-center inter'>
             {
                 productData &&
-                <form onSubmit={handleSubmit} noValidate className=' flex-col-center'>
+                <form onSubmit={handleSubmit} noValidate className=' flex-col-center full-width'>
                     <div className="full-width flex-row-center margin-12px-V">
                         <p
                             style={{ margin: '30px' }}
-                            className="size-26px font-bold inter gray">Add Product
+                            className="size-26px font-bold inter gray">Edit Product
                         </p>
                     </div>
 
                     <div className="edit-product--body white-bg full-width radius-10px shadow-2px">
                         <div className="edit-product--muiBox-root radius-10px shadow-2px">
-                            <div className='edit-product--muiBox-root--main orange-bg radius-10px'>
-                                <div className='flex-row-between edit-product--muiBox-root--main--title'>
-                                    <div className='flex-col-center  padding-10px-H'>
-                                        <div>
-                                            <i className={`${mode === 'dark-mode' ? 'gray' : 'white'} bi bi-circle${currentPage >= 1 ? "-fill" : ""} white`}></i>
-                                        </div>
-                                        <div className={`${mode === 'dark-mode' ? 'gray' : 'white'} size-12px inter`}>
-                                            1. Product information
-                                        </div>
+                            <div className='edit-product--muiBox-root--main orange-bg radius-10px flex-row-between'>
+                                <div className='flex-col-center padding-10px-H'>
+                                    <div>
+                                        <i className={`${mode === 'dark-mode' ? 'gray' : 'white'} bi bi-circle${currentPage >= 1 ? "-fill" : ""} white`}></i>
                                     </div>
-                                    <div className='flex-col-center  padding-10px-H'>
-                                        <div>
-                                            <i className={`${mode === 'dark-mode' ? 'gray' : 'white'} bi bi-circle${currentPage >= 2 ? "-fill" : ""} white`}></i>
-                                        </div>
-                                        <div className={`${mode === 'dark-mode' ? 'gray' : 'white'} size-12px inter`}>
-                                            2. Product Album
-                                        </div>
+                                    <div className={`${mode === 'dark-mode' ? 'gray' : 'white'} size-12px inter`}>
+                                        1. Product information
                                     </div>
-                                    <div className='flex-col-center  padding-10px-H'>
-                                        <div>
-                                            <i className={`${mode === 'dark-mode' ? 'gray' : 'white'} bi bi-circle${currentPage >= 3 ? "-fill" : ""} white`}></i>
-                                        </div>
-                                        <div className={`${mode === 'dark-mode' ? 'gray' : 'white'} size-12px inter`}>
-                                            3. Product Pricing
-                                        </div>
+                                </div>
+                                <div className='flex-col-center padding-10px-H'>
+                                    <div>
+                                        <i className={`${mode === 'dark-mode' ? 'gray' : 'white'} bi bi-circle${currentPage >= 2 ? "-fill" : ""} white`}></i>
+                                    </div>
+                                    <div className={`${mode === 'dark-mode' ? 'gray' : 'white'} size-12px inter`}>
+                                        2. Product Album
+                                    </div>
+                                </div>
+                                <div className='flex-col-center padding-10px-H'>
+                                    <div>
+                                        <i className={`${mode === 'dark-mode' ? 'gray' : 'white'} bi bi-circle${currentPage >= 3 ? "-fill" : ""} white`}></i>
+                                    </div>
+                                    <div className={`${mode === 'dark-mode' ? 'gray' : 'white'} size-12px inter`}>
+                                        3. Product Pricing
                                     </div>
                                 </div>
                             </div>
@@ -264,6 +278,32 @@ export const EditProduct = () => {
                                     </div>
                                     {descriptionIsTouched && (<div className="error-message">{descriptionError}</div>)}
                                 </div>
+                                {subCategories && subCategories.length > 0 && (
+                                    <div className='full-width flex-col-left-start add-product--input-container'>
+                                        <label className='pointer full-width text-shadow gray font-bold margin-6px-V' htmlFor='SubCategory'>Sub Category <span className='red'>*</span></label>
+                                        <div className={`full-width light-gray radius-10px white-bg flex-row-left-start add-product--input `}>
+                                            <i className='bi bi-pin-map size-20px gray' />
+                                            <Select
+                                                className='add-product--select full-width gray margin-4px-H'
+                                                styles={{
+                                                    option: (provided, state) => ({ ...provided, cursor: 'pointer', ":hover": { backgroundColor: `${mode === 'dark-mode' ? '#d14e0d' : '#7FBCD2'}` }, backgroundColor: (state.isFocused || state.isSelected) ? `${mode === 'dark-mode' ? '#d14e0d' : '#7FBCD2'}` : 'inherit' }),
+                                                    menu: (provided) => ({
+                                                        ...provided, backgroundColor: `${mode === 'dark-mode' ? '#242526' : '#ffffff'}`
+                                                    }),
+                                                }}
+                                                value={enteredSubCategory}
+                                                disabled={subCategories.length === 0}
+                                                placeholder="Select Sub Category"
+                                                options={subCategories.filter(subCategory => subCategory.status === "Active").map(subCategory => ({ label: subCategory.title, value: { label: subCategory.title, title: subCategory.title, id: subCategory._id } }))}
+                                                onChange={(subCategory) =>
+                                                    subCategoryChangedHandler({ target: { id: "subCategory", label: subCategory.title, value: subCategory.value } })
+                                                }
+                                                onBlur={subCategoryBlurHandler}
+                                            />
+                                        </div>
+                                        {subCategoryIsTouched && (<div className="error-message">{subCategoryError}</div>)}
+                                    </div>
+                                )}
                                 {
                                     materials && materials.length > 0 && (
                                         <div className='full-width flex-col-left-start edit-product--input-container'>
@@ -294,7 +334,6 @@ export const EditProduct = () => {
                                         </div>
                                     )
                                 }
-
                                 <div className="edit-product--actions flex-row-between full-width">
                                     <button
                                         className="edit-product--actions--button pointer radius-10px shadow-4px white text-shadow size-18px gray-bg"

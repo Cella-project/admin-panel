@@ -11,11 +11,10 @@ import { customerActions, productActions, orderHistoryActions, driverApplication
 
 import './Home.scss';
 
-
 const Home = () => {
   const customers = useSelector((state) => state.customer.customers);
   const products = useSelector((state) => state.product.products);
-  const order = useSelector((state) => state.orderHistory.ordersHistory);
+  const orderHistory = useSelector((state) => state.orderHistory.ordersHistory);
   const driverApplications = useSelector((state) => state.driverApplication.driverApplications);
   const storeApplications = useSelector((state) => state.storeApplication.storeApplications);
   const dispatch = useDispatch();
@@ -37,14 +36,14 @@ const Home = () => {
     { title: 'Orders History', content: 0, icon: "bi bi-receipt" },
   ]
 
-  if (customers !== null && products !== null && order !== null) {
-    const sales = order.filter(order => order.status === 'Delivered').reduce((total, order) => total + order.total, 0);
+  if (customers !== null && products !== null && orderHistory !== null) {
+    const sales = orderHistory.filter(orderHistory => orderHistory.status === 'Delivered').reduce((total, orderHistory) => total + orderHistory.total, 0);
 
     cards = [
       { title: 'Sales', content: sales.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") },
       { title: 'Customers', content: customers.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), icon: "bi bi-people" },
       { title: 'Products', content: products.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), icon: "bi bi-box-seam" },
-      { title: 'Orders History', content: order.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), icon: "bi bi-receipt" },
+      { title: 'Orders History', content: orderHistory.length.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","), icon: "bi bi-receipt" },
     ]
   }
 
@@ -114,15 +113,16 @@ const Home = () => {
               </Link>
             </OrangeCard>
             <OrangeCard title="Orders History">
-              {order && order !== null ?
+              {orderHistory && orderHistory !== null ?
                 <PerfectScrollbar className="home--scroll--cont full-width flex-col-top-start">
-                  {order
-                    .slice()
-                    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                    .slice(0, 5)
-                    .map((order) => (
-                      <OrderCard type='history' key={order._id} order={order} />
-                    ))}
+                  {orderHistory.length === 0 ? <p className="gray inter size-16px">No Orders History.</p> :
+                    orderHistory
+                      .slice()
+                      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                      .slice(0, 5)
+                      .map((orderHistory) => (
+                        <OrderCard type='history' key={orderHistory._id} orderHistory={orderHistory} />
+                      ))}
                 </PerfectScrollbar> : <Loading />
               }
               <Link to={`/admin-panel/OrdersHistory`} className="pointer lists-card--link">

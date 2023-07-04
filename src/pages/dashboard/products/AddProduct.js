@@ -7,8 +7,8 @@ import { specialityMutations, mainCategoryMutations, subCategoryMutations, speci
 
 import useInput from '../../../hooks/useInput';
 
+import './AddProduct.scss';
 
-import './AddProduct.scss'
 export const AddProduct = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -56,6 +56,7 @@ export const AddProduct = () => {
         }
         return { isValid, error };
     });
+
     const {
         value: enterStore,
         error: storeError,
@@ -85,6 +86,7 @@ export const AddProduct = () => {
         }
         return { isValid, error };
     });
+
     const {
         value: enteredMainCategory,
         error: mainCategoryError,
@@ -99,6 +101,7 @@ export const AddProduct = () => {
         }
         return { isValid, error };
     });
+
     const {
         value: enteredSubCategory,
         error: subCategoryError,
@@ -163,7 +166,7 @@ export const AddProduct = () => {
         newPhotos.splice(index, 1);
         setPhotos(newPhotos);
     };
-    
+
     const [album, setAlbum] = useState([]);
     const uploadPhotosToServer = async (files) => {
         const album = { photos: [] };
@@ -349,7 +352,7 @@ export const AddProduct = () => {
 
     return (
         <div className='add-product flex-row-center inter'>
-            <form onSubmit={handleSubmit} noValidate className=' flex-col-center'>
+            <form onSubmit={handleSubmit} noValidate className=' flex-col-center full-width'>
                 <div className="full-width flex-row-center margin-12px-V">
                     <p
                         style={{ margin: '30px' }}
@@ -357,47 +360,45 @@ export const AddProduct = () => {
                     </p>
                 </div>
 
-                <div className="add-product--body white-bg full-width radius-10px shadow-2px">
+                <div className="add-product--body flex-col-center white-bg full-width radius-10px shadow-2px">
                     <div className="add-product--muiBox-root radius-10px shadow-2px">
-                        <div className='add-product--muiBox-root--main orange-bg radius-10px'>
-                            <div className='flex-row-between add-product--muiBox-root--main--title'>
-                                <div className='flex-col-center  padding-10px-H'>
-                                    <div>
-                                        <i className={`${mode === 'dark-mode' ? 'gray' : 'white'} bi bi-circle${currentPage >= 1 ? "-fill" : ""} white`}></i>
-                                    </div>
-                                    <div className={`${mode === 'dark-mode' ? 'gray' : 'white'} size-12px inter`}>
-                                        1. Product information
-                                    </div>
+                        <div className='add-product--muiBox-root--main orange-bg radius-10px flex-row-between'>
+                            <div className='flex-col-center padding-10px-H'>
+                                <div>
+                                    <i className={`${mode === 'dark-mode' ? 'gray' : 'white'} bi bi-circle${currentPage >= 1 ? "-fill" : ""} white`}></i>
                                 </div>
-                                <div className='flex-col-center  padding-10px-H'>
-                                    <div>
-                                        <i className={`${mode === 'dark-mode' ? 'gray' : 'white'} bi bi-circle${currentPage >= 2 ? "-fill" : ""} white`}></i>
-                                    </div>
-                                    <div className={`${mode === 'dark-mode' ? 'gray' : 'white'} size-12px inter`}>
-                                        2. Product Album
-                                    </div>
+                                <div className={`${mode === 'dark-mode' ? 'gray' : 'white'} size-12px inter`}>
+                                    1. Product information
                                 </div>
-                                <div className='flex-col-center  padding-10px-H'>
-                                    <div>
-                                        <i className={`${mode === 'dark-mode' ? 'gray' : 'white'} bi bi-circle${currentPage >= 3 ? "-fill" : ""} white`}></i>
-                                    </div>
-                                    <div className={`${mode === 'dark-mode' ? 'gray' : 'white'} size-12px inter`}>
-                                        3. Prodcut Variants
-                                    </div>
+                            </div>
+                            <div className='flex-col-center padding-10px-H'>
+                                <div>
+                                    <i className={`${mode === 'dark-mode' ? 'gray' : 'white'} bi bi-circle${currentPage >= 2 ? "-fill" : ""} white`}></i>
                                 </div>
-                                <div className='flex-col-center  padding-10px-H'>
-                                    <div>
-                                        <i className={`${mode === 'dark-mode' ? 'gray' : 'white'} bi bi-circle${currentPage >= 4 ? "-fill" : ""} white`}></i>
-                                    </div>
-                                    <div className={`${mode === 'dark-mode' ? 'gray' : 'white'} size-12px inter`}>
-                                        4. Product Pricing
-                                    </div>
+                                <div className={`${mode === 'dark-mode' ? 'gray' : 'white'} size-12px inter`}>
+                                    2. Product Album
+                                </div>
+                            </div>
+                            <div className='flex-col-center padding-10px-H'>
+                                <div>
+                                    <i className={`${mode === 'dark-mode' ? 'gray' : 'white'} bi bi-circle${currentPage >= 3 ? "-fill" : ""} white`}></i>
+                                </div>
+                                <div className={`${mode === 'dark-mode' ? 'gray' : 'white'} size-12px inter`}>
+                                    3. Prodcut Variants
+                                </div>
+                            </div>
+                            <div className='flex-col-center padding-10px-H'>
+                                <div>
+                                    <i className={`${mode === 'dark-mode' ? 'gray' : 'white'} bi bi-circle${currentPage >= 4 ? "-fill" : ""} white`}></i>
+                                </div>
+                                <div className={`${mode === 'dark-mode' ? 'gray' : 'white'} size-12px inter`}>
+                                    4. Product Pricing
                                 </div>
                             </div>
                         </div>
                     </div>
                     {currentPage === 1 &&
-                        <div>
+                        <div className='full-width'>
                             <div className='full-width flex-col-left-start add-product--header'>
                                 <label className='pointer full-width text-shadow gray font-bold size-26px'>Product information</label>
                             </div>
@@ -559,78 +560,78 @@ export const AddProduct = () => {
                             </div>
                         </div>
                     }
-                    {currentPage === 2 && <div>
-                        <div className='full-width flex-col-left-start add-product--header'>
-                            <label className='pointer full-width text-shadow gray font-bold size-26px'>Product Album</label>
-                        </div>
-                        <div className='full-width flex-col-left-start add-product--input-container'>
-                            <label className='pointer full-width text-shadow gray font-bold margin-6px-V'>Product images : <span className='red'>*</span></label>
-                        </div>
-                        <div className="add-product--photo flex-col-center">
-                            <div className="flex-row-center flex-wrap">
-                                {photos.map((photo, index) => (
-                                    <div className="add-product--photo--item padding-10px-H flex-col-center " key={index}>
-                                        <div className={`inter ${mode === 'dark-mode' ? 'gray' : 'orange'} margin-6px-V`}> Photo number : {index + 1}</div>
-                                        <img src={URL.createObjectURL(photo)} alt={` ${index}`} />
-                                        <div className="flex-row-between full-width margin-6px-V ">
-                                            <button
-                                                type="button"
-                                                className={`add-product--gallary-left ${mode === 'dark-mode' ? 'gray-bg' : 'orange-bg'} radius-circular pointer white`}
-                                                onClick={() => handlePhotoIndexChange(index, index - 1)}
-                                                disabled={index === 0}
-                                            >
-                                                <i className="bi bi-caret-left-fill flex-row-right-start"></i>
-                                            </button>
-                                            <button className='add-product--gallary' type="button" onClick={() => handlePhotoRemove(index)}>
-                                                <i className="bi bi-trash pointer size-20px gray"></i>
-                                            </button>
-                                            <button
-                                                type="button"
-                                                className={`add-product--gallary-right ${mode === 'dark-mode' ? 'gray-bg' : 'orange-bg'} radius-circular pointer white`}
-                                                onClick={() => handlePhotoIndexChange(index, index + 1)}
-                                                disabled={index === photos.length - 1}
-                                            >
-                                                <i className="bi bi-caret-right-fill flex-row-right-start"></i>
-                                            </button>
+                    {currentPage === 2 &&
+                        <div className='full-width'>
+                            <div className='full-width flex-col-left-start add-product--header'>
+                                <label className='pointer full-width text-shadow gray font-bold size-26px'>Product Album</label>
+                            </div>
+                            <div className='full-width flex-col-left-start add-product--input-container'>
+                                <label className='pointer full-width text-shadow gray font-bold margin-6px-V'>Product images : <span className='red'>*</span></label>
+                            </div>
+                            <div className="add-product--photo flex-col-center">
+                                <div className="flex-row-center flex-wrap">
+                                    {photos.map((photo, index) => (
+                                        <div className="add-product--photo--item padding-10px-H flex-col-center " key={index}>
+                                            <div className={`inter ${mode === 'dark-mode' ? 'gray' : 'orange'} margin-6px-V`}> Photo number : {index + 1}</div>
+                                            <img src={URL.createObjectURL(photo)} alt={` ${index}`} />
+                                            <div className="flex-row-between full-width margin-6px-V ">
+                                                <button
+                                                    type="button"
+                                                    className={`add-product--gallary-left ${mode === 'dark-mode' ? 'gray-bg' : 'orange-bg'} radius-circular pointer white`}
+                                                    onClick={() => handlePhotoIndexChange(index, index - 1)}
+                                                    disabled={index === 0}
+                                                >
+                                                    <i className="bi bi-caret-left-fill flex-row-right-start"></i>
+                                                </button>
+                                                <button className='add-product--gallary' type="button" onClick={() => handlePhotoRemove(index)}>
+                                                    <i className="bi bi-trash pointer size-20px gray"></i>
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    className={`add-product--gallary-right ${mode === 'dark-mode' ? 'gray-bg' : 'orange-bg'} radius-circular pointer white`}
+                                                    onClick={() => handlePhotoIndexChange(index, index + 1)}
+                                                    disabled={index === photos.length - 1}
+                                                >
+                                                    <i className="bi bi-caret-right-fill flex-row-right-start"></i>
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
+                                <div className="flex-row-center full-width">
+                                    <label htmlFor="photos" className={`add-product--actions--button radius-10px orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} pointer`}>
+                                        Add photo
+                                    </label>
+                                    <input type="file" id="photos" onChange={handlePhotoAdd} multiple hidden />
+                                </div>
                             </div>
-                            <div className="flex-row-center full-width">
-                                <label htmlFor="photos" className={`add-product--actions--button radius-10px orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} pointer`}>
-                                    Add photo
-                                </label>
-                                <input type="file" id="photos" onChange={handlePhotoAdd} multiple hidden />
-                            </div>
-                        </div>
 
-                        <div className="add-product--actions flex-row-between full-width">
-                            <button
-                                className="add-product--actions--button pointer radius-10px shadow-4px white text-shadow size-18px gray-bg"
-                                onClick={() => {
-                                    setCurrentPage(1);
-                                }}
-                            >
-                                Back
-                            </button>
-                            <button
-                                className={`add-product--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
-                                onClick={() => {
-                                    uploadPhotosToServer(photos);
-                                    setCurrentPage(3);
-                                }}
-                            >
-                                Next
-                            </button>
-                        </div>
-                    </div>}
+                            <div className="add-product--actions flex-row-between full-width">
+                                <button
+                                    className="add-product--actions--button pointer radius-10px shadow-4px white text-shadow size-18px gray-bg"
+                                    onClick={() => {
+                                        setCurrentPage(1);
+                                    }}
+                                >
+                                    Back
+                                </button>
+                                <button
+                                    className={`add-product--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
+                                    onClick={() => {
+                                        uploadPhotosToServer(photos);
+                                        setCurrentPage(3);
+                                    }}
+                                >
+                                    Next
+                                </button>
+                            </div>
+                        </div>}
 
                     {currentPage === 3 &&
-                        <div>
+                        <div className='full-width'>
                             <div className='full-width flex-col-left-start add-product--header'>
                                 <label className='pointer full-width text-shadow gray font-bold size-26px'>Product Variants</label>
                             </div>
-
                             {
                                 materials && materials.length > 0 && (
                                     <div className='full-width flex-col-left-start add-product--input-container'>
@@ -807,7 +808,7 @@ export const AddProduct = () => {
                     }
 
                     {currentPage === 4 &&
-                        <div>
+                        <div className='full-width'>
                             <div className='full-width flex-col-left-start add-product--header'>
                                 <label className='pointer full-width text-shadow gray font-bold size-26px'>Product Pricing</label>
                             </div>

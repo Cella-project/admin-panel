@@ -53,30 +53,6 @@ const storeActions = {
             }
         }
     },
-    deleteStoreSocialMediaAccount(payload) {
-        return async (dispatch) => {
-            try {
-                dispatch(popupMutation.clearPopPanel());
-                dispatch(stickyMutations.popAllNotes());
-                dispatch(popupMutation.popQuestion({
-                    msg: 'Are you sure you want to delete this social media account?',
-                    onSubmit: async () => {
-                        dispatch(popupMutation.clearPopPanel());
-                        dispatch(popupMutation.popLoading());
-                        const response = await Axios.put('/api/store-profile/remove-social-account', payload);
-                        dispatch(storeMutations.setStoreData(response.data.data));
-                        dispatch(popupMutation.clearPopPanel());
-                        dispatch(stickyMutations.pushNote({
-                            type: 'success',
-                            msg: 'Social Accounts deleted successfully.'
-                        }));
-                    }
-                }));
-            } catch (error) {
-                errorHandler(dispatch, error.response, 'Something went wrong while deleting social media accounts.');
-            }
-        }
-    },
     addStoreBranch(payload, afterSuccess) {
         return async (dispatch) => {
             try {
@@ -93,30 +69,6 @@ const storeActions = {
                 afterSuccess();
             } catch (error) {
                 errorHandler(dispatch, error.response, 'Something went wrong while adding branch.');
-            }
-        }
-    },
-    deleteStoreBranch(payload) {
-        return async (dispatch) => {
-            try {
-                dispatch(popupMutation.clearPopPanel());
-                dispatch(stickyMutations.popAllNotes());
-                dispatch(popupMutation.popQuestion({
-                    msg: 'Are you sure you want to delete this branch?',
-                    onSubmit: async () => {
-                        dispatch(popupMutation.clearPopPanel());
-                        dispatch(popupMutation.popLoading());
-                        const response = await Axios.put('/api/store-profile/remove-address', payload);
-                        dispatch(storeMutations.setStoreData(response.data.data));
-                        dispatch(popupMutation.clearPopPanel());
-                        dispatch(stickyMutations.pushNote({
-                            type: 'success',
-                            msg: 'Branch deleted successfully.'
-                        }));
-                    }
-                }));
-            } catch (error) {
-                errorHandler(dispatch, error.response, 'Something went wrong while deleting branch.');
             }
         }
     },

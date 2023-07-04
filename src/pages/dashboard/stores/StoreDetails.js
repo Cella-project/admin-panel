@@ -75,20 +75,6 @@ const StoreDetails = () => {
     };
   }
 
-  const deleteSocialAcc = (accountID) => {
-    dispatch(storeActions.deleteStoreSocialMediaAccount({
-      _id: params.id,
-      socialMediaAccountId: accountID
-    }));
-  }
-  const deleteAddress = (addressID) => {
-    dispatch(storeActions.deleteStoreBranch({
-      _id: params.id,
-      addressId: addressID
-    }));
-  }
-
-
   store && (document.title = `${store.storeName} • Admin Panel`);
 
   return (
@@ -120,10 +106,6 @@ const StoreDetails = () => {
                             <div className="pointer flex-col-right-start" onClick={() => toggleAddress(address._id)}>
                               <div className="store-details--content-container shadow-2px flex-col-center radius-15px margin-8px-V gray inter full-width">
                                 <div className="text-shadow">{address.addressTitle}
-                                  <i
-                                    className="store-details--address--btn--delete margin-6px-H shadow-2px bi bi-trash pointer size-14px orange white-bg radius-circular flex-row-center"
-                                    onClick={() => deleteAddress(address._id)}
-                                  />
                                 </div>
                                 {isExpanded && (
                                   <div className="flex-col-left-start gray orange full-width margin-8px-V">
@@ -234,7 +216,7 @@ const StoreDetails = () => {
               <div className="flex-row-top-start2col full-width">
                 <OrangeCard title="Products">
                   <PerfectScrollbar className="store-details--scroll--cont full-width flex-col-top-start">
-                    {products && (
+                    {products && products.length > 0 ? (
                       products.filter((productCard) => productCard.store._id === store._id).length === 0 ? (
                         <p className="gray inter size-16px font-bold">No products to display</p>
                       ) : products.filter((productCard) => productCard.store._id === store._id)
@@ -246,6 +228,8 @@ const StoreDetails = () => {
                             <ProductCard key={product._id} productCard={product} />
                           );
                         })
+                    ) : (
+                      <p className="gray inter size-16px font-bold">No products to display</p>
                     )
                     }
                   </PerfectScrollbar>
@@ -318,10 +302,6 @@ const StoreDetails = () => {
                                 Facebook
                               </div>
                             </a>
-                            <i
-                              className="store-details--socials--btn--delete shadow-2px bi bi-trash pointer size-12px orange white-bg radius-circular flex-row-center"
-                              onClick={() => deleteSocialAcc(account._id)}
-                            />
                           </div>
                         )
                       } if (account.accountType === 'Whatsapp') {
@@ -332,12 +312,7 @@ const StoreDetails = () => {
                               <div className="store-details--socials--btn--tag white inter size-12px radius-5px shadow-5px">
                                 Whatsapp
                               </div>
-                              <i className="store-details--socials--btn--delete shadow-2px bi bi-trash pointer size-14px orange white-bg radius-circular flex-row-center" onClick={deleteSocialAcc} />
                             </a>
-                            <i
-                              className="store-details--socials--btn--delete shadow-2px bi bi-trash pointer size-12px orange white-bg radius-circular flex-row-center"
-                              onClick={() => deleteSocialAcc(account._id)}
-                            />
                           </div>
                         )
                       }
@@ -350,10 +325,6 @@ const StoreDetails = () => {
                                 Instagram
                               </div>
                             </a>
-                            <i
-                              className="store-details--socials--btn--delete shadow-2px bi bi-trash pointer size-12px orange white-bg radius-circular flex-row-center"
-                              onClick={() => deleteSocialAcc(account._id)}
-                            />
                           </div>
                         )
                       }

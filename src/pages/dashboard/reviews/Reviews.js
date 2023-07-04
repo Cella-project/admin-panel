@@ -4,15 +4,17 @@ import Search from '../../../components/common/Search';
 import ListsCard from '../../../components/common/ListsCard';
 import ReviewCard from '../../../components/reviews/ReviewCard';
 import { useDispatch, useSelector } from 'react-redux';
-import { reviewMutations } from '../../../redux/mutations';
-import { reviewActions } from '../../../apis/actions';
+import { driverMutations, productMutations, reviewMutations } from '../../../redux/mutations';
+import { driverActions, productActions, reviewActions } from '../../../apis/actions';
 
 import './Reviews.scss';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Reviews = () => {
   const dispatch = useDispatch();
   const reviews = useSelector(state => state.review.reviews);
+  const driverData = useSelector(state => state.driver.driverData);
+  const productData = useSelector(state => state.product.productData);
 
   const visible = false;
 
@@ -28,8 +30,12 @@ const Reviews = () => {
 
     if (driverID) {
       dispatch(reviewActions.getReviewsForDriver(driverID));
+      dispatch(driverMutations.setDriverData(null));
+      dispatch(driverActions.getDriverData(driverID));
     } else if (productID) {
       dispatch(reviewActions.getReviewsForProduct(productID));
+      dispatch(productMutations.setProductData(null));
+      dispatch(productActions.getProductData(productID));
     } else {
       dispatch(reviewActions.getReviews());
     }
@@ -126,10 +132,34 @@ const Reviews = () => {
     ];
   }
 
+  let braudCramb = 'Reviews';
+
+  if (reviews !== null) {
+    if (driverID && driverData) {
+      braudCramb = 
+      <>
+        <Link to={'/admin-panel/reviews'} className="gray inter pointer lists-card--link">
+          Reviews
+        </Link>
+        <span> / </span>
+        <span>{driverData.name}</span>
+      </>
+    } else if (productID && productData) {
+      braudCramb =
+        <>
+          <Link to={'/admin-panel/reviews'} className="gray inter pointer lists-card--link">
+            Reviews
+          </Link>
+          <span> / </span>
+          <span>{productData.title}</span>
+        </>
+    }
+  }
+
   return (
     <div className="reviews full-width" >
       <div className="reviews--braud-cramb gray inter size-16px font-bold">
-        Reviews
+        {braudCramb}
       </div>
       <div className="reviews--cards">
         {

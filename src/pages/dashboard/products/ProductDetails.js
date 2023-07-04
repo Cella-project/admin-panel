@@ -128,47 +128,46 @@ const ProductDetails = () => {
               <ProductControl id={product._id} />
             </div>
           </div>
-          <PerfectScrollbar options={{ axis: 'x' }} className="product-details--scroll--cont shadow-2px inter radius-15px white-bg full-width">
+          <div className='flex-col-center shadow-2px inter radius-15px white-bg full-width'>
+            <div className="product-details--tags flex-row-center full-width">
+              <button className={`add-product--actions--button radius-10px orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} pointer`} onClick={addProductTag}>
+                Add Tag
+              </button>
+            </div>
             {product.tags.length > 0 ? (
-              <div className="product-details--tags flex-row-between full-width" >
-                {product.tags.map((tag, index) => (
-                  <div key={index} className="add-product--selected-item shadow-2px radius-15px flex-row-between size-14px lavender-bg text-shadow">
-                    <span className={`margin-4px-H ${mode === 'dark-mode' ? 'white' : 'gray'}`}>{tag.title}</span>
-                    <button className={`add-product--input--number--button bi bi-trash pointer ${mode === 'dark-mode' ? 'white' : 'gray'} size-20px pointer `} type="button" onClick={() => handleTagDelete(tag._id)}></button>
-                  </div>
-                ))}
-                <button className={`bi bi-plus-circle product-details--scroll--cont--add radius-circular orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} pointer`} onClick={addProductTag} >
-                </button>
+              <div className="product-details--tags flex-row-center full-width" >
+                <PerfectScrollbar options={{ axis: 'x' }} className="product-details--scroll--cont flex-row-left-start">
+                  {product.tags.map((tag) => (
+                    <div key={tag._id} className="product-details--tags--tag margin-12px-H shadow-2px radius-15px flex-row-center size-14px lavender-bg">
+                      <span className={`margin-4px-H ${mode === 'dark-mode' ? 'white' : 'gray'}`}>{tag.title}</span>
+                      <button className={`add-product--input--number--button bi bi-trash pointer ${mode === 'dark-mode' ? 'white' : 'gray'} size-20px pointer `} type="button" onClick={() => handleTagDelete(tag._id)}></button>
+                    </div>
+                  ))}
+                </PerfectScrollbar>
               </div>
             ) : (
-              <div className="product-details--tags flex-row-center full-width">
-                <button className={`add-product--actions--button radius-10px orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} pointer`} onClick={addProductTag}>
-                  Add Tag
-                </button>
-              </div>
+              <p className="gray inter size-18px margin-12px-H text-shadow">No tags to display.</p>
             )}
-
-          </PerfectScrollbar>
-          <div className="full-width">
-            <div className="full-width flex-row-between2col">
-
-              {
-                cards.map((card, index) => {
-                  return (
-                    <OrangeCard title={card.title} key={index}>
-                      <div className="full-width flex-row-center">
-                        <i className={`${card.icon} orange size-30px`}></i>
-                        <p className="gray inter size-28px margin-12px-H text-shadow">{card.content}</p>
-                      </div>
-                    </OrangeCard>
-                  );
-                })
-              }
-              <OrangeCard title="Sizes" icon={'bi bi-plus-circle'} iconClickHandle={addProductSize}>
-                <div className="product-details--sizes flex-row-center flex-wrap">
-                  {product.sizes.map((size, index) => (
+          </div>
+          <div className="product-details--info full-width flex-row-between2col">
+            {
+              cards.map((card, index) => {
+                return (
+                  <OrangeCard title={card.title} key={index}>
+                    <div className="full-width flex-row-center">
+                      <i className={`${card.icon} orange size-30px`}></i>
+                      <p className="gray inter size-28px margin-12px-H text-shadow">{card.content}</p>
+                    </div>
+                  </OrangeCard>
+                );
+              })
+            }
+            <OrangeCard title="Sizes" icon={'bi bi-plus-circle'} iconClickHandle={addProductSize}>
+              <div className="product-details--sizes flex-row-center flex-wrap">
+                {product.sizes.length > 0 ? (
+                  product.sizes.map((size, index) => (
                     <div key={index} className="product-details--sizes flex-row-center flex-wrap">
-                      <div className="orange-bg shadow-2px margin-6px-H radius-circular white flex-row-between">
+                      <div className="orange-bg shadow-2px margin-6px-H radius-20px white flex-row-between">
                         <div className="product-details--sizes--size font-bold size-20px ">{size.title}</div>
                         <i
                           className="product-details--sizes--delete shadow-2px bi bi-trash pointer size-12px orange white-bg radius-circular flex-row-center"
@@ -176,12 +175,17 @@ const ProductDetails = () => {
                         />
                       </div>
                     </div>
-                  ))}
-                </div>
-              </OrangeCard>
-              <OrangeCard title="Colors" icon={'bi bi-plus-circle'} iconClickHandle={addProductColor}>
-                <div className="product-details--colors flex-row-center flex-wrap">
-                  {product.colors.map((color, index) => (
+                  ))
+                ) : (
+                  <p className="gray inter size-18px margin-12px-H text-shadow">No sizes to display.</p>
+                )
+                }
+              </div>
+            </OrangeCard>
+            <OrangeCard title="Colors" icon={'bi bi-plus-circle'} iconClickHandle={addProductColor}>
+              <div className="product-details--colors flex-row-center flex-wrap">
+                {product.colors.length > 0 ? (
+                  product.colors.map((color, index) => (
                     <div key={index} className="product-details--colors flex-row-center flex-wrap">
                       <div style={{ backgroundColor: color.hexCode }} className=" shadow-5px margin-6px-H full-width radius-circular flex-row-between">
                         <div className=" product-details--colors--color" />
@@ -191,43 +195,55 @@ const ProductDetails = () => {
                         />
                       </div>
                     </div>
-                  ))}
+                  ))
+                ) : (
+                  <p className="gray inter size-18px margin-12px-H text-shadow">No colors to display.</p>
+                )
+                }
+              </div>
+            </OrangeCard>
+            {
+              hasDiscount &&
+              <OrangeCard title="Discount">
+                <div className="flex-col-center">
+                  <p className="flex-row-center gray inter size-28px no-margin text-shadow">{product.discount.discountAmount}{product.discount.discountType === 'Percentage' && <i className="bi bi-percent"></i>}</p>
+                  <p className="gray inter no-margin text-shadow">{product.discount.discountType}</p>
                 </div>
               </OrangeCard>
-              {
-                hasDiscount &&
-                <OrangeCard title="Discount">
-                  <div className=" flex-row-center">
-                    <p className="gray inter size-28px  margin-12px-H text-shadow">{product.discount.discountAmount}{product.discount.discountType === 'Percentage' && <i className="bi bi-percent"></i>}</p>
-                    <p className="gray inter margin-12px-H text-shadow">{product.discount.discountType}</p>
-                  </div>
-                </OrangeCard>
-              }
-            </div>
+            }
           </div>
-          <div className="full-width">
-            <div className="full-width flex-row-top-start2col">
-              <OrangeCard title="Pieces" icon={'bi bi-dash-circle'} iconClickHandle={decreaseQuantity}>
-                <div className="product-details--piece flex-row-center flex-wrap">
-                  {product.pieces.map((piece, index) => (
-                    <div key={index} className="product-details--piece flex-row-center flex-wrap">
-                      <div className="flex-row-center orange-bg shadow-2px white product-details--piece--size font-bold size-20px">
-                        {piece.size}
+          <div className="full-width flex-col-center">
+            <OrangeCard title="Pieces" icon={'bi bi-dash-circle'} iconClickHandle={decreaseQuantity}>
+              <div className="product-details--piece flex-row-center flex-wrap">
+                {product.pieces.length > 0 ? (
+                  product.pieces.map((piece, index) => (
+                    <div key={index} className="product-details--piece flex-row-between radius-10px shadow-2px flex-wrap margin-6px-H">
+                      <div className="flex-col-center">
+                        <div className="full-width size-18px">
+                          Size: {piece.size}
+                        </div>
+                        <div className="full-width size-18px">
+                          Color: {piece.color.title}
+                        </div>
                       </div>
-                      <div className="white-bg font-bold gray shadow-5px product-details--piece--info flex-row-between">
-                        Available: {piece.quantity}
+                      <div className="product-details--piece--quantity margin-12px-H">
+                        <i className={`bi bi-bookmark-fill orange flex-col-top-start size-38px`}>
+                          <span style={{ position: 'absolute', fontStyle: 'normal' }} className={`size-22px pt-sans ${mode === 'dark-mode' ? 'gray' : 'white'}`}>{piece.quantity}</span>
+                        </i>
                       </div>
-                      <div style={{ backgroundColor: piece.color.hexCode }} className="shadow-5px product-details--piece--color shadow-2px flex-row-between" />
                     </div>
-                  ))}
-                </div>
-              </OrangeCard>
-            </div>
+                  ))
+                ) : (
+                  <p className="gray inter size-18px margin-12px-H text-shadow">No pieces to display.</p>
+                )
+                }
+              </div>
+            </OrangeCard>
           </div>
 
-          <div className="full-width flex-row-center">
+          <div className="full-width flex-col-center">
             <OrangeCard title="Reviews">
-              <PerfectScrollbar className="product-details--scroll--cont full-width flex-col-top-start">
+              <PerfectScrollbar className="review-scroll--cont full-width flex-col-top-start">
                 {(reviews && reviews.length > 0) ? (
                   reviews
                     .slice()

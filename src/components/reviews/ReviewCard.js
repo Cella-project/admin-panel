@@ -1,34 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Rating from '@mui/material/Rating';
 import StarBorder from '@material-ui/icons/StarBorder';
 
 import './ReviewCard.scss';
 import Canvas from '../common/Canvas';
 import { useDispatch, useSelector } from 'react-redux';
-import { driverMutations, productMutations } from '../../redux/mutations';
-import { driverActions, productActions, reviewActions } from '../../apis/actions';
+import { reviewActions } from '../../apis/actions';
 
-const ReviewCard = ({ review, visible, role }) => {
+const ReviewCard = ({ review, visible }) => {
     const [reviewShown, setreviewShown] = useState(visible);
     const dispatch = useDispatch();
-    const driverData = useSelector(state => state.driver.driverData);
-    const productData = useSelector(state => state.product.productData);
     const mode = useSelector(state => state.theme.mode);
 
     const toggleReview = () => {
         setreviewShown(!reviewShown);
     }
-
-    useEffect(() => {
-        if (review.reviewAt === 'Driver' && !role) {
-            dispatch(driverMutations.setDriverData(null))
-            dispatch(driverActions.getDriverData(review.revieweeId))
-        }
-        if (review.reviewAt === 'Product' && !role) {
-            dispatch(productMutations.setProductData(null))
-            dispatch(productActions.getProductData(review.revieweeId))
-        }
-    }, [dispatch, review.reviewAt, review.revieweeId, role])
 
     const handleChangeState = () => {
         dispatch(reviewActions.changeReviewState(review._id))
@@ -46,22 +32,22 @@ const ReviewCard = ({ review, visible, role }) => {
                     <div className={`${review.status === 'Active' ? 'green' : 'red'}-bg lists-status radius-circular`}></div>
                 </div>
                 <div className='review-lists-card gray shadow-2px margin-10px-V inter radius-15px white-bg full-width flex-col-left-start flex-wrap'>
-                    <div className='review-lists-card--info flex-row-between2col full-width flex-wrap pointer' onClick={toggleReview}>
-                        <div className='review-lists-card--cont margin-2px-V'>
+                    <div className='review-lists-card--info flex-row-left-start2col full-width pointer' onClick={toggleReview}>
+                        <div className='review-lists-card--cont width-50-100 margin-2px-V'>
                             <span className='lists-card--info--disc--hide margin-2px-H font-bold'>Reviewer: </span>{review.reviewer.name}
                         </div>
                         {review.reviewAt &&
-                            <div className='review-lists-card--cont margin-2px-V'>
+                            <div className='review-lists-card--cont width-30-100 margin-2px-V'>
                                 <span className='lists-card--info--disc--hide margin-2px-H font-bold'>Type: </span>
                                 <i className={`${review.reviewAt === 'Driver' ? 'bi bi-truck' : 'bi bi-box-seam'} orange size-30px`} />
                             </div>
                         }
-                        {review.revieweeId && review.reviewAt &&
-                            <div className='review-lists-card--cont margin-2px-V'>
+                        {/* {review.revieweeId && review.reviewAt &&
+                            <div className='review-lists-card--cont width--100 margin-2px-V'>
                                 <span className='lists-card--info--disc--hide margin-2px-H font-bold'>Reviewee: </span>{review.reviewAt === 'Driver' ? driverData?.name : productData?.title}
                             </div>
-                        }
-                        <div className='flex-row-between2col review-lists-card--rating-cont flex-wrap'>
+                        } */}
+                        <div className='flex-row-between2col width-20-100 review-lists-card--rating-cont flex-wrap'>
                             <div className='review-lists-card--cont margin-2px-V font-bold flex-row-left-start'>
                                 <span className='lists-card--info--disc--hide margin-2px-H font-bold'>Rating: </span>
                                 <div className='flex-row-left-start flex-wrap'>
