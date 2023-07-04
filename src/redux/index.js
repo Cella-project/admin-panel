@@ -21,6 +21,7 @@ import themeSlice from './slices/theme';
 import connectedUsersSlice from './slices/connectedUsers';
 import reviewSlice from './slices/reviews';
 import logActivitySlice from './slices/logActivity';
+import notificationSlice from './slices/notification';
 
 const store = configureStore({
         reducer: {
@@ -44,7 +45,8 @@ const store = configureStore({
                 theme: themeSlice.reducer,
                 connectedUsers: connectedUsersSlice.reducer,
                 review: reviewSlice.reducer,
-                log: logActivitySlice.reducer
+                log: logActivitySlice.reducer,
+                notification: notificationSlice.reducer
         }
 });
 

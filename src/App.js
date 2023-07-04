@@ -78,6 +78,7 @@ const App = () => {
     } else {
       localStorage.removeItem('Access Token');
       localStorage.removeItem('Refresh Token');
+      localStorage.removeItem('fcmToken');
       router.navigate('/admin-panel/login');
     }
   };

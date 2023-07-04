@@ -19,6 +19,7 @@ import themeMutations from './mutations/theme';
 import connectedUsersMutations from './mutations/connectedUsers';
 import reviewMutations from './mutations/reviews';
 import logActivityMutations from './mutations/logActivity';
+import notificationMutations from './mutations/notification';
 
 export {
     authMutations,
@@ -41,5 +42,6 @@ export {
     themeMutations,
     connectedUsersMutations,
     reviewMutations,
-    logActivityMutations
+    logActivityMutations,
+    notificationMutations
 }
