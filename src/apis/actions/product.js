@@ -299,7 +299,6 @@ const productActions = {
                 }));
                 afterSuccess();
             } catch (error) {
-                console.log(error)
                 errorHandler(dispatch, error.response, 'Something went wrong, please try again.');
             }
         }
