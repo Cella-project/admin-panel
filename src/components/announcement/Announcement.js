@@ -32,11 +32,11 @@ const Announcement = ({ popupToggle }) => {
         inputBlurHandler: subjectBlurHandler,
         reset: resetSubjectInput,
     } = useInput((value) => {
-        const isValid = value.trim() !== '' && value > 0;
+        const isValid = value.trim() !== '' && value.length > 0;
         let error = '';
         if (value.trim() === '') {
             error = 'Please enter an Subject.';
-        } else if (value < 0) {
+        } else if (value.length < 0) {
             error = 'Please enter a valid Subject.';
         }
         return { isValid, error };

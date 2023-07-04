@@ -99,13 +99,13 @@ const Tools = () => {
             {isMenuShown &&
                 <div className="tool-box--btns flex-col-center">
                     <div className='tool-box--btn flex-row-center orange-bg pointer radius-circular margin-4px-V shadow-5px' onClick={announcementPanel}>
-                        <i className={`bi bi-speaker ${mode === 'dark-mode' ? 'gray' : 'white'} size-22px`} />
+                        <i className={`bi bi-send-fill ${mode === 'dark-mode' ? 'gray' : 'white'} size-22px`} />
                         <div className={`tool-box--btn--tag flex-row-center ${mode === 'dark-mode' ? 'gray' : 'white'} inter size-12px radius-5px shadow-5px`}>
-                            Notes
+                            Announcement
                         </div>
                     </div>
                     <div className='tool-box--btn flex-row-center orange-bg pointer radius-circular margin-4px-V shadow-5px' onClick={toggleTheme}>
-                        <i className={mode === 'dark-mode' ? 'bi bi-moon gray size-26px' : 'bi bi-sun white size-26px'} />
+                        <i className={mode === 'dark-mode' ? 'bi bi-moon-stars gray size-26px' : 'bi bi-brightness-alt-high-fill white size-26px'} />
                         <div className={`tool-box--btn--tag flex-row-center ${mode === 'dark-mode' ? 'gray' : 'white'} inter size-12px radius-5px shadow-5px`}>
                             Theme
                         </div>
