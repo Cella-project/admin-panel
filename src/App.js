@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import StickyBoard from './components/sticky/StickyBoard';
 import Popup from './components/popups/Popup';
-import { adminActions, authActions ,notificationActions} from "./apis/actions";
+import { adminActions, authActions, notificationActions } from "./apis/actions";
 import { authMutations, connectedUsersMutations, adminMutations, driverMutations } from "./redux/mutations";
 
 import router from "./router/router";
@@ -19,8 +19,8 @@ const App = () => {
 
   const mode = useSelector(state => state.theme.mode);
   const user = useSelector(state => state.auth.userData);
-  const accessToken = localStorage.getItem('Access Token');
-  const refreshToken = localStorage.getItem('Refresh Token');
+  let accessToken = localStorage.getItem('Access Token');
+  let refreshToken = localStorage.getItem('Refresh Token');
 
 
   useEffect(() => {
@@ -50,6 +50,10 @@ const App = () => {
         dispatch(authMutations.setAuthData({
           userData: user,
         }));
+        accessToken = localStorage.getItem('Access Token');
+        refreshToken = localStorage.getItem('Refresh Token');
+
+        console.log('user', accessToken);
 
         dispatch(notificationActions.getAllNotifications(0));
 

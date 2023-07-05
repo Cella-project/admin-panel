@@ -33,10 +33,6 @@ const Dashboard = () => {
         dispatch(adminActions.verifyEmail(userData._id));
     }
 
-    useEffect(() => {
-        dispatch(authMutations.setUserData(null));
-        dispatch(authActions.getProfile());
-    }, [dispatch]);
 
     if (userData === null) return (<div></div>);
 
