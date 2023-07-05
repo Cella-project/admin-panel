@@ -18,72 +18,78 @@ const App = () => {
   const dispatch = useDispatch();
 
   const mode = useSelector(state => state.theme.mode);
+  const user = useSelector(state => state.auth.userData);
   const accessToken = localStorage.getItem('Access Token');
   const refreshToken = localStorage.getItem('Refresh Token');
-  const user = useSelector(state => state.auth.userData);
 
 
   useEffect(() => {
-    const refreshTokenHandler = async (token) => {
-      if (token) {
-        dispatch(authActions.refreshToken(token));
+    const refreshToken = localStorage.getItem('Refresh Token');
+
+    const checkTimeDifference = () => {
+      const currentTime = new Date().getTime();
+      const lastRefreshTime = localStorage.getItem('Refresh Token Time');
+      const timeDifference = currentTime - lastRefreshTime;
+
+      if (timeDifference >= 14 * 60 * 1000) {
+        refreshTokenHandler(refreshToken);
       }
     };
-    const lastRefreshTime = localStorage.getItem('Refresh Token Time');
-    const currentTime = new Date().getTime();
-    const timeDifference = currentTime - lastRefreshTime;
 
-    if (timeDifference >= 14 * 60 * 1000) {
-      refreshTokenHandler(refreshToken);
-    }
+    const interval = setInterval(checkTimeDifference, 1 * 60 * 1000);
 
-    setInterval(() => {
-      refreshTokenHandler(refreshToken);
-    }, 14 * 60 * 1000);
-  }, [refreshToken, dispatch]);
+    // Clean up the interval on component unmount
+    return () => clearInterval(interval);
+  })
 
   const checkAuth = () => {
     if (accessToken && refreshToken) {
-      dispatch(authMutations.setUserData(null));
-      dispatch(authActions.getProfile());
-      dispatch(authMutations.setAuthData({
-        userData: user,
-        access: accessToken,
-        refresh: refreshToken
-      }));
+      dispatch(authActions.refreshToken(refreshToken)).then(() => {
+        dispatch(authMutations.setUserData(null));
+        dispatch(authActions.getProfile());
+        dispatch(authMutations.setAuthData({
+          userData: user,
+        }));
 
-      dispatch(notificationActions.getAllNotifications(0));
-      
-      socket.auth = { token: accessToken };
-      socket.connect();
+        dispatch(notificationActions.getAllNotifications(0));
 
-      socket.on('user:allUsers', users => {
-        dispatch(connectedUsersMutations.setUsers(users));
-        dispatch(adminActions.getAdmins());
-      });
+        socket.auth = { token: accessToken };
+        socket.connect();
 
-      socket.on('user:connected', user => {
-        dispatch(connectedUsersMutations.addUser(user));
-        if (user.role === 'admin') {
-          dispatch(adminMutations.userConnected(user))
-        } else if (user.role === 'driver') {
-          dispatch(driverMutations.driverConnected(user))
-        }
-      });
+        socket.on('user:allUsers', users => {
+          dispatch(connectedUsersMutations.setUsers(users));
+          dispatch(adminActions.getAdmins());
+        });
 
-      socket.on('user:disconnected', user => {
-        dispatch(connectedUsersMutations.removeUser(user));
-        if (user.role === 'admin') {
-          dispatch(adminMutations.userDisconnected(user))
-        } else if (user.role === 'driver') {
-          dispatch(driverMutations.driverDisconnected(user))
-        }
+        socket.on('user:connected', user => {
+          dispatch(connectedUsersMutations.addUser(user));
+          if (user.role === 'admin') {
+            dispatch(adminMutations.userConnected(user))
+          } else if (user.role === 'driver') {
+            dispatch(driverMutations.driverConnected(user))
+          }
+        });
+
+        socket.on('user:disconnected', user => {
+          dispatch(connectedUsersMutations.removeUser(user));
+          if (user.role === 'admin') {
+            dispatch(adminMutations.userDisconnected(user))
+          } else if (user.role === 'driver') {
+            dispatch(driverMutations.driverDisconnected(user))
+          }
+        });
       });
     } else {
       localStorage.removeItem('Access Token');
       localStorage.removeItem('Refresh Token');
       localStorage.removeItem('fcmToken');
       router.navigate('/admin-panel/login');
+    }
+  };
+
+  const refreshTokenHandler = (token) => {
+    if (token) {
+      dispatch(authActions.refreshToken(token), () => { });
     }
   };
 
