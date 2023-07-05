@@ -75,10 +75,9 @@ const Notifications = () => {
     }
 
     const handleReadAll = (userId) => {
-        dispatch(notificationActions.setAllNotificationsAsRead(userId));
-        dispatch(notificationMutations.setNotifications(null));
-        dispatch(notificationActions.getAllNotifications(0));
-        setOffset(0);
+        dispatch(notificationActions.setAllNotificationsAsRead(userId)).then(() => {
+            setOffset(0);
+        });
     }
 
     const handleScroll = (e) => {

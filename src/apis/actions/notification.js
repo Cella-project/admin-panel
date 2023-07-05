@@ -121,6 +121,8 @@ const notificationActions = {
         return async (dispatch) => {
             try {
                 await Axios.put('/api/notification-center/mark-all-read', { "userId": userId });
+                dispatch(notificationMutations.setNotifications(null));
+                dispatch(this.getAllNotifications(0));
             } catch (error) {
                 errorHandler(dispatch, error.response);
             }
