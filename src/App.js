@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import StickyBoard from './components/sticky/StickyBoard';
 import Popup from './components/popups/Popup';
-import { adminActions, authActions } from "./apis/actions";
+import { adminActions, authActions, notificationActions } from "./apis/actions";
 import { authMutations, connectedUsersMutations, adminMutations, driverMutations } from "./redux/mutations";
 
 import router from "./router/router";
@@ -26,7 +26,7 @@ const App = () => {
   useEffect(() => {
     const refreshTokenHandler = async (token) => {
       if (token) {
-        await dispatch(authActions.refreshToken(token));
+        dispatch(authActions.refreshToken(token));
       }
     };
     const lastRefreshTime = localStorage.getItem('Refresh Token Time');
@@ -51,6 +51,9 @@ const App = () => {
         access: accessToken,
         refresh: refreshToken
       }));
+
+      dispatch(notificationActions.getAllNotifications(0));
+      
       socket.auth = { token: accessToken };
       socket.connect();
 

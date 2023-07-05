@@ -10,6 +10,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 const Notifications = () => {
     const dispatch = useDispatch();
     const notifications = useSelector(state => state.notification.notifications);
+    const userData = useSelector(state => state.auth.userData);
 
     const [offset, setOffset] = useState(0);
     const [loading, setLoading] = useState(false);
@@ -69,9 +70,20 @@ const Notifications = () => {
         }
     }
 
+    const handleRead = (id) => {
+        dispatch(notificationActions.setNotificationAsRead(id));
+    }
+
+    const handleReadAll = (userId) => {
+        dispatch(notificationActions.setAllNotificationsAsRead(userId));
+        dispatch(notificationMutations.setNotifications(null));
+        dispatch(notificationActions.getAllNotifications(0));
+        setOffset(0);
+    }
+
     const handleScroll = (e) => {
         if (e.scrollTop + e.clientHeight >= e.scrollHeight) {
-            setOffset(prevOffset => prevOffset + 5);
+            setOffset(prevOffset => prevOffset + 10);
         }
     };
 
@@ -91,15 +103,16 @@ const Notifications = () => {
             dispatch(notificationActions.getAllNotifications(0)).then(() => {
                 setLoading(false);
             });
-        }
-        if (!notificationsShown) {
+        } else {
             dispatch(notificationMutations.setNotifications(null));
+            dispatch(notificationActions.getAllNotifications(0));
             setOffset(0);
         }
     }, [notificationsShown, dispatch]);
 
+    const unReadNotifications = notifications?.filter(notification => !notification.isRead).length;
 
-    let content = loading && <Loading />;
+    let content = (loading || !notifications) && <Loading />;
 
     if (notifications !== null) {
         if (notifications.length === 0) {
@@ -112,23 +125,30 @@ const Notifications = () => {
                 <>
                     {notifications.map((notification) => {
                         return (
-                            <div key={notification._id} className='notifications--menu--item full-width flex-row-between open-sans'>
+                            <div key={notification._id} className={`notifications--menu--item ${mode === 'dark-mode' ? 'dark' : ''} full-width flex-row-between open-sans`}>
                                 <div className='notifications--icon flex-row-center'>
                                     <i className={`bi bi-bell ${mode === 'dark-mode' ? 'gray' : 'gray'} size-30px`} />
                                 </div>
                                 <div className='full-width flex-col-left-start'>
                                     <div className='full-width flex-row-between'>
-                                        <div className='notifications--menu--item--subject flex-row-center size-18px font-bold pt-sans'>
+                                        <div className={`notifications--menu--item--subject ${!notification.isRead ? 'font-bold' : ''} flex-row-center size-18px pt-sans`}>
                                             <p className={`space-none pt-sans ${mode === 'dark-mode' ? 'gray' : 'gray'}`}>{notification.subject}</p>
                                         </div>
-                                        <div className='notifications--menu--item--date flex-row-center size-12px inter'>
+                                        <div className={`notifications--menu--item--date flex-row-center ${!notification.isRead ? 'font-bold' : ''} size-12px inter`}>
                                             <p className={`space-none pt-sans baby-blue`}>
                                                 {getTimeSinceCreation(notification.createdAt)}
                                             </p>
                                         </div>
                                     </div>
-                                    <div className='notifications--menu--item--body flex-row-left-start size-14px'>
-                                        <p className={`space-none pt-sans ${mode === 'dark-mode' ? 'gray' : 'gray'}`}>{notification.body}</p>
+                                    <div className='full-width flex-row-between'>
+                                        <div className={`notifications--menu--item--body flex-row-left-start ${!notification.isRead ? 'font-bold' : ''} size-14px`}>
+                                            <p className={`space-none pt-sans ${mode === 'dark-mode' ? 'gray' : 'gray'}`}>{notification.body}</p>
+                                        </div>
+                                        {!notification.isRead &&
+                                            <div className='notifications--menu--item--read flex-row-center pointer' onClick={() => handleRead(notification._id)}>
+                                                <p className='space-none pt-sans size-12px'>Mark as read</p>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -143,23 +163,30 @@ const Notifications = () => {
     return (
         <div ref={menuRef} className='notifications flex-row-center radius-15px margin-6px-H white-bg shadow-2px'>
             <div className='notifications--icon flex-row-center pointer full-width' onClick={setNotificationsShown.bind(null, !notificationsShown)} >
-                <i className={`bi bi-bell ${mode === 'dark-mode' ? 'gray' : 'orange'} size-22px`} />
+                {unReadNotifications > 0 && !notificationsShown &&
+                    <div className={`notifications--unread inter shadow-5px ${mode === 'dark-mode' ? 'gray' : 'white'} font-bold red-bg size-10px flex-row-center`}>
+                        {unReadNotifications}
+                    </div>
+                }
+                <i className={`bi bi-bell${notificationsShown ? '-fill' : ''} ${mode === 'dark-mode' ? 'gray' : 'orange'} size-22px`} />
                 <div className={`notifications--icon--tag flex-row-center ${mode === 'dark-mode' ? 'gray' : 'white'} inter size-12px radius-5px shadow-5px`}>
                     Notifications
                 </div>
             </div>
             {notificationsShown &&
-                <>
-                    <i className={`bi bi-caret-up-fill ${mode === 'dark-mode' ? 'white' : 'white'} size-14px`} />
-                    <div className='notifications--menu flex-col-center white-bg radius-15px'>
-                        <div className='notifications--menu--header full-width flex-row-left-start'>
-                            <h2 className={`space-none pt-sans ${mode === 'dark-mode' ? 'gray' : 'gray'}`}>Notifications</h2>
-                        </div>
-                        <PerfectScrollbar className={`notifications--scroll-cont full-width ${loading ? 'loading' : ''}`} onScrollY={handleScroll}>
-                            {content}
-                        </PerfectScrollbar>
+                <div className='notifications--menu flex-col-center white-bg radius-15px'>
+                    <div className='notifications--menu--header full-width flex-row-between'>
+                        <h2 className={`space-none pt-sans orange`}>Notifications</h2>
+                        {unReadNotifications > 0 &&
+                            <div className='notifications--menu--item--read flex-row-center pointer' onClick={() => handleReadAll(userData._id)}>
+                                <p className='space-none pt-sans size-12px'>Mark all as read</p>
+                            </div>
+                        }
                     </div>
-                </>
+                    <PerfectScrollbar className={`notifications--scroll-cont full-width ${loading ? 'loading' : ''}`} onScrollY={handleScroll}>
+                        {content}
+                    </PerfectScrollbar>
+                </div>
             }
         </div>
     )

@@ -49,7 +49,7 @@ const LogActivity = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight) {
         setOffset((prevOffset) => prevOffset + 10);
       }
     }
@@ -60,24 +60,32 @@ const LogActivity = () => {
     setShowLoading(true);
 
     if (storeID) {
+      window.removeEventListener('scroll', handleScroll);
       dispatch(logActivityActions.getStoreLogs(storeID, offset)).then(() => {
         setIsLoading(false);
         setShowLoading(false);
+        window.addEventListener('scroll', handleScroll);
       });
     } else if (driverID) {
+      window.removeEventListener('scroll', handleScroll);
       dispatch(logActivityActions.getDriverLogs(driverID, offset)).then(() => {
         setIsLoading(false);
         setShowLoading(false);
+        window.addEventListener('scroll', handleScroll);
       });
     } else if (adminID) {
+      window.removeEventListener('scroll', handleScroll);
       dispatch(logActivityActions.getAdminLogs(adminID, offset)).then(() => {
         setIsLoading(false);
         setShowLoading(false);
+        window.addEventListener('scroll', handleScroll);
       });
     } else {
+      window.removeEventListener('scroll', handleScroll);
       dispatch(logActivityActions.getAllLogs(offset)).then(() => {
         setIsLoading(false);
         setShowLoading(false);
+        window.addEventListener('scroll', handleScroll);
       });
     }
 
