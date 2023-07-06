@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/messaging';
 import { getMessaging, getToken } from "firebase/messaging";
