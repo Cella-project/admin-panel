@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import PushNotification from "../PushNotification";
 
@@ -10,10 +10,9 @@ import ScrollButton from "../components/global/ScrollButton";
 import { useDispatch, useSelector } from "react-redux";
 import VerifyEmail from "../components/verifyEmail/VerifyEmail";
 import Popup from "../components/common/PopupForm";
-import { adminActions, authActions } from "../apis/actions";
+import { adminActions } from "../apis/actions";
 
 import './Dashboard.scss';
-import { authMutations } from "../redux/mutations";
 
 const Dashboard = () => {
     const [mobMenuShown, setMobMenuShown] = useState(false);
@@ -33,10 +32,6 @@ const Dashboard = () => {
         dispatch(adminActions.verifyEmail(userData._id));
     }
 
-    useEffect(() => {
-        dispatch(authMutations.setUserData(null));
-        dispatch(authActions.getProfile());
-    }, [dispatch]);
 
     if (userData === null) return (<div></div>);
 

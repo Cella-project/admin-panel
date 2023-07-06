@@ -3,7 +3,7 @@ import Select from 'react-select';
 import { useParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { productActions, subCategoryActions } from '../../../apis/actions';
+import { productActions,specialityControlActions } from '../../../apis/actions';
 import { subCategoryMutations } from '../../../redux/mutations';
 
 import useInput from '../../../hooks/useInput';
@@ -24,8 +24,8 @@ export const EditProduct = () => {
         document.title = 'Edit product • Admin Panel';
         dispatch(productActions.getProductData(params.id));
         dispatch(subCategoryMutations.setSubCategoryData(null));
-        dispatch(subCategoryActions.getSubCategories(productData.mainCategory._id));
-    }, [dispatch, params.id, productData.mainCategory._id]);
+        dispatch(specialityControlActions.getMaterials(productData.speciality._id));
+    }, [dispatch, params.id, productData.speciality._id]);
 
     const {
         value: enteredTitle,
@@ -171,14 +171,9 @@ export const EditProduct = () => {
         }
 
         if (enteredMaterial.title !== productData.material && enteredMaterial.title !== '') {
+            console.log('Material Changed');
+            console.log(enteredMaterial);
             updatedProduct.material = enteredMaterial.title;
-        }
-
-        if (enteredSubCategory.title !== productData.subCategory.title && enteredSubCategory.title !== '') {
-            updatedProduct.subCategory = {
-                _id: enteredSubCategory.id,
-                title: enteredSubCategory.title,
-            };
         }
 
         const editedProduct = { ...updatedProduct };
@@ -193,6 +188,7 @@ export const EditProduct = () => {
 
         dispatch(productActions.updateProduct(editedProduct,
             () => {
+                console.log('Product Updated Successfully', editedProduct);
                 navigate(`/admin-panel/products/${productData._id}`);
             }));
     };
@@ -293,7 +289,7 @@ export const EditProduct = () => {
                                                 }}
                                                 value={enteredSubCategory}
                                                 disabled={subCategories.length === 0}
-                                                placeholder="Select Sub Category"
+                                                placeholder={enteredSubCategory}
                                                 options={subCategories.filter(subCategory => subCategory.status === "Active").map(subCategory => ({ label: subCategory.title, value: { label: subCategory.title, title: subCategory.title, id: subCategory._id } }))}
                                                 onChange={(subCategory) =>
                                                     subCategoryChangedHandler({ target: { id: "subCategory", label: subCategory.title, value: subCategory.value } })
@@ -322,7 +318,7 @@ export const EditProduct = () => {
                                                     }}
                                                     value={enteredMaterial}
                                                     disabled={materials.length === 0}
-                                                    placeholder="Select Material"
+                                                    placeholder={enteredMaterial}
                                                     options={materials.map(m => ({ label: m.title, value: { label: m.title, title: m.title, id: m._id } }))}
                                                     onChange={(subCategory) =>
                                                         materialChangedHandler({ target: { id: "subCategory", label: subCategory.title, value: subCategory.value } })
@@ -338,7 +334,7 @@ export const EditProduct = () => {
                                     <button
                                         className="edit-product--actions--button pointer radius-10px shadow-4px white text-shadow size-18px gray-bg"
                                         onClick={() => {
-                                            navigate('/admin-panel/products');
+                                            navigate(`/admin-panel/products/${productData._id}`);
                                         }}
                                     >
                                         Cancel
