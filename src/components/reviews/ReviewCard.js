@@ -29,7 +29,7 @@ const ReviewCard = ({ review, visible }) => {
             <div className='flex-row-left-start full-width'>
                 <div className='review-lists-card--img radius-circular flex-row-center'>
                     <Canvas name={review.reviewer.name} borderRadius='50%' width={55} height={55} fontSize={'42px'} />
-                    <div className={`${review.status === 'Active' ? 'green' : 'red'}-bg lists-status radius-circular`}></div>
+                    <div className={`${review.status === 'Active' ? 'green' : review.status === 'RejectedContent' ? 'red' : 'yellow'}-bg lists-status radius-circular`}></div>
                 </div>
                 <div className='review-lists-card gray shadow-2px margin-10px-V inter radius-15px white-bg full-width flex-col-left-start flex-wrap'>
                     <div className='review-lists-card--info flex-row-left-start2col full-width pointer' onClick={toggleReview}>

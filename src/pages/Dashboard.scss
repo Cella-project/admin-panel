@@ -8,7 +8,7 @@
         &--light {
             position: fixed;
             width: 100%;
-            height: 100%;
+            height: 100vh;
             background-image: url('../assets/images/background.svg');
             background-size: cover;
             background-position: center center;
@@ -19,7 +19,7 @@
         &--dark {
             position: fixed;
             width: 100%;
-            height: 100%;
+            height: 100vh;
             background-image: url('../assets/images/background-dark.svg');
             background-size: cover;
             background-position: center center;

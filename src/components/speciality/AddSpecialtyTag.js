@@ -59,6 +59,7 @@ const AddSpecialtyTagForm = ({ popupToggle,data }) => {
                         value={enteredTitle}
                         onChange={titleChangedHandler}
                         onBlur={titleBlurHandler}
+                        autoFocus
                     />
                 </div>
                 {titleIsTouched && (

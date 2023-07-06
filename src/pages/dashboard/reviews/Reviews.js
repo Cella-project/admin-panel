@@ -60,6 +60,7 @@ const Reviews = () => {
     { title: 'Products Reviews', content: 0, icon: "bi bi-box-seam" },
     { title: 'Drivers Reviews', content: 0, icon: "bi bi-truck" },
     { title: 'Active Reviews', content: 0, icon: "bi bi-stars" },
+    { title: 'Rejected content Reviews', content: 0, icon: "bi bi-stars" },
     { title: 'InActive Reviews', content: 0, icon: "bi bi-stars" },
   ];
 
@@ -71,6 +72,7 @@ const Reviews = () => {
     const numOfReviews = reviews.length;
     const numOfActiveReviews = reviews.filter(review => review.status === 'Active').length;
     const numOfInActiveReviews = reviews.filter(review => review.status === 'InActive').length;
+    const numOfRejectedReviews = reviews.filter(review => review.status === 'RejectedContent').length;
     const numOfProductsReviews = reviews.filter(review => review.reviewAt === 'Product').length;
     const numOfDriversReviews = reviews.filter(review => review.reviewAt === 'Driver').length;
 
@@ -128,6 +130,7 @@ const Reviews = () => {
       { title: 'Products Reviews', content: numOfProductsReviews, icon: "bi bi-box-seam" },
       { title: 'Drivers Reviews', content: numOfDriversReviews, icon: "bi bi-truck" },
       { title: 'Active Reviews', content: numOfActiveReviews, icon: "bi bi-stars" },
+      { title: 'Rejected content Reviews', content: numOfRejectedReviews, icon: "bi bi-stars" },
       { title: 'InActive Reviews', content: numOfInActiveReviews, icon: "bi bi-stars" },
     ];
   }
