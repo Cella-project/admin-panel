@@ -29,6 +29,7 @@ const productActions = {
                 }));
                 afterSuccess();
             } catch (error) {
+                console.log(error);
                 errorHandler(dispatch, error.response, 'Something went wrong, please try again.');
             }
         }
@@ -44,6 +45,24 @@ const productActions = {
                 dispatch(stickyMutations.pushNote({
                     type: 'success',
                     msg: 'product picture added successfully.'
+                }));
+                afterSuccess(response);
+            } catch (error) {
+                errorHandler(dispatch, error.response, 'Something went wrong, please try again.');
+            }
+        }
+    },
+    addProduct3DModel(payload, afterSuccess) {
+        return async (dispatch) => {
+            try {
+                dispatch(popupMutation.clearPopPanel());
+                dispatch(stickyMutations.popAllNotes());
+                dispatch(popupMutation.popLoading());
+                const response = await Axios.post('/api/file-manager/file', payload);
+                dispatch(popupMutation.clearPopPanel());
+                dispatch(stickyMutations.pushNote({
+                    type: 'success',
+                    msg: 'product 3D model added successfully.'
                 }));
                 afterSuccess(response);
             } catch (error) {

@@ -2,10 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../global/Loading';
 
-import './Notifications.scss';
 import { notificationMutations } from '../../redux/mutations';
 import { notificationActions } from '../../apis/actions';
 import PerfectScrollbar from 'react-perfect-scrollbar';
+
+import './Notifications.scss';
 
 const Notifications = () => {
     const dispatch = useDispatch();
@@ -20,6 +21,20 @@ const Notifications = () => {
     const mode = useSelector(state => state.theme.mode);
 
     let menuRef = useRef();
+
+    useEffect(() => {
+        // Handle notification clicks
+        navigator.serviceWorker.onmessage = () => {
+            dispatch(notificationMutations.setNotifications(null));
+            dispatch(notificationActions.getAllNotifications(0));
+            setOffset(0);
+            console.log('Notification clicked');
+        };
+
+        return () => {
+            navigator.serviceWorker.onmessage = null; // Remove the event listener on component unmount
+        };
+    }, [dispatch]);
 
     useEffect(() => {
         let mouseHandler = (e) => {

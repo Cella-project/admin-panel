@@ -17,8 +17,8 @@ export const EditProduct = () => {
     const mode = useSelector((state) => state.theme.mode);
     const productData = useSelector((state) => state.product.productData);
     const materials = useSelector(state => state.specialityControl.materials);
-    const subCategories = useSelector(state => state.subCategory.subCategories);
     const [currentPage, setCurrentPage] = useState(1);
+    const [model, setModel] = useState(null);
 
     useEffect(() => {
         document.title = 'Edit product • Admin Panel';
@@ -94,22 +94,6 @@ export const EditProduct = () => {
         return { isValid, error };
     }, productData.price);
 
-    const {
-        value: enteredSubCategory,
-        error: subCategoryError,
-        isTouched: subCategoryIsTouched,
-        valueChangeHandler: subCategoryChangedHandler,
-        inputBlurHandler: subCategoryBlurHandler,
-    } = useInput((value) => {
-        const isValid = value !== '';
-        let error = '';
-        if (value === '') {
-            error = 'Please select a sub category.';
-        }
-        return { isValid, error };
-    }, productData.subCategory.title);
-
-
     const handlePhotoAdd = (event) => {
         const album = {}
         const data = new FormData();
@@ -126,6 +110,15 @@ export const EditProduct = () => {
         dispatch(productActions.deleteProductImage({ _id: productData._id, imgId: _id }));
     };
 
+    const upload3DModelToServer = async (e) => {
+        const data = new FormData();
+        data.append('path', '3DModels');
+        data.append('file', e.target.files[0]);
+        dispatch(productActions.addProduct3DModel(data, (response) => {
+            const url = 'http://www.actore.store/api/file-manager/file/' + response.data.data;
+            setModel(url);
+        }));
+    };
 
     // Handle Price Change
     const [discountType, setDiscountType] = useState(productData.discount.discountType);
@@ -149,8 +142,6 @@ export const EditProduct = () => {
         }
     };
 
-
-
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -172,6 +163,10 @@ export const EditProduct = () => {
 
         if (enteredMaterial.title !== productData.material && enteredMaterial.title !== '') {
             updatedProduct.material = enteredMaterial.title;
+        }
+
+        if (model) {
+            updatedProduct.model3D = model;
         }
 
         const editedProduct = { ...updatedProduct };
@@ -271,61 +266,36 @@ export const EditProduct = () => {
                                     </div>
                                     {descriptionIsTouched && (<div className="error-message">{descriptionError}</div>)}
                                 </div>
-                                {subCategories && subCategories.length > 0 && (
-                                    <div className='full-width flex-col-left-start add-product--input-container'>
-                                        <label className='pointer full-width text-shadow gray font-bold margin-6px-V' htmlFor='SubCategory'>Sub Category <span className='red'>*</span></label>
-                                        <div className={`full-width light-gray radius-10px white-bg flex-row-left-start add-product--input `}>
+                                {materials && materials.length > 0 && (
+                                    <div className='full-width flex-col-left-start edit-product--input-container'>
+                                        <label className='pointer full-width text-shadow gray font-bold margin-6px-V' htmlFor='material'>
+                                            Materials :<span className='red'>*</span>
+                                        </label>
+                                        <div className={`full-width light-gray radius-10px white-bg flex-row-top-start edit-product--input `}>
                                             <i className='bi bi-pin-map size-20px gray' />
                                             <Select
-                                                className='add-product--select full-width gray margin-4px-H'
+                                                className='edit-product--select full-width gray margin-4px-H'
                                                 styles={{
                                                     option: (provided, state) => ({ ...provided, cursor: 'pointer', ":hover": { backgroundColor: `${mode === 'dark-mode' ? '#d14e0d' : '#7FBCD2'}` }, backgroundColor: (state.isFocused || state.isSelected) ? `${mode === 'dark-mode' ? '#d14e0d' : '#7FBCD2'}` : 'inherit' }),
                                                     menu: (provided) => ({
-                                                        ...provided, backgroundColor: `${mode === 'dark-mode' ? '#242526' : '#ffffff'}`
+                                                        ...provided, backgroundColor: `${mode === 'dark-mode' ? '#242526' : '#ffffff'}`,
+                                                        position: 'relative',
                                                     }),
                                                 }}
-                                                value={enteredSubCategory}
-                                                disabled={subCategories.length === 0}
-                                                placeholder={enteredSubCategory}
-                                                options={subCategories.filter(subCategory => subCategory.status === "Active").map(subCategory => ({ label: subCategory.title, value: { label: subCategory.title, title: subCategory.title, id: subCategory._id } }))}
+                                                value={enteredMaterial}
+                                                defaultInputValue={enteredMaterial}
+                                                disabled={materials.length === 0}
+                                                placeholder={'Select Material'}
+                                                options={materials.map(m => ({ label: m.title, value: { label: m.title, title: m.title, id: m._id } }))}
                                                 onChange={(subCategory) =>
-                                                    subCategoryChangedHandler({ target: { id: "subCategory", label: subCategory.title, value: subCategory.value } })
+                                                    materialChangedHandler({ target: { id: "subCategory", label: subCategory.title, value: subCategory.value } })
                                                 }
-                                                onBlur={subCategoryBlurHandler}
+                                                onBlur={materialBlurHandler}
                                             />
                                         </div>
-                                        {subCategoryIsTouched && (<div className="error-message">{subCategoryError}</div>)}
+                                        {materialIsTouched && (<div className="error-message">{materialError}</div>)}
                                     </div>
-                                )}
-                                {
-                                    materials && materials.length > 0 && (
-                                        <div className='full-width flex-col-left-start edit-product--input-container'>
-                                            <label className='pointer full-width text-shadow gray font-bold margin-6px-V' htmlFor='material'>
-                                                Materials :<span className='red'>*</span>
-                                            </label>
-                                            <div className={`full-width light-gray radius-10px white-bg flex-row-left-start edit-product--input `}>
-                                                <i className='bi bi-pin-map size-20px gray' />
-                                                <Select
-                                                    className='edit-product--select full-width gray margin-4px-H'
-                                                    styles={{
-                                                        option: (provided, state) => ({ ...provided, cursor: 'pointer', ":hover": { backgroundColor: `${mode === 'dark-mode' ? '#d14e0d' : '#7FBCD2'}` }, backgroundColor: (state.isFocused || state.isSelected) ? `${mode === 'dark-mode' ? '#d14e0d' : '#7FBCD2'}` : 'inherit' }),
-                                                        menu: (provided) => ({
-                                                            ...provided, backgroundColor: `${mode === 'dark-mode' ? '#242526' : '#ffffff'}`
-                                                        }),
-                                                    }}
-                                                    value={enteredMaterial}
-                                                    disabled={materials.length === 0}
-                                                    placeholder={enteredMaterial}
-                                                    options={materials.map(m => ({ label: m.title, value: { label: m.title, title: m.title, id: m._id } }))}
-                                                    onChange={(subCategory) =>
-                                                        materialChangedHandler({ target: { id: "subCategory", label: subCategory.title, value: subCategory.value } })
-                                                    }
-                                                    onBlur={materialBlurHandler}
-                                                />
-                                            </div>
-                                            {materialIsTouched && (<div className="error-message">{materialError}</div>)}
-                                        </div>
-                                    )
+                                )
                                 }
                                 <div className="edit-product--actions flex-row-between full-width">
                                     <button
@@ -361,25 +331,9 @@ export const EditProduct = () => {
                                             <div className={`inter ${mode === 'dark-mode' ? 'gray' : 'orange'} margin-6px-V`}> Photo number : {index + 1}</div>
                                             <img src={photo.URL} alt={` ${index}`} />
                                             <div className="flex-row-center full-width margin-6px-V ">
-                                                {/* <button
-                                                    type="button"
-                                                    className={`edit-product--gallary-left ${mode === 'dark-mode' ? 'gray-bg' : 'orange-bg'} radius-circular pointer white`}
-                                                    onClick={() => handlePhotoIndexChange(index, index - 1)}
-                                                    disabled={index === 0}
-                                                >
-                                                    <i className="bi bi-caret-left-fill flex-row-right-start"></i>
-                                                </button> */}
                                                 <button className='edit-product--gallary ' type="button" onClick={() => handlePhotoRemove(photo._id)}>
                                                     <i className="bi bi-trash pointer size-20px gray"></i>
                                                 </button>
-                                                {/* <button
-                                                    type="button"
-                                                    className={`edit-product--gallary-right ${mode === 'dark-mode' ? 'gray-bg' : 'orange-bg'} radius-circular pointer white`}
-                                                    onClick={() => handlePhotoIndexChange(index, index + 1)}
-                                                    disabled={index === photos.length - 1}
-                                                >
-                                                    <i className="bi bi-caret-right-fill flex-row-right-start"></i>
-                                                </button> */}
                                             </div>
                                         </div>
                                     ))}
@@ -391,7 +345,38 @@ export const EditProduct = () => {
                                     <input type="file" id="photos" onChange={handlePhotoAdd} hidden />
                                 </div>
                             </div>
-
+                            <div className='full-width flex-col-left-start add-product--input-container'>
+                                <label className='pointer full-width text-shadow gray font-bold margin-6px-V'>Product 3D Model: </label>
+                            </div>
+                            {productData.model3D === 'No Model' ?
+                                <>
+                                    <div className="flex-row-center full-width">
+                                        <label htmlFor="3D" className={`add-product--actions--button radius-10px orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} pointer`}>
+                                            Add 3D Model
+                                        </label>
+                                        <input type="file" id="3D" onChange={upload3DModelToServer} hidden />
+                                    </div>
+                                    {model &&
+                                        <div className="flex-row-center full-width">
+                                            <p className="no-space green size-16px">Model added</p>
+                                        </div>
+                                    }
+                                </>
+                                :
+                                <>
+                                    <div className="flex-row-center full-width">
+                                        <label htmlFor="3D" className={`add-product--actions--button radius-10px orange-bg ${mode === 'dark-mode' ? 'gray' : 'white'} pointer`}>
+                                            Edit 3D Model
+                                        </label>
+                                        <input type="file" id="3D" onChange={upload3DModelToServer} hidden />
+                                    </div>
+                                    {model &&
+                                        <div className="flex-row-center full-width">
+                                            <p className="no-space green size-16px">Model edited</p>
+                                        </div>
+                                    }
+                                </>
+                            }
                             <div className="edit-product--actions flex-row-between full-width">
                                 <button
                                     className="edit-product--actions--button pointer radius-10px shadow-4px white text-shadow size-18px gray-bg"

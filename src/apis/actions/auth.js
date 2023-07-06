@@ -71,7 +71,7 @@ const authActions = {
                 }
             }
             catch (error) {
-                if (error.response.status === 401 && error.response.message === 'jwt expired') {
+                if (error.response?.status === 401 && error.response?.statusText === 'jwt expired') {
                     stickyMutations.pushNote({
                         type: 'error',
                         msg: 'Your session has expired, please login again.'

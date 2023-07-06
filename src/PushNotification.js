@@ -18,7 +18,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-function PushNotification() {
+const PushNotification = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         const messaging = getMessaging();
