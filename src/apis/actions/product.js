@@ -29,7 +29,6 @@ const productActions = {
                 }));
                 afterSuccess();
             } catch (error) {
-                console.log(error)
                 errorHandler(dispatch, error.response, 'Something went wrong, please try again.');
             }
         }
@@ -48,7 +47,6 @@ const productActions = {
                 }));
                 afterSuccess(response);
             } catch (error) {
-                console.log(error)
                 errorHandler(dispatch, error.response, 'Something went wrong, please try again.');
             }
         }
@@ -68,7 +66,6 @@ const productActions = {
                 }));
                 afterSuccess();
             } catch (error) {
-                console.log(error)
                 errorHandler(dispatch, error.response, 'Something went wrong, please try again.');
             }
         }
@@ -317,7 +314,6 @@ const productActions = {
                     msg: 'product image added successfully.'
                 }));
             } catch (error) {
-                console.log("error ", error);
                 errorHandler(dispatch, error.response, 'Something went wrong, please try again.');
             }
         }
@@ -332,7 +328,6 @@ const productActions = {
                     try {
                         dispatch(popupMutation.clearPopPanel());
                         dispatch(popupMutation.popLoading());
-                        console.log("payload ", payload);
                         const response = await Axios.put('/api/product-profile/remove-img', payload);
                         dispatch(productMutations.setProductData(response.data.data));
                         dispatch(popupMutation.clearPopPanel());

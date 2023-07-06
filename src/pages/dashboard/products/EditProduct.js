@@ -3,7 +3,7 @@ import Select from 'react-select';
 import { useParams } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { productActions,specialityControlActions } from '../../../apis/actions';
+import { productActions, specialityControlActions } from '../../../apis/actions';
 import { subCategoryMutations } from '../../../redux/mutations';
 
 import useInput from '../../../hooks/useInput';
@@ -171,8 +171,6 @@ export const EditProduct = () => {
         }
 
         if (enteredMaterial.title !== productData.material && enteredMaterial.title !== '') {
-            console.log('Material Changed');
-            console.log(enteredMaterial);
             updatedProduct.material = enteredMaterial.title;
         }
 
@@ -188,7 +186,6 @@ export const EditProduct = () => {
 
         dispatch(productActions.updateProduct(editedProduct,
             () => {
-                console.log('Product Updated Successfully', editedProduct);
                 navigate(`/admin-panel/products/${productData._id}`);
             }));
     };

@@ -53,8 +53,6 @@ const App = () => {
         accessToken = localStorage.getItem('Access Token');
         refreshToken = localStorage.getItem('Refresh Token');
 
-        console.log('user', accessToken);
-
         dispatch(notificationActions.getAllNotifications(0));
 
         socket.auth = { token: accessToken };

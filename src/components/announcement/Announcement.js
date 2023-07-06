@@ -79,8 +79,6 @@ const Announcement = ({ popupToggle }) => {
         }
 
         if (selectedRoles.includes('stores')) {
-            console.log('stores');
-            console.log(msg);
             dispatch(notificationActions.sendNotificationToStores(msg));
 
         }

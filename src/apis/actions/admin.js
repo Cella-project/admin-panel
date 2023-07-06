@@ -19,7 +19,6 @@ const adminActions = {
                     }
                 })));
             } catch (error) {
-                console.log(error);
                 dispatch(adminMutations.setAdmins([]));
                 errorHandler(dispatch, error.response);
             }
@@ -77,7 +76,6 @@ const adminActions = {
                     afterSuccess();
                 }
             } catch (error) {
-                console.log(error);
                 errorHandler(dispatch, error.response);
             }
         }
