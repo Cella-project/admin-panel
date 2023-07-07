@@ -24,15 +24,19 @@ const Notifications = () => {
 
     useEffect(() => {
         // Handle notification clicks
-        navigator.serviceWorker.onmessage = () => {
-            dispatch(notificationMutations.setNotifications(null));
-            dispatch(notificationActions.getAllNotifications(0));
-            setOffset(0);
-            console.log('Notification clicked');
-        };
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.onmessage = () => {
+                dispatch(notificationMutations.setNotifications(null));
+                dispatch(notificationActions.getAllNotifications(0));
+                setOffset(0);
+                console.log('Notification clicked');
+            };
+        }
 
         return () => {
-            navigator.serviceWorker.onmessage = null; // Remove the event listener on component unmount
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.onmessage = null; // Remove the event listener on component unmount
+            }
         };
     }, [dispatch]);
 
