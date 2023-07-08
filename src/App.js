@@ -18,13 +18,11 @@ const App = () => {
   const dispatch = useDispatch();
 
   const mode = useSelector(state => state.theme.mode);
-  const user = useSelector(state => state.auth.userData);
   let accessToken = localStorage.getItem('Access Token');
   let refreshToken = localStorage.getItem('Refresh Token');
 
   useEffect(() => {
     const refreshToken = localStorage.getItem('Refresh Token');
-
     const checkTimeDifference = () => {
       const currentTime = new Date().getTime();
       const lastRefreshTime = localStorage.getItem('Refresh Token Time');
@@ -46,9 +44,6 @@ const App = () => {
       dispatch(authActions.refreshToken(refreshToken)).then(() => {
         dispatch(authMutations.setUserData(null));
         dispatch(authActions.getProfile());
-        dispatch(authMutations.setAuthData({
-          userData: user,
-        }));
         accessToken = localStorage.getItem('Access Token');
         refreshToken = localStorage.getItem('Refresh Token');
 
