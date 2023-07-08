@@ -209,10 +209,15 @@ const authActions = {
                 type: 'success',
                 msg: 'You logged out successfully.'
             }));
+            dispatch(authMutations.setAuthData({
+                access: null,
+                refresh: null,
+                userData: null
+            }));
             localStorage.removeItem('Access Token');
             localStorage.removeItem('Refresh Token');
             localStorage.removeItem('Refresh Token Time');
-            localStorage.removeItem('fcmToken')
+            localStorage.removeItem('fcmToken');
 
             socket.disconnect();
 

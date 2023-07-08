@@ -4,10 +4,11 @@ import { Rating } from '@mui/material';
 import StarBorder from '@material-ui/icons/StarBorder';
 import defaultProductPhoto from '../../assets/images/productDefault.png';
 import { useSelector } from 'react-redux';
+import { CheckCircle, ClearRounded } from '@material-ui/icons';
 
 import './ProductCard.scss';
 
-const ProductCard = ({ productCard, width = 'width-90-100', price, size, quantity, color }) => {
+const ProductCard = ({ productCard, width = 'width-90-100', price, quantity }) => {
     // check if product has discount
     const hasDiscount = productCard?.discount?.hasDiscount;
 
@@ -59,8 +60,7 @@ const ProductCard = ({ productCard, width = 'width-90-100', price, size, quantit
                         {productCard.title.toUpperCase()}
                     </div>
                     <div className='product-card--cont full-width flex-col-left-start gray size-14px font-bold margin-12px-V'>
-                        {
-                            productCard.store &&
+                        {productCard.store &&
                             <div className='product-card--store'>
                                 {productCard.store.storeName}
                             </div>
@@ -71,8 +71,6 @@ const ProductCard = ({ productCard, width = 'width-90-100', price, size, quantit
                                 productCard.subCategory
                             }
                         </div>
-
-
                         {(productCard.avilableQuantity || quantity) &&
                             <span className="gray size-14px margin-2px-V">Quantity:
                                 <span className={`${mode === 'dark-mode' ? 'gray' : 'orange'} size-14px margin-6px-H`}>{quantity || productCard.avilableQuantity}</span>
@@ -81,18 +79,11 @@ const ProductCard = ({ productCard, width = 'width-90-100', price, size, quantit
                         <span className="gray size-14px margin-2px-V">Material:
                             <span className={`${mode === 'dark-mode' ? 'gray' : 'orange'} size-14px margin-6px-H`}>{productCard.material}</span>
                         </span>
-                        {
-                            size &&
-                            <span className="gray size-14px margin-2px-V">Size:
-                                <span className={`${mode === 'dark-mode' ? 'gray' : 'orange'} size-14px margin-6px-H`}>{size}</span>
+                        {productCard.model3D && (
+                            <span className="gray size-14px margin-2px-V flex-row-left-start">3D Model:
+                                <span className="orange size-14px margin-6px-H flex-row-left-start">{productCard.model3D === 'No Model' ? <ClearRounded color='error' /> : <CheckCircle color='primary' />}</span>
                             </span>
-                        }
-                        {
-                            color &&
-                            <span className="gray size-14px margin-2px-V">Color:
-                                <span className="orange size-14px margin-6px-H">{color}</span>
-                            </span>
-                        }
+                        )}
                     </div>
                     <div className='product-card--price full-width flex-row-right-start'>
                         {hasDiscount && (

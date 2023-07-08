@@ -4,6 +4,7 @@ import StarBorder from '@material-ui/icons/StarBorder';
 import { Link } from "react-router-dom";
 import productDefault from "../../assets/images/productDefault.png";
 import { useSelector } from "react-redux";
+import { CheckCircle, ClearRounded } from "@material-ui/icons";
 
 import "./ProductInfo.scss";
 
@@ -74,7 +75,7 @@ export const ProductInfo = ({ product }) => {
               key={index}
               className={`pointer product-info--thumbnail margin-8px-H ${index === currentPhotoIndex ? "orange-bg" : ""}`}
               style={{ borderColor: "orange" }}
-              
+
               onClick={() => handleSelectPhoto(index)}
             />
           ))}
@@ -102,9 +103,11 @@ export const ProductInfo = ({ product }) => {
         <Link to={`/admin-panel/stores/${product.store._id}`} className={`pointer lists-card--link product-info--store size-20px margin-8px-V ${mode === 'dark-mode' ? 'gray' : 'orange'}`}>
           Store : {product.store.storeName}
         </Link>
-        <div className="product-info-details">{product.description}</div>
+        <div className="product-info-details margin-6px-V">{product.description}</div>
 
-        <div className="product-info-details margin-12px-V size-14px gray ">Product material: {product.material}</div>
+        <div className="product-info-details margin-6px-V size-14px gray ">Material: {product.material}</div>
+
+        <div className="product-info--details margin-6px size-14px gray flex-row-left-start">3D Model: {product.model3D === 'No Model' ? <ClearRounded color='error' /> : <CheckCircle color='primary' />} </div>
 
         <div className="full-width flex-row-between">
           <div className="flex-row-left-start lavender">{product.subCategory.title}</div>

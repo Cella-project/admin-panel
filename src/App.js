@@ -23,6 +23,7 @@ const App = () => {
 
   useEffect(() => {
     const refreshToken = localStorage.getItem('Refresh Token');
+    
     const checkTimeDifference = () => {
       const currentTime = new Date().getTime();
       const lastRefreshTime = localStorage.getItem('Refresh Token Time');
