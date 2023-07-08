@@ -211,6 +211,8 @@ const authActions = {
             }));
             localStorage.removeItem('Access Token');
             localStorage.removeItem('Refresh Token');
+            localStorage.removeItem('Refresh Token Time');
+            localStorage.removeItem('fcmToken')
 
             socket.disconnect();
 
