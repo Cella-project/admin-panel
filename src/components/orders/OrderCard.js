@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const OrderCard = ({ order,type }) => {
+const OrderCard = ({ order, type }) => {
     return (
         <>
             <Link to={`/admin-panel/orders${type === 'history' ? 'History' : ''}/${order._id}`} className='orders--link full-width flex-row-left-start2col'>

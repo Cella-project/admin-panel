@@ -13,6 +13,8 @@ const MobMenu = ({ menuToggle }) => {
     const mode = useSelector(state => state.theme.mode);
 
     const handleLogout = () => {
+        menuToggle(false);
+        window.onscroll = function () { };
         dispatch(authActions.logout());
     }
 

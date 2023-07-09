@@ -214,12 +214,12 @@ const authActions = {
                 refresh: null,
                 userData: null
             }));
+            socket.disconnect();
             localStorage.removeItem('Access Token');
             localStorage.removeItem('Refresh Token');
             localStorage.removeItem('Refresh Token Time');
             localStorage.removeItem('fcmToken');
-
-            socket.disconnect();
+            localStorage.removeItem('Session');
 
             router.navigate('/admin-panel/login');
         }

@@ -100,7 +100,7 @@ const App = () => {
     <div className={`u-disable-touch ${mode}`}>
       {notes.length > 0 && <StickyBoard />}
       {isPopupShown && <Popup />}
-
+    
       <Outlet />
     </div>
   );
