@@ -46,12 +46,12 @@ export const RefillProductForm = ({ popupToggle }) => {
 
             if (existingPiece) {
                 // If a piece with the same color and size exists, update its quantity
-                existingPiece.quantity += parseInt(enteredQuantity);
+                existingPiece.quantity += +enteredQuantity;
                 setPieces([...pieces]); // Update the state with the modified array
             } else {
                 // Otherwise, add a new piece to the array
                 const newPiece = {
-                    quantity: parseInt(enteredQuantity),
+                    quantity: +enteredQuantity,
                     color: { title: selectedColor.label, hexCode: selectedColor.hexCode },
                     size: selectedSize,
                 };

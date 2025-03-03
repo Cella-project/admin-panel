@@ -39,7 +39,7 @@ const Cash = ({ popupToggle, header }) => {
     if (header === 'Cash in') {
       dispatch(driverActions.cashIn({
         _id: driverData._id,
-        amount: parseFloat(enteredAmount)
+        amount: +enteredAmount
       }, () => {
         resetAmountInput();
         popupToggle(false);
@@ -49,7 +49,7 @@ const Cash = ({ popupToggle, header }) => {
     } else if (header === 'Cash out') {
       dispatch(driverActions.cashOut({
         _id: driverData._id,
-        amount: parseFloat(enteredAmount)
+        amount: +enteredAmount
       }, () => {
         resetAmountInput();
         popupToggle(false);

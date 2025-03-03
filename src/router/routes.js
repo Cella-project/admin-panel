@@ -180,8 +180,8 @@ export const routes = [
                 element: <EditProduct />,
               },
               {
-                path:"AddProduct",
-                element:<AddProduct/>
+                path: "AddProduct",
+                element: <AddProduct />
               }
             ],
           },

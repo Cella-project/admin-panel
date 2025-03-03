@@ -155,8 +155,8 @@ const DeliveryList = () => {
                     <div className='margin-2px-V font-bold'>
                       <span className='lists-card--info--disc--hide margin-2px-H font-bold'>Rating: </span>
                       <div className='flex-row-left-start'>
-                        <Rating name="rating" emptyIcon={<StarBorder className='gray' fontSize='inherit' />} style={{ color: '#FDCC0D' }} value={parseFloat(driver.rating)} precision={0.5} size={"small"} readOnly />
-                        <span className='size-12px gray font-bold margin-4px-H'>{parseFloat(driver.rating)}</span>
+                        <Rating name="rating" emptyIcon={<StarBorder className='gray' fontSize='inherit' />} style={{ color: '#FDCC0D' }} value={+driver.rating} precision={0.5} size={"small"} readOnly />
+                        <span className='size-12px gray font-bold margin-4px-H'>{+driver.rating}</span>
                       </div>
                     </div>
                   </div>

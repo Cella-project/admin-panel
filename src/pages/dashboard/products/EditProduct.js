@@ -39,7 +39,7 @@ export const EditProduct = () => {
         if (value.trim() === '') {
             error = 'Please enter a title.';
         }
-        else if (value.length < 3 || value.length > 50) {
+        else if (value.length < 3 || value.length > 80) {
             error = 'Please enter a title with at least 3 characters and at most 50 characters.';
         }
         return { isValid, error };
@@ -129,7 +129,7 @@ export const EditProduct = () => {
     };
 
     const handleDiscountValueChange = (event) => {
-        setDiscountValue(parseFloat(event.target.value));
+        setDiscountValue(+event.target.value);
     };
 
     const calculateNewPrice = () => {
@@ -157,8 +157,8 @@ export const EditProduct = () => {
             updatedProduct.description = enteredDescription;
         }
 
-        if (parseFloat(enteredPrice) !== productData.price) {
-            updatedProduct.price = parseFloat(enteredPrice);
+        if (+enteredPrice !== productData.price) {
+            updatedProduct.price = +enteredPrice;
         }
 
         if (enteredMaterial.title !== productData.material && enteredMaterial.title !== '') {
@@ -405,7 +405,7 @@ export const EditProduct = () => {
                                 <div className="edit-product--price full-width flex-col-center edit-product--input-container">
                                     <div>
                                         <label className='pointer full-width text-shadow gray font-bold margin-6px-V' htmlFor="price">Price:<span className='red'>*</span></label>
-                                        <input className="pointer margin-12px-H gray edit-product--input radius-10px" min='0' type="number" id="price" value={enteredPrice} onChange={priceChangedHandler} onBlur={priceBlurHandler} />
+                                        <input className="margin-12px-H gray edit-product--input radius-10px" min='0' type="number" id="price" value={enteredPrice} onChange={priceChangedHandler} onBlur={priceBlurHandler} />
                                     </div>
                                     {priceIsTouched && (<div className="error-message">{priceError}</div>)}
                                     <div className='full-width edit-product--price--discount'>

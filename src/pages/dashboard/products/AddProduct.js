@@ -254,7 +254,7 @@ export const AddProduct = () => {
     };
 
     const handleDiscountValueChange = (event) => {
-        setDiscountValue(parseFloat(event.target.value));
+        setDiscountValue(+event.target.value);
     };
 
     const calculateNewPrice = () => {
@@ -311,7 +311,7 @@ export const AddProduct = () => {
         const product = {
             title: enteredTitle,
             description: enteredDescription,
-            price: parseInt(enteredPrice),
+            price: +enteredPrice,
             store: {
                 _id: enterStore.id,
                 storeName: enterStore.storeName,

@@ -8,7 +8,7 @@ import { CheckCircle, ClearRounded } from '@material-ui/icons';
 
 import './ProductCard.scss';
 
-const ProductCard = ({ productCard, width = 'width-90-100', price, quantity }) => {
+const ProductCard = ({ productCard, width = 'width-90-100', price, quantity, size, color }) => {
     // check if product has discount
     const hasDiscount = productCard?.discount?.hasDiscount;
 
@@ -79,6 +79,16 @@ const ProductCard = ({ productCard, width = 'width-90-100', price, quantity }) =
                         <span className="gray size-14px margin-2px-V">Material:
                             <span className={`${mode === 'dark-mode' ? 'gray' : 'orange'} size-14px margin-6px-H`}>{productCard.material}</span>
                         </span>
+                        {size &&
+                            <span className="gray size-14px margin-2px-V">Size:
+                                <span className={`${mode === 'dark-mode' ? 'gray' : 'orange'} size-14px margin-6px-H`}>{size}</span>
+                            </span>
+                        }
+                        {color &&
+                            <span className="gray size-14px margin-2px-V">Color:
+                                <span className="orange size-14px margin-6px-H">{color}</span>
+                            </span>
+                        }
                         {productCard.model3D && (
                             <span className="gray size-14px margin-2px-V flex-row-left-start">3D Model:
                                 <span className="orange size-14px margin-6px-H flex-row-left-start">{productCard.model3D === 'No Model' ? <ClearRounded color='error' /> : <CheckCircle color='primary' />}</span>

@@ -6,7 +6,7 @@ import darkLogo from '../../assets/images/white-logo.png';
 import Canvas from '../common/Canvas';
 
 import { useSelector } from 'react-redux';
-import Notifications from '../common/Notifications';
+import Notifications from './Notifications';
 
 import './NavBar.scss';
 

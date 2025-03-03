@@ -29,7 +29,7 @@ const authActions = {
                     localStorage.setItem('Access Token', response.data.token.access);
                     localStorage.setItem('Refresh Token', response.data.token.refresh);
 
-                    router.navigate('/admin-panel');
+                    router.navigate('/admin-panel/');
 
                     socket.auth = { token: response.data.token.access };
                     socket.connect();

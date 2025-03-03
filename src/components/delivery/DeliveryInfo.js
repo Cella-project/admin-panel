@@ -39,13 +39,13 @@ const DeliveryInfo = ({ delivery }) => {
               name="rating"
               style={{ color: "#FDCC0D" }}
               emptyIcon={<StarBorder className="gray" fontSize='inherit' />}
-              value={parseFloat(delivery.rating)}
+              value={+delivery.rating}
               precision={0.5}
               size={"medium"}
               readOnly
             />
             <div className="size-14px gray font-bold margin-4px-H">
-              {parseFloat(delivery.rating)}
+              {+delivery.rating}
             </div>
           </div>
         </div>

@@ -255,7 +255,7 @@ const ProductDetails = () => {
                       </ListsCard>
                     ))
                 ) : (
-                  <p className="gray inter size-16px font-bold">No reviews to display</p>
+                  <p className="no-space gray inter size-16px font-bold">No reviews to display</p>
                 )
                 }
               </PerfectScrollbar>

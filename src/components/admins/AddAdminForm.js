@@ -5,7 +5,7 @@ import useInput from "../../hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
 import { adminActions } from "../../apis/actions";
 
-import "./AddAdminForm.scss";
+import styles from "./AddAdminForm.module.scss";
 
 const AddAdminForm = ({ popupToggle }) => {
   const [photoFile, setPhotoFile] = useState('NO IMAGE');
@@ -131,12 +131,12 @@ const AddAdminForm = ({ popupToggle }) => {
   }
 
   return (
-    <form noValidate className="add-admin" onSubmit={formSubmissionHandler}>
-      <div className="full-width flex-col-left-start add-admin--input-container">
+    <form noValidate className={styles['add-admin']} onSubmit={formSubmissionHandler}>
+      <div className={`full-width flex-col-left-start ${styles['add-admin--input-container']}`}>
         <label className="pointer full-width text-shadow gray font-bold margin-6px-V" htmlFor="fullName" >
           Full Name
         </label>
-        <div className={`full-width gray radius-10px white-bg flex-row-left-start add-admin--input ${fullNameClasses}`}>
+        <div className={`full-width gray radius-10px white-bg flex-row-left-start ${styles['add-admin--input']} ${fullNameClasses}`}>
           <i className="bi bi-person size-20px" />
           <input
             className="full-width gray margin-4px-H"
@@ -153,11 +153,11 @@ const AddAdminForm = ({ popupToggle }) => {
           <div className="error-message">{fullNameError}</div>
         )}
       </div>
-      <div className="full-width flex-col-left-start add-admin--input-container">
+      <div className={`full-width flex-col-left-start ${styles['add-admin--input-container']}`}>
         <label className="pointer full-width text-shadow gray font-bold margin-6px-V" htmlFor="email" >
           Email Address
         </label>
-        <div className={`full-width gray radius-10px white-bg flex-row-left-start add-admin--input ${emailClasses}`}>
+        <div className={`full-width gray radius-10px white-bg flex-row-left-start ${styles['add-admin--input']} ${emailClasses}`}>
           <i className="bi bi-envelope size-20px" />
           <input
             className="full-width gray margin-4px-H"
@@ -174,13 +174,13 @@ const AddAdminForm = ({ popupToggle }) => {
         )}
       </div>
 
-      <div className="full-width flex-col-left-start add-admin--input-container">
+      <div className={`full-width flex-col-left-start ${styles['add-admin--input-container']}`}>
         <label className="pointer full-width text-shadow gray font-bold margin-6px-V" htmlFor="phone" >
           Phone Number
         </label>
         <PhoneInput
           id={'phone'}
-          className={`full-width gray radius-10px white-bg flex-row-left-start add-admin--input ${phoneClasses}`}
+          className={`full-width gray radius-10px white-bg flex-row-left-start ${styles['add-admin--input']} ${phoneClasses}`}
           international
           countryCallingCodeEditable={false}
           countrySelectProps={{ unicodeFlags: true }}
@@ -197,13 +197,13 @@ const AddAdminForm = ({ popupToggle }) => {
           <div className="error-message">{phoneError}</div>
         )}
       </div>
-      <div className="full-width flex-col-left-start add-admin--input-container">
-        <div className="full-width flex-col-left-start add-admin--input-container">
-          <div className='add-admin--change-img full-width flex-col-top-start'>
+      <div className={`full-width flex-col-left-start ${styles['add-admin--input-container']}`}>
+        <div className={`full-width flex-col-left-start ${styles['add-admin--input-container']}`}>
+          <div className={`${styles['add-admin--change-img']} full-width flex-col-top-start`}>
             <label className="pointer full-width text-shadow gray font-bold margin-6px-V" htmlFor="photo">
               Photo
             </label>
-            <label className={`add-admin--change-img--tag full-width flex-row-center gray open-sans pointer ${photoFile !== 'NO IMAGE' ? 'hide' : ''}`} htmlFor='photo'>
+            <label className={`${styles['add-admin--change-img--tag']} full-width flex-row-center gray open-sans pointer ${photoFile !== 'NO IMAGE' ? styles['hide'] : ''}`} htmlFor='photo'>
               <label className={`bi bi-image size-40px full-width flex-row-center white-bg pointer`} htmlFor="photo" />
               <input
                 className="full-width gray margin-4px-H"
@@ -214,12 +214,12 @@ const AddAdminForm = ({ popupToggle }) => {
               />
             </label>
           </div>
-          <label className={`add-admin--img flex-col-center ${photoFile === 'NO IMAGE' ? 'hide' : ''} full-width pointer`} htmlFor='photo'>
+          <label className={`${styles['add-admin--img']} flex-col-center ${photoFile === 'NO IMAGE' ? styles['hide'] : ''} full-width pointer`} htmlFor='photo'>
             <img src={photoFile} alt='' />
           </label>
           <button
             type="button"
-            className={`add-admin--actions--button${photoFile === 'NO IMAGE' ? '-hide' : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
+            className={`${styles['add-admin--actions--button']} ${photoFile === 'NO IMAGE' ? styles['hide'] : ''} margin-4px-V full-width pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px font-bold orange-bg`}
             onClick={clearIMG}
           >
             Clear
@@ -227,15 +227,15 @@ const AddAdminForm = ({ popupToggle }) => {
 
         </div>
       </div>
-      <div className="add-admin--actions flex-row-between full-width">
+      <div className={`${styles['add-admin--actions']} flex-row-between full-width`}>
         <button
-          className={`add-admin--actions--button pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px orange-bg`}
+          className={`${styles['add-admin--actions--button']} pointer radius-10px shadow-4px ${mode === 'dark-mode' ? 'gray' : 'white'} text-shadow size-18px orange-bg`}
           type="submit"
         >
           Confirm
         </button>
         <button
-          className="add-admin--actions--button pointer radius-10px shadow-4px white text-shadow size-18px gray-bg"
+          className={`${styles['add-admin--actions--button']} pointer radius-10px shadow-4px white text-shadow size-18px gray-bg`}
           onClick={() => {
             popupToggle(false);
             document.getElementById("dashboard-view").style.zIndex = 10;
